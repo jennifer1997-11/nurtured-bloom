@@ -421,30 +421,744 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .partner-tip-banner p{ margin:0; font-size:13px; color:var(--color-text); line-height:1.7; }
 .partner-tip-banner .tip-label{ font-size:10.5px; color:#6E8460; font-weight:600; letter-spacing:.06em; margin-bottom:6px; }
 
-/* ============ 問診備忘錄 full ============ */
-.notes-composer{ padding:20px 24px; margin-bottom:16px; }
-.notes-composer .nc-row{ display:flex; gap:10px; }
-.notes-composer input{ flex:1; border:none; background:var(--color-background); border-radius:var(--radius-pill); padding:12px 18px; font-size:13px; font-family:var(--font-cjk); color:var(--color-text); outline:none; }
-.notes-composer input::placeholder{ color:var(--color-text-faint); }
-.notes-composer .nc-add{ width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--color-primary),var(--color-primary-dark)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.notes-composer .nc-add svg{ width:16px; height:16px; color:#fff; }
-.notes-source{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
-.notes-source button{ font-size:11.5px; padding:7px 13px; border-radius:var(--radius-pill); background:var(--color-background); border:1px solid rgba(232,138,155,0.2); color:var(--color-text-muted); cursor:pointer; }
-.notes-source button:hover{ background:#FBEFF1; color:var(--color-primary-dark); }
-.notes-empty{ padding:40px 30px; text-align:center; }
-.notes-empty p{ margin:0 auto; font-size:12.5px; color:var(--color-text-muted); line-height:1.7; max-width:300px; }
-.notes-list{ display:flex; flex-direction:column; gap:0; }
-.note-item{ display:flex; align-items:center; gap:14px; padding:14px 22px; border-bottom:1px solid rgba(52,50,56,0.06); }
-.note-item:last-child{ border-bottom:none; }
-.note-item .ni-num{ width:22px; height:22px; border-radius:50%; background:rgba(232,138,155,0.15); color:var(--color-primary-dark); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.note-item .ni-txt{ flex:1; font-size:13px; color:var(--color-text); line-height:1.55; }
-.note-item .ni-del{ width:28px; height:28px; border-radius:50%; background:none; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--color-text-faint); }
-.note-item .ni-del:hover{ background:rgba(232,138,155,0.12); color:var(--color-primary-dark); }
-.note-item .ni-del svg{ width:13px; height:13px; }
-.notes-copy-bar{ padding:14px 22px; border-top:1px solid rgba(232,138,155,0.14); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-.notes-copy-bar span{ font-size:11.5px; color:var(--color-text-muted); }
-.copy-toast{ display:none; font-size:11px; color:#5F7A55; font-weight:600; }
-.copy-toast.on{ display:inline; }
+/* ============ 問診備忘錄 Consultation Memos MVP (Scoped) ============ */
+#tab-notes {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.cm-view-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cm-home-banner {
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(246,222,224,0.45), rgba(255,253,251,0.95));
+  border: 1px solid rgba(232,138,155,0.22);
+  border-radius: var(--radius-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-card);
+}
+.cm-banner-left .eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  margin-bottom: 4px;
+}
+.cm-home-banner h2 {
+  font-size: 20px;
+  color: var(--color-text);
+  margin: 0 0 6px;
+  font-family: var(--font-serif-cjk);
+}
+.cm-home-banner .cm-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.cm-create-btn {
+  padding: 12px 24px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(201,95,117,0.3);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cm-create-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(201,95,117,0.4);
+}
+
+.cm-section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 4px 0;
+}
+.cm-section-title-row h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  font-family: var(--font-serif-cjk);
+}
+.cm-record-count {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* Empty State */
+.cm-empty-card {
+  padding: 56px 24px;
+  text-align: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(232,138,155,0.35);
+}
+.cm-empty-icon-wrap {
+  margin: 0 auto 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(246,222,224,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cm-empty-card h3 {
+  font-size: 16px;
+  color: var(--color-text);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.cm-empty-card p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0 auto 20px;
+  max-width: 320px;
+}
+.cm-empty-create-btn {
+  padding: 10px 22px;
+  font-size: 13px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+/* History List & Cards */
+.cm-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cm-history-card {
+  padding: 18px 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.cm-history-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(232,138,155,0.35);
+  box-shadow: 0 6px 18px rgba(201,95,117,0.12);
+}
+.cm-hc-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.cm-hc-date-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cm-hc-date {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
+.cm-hc-time {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+}
+.cm-hc-sub-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cm-hc-week-tag {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  background: rgba(232,138,155,0.12);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.cm-hc-stats {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.cm-hc-stats.all-done {
+  color: #4E6B44;
+  font-weight: 600;
+}
+.cm-hc-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.cm-history-card:hover .cm-hc-arrow {
+  background: rgba(232,138,155,0.18);
+  color: var(--color-primary-dark);
+}
+
+/* Editor Section */
+.cm-back-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cm-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.15s;
+}
+.cm-back-btn:hover {
+  color: var(--color-primary-dark);
+}
+.cm-editor-status-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(232,138,155,0.12);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+.cm-editor-title-group h2 {
+  font-size: 20px;
+  font-family: var(--font-serif-cjk);
+  color: var(--color-text);
+  margin: 4px 0 4px;
+}
+.cm-editor-subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Datetime Card */
+.cm-datetime-card {
+  padding: 20px 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.cm-dt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cm-dt-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cm-dt-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cm-input {
+  border: 1px solid rgba(232,138,155,0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-family: var(--font-cjk);
+  background: #FFFDFB;
+  color: var(--color-text);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cm-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(232,138,155,0.15);
+}
+.cm-week-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(232,138,155,0.18);
+}
+.cm-week-tag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background: rgba(232,138,155,0.12);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+.cm-week-calc-note {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+}
+
+/* Questions Card */
+.cm-questions-card {
+  padding: 22px 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.cm-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.cm-card-head h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  font-family: var(--font-serif-cjk);
+}
+.cm-q-stat {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+.cm-composer-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.cm-composer-row input {
+  flex: 1;
+  border: 1px solid rgba(232,138,155,0.25);
+  background: var(--color-background);
+  border-radius: var(--radius-pill);
+  padding: 12px 18px;
+  font-size: 13.5px;
+  font-family: var(--font-cjk);
+  color: var(--color-text);
+  outline: none;
+  transition: all 0.2s ease;
+}
+.cm-composer-row input:focus {
+  border-color: var(--color-primary);
+  background: #FFFDFB;
+  box-shadow: 0 0 0 3px rgba(232,138,155,0.15);
+}
+.cm-composer-row input::placeholder {
+  color: var(--color-text-faint);
+}
+.cm-add-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(201,95,117,0.25);
+  transition: all 0.2s ease;
+}
+.cm-add-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 14px rgba(201,95,117,0.35);
+}
+.cm-add-btn svg {
+  width: 17px;
+  height: 17px;
+  color: #fff;
+}
+
+.cm-ai-trigger-wrap {
+  margin-top: 12px;
+}
+.cm-ai-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 15px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, rgba(246,222,224,0.35), var(--color-background));
+  border: 1px solid rgba(232,138,155,0.3);
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+.cm-ai-btn:hover {
+  background: #FBEFF1;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.cm-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+  margin: 18px 0;
+}
+
+/* Question Items */
+.cm-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.cm-empty-questions-hint {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--color-text-faint);
+}
+.cm-question-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 4px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.15s;
+}
+.cm-question-item:last-child {
+  border-bottom: none;
+}
+.cm-custom-chk {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.8px solid rgba(201,95,117,0.4);
+  background: #FFFDFB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.cm-custom-chk.checked {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #fff;
+}
+.cm-custom-chk svg {
+  width: 12px;
+  height: 12px;
+}
+.cm-q-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cm-q-text {
+  font-size: 13.5px;
+  color: var(--color-text);
+  line-height: 1.55;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cm-question-item.completed .cm-q-text {
+  text-decoration: line-through;
+  opacity: 0.55;
+  color: var(--color-text-muted);
+}
+.cm-q-badge {
+  font-size: 10.5px;
+  color: var(--color-primary-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  opacity: 0.8;
+}
+.cm-item-del-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-faint);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.cm-item-del-btn:hover {
+  color: #D32F2F;
+  background: rgba(211,47,47,0.08);
+}
+.cm-item-del-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Copy Action Bar */
+.cm-copy-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.cm-copy-btn {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-background);
+  border: 1px solid rgba(232,138,155,0.25);
+  color: var(--color-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.cm-copy-btn:hover {
+  background: #FBEFF1;
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+.cm-copy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.cm-copy-toast {
+  display: none;
+  font-size: 12px;
+  color: #4E6B44;
+  font-weight: 600;
+}
+.cm-copy-toast.on {
+  display: inline-block;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Editor Action Buttons */
+.cm-editor-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+.cm-save-memo-btn {
+  width: 100%;
+  max-width: 320px;
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(201,95,117,0.3);
+  cursor: pointer;
+  text-align: center;
+}
+.cm-save-memo-btn:hover {
+  box-shadow: 0 6px 18px rgba(201,95,117,0.4);
+}
+.cm-delete-wrap {
+  text-align: center;
+}
+.cm-delete-memo-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--color-text-faint);
+  cursor: pointer;
+  padding: 4px 10px;
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+.cm-delete-memo-btn:hover {
+  color: #D32F2F;
+}
+
+/* Modals */
+.cm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(52,50,56,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cm-modal-box {
+  background: #FFFDFB;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+  border: 1px solid rgba(232,138,155,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.cm-modal-box.cm-modal-small {
+  max-width: 400px;
+}
+.cm-modal-header {
+  padding: 18px 22px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.cm-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cm-modal-title h4,
+.cm-modal-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  font-family: var(--font-serif-cjk);
+}
+.cm-modal-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cm-modal-close:hover {
+  background: rgba(0,0,0,0.06);
+}
+.cm-modal-body {
+  padding: 20px 22px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cm-ai-modal-desc {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+}
+.cm-ai-candidates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cm-ai-candidate-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--color-background);
+  border-radius: 10px;
+  border: 1px solid rgba(232,138,155,0.15);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.cm-ai-candidate-item:hover {
+  background: #FBEFF1;
+  border-color: var(--color-primary);
+}
+.cm-ai-candidate-item.selected {
+  background: rgba(232,138,155,0.12);
+  border-color: var(--color-primary);
+}
+.cm-ai-candidate-item input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--color-primary-dark);
+  cursor: pointer;
+  margin-top: 2px;
+}
+.cm-ai-candidate-item span {
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.55;
+  flex: 1;
+}
+.cm-ai-safety-note {
+  font-size: 11px;
+  color: #8C8990;
+  line-height: 1.5;
+  padding-top: 4px;
+}
+.cm-modal-footer {
+  padding: 14px 22px 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,253,251,0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cm-home-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .cm-create-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .cm-dt-grid {
+    grid-template-columns: 1fr;
+  }
+  .cm-composer-row {
+    flex-direction: row;
+  }
+  .cm-history-card {
+    padding: 16px;
+  }
+  .cm-save-memo-btn {
+    max-width: 100%;
+  }
+}
 
 /* ============ 孕期日記 full ============ */
 .diary-composer{ padding:22px 24px; margin-bottom:16px; }
@@ -1860,27 +2574,171 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
       </div>
 
       <div class="tab-panel" id="tab-notes">
-        <div class="card notes-composer">
-          <div class="nc-row">
-            <input type="text" id="noteInput" placeholder="想問醫生什麼？先記下來…">
-            <button class="nc-add" id="noteAddBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></button>
+        <!-- ================= 問診備忘錄：首頁（清單 / 歷史紀錄） ================= -->
+        <div class="cm-view-section on" id="cmHomeSection">
+          <div class="card cm-home-banner">
+            <div class="cm-banner-left">
+              <span class="eyebrow">Consultation Memo</span>
+              <h2>問診備忘錄</h2>
+              <p class="cm-desc">把每一次想問醫師的事情記下來 ♡<br>產檢前不怕忘記，也可以隨時回顧。</p>
+            </div>
+            <div class="cm-banner-action">
+              <button class="btn btn-primary cm-create-btn" id="cmCreateMemoBtn" type="button">＋ 新增問診備忘錄</button>
+            </div>
           </div>
-          <div class="notes-source">
-            <button id="noteFromAI">🤖 AI 生成建議問題</button>
-            <button id="noteFromMap">🗺 從產檢地圖引入</button>
+
+          <div class="cm-section-title-row">
+            <h3>我的問診紀錄</h3>
+            <span class="cm-record-count" id="cmRecordCount">共 0 份紀錄</span>
+          </div>
+
+          <!-- Empty State -->
+          <div class="card cm-empty-card" id="cmEmptyState" style="display:none;">
+            <div class="cm-empty-icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 56 56" fill="none">
+                <rect x="10" y="6" width="36" height="44" rx="8" fill="#F6EFE6"/>
+                <path d="M18 20h20M18 28h20M18 36h12" stroke="#E88A9B" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>還沒有問診備忘錄</h3>
+            <p>下次想到想問醫師的事情，就先記下來吧 ♡</p>
+            <button class="btn btn-primary cm-empty-create-btn" id="cmCreateFirstMemoBtn" type="button">＋ 建立第一份備忘錄</button>
+          </div>
+
+          <!-- History List -->
+          <div class="cm-history-list" id="cmHistoryList"></div>
+        </div>
+
+        <!-- ================= 問診備忘錄：編輯 / 新增 表單頁 ================= -->
+        <div class="cm-view-section" id="cmEditorSection" style="display:none;">
+          <!-- Top Navigation -->
+          <div class="cm-back-bar">
+            <button class="cm-back-btn" id="cmBackToHomeBtn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              返回問診備忘錄
+            </button>
+            <span class="cm-editor-status-badge" id="cmEditorStatusBadge">新增中</span>
+          </div>
+
+          <div class="cm-editor-title-group">
+            <h2 id="cmEditorTitle">新增問診備忘錄</h2>
+            <p class="cm-editor-subtitle">把想問醫師的事情先記下來，看診時就不怕忘記 ♡</p>
+          </div>
+
+          <!-- Date & Time Card -->
+          <div class="card cm-datetime-card">
+            <div class="cm-dt-grid">
+              <div class="cm-dt-field">
+                <label for="cmDateInput">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  產檢日期
+                </label>
+                <input type="date" id="cmDateInput" class="cm-input">
+              </div>
+              <div class="cm-dt-field">
+                <label for="cmTimeInput">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  產檢時間
+                </label>
+                <input type="time" id="cmTimeInput" class="cm-input">
+              </div>
+            </div>
+            <div class="cm-week-hint" id="cmWeekHint">
+              <span class="cm-week-tag" id="cmWeekTag">🌸 第 24 週產檢</span>
+              <span class="cm-week-calc-note" id="cmWeekCalcNote">依預產期自動估算孕週</span>
+            </div>
+          </div>
+
+          <!-- Questions Card -->
+          <div class="card cm-questions-card">
+            <div class="cm-card-head">
+              <h3>想問醫師的事情</h3>
+              <span class="cm-q-stat" id="cmQuestionsStat">0 個問題</span>
+            </div>
+
+            <!-- Input Box -->
+            <div class="cm-composer-row">
+              <input type="text" id="cmQuestionInput" placeholder="想問醫師什麼？先記下來……">
+              <button class="cm-add-btn" id="cmAddQuestionBtn" type="button" title="新增問題" aria-label="新增問題">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+
+            <!-- AI Suggestions Trigger Button -->
+            <div class="cm-ai-trigger-wrap">
+              <button class="cm-ai-btn" id="cmAiSuggestionsBtn" type="button">
+                ✨ AI 本週問題建議
+              </button>
+            </div>
+
+            <div class="cm-divider"></div>
+
+            <!-- Questions Items List -->
+            <div class="cm-items-list" id="cmQuestionsList"></div>
+
+            <!-- Copy Unasked Action Bar -->
+            <div class="cm-copy-bar" id="cmCopyBar">
+              <button class="cm-copy-btn" id="cmCopyUnaskedBtn" type="button">
+                📋 複製待詢問問題
+              </button>
+              <span class="cm-copy-toast" id="cmCopyToast">✔ 已複製待詢問問題！</span>
+            </div>
+          </div>
+
+          <!-- Save / Delete Actions -->
+          <div class="cm-editor-actions">
+            <button class="btn btn-primary cm-save-memo-btn" id="cmSaveMemoBtn" type="button">
+              儲存備忘錄
+            </button>
+            <div class="cm-delete-wrap" id="cmDeleteWrap" style="display:none;">
+              <button class="cm-delete-memo-btn" id="cmDeleteMemoBtn" type="button">
+                刪除此份備忘錄
+              </button>
+            </div>
           </div>
         </div>
-        <div class="card" id="notesCard" style="overflow:hidden;">
-          <div class="notes-empty" id="notesEmpty">
-            <svg width="48" height="48" viewBox="0 0 56 56" fill="none" style="margin:0 auto 12px; display:block;"><rect x="10" y="6" width="36" height="44" rx="8" fill="#F6EFE6"/><path d="M18 20h20M18 28h20M18 36h12" stroke="#E88A9B" stroke-width="2.4" stroke-linecap="round"/></svg>
-            <p>還沒有記錄下任何問題。<br>想到什麼就記，看診時一鍵複製帶著走。</p>
+
+        <!-- ================= AI 本週問題建議 Modal ================= -->
+        <div class="cm-modal-overlay" id="cmAiModalOverlay" style="display:none;">
+          <div class="cm-modal-box">
+            <div class="cm-modal-header">
+              <div class="cm-modal-title">
+                <span>✨</span>
+                <h4>AI 本週問題建議</h4>
+              </div>
+              <button class="cm-modal-close" id="cmAiModalCloseBtn" type="button" aria-label="關閉">✕</button>
+            </div>
+            <div class="cm-modal-body">
+              <p class="cm-ai-modal-desc" id="cmAiModalDesc">
+                依目前孕週資訊，整理幾個看診時可以考慮詢問醫師的問題：
+              </p>
+              <div class="cm-ai-candidates-list" id="cmAiCandidatesList"></div>
+              <div class="cm-ai-safety-note">
+                問題建議僅協助整理看診重點，實際醫療問題請與醫師討論。
+              </div>
+            </div>
+            <div class="cm-modal-footer">
+              <button class="btn btn-ghost cm-modal-cancel-btn" id="cmAiModalCancelBtn" type="button">取消</button>
+              <button class="btn btn-primary cm-modal-confirm-btn" id="cmAiModalConfirmBtn" type="button">加入已選問題</button>
+            </div>
           </div>
-          <div class="notes-list" id="notesList" style="display:none;"></div>
-          <div class="notes-copy-bar" id="notesCopyBar" style="display:none;">
-            <span id="notesCount">0 項問題</span>
-            <div style="display:flex; gap:10px; align-items:center;">
-              <span class="copy-toast" id="copyToast">✔ 已複製！</span>
-              <button class="btn btn-primary" style="padding:9px 18px; font-size:12px;" id="copyNotesBtn">📋 一鍵複製問診內容</button>
+        </div>
+
+        <!-- ================= 刪除確認 Modal ================= -->
+        <div class="cm-modal-overlay" id="cmDeleteConfirmOverlay" style="display:none;">
+          <div class="cm-modal-box cm-modal-small">
+            <div class="cm-modal-header">
+              <h4>確認刪除備忘錄</h4>
+              <button class="cm-modal-close" id="cmDeleteCancelXBtn" type="button" aria-label="關閉">✕</button>
+            </div>
+            <div class="cm-modal-body">
+              <p style="font-size:13px; color:var(--color-text); line-height:1.6; margin:0;">
+                確定要刪除這份問診備忘錄嗎？刪除後將無法還原。
+              </p>
+            </div>
+            <div class="cm-modal-footer">
+              <button class="btn btn-ghost" id="cmDeleteCancelBtn" type="button">取消</button>
+              <button class="btn btn-danger" id="cmDeleteConfirmBtn" type="button" style="background:#D32F2F; color:#fff; border:none; padding:8px 16px; border-radius:var(--radius-pill); font-size:12.5px; font-weight:600; cursor:pointer;">確認刪除</button>
             </div>
           </div>
         </div>
@@ -2310,6 +3168,9 @@ document.querySelectorAll('#view-journey .tab-btn').forEach(function(btn){
     var target = btn.dataset.tab;
     document.querySelectorAll('#view-journey .tab-btn').forEach(function(b){ b.classList.toggle('active', b === btn); });
     document.querySelectorAll('#view-journey .tab-panel').forEach(function(p){ p.classList.toggle('on', p.id === 'tab-' + target); });
+    if(target === 'notes' && typeof renderConsultationMemosHome === 'function'){
+      renderConsultationMemosHome();
+    }
   });
 });
 
@@ -6730,10 +7591,630 @@ function renderBrowsingWeek(weekNum){
   if(selEl)   selEl.value = weekNum;
 }
 
+/* ============================================================
+   問診備忘錄 MVP｜Consultation Memos Logic & Storage
+   ============================================================ */
+var CM_STORAGE_KEY = 'pregnancyConsultationMemos';
+var CM_STATE = {
+  currentMemo: null,
+  isEditing: false
+};
+
+function getMemosFromStorage(){
+  try {
+    var raw = localStorage.getItem(CM_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e){
+    return [];
+  }
+}
+
+function saveMemosToStorage(memos){
+  try {
+    localStorage.setItem(CM_STORAGE_KEY, JSON.stringify(memos));
+  } catch(e){}
+}
+
+function calcWeekForDate(dateStr){
+  if(!dateStr) return (typeof APP !== 'undefined' && APP.currentWeek) ? APP.currentWeek : 24;
+  if(typeof APP !== 'undefined' && APP.edd){
+    var targetDate = new Date(dateStr + 'T00:00:00');
+    var eddDate = new Date(APP.edd);
+    eddDate.setHours(0,0,0,0);
+    var daysToEdd = Math.round((eddDate - targetDate) / 86400000);
+    var daysPregnant = 280 - daysToEdd;
+    var weeks = Math.max(1, Math.min(40, Math.floor(daysPregnant / 7)));
+    return weeks;
+  }
+  return 24;
+}
+
+function formatDateDisplay(dateStr){
+  if(!dateStr) return '';
+  var parts = dateStr.split('-');
+  if(parts.length === 3){
+    return parts[0] + ' / ' + parts[1] + ' / ' + parts[2];
+  }
+  return dateStr;
+}
+
+function getWeeklyQuestionSuggestions(week){
+  week = parseInt(week, 10) || 24;
+  
+  if(week <= 10){
+    return [
+      "最近晨起偶爾感到微噁心或食慾不振，飲食上有哪些推薦的舒緩方式？",
+      "孕早期需要加強補充哪些關鍵營養素？葉酸與綜合維他命該如何搭配？",
+      "這個階段有哪些建議了解的自費產前篩檢（如SMA、脆折症、NIPT等）？",
+      "日常生活中有時下腹部有微抽痛或腰痠感，需要注意哪些警訊？"
+    ];
+  } else if(week <= 14){
+    return [
+      "第一孕期常規血液檢查與超音波檢查結果是否都在正常標準範圍內？",
+      "初唐篩檢（頸部透明帶）或非侵入性產前染色體篩檢 (NIPT) 的時機與建議？",
+      "目前害喜與疲憊感有漸漸緩和，日常可以開始進行哪些溫和運動？",
+      "孕期用藥或牙齒日常護理（如洗牙）有哪些需要留意的注意事項？"
+    ];
+  } else if(week <= 20){
+    return [
+      "大約什麼時候會開始感受到明顯的胎動？初期的胎動感覺會像什麼？",
+      "第 20 週前後的公費第二級器官結構超音波（高層次超音波）建議何時預約？",
+      "飲食上需要特別加強鐵質與鈣質的補充嗎？補充品該如何服用？",
+      "日常走動有時會感覺腹部緊繃，這屬於正常的生理性宮縮嗎？"
+    ];
+  } else if(week <= 24){
+    return [
+      "最近晚上睡覺小腿有時會抽筋，需要調整睡姿或補充特定營養嗎？",
+      "DHA 和藻油／魚油建議補充到懷孕的哪一個階段？",
+      "胎動有時較明顯、有時較安靜，目前的胎動規律屬於正常範圍嗎？",
+      "接下來 24-28 週的妊娠糖尿病篩檢 (OGTT)，檢查前飲食與受檢流程需注意什麼？"
+    ];
+  } else if(week <= 28){
+    return [
+      "百日咳三合一疫苗 (Tdap) 建議在幾週接種？家人需要一起施打嗎？",
+      "每天該如何自我監測與記錄胎動？什麼情況下需要立即回診？",
+      "下肢水腫或腰背痠痛較明顯時，有哪些安全有效的舒緩方式？",
+      "妊娠糖尿病篩檢與貧血檢查結果是否都在理想標準內？"
+    ];
+  } else if(week <= 32){
+    return [
+      "目前寶寶的胎位是正胎位（頭位）嗎？後續胎位還會改變嗎？",
+      "第 32 週公費超音波評估寶寶生長體重與羊水量狀況如何？",
+      "日常走動時下腹沉重感增加，可以使用托腹帶來協助支撐嗎？",
+      "睡眠品質較差或容易頻尿，該如何調整睡姿與水分攝取時間？"
+    ];
+  } else if(week <= 36){
+    return [
+      "第 35-37 週的乙型鏈球菌 (GBS) 篩檢流程為何？若為陽性後續如何處置？",
+      "三大產兆（規則陣痛、落紅、破水）的辨識方式與緊急應對原則？",
+      "待產包與生產計畫書建議在何時完全準備就緒？",
+      "目前的假性宮縮與真正產程陣痛該如何有效區分？"
+    ];
+  } else {
+    return [
+      "目前胎頭是否已經下降入盆？宮頸成熟度狀況如何？",
+      "產兆出現時（如 511 宮縮法則或破水），何時應立即前往產房待產？",
+      "目前預估胎兒體重與骨盆條件，自然產的評估建議為何？",
+      "若接近或超過預產期（40週），後續胎盤功能監測與催產時機如何安排？"
+    ];
+  }
+}
+
+function renderConsultationMemosHome(){
+  var homeSec = document.getElementById('cmHomeSection');
+  var editSec = document.getElementById('cmEditorSection');
+  if(homeSec) { homeSec.style.display = 'flex'; homeSec.classList.add('on'); }
+  if(editSec) { editSec.style.display = 'none'; editSec.classList.remove('on'); }
+
+  var memos = getMemosFromStorage();
+  // Sort Newest -> Oldest
+  memos.sort(function(a, b){
+    var dtA = (a.prenatalDate || '') + ' ' + (a.prenatalTime || '');
+    var dtB = (b.prenatalDate || '') + ' ' + (b.prenatalTime || '');
+    return dtB.localeCompare(dtA);
+  });
+
+  var countEl = document.getElementById('cmRecordCount');
+  if(countEl) countEl.textContent = '共 ' + memos.length + ' 份紀錄';
+
+  var emptyEl = document.getElementById('cmEmptyState');
+  var listEl = document.getElementById('cmHistoryList');
+
+  if(memos.length === 0){
+    if(emptyEl) emptyEl.style.display = 'block';
+    if(listEl) { listEl.style.display = 'none'; listEl.innerHTML = ''; }
+  } else {
+    if(emptyEl) emptyEl.style.display = 'none';
+    if(listEl){
+      listEl.style.display = 'flex';
+      listEl.innerHTML = memos.map(function(m){
+        var questions = m.questions || [];
+        var totalQ = questions.length;
+        var doneQ = questions.filter(function(q){ return q.completed; }).length;
+        var allDone = (totalQ > 0 && doneQ === totalQ);
+        
+        var statText = totalQ === 0 ? '尚無問題' : (allDone ? (totalQ + ' 個問題 · 全部完成 ✓') : (totalQ + ' 個問題 · ' + doneQ + ' 個已完成'));
+        var weekText = m.pregnancyWeek ? ('第 ' + m.pregnancyWeek + ' 週產檢') : '產檢備忘錄';
+
+        return '<div class="cm-history-card" data-memo-id="' + m.id + '">' +
+               '  <div class="cm-hc-left">' +
+               '    <div class="cm-hc-date-row">' +
+               '      <span class="cm-hc-date">' + formatDateDisplay(m.prenatalDate) + '</span>' +
+               (m.prenatalTime ? '      <span class="cm-hc-time">' + m.prenatalTime + '</span>' : '') +
+               '    </div>' +
+               '    <div class="cm-hc-sub-row">' +
+               '      <span class="cm-hc-week-tag">' + weekText + '</span>' +
+               '      <span class="cm-hc-stats' + (allDone ? ' all-done' : '') + '">' + statText + '</span>' +
+               '    </div>' +
+               '  </div>' +
+               '  <div class="cm-hc-arrow">＞</div>' +
+               '</div>';
+      }).join('');
+
+      listEl.querySelectorAll('.cm-history-card').forEach(function(card){
+        card.addEventListener('click', function(){
+          var id = card.dataset.memoId;
+          openMemoDetail(id);
+        });
+      });
+    }
+  }
+}
+
+function openCreateMemoView(){
+  var homeSec = document.getElementById('cmHomeSection');
+  var editSec = document.getElementById('cmEditorSection');
+  if(homeSec) { homeSec.style.display = 'none'; homeSec.classList.remove('on'); }
+  if(editSec) { editSec.style.display = 'flex'; editSec.classList.add('on'); }
+
+  CM_STATE.isEditing = false;
+
+  var today = new Date();
+  var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+  var todayStr = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+  var currentWeek = calcWeekForDate(todayStr);
+
+  CM_STATE.currentMemo = {
+    id: 'memo_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+    prenatalDate: todayStr,
+    prenatalTime: '10:00',
+    pregnancyWeek: currentWeek,
+    questions: [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+
+  var titleEl = document.getElementById('cmEditorTitle');
+  var statusBadge = document.getElementById('cmEditorStatusBadge');
+  var dateInput = document.getElementById('cmDateInput');
+  var timeInput = document.getElementById('cmTimeInput');
+  var weekTag = document.getElementById('cmWeekTag');
+  var qInput = document.getElementById('cmQuestionInput');
+  var delWrap = document.getElementById('cmDeleteWrap');
+  var saveBtn = document.getElementById('cmSaveMemoBtn');
+
+  if(titleEl) titleEl.textContent = '新增問診備忘錄';
+  if(statusBadge) statusBadge.textContent = '新增中';
+  if(dateInput) dateInput.value = todayStr;
+  if(timeInput) timeInput.value = '10:00';
+  if(weekTag) weekTag.textContent = '🌸 第 ' + currentWeek + ' 週產檢';
+  if(qInput) qInput.value = '';
+  if(delWrap) delWrap.style.display = 'none';
+  if(saveBtn) saveBtn.textContent = '儲存備忘錄';
+
+  renderQuestionsList();
+}
+
+function openMemoDetail(memoId){
+  var memos = getMemosFromStorage();
+  var target = null;
+  for(var i=0; i<memos.length; i++){
+    if(memos[i].id === memoId){ target = memos[i]; break; }
+  }
+  if(!target) return;
+
+  CM_STATE.isEditing = true;
+  CM_STATE.currentMemo = JSON.parse(JSON.stringify(target));
+
+  var homeSec = document.getElementById('cmHomeSection');
+  var editSec = document.getElementById('cmEditorSection');
+  if(homeSec) { homeSec.style.display = 'none'; homeSec.classList.remove('on'); }
+  if(editSec) { editSec.style.display = 'flex'; editSec.classList.add('on'); }
+
+  var titleEl = document.getElementById('cmEditorTitle');
+  var statusBadge = document.getElementById('cmEditorStatusBadge');
+  var dateInput = document.getElementById('cmDateInput');
+  var timeInput = document.getElementById('cmTimeInput');
+  var weekTag = document.getElementById('cmWeekTag');
+  var qInput = document.getElementById('cmQuestionInput');
+  var delWrap = document.getElementById('cmDeleteWrap');
+  var saveBtn = document.getElementById('cmSaveMemoBtn');
+
+  var weekNum = CM_STATE.currentMemo.pregnancyWeek || calcWeekForDate(CM_STATE.currentMemo.prenatalDate);
+
+  if(titleEl) titleEl.textContent = '第 ' + weekNum + ' 週產檢備忘錄';
+  if(statusBadge) statusBadge.textContent = '編輯中';
+  if(dateInput) dateInput.value = CM_STATE.currentMemo.prenatalDate || '';
+  if(timeInput) timeInput.value = CM_STATE.currentMemo.prenatalTime || '';
+  if(weekTag) weekTag.textContent = '🌸 第 ' + weekNum + ' 週產檢';
+  if(qInput) qInput.value = '';
+  if(delWrap) delWrap.style.display = 'block';
+  if(saveBtn) saveBtn.textContent = '儲存變更';
+
+  renderQuestionsList();
+}
+
+function renderQuestionsList(){
+  if(!CM_STATE.currentMemo) return;
+  var questions = CM_STATE.currentMemo.questions || [];
+  var listEl = document.getElementById('cmQuestionsList');
+  var statEl = document.getElementById('cmQuestionsStat');
+  var copyBtn = document.getElementById('cmCopyUnaskedBtn');
+
+  var total = questions.length;
+  var done = questions.filter(function(q){ return q.completed; }).length;
+  var unasked = total - done;
+
+  if(statEl) statEl.textContent = total + ' 個問題 · ' + done + ' 個已完成';
+  if(copyBtn) copyBtn.disabled = (unasked === 0);
+
+  if(!listEl) return;
+
+  if(questions.length === 0){
+    listEl.innerHTML = '<div class="cm-empty-questions-hint">目前尚未加入任何問題，可在上方輸入或參考 AI 建議 ♡</div>';
+    return;
+  }
+
+  listEl.innerHTML = questions.map(function(q){
+    return '<div class="cm-question-item' + (q.completed ? ' completed' : '') + '" data-qid="' + q.id + '">' +
+           '  <div class="cm-custom-chk' + (q.completed ? ' checked' : '') + '" data-action="toggle" data-qid="' + q.id + '">' +
+           (q.completed ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2"><polyline points="20 6 9 17 4 12"/></svg>' : '') +
+           '  </div>' +
+           '  <div class="cm-q-body" data-action="toggle" data-qid="' + q.id + '">' +
+           '    <span class="cm-q-text">' + q.text + '</span>' +
+           (q.source === 'weekly_suggestion' ? '<span class="cm-q-badge">✨ AI 建議問題</span>' : '') +
+           '  </div>' +
+           '  <button class="cm-item-del-btn" data-action="delete" data-qid="' + q.id + '" title="刪除此問題" aria-label="刪除此問題">' +
+           '    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+           '  </button>' +
+           '</div>';
+  }).join('');
+
+  listEl.querySelectorAll('[data-action="toggle"]').forEach(function(el){
+    el.addEventListener('click', function(){
+      var qid = el.dataset.qid;
+      toggleQuestionCompleted(qid);
+    });
+  });
+
+  listEl.querySelectorAll('[data-action="delete"]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.stopPropagation();
+      var qid = el.dataset.qid;
+      deleteQuestion(qid);
+    });
+  });
+}
+
+function addQuestion(text, source){
+  text = (text || '').trim();
+  if(!text || !CM_STATE.currentMemo) return;
+
+  CM_STATE.currentMemo.questions.push({
+    id: 'q_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+    text: text,
+    completed: false,
+    source: source || 'manual'
+  });
+
+  renderQuestionsList();
+}
+
+function toggleQuestionCompleted(qid){
+  if(!CM_STATE.currentMemo) return;
+  var questions = CM_STATE.currentMemo.questions || [];
+  for(var i=0; i<questions.length; i++){
+    if(questions[i].id === qid){
+      questions[i].completed = !questions[i].completed;
+      break;
+    }
+  }
+
+  // If already saved in storage, update in place
+  if(CM_STATE.isEditing){
+    var memos = getMemosFromStorage();
+    for(var j=0; j<memos.length; j++){
+      if(memos[j].id === CM_STATE.currentMemo.id){
+        memos[j].questions = CM_STATE.currentMemo.questions;
+        memos[j].updatedAt = new Date().toISOString();
+        saveMemosToStorage(memos);
+        break;
+      }
+    }
+  }
+
+  renderQuestionsList();
+}
+
+function deleteQuestion(qid){
+  if(!CM_STATE.currentMemo) return;
+  CM_STATE.currentMemo.questions = (CM_STATE.currentMemo.questions || []).filter(function(q){
+    return q.id !== qid;
+  });
+
+  if(CM_STATE.isEditing){
+    var memos = getMemosFromStorage();
+    for(var j=0; j<memos.length; j++){
+      if(memos[j].id === CM_STATE.currentMemo.id){
+        memos[j].questions = CM_STATE.currentMemo.questions;
+        memos[j].updatedAt = new Date().toISOString();
+        saveMemosToStorage(memos);
+        break;
+      }
+    }
+  }
+
+  renderQuestionsList();
+}
+
+function copyUnaskedQuestions(){
+  if(!CM_STATE.currentMemo) return;
+  var questions = CM_STATE.currentMemo.questions || [];
+  var unasked = questions.filter(function(q){ return !q.completed; });
+
+  var toastEl = document.getElementById('cmCopyToast');
+
+  if(unasked.length === 0){
+    if(toastEl){
+      toastEl.textContent = '目前沒有待詢問問題';
+      toastEl.classList.add('on');
+      setTimeout(function(){ toastEl.classList.remove('on'); }, 2200);
+    }
+    return;
+  }
+
+  var copyText = unasked.map(function(q, i){
+    return (i + 1) + '. ' + q.text;
+  }).join('\n');
+
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(copyText).then(showToast, fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+
+  function fallbackCopy(){
+    var ta = document.createElement('textarea');
+    ta.value = copyText;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+    showToast();
+  }
+
+  function showToast(){
+    if(toastEl){
+      toastEl.textContent = '✔ 已複製 ' + unasked.length + ' 項待詢問問題！';
+      toastEl.classList.add('on');
+      setTimeout(function(){ toastEl.classList.remove('on'); }, 2500);
+    }
+  }
+}
+
+function saveCurrentMemo(){
+  if(!CM_STATE.currentMemo) return;
+
+  var dateInput = document.getElementById('cmDateInput');
+  var timeInput = document.getElementById('cmTimeInput');
+
+  var dateVal = dateInput ? dateInput.value : '';
+  if(!dateVal){
+    var today = new Date();
+    var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+    dateVal = today.getFullYear() + '-' + pad(today.getMonth() + 1) + '-' + pad(today.getDate());
+  }
+
+  var timeVal = timeInput ? timeInput.value : '';
+  var weekVal = calcWeekForDate(dateVal);
+
+  CM_STATE.currentMemo.prenatalDate = dateVal;
+  CM_STATE.currentMemo.prenatalTime = timeVal;
+  CM_STATE.currentMemo.pregnancyWeek = weekVal;
+  CM_STATE.currentMemo.updatedAt = new Date().toISOString();
+
+  var memos = getMemosFromStorage();
+
+  if(CM_STATE.isEditing){
+    var found = false;
+    for(var i=0; i<memos.length; i++){
+      if(memos[i].id === CM_STATE.currentMemo.id){
+        memos[i] = CM_STATE.currentMemo;
+        found = true;
+        break;
+      }
+    }
+    if(!found) memos.unshift(CM_STATE.currentMemo);
+  } else {
+    CM_STATE.currentMemo.createdAt = new Date().toISOString();
+    memos.unshift(CM_STATE.currentMemo);
+  }
+
+  saveMemosToStorage(memos);
+  renderConsultationMemosHome();
+}
+
+function openDeleteConfirmModal(){
+  var modal = document.getElementById('cmDeleteConfirmOverlay');
+  if(modal) modal.style.display = 'flex';
+}
+
+function closeDeleteConfirmModal(){
+  var modal = document.getElementById('cmDeleteConfirmOverlay');
+  if(modal) modal.style.display = 'none';
+}
+
+function confirmDeleteCurrentMemo(){
+  if(!CM_STATE.currentMemo) return;
+  var memos = getMemosFromStorage();
+  memos = memos.filter(function(m){ return m.id !== CM_STATE.currentMemo.id; });
+  saveMemosToStorage(memos);
+  closeDeleteConfirmModal();
+  renderConsultationMemosHome();
+}
+
+/* AI Suggestions Modal Handlers */
+function openAiSuggestionsModal(){
+  if(!CM_STATE.currentMemo) return;
+  var modal = document.getElementById('cmAiModalOverlay');
+  var listEl = document.getElementById('cmAiCandidatesList');
+  var descEl = document.getElementById('cmAiModalDesc');
+
+  var dateInput = document.getElementById('cmDateInput');
+  var dateVal = (dateInput && dateInput.value) ? dateInput.value : CM_STATE.currentMemo.prenatalDate;
+  var weekNum = calcWeekForDate(dateVal);
+
+  if(descEl){
+    descEl.textContent = '依目前孕週資訊（第 ' + weekNum + ' 週），整理幾個看診時可以考慮詢問醫師的問題：';
+  }
+
+  var candidates = getWeeklyQuestionSuggestions(weekNum);
+  if(listEl){
+    listEl.innerHTML = candidates.map(function(text, idx){
+      return '<label class="cm-ai-candidate-item" for="aiCand_' + idx + '">' +
+             '  <input type="checkbox" id="aiCand_' + idx + '" value="' + encodeURIComponent(text) + '">' +
+             '  <span>' + text + '</span>' +
+             '</label>';
+    }).join('');
+
+    listEl.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        var parent = cb.closest('.cm-ai-candidate-item');
+        if(parent) parent.classList.toggle('selected', cb.checked);
+      });
+    });
+  }
+
+  if(modal) modal.style.display = 'flex';
+}
+
+function closeAiSuggestionsModal(){
+  var modal = document.getElementById('cmAiModalOverlay');
+  if(modal) modal.style.display = 'none';
+}
+
+function addSelectedAiSuggestions(){
+  var listEl = document.getElementById('cmAiCandidatesList');
+  if(!listEl || !CM_STATE.currentMemo) return;
+
+  var checkedBoxes = listEl.querySelectorAll('input[type="checkbox"]:checked');
+  checkedBoxes.forEach(function(cb){
+    var text = decodeURIComponent(cb.value);
+    addQuestion(text, 'weekly_suggestion');
+  });
+
+  closeAiSuggestionsModal();
+}
+
+function initConsultationMemos(){
+  // Bind Home action buttons
+  var createBtn = document.getElementById('cmCreateMemoBtn');
+  var firstCreateBtn = document.getElementById('cmCreateFirstMemoBtn');
+  if(createBtn) createBtn.addEventListener('click', openCreateMemoView);
+  if(firstCreateBtn) firstCreateBtn.addEventListener('click', openCreateMemoView);
+
+  // Bind Editor navigation
+  var backBtn = document.getElementById('cmBackToHomeBtn');
+  if(backBtn) backBtn.addEventListener('click', renderConsultationMemosHome);
+
+  // Bind Date & Time inputs
+  var dateInput = document.getElementById('cmDateInput');
+  if(dateInput){
+    dateInput.addEventListener('change', function(){
+      if(CM_STATE.currentMemo){
+        CM_STATE.currentMemo.prenatalDate = dateInput.value;
+        var w = calcWeekForDate(dateInput.value);
+        CM_STATE.currentMemo.pregnancyWeek = w;
+        var weekTag = document.getElementById('cmWeekTag');
+        if(weekTag) weekTag.textContent = '🌸 第 ' + w + ' 週產檢';
+        if(CM_STATE.isEditing){
+          var titleEl = document.getElementById('cmEditorTitle');
+          if(titleEl) titleEl.textContent = '第 ' + w + ' 週產檢備忘錄';
+        }
+      }
+    });
+  }
+
+  var timeInput = document.getElementById('cmTimeInput');
+  if(timeInput){
+    timeInput.addEventListener('change', function(){
+      if(CM_STATE.currentMemo){
+        CM_STATE.currentMemo.prenatalTime = timeInput.value;
+      }
+    });
+  }
+
+  // Bind Question Composer
+  var qInput = document.getElementById('cmQuestionInput');
+  var addBtn = document.getElementById('cmAddQuestionBtn');
+
+  function triggerAdd(){
+    if(qInput && qInput.value.trim()){
+      addQuestion(qInput.value.trim(), 'manual');
+      qInput.value = '';
+      qInput.focus();
+    }
+  }
+
+  if(addBtn) addBtn.addEventListener('click', triggerAdd);
+  if(qInput){
+    qInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        triggerAdd();
+      }
+    });
+  }
+
+  // Bind Copy & Save & Delete
+  var copyBtn = document.getElementById('cmCopyUnaskedBtn');
+  if(copyBtn) copyBtn.addEventListener('click', copyUnaskedQuestions);
+
+  var saveBtn = document.getElementById('cmSaveMemoBtn');
+  if(saveBtn) saveBtn.addEventListener('click', saveCurrentMemo);
+
+  var delBtn = document.getElementById('cmDeleteMemoBtn');
+  if(delBtn) delBtn.addEventListener('click', openDeleteConfirmModal);
+
+  var delCancelBtn = document.getElementById('cmDeleteCancelBtn');
+  var delCancelXBtn = document.getElementById('cmDeleteCancelXBtn');
+  var delConfirmBtn = document.getElementById('cmDeleteConfirmBtn');
+  if(delCancelBtn) delCancelBtn.addEventListener('click', closeDeleteConfirmModal);
+  if(delCancelXBtn) delCancelXBtn.addEventListener('click', closeDeleteConfirmModal);
+  if(delConfirmBtn) delConfirmBtn.addEventListener('click', confirmDeleteCurrentMemo);
+
+  // Bind AI Modal triggers
+  var aiBtn = document.getElementById('cmAiSuggestionsBtn');
+  if(aiBtn) aiBtn.addEventListener('click', openAiSuggestionsModal);
+
+  var aiCloseBtn = document.getElementById('cmAiModalCloseBtn');
+  var aiCancelBtn = document.getElementById('cmAiModalCancelBtn');
+  var aiConfirmBtn = document.getElementById('cmAiModalConfirmBtn');
+  if(aiCloseBtn) aiCloseBtn.addEventListener('click', closeAiSuggestionsModal);
+  if(aiCancelBtn) aiCancelBtn.addEventListener('click', closeAiSuggestionsModal);
+  if(aiConfirmBtn) aiConfirmBtn.addEventListener('click', addSelectedAiSuggestions);
+
+  // Render initial Home view
+  renderConsultationMemosHome();
+}
+
 document.addEventListener('DOMContentLoaded', function(){
   updateWeekUI();
   initActualHeaderUI();
   renderMapNodes();
+  initConsultationMemos();
 
   var sel = document.getElementById('overviewWeekSelect');
   if(sel){
