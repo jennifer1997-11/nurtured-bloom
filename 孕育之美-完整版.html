@@ -642,33 +642,34 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
 
 
-/* ============ 孕期總覽 V4 Layout & Fixed Actual Pin + Draggable Timeline Track ============ */
-.journey-hero-v4 {
-  padding: 28px 32px 32px;
+
+
+
+/* ============ 孕期總覽 MVP Clean UI Design System ============ */
+.journey-hero-mvp {
+  padding: 28px 32px 30px;
   margin-bottom: 22px;
-  background: radial-gradient(ellipse 480px 220px at 85% 10%, rgba(246,222,224,0.65), transparent 65%), linear-gradient(175deg, #FFFDFB 0%, #FBF4EE 100%);
+  background: radial-gradient(ellipse 500px 220px at 85% 15%, rgba(246,222,224,0.6), transparent 70%), linear-gradient(175deg, #FFFDFB 0%, #FAF5F0 100%);
   border: 1px solid rgba(232,138,155,0.18);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
 }
-.jh-top { margin-bottom: 18px; }
-.jh-title-row { display: flex; justify-content: space-between; align-items: center; margin: 6px 0 6px; }
-.jh-title { font-family: var(--font-serif-cjk); font-size: 22px; color: var(--color-text); margin: 0; }
-.jh-title span { color: var(--color-primary-dark); }
-.jh-percent { font-family: var(--font-serif-cjk); font-size: 26px; font-weight: 700; color: var(--color-primary-dark); }
-.jh-sub { font-size: 13px; color: var(--color-text-muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.jh-sub span { color: var(--color-text); font-weight: 600; }
+.jhm-top { margin-bottom: 18px; }
+.jhm-title-row { display: flex; justify-content: space-between; align-items: center; margin: 4px 0 6px; }
+.jhm-title { font-family: var(--font-serif-cjk); font-size: 22px; color: var(--color-text); margin: 0; }
+.jhm-title span { color: var(--color-primary-dark); font-weight: 700; }
+.jhm-percent { font-family: var(--font-serif-cjk); font-size: 28px; font-weight: 700; color: var(--color-primary-dark); }
+.jhm-sub { font-size: 13px; color: var(--color-text-muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.jhm-sub span { color: var(--color-text); font-weight: 600; }
 
-/* Timeline Track Container & Dragging area */
-.jh-track-v4 {
+/* 5-Milestone Track */
+.jhm-track {
   position: relative;
   padding: 34px 14px 10px;
-  margin-top: 10px;
+  margin-top: 8px;
   user-select: none;
 }
-
-/* Range slider overlay for direct mouse drag */
-.jh-slider-range {
+.jhm-slider-range {
   position: absolute;
   top: 42px;
   left: 20px;
@@ -680,9 +681,9 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   z-index: 20;
   margin: 0;
 }
-.jh-slider-range:active { cursor: grabbing; }
+.jhm-slider-range:active { cursor: grabbing; }
 
-.jh-track-line-bg {
+.jhm-track-line-bg {
   position: absolute;
   top: 50px;
   left: 20px;
@@ -692,22 +693,86 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   border-radius: 999px;
   z-index: 1;
 }
-
-/* Actual Progress Fill (up to current actual week) */
-.jh-track-line-actual {
+.jhm-track-line-actual {
   height: 100%;
   background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-primary) 100%);
   border-radius: 999px;
 }
 
-/* 4 Major Stage Nodes */
-.jh-major-nodes {
+/* Fixed Actual Pin */
+.jhm-actual-pin {
+  position: absolute;
+  top: 14px;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+.jhm-actual-badge {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(201,95,117,0.35);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.jhm-actual-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-primary-dark);
+  border: 2.5px solid #fff;
+  box-shadow: 0 0 0 3px rgba(232,138,155,0.4);
+  margin-top: 4px;
+}
+
+/* Browsing Cursor */
+.jhm-browse-thumb {
+  position: absolute;
+  top: 36px;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: left 0.15s ease-out;
+}
+.jhm-browse-badge {
+  background: #343238;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.jhm-browse-handle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #FFFDFB;
+  border: 3px solid #343238;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  margin-top: 2px;
+}
+
+/* 4 Milestone Stage Nodes */
+.jhm-major-nodes {
   position: relative;
   z-index: 2;
   height: 60px;
   pointer-events: none;
 }
-.jh-major-node {
+.jhm-major-node {
   position: absolute;
   transform: translateX(-50%);
   display: flex;
@@ -719,7 +784,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   padding: 0;
   width: 70px;
 }
-.jh-m-circle {
+.jhm-m-circle {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -732,75 +797,209 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   color: var(--color-text-muted);
   box-shadow: 0 3px 8px rgba(0,0,0,0.06);
 }
-.jh-m-circle svg { width: 14px; height: 14px; color: #fff; }
-.jh-major-node.done .jh-m-circle { background: var(--color-secondary); border-color: var(--color-secondary-dark); color: #fff; }
-.jh-major-node.future .jh-m-circle { background: #FFFDFB; border-color: #E2D7CC; color: #C2B7AC; }
-.jh-major-node.actual-now .jh-m-circle { background: var(--color-primary); border-color: var(--color-primary-dark); color: #fff; box-shadow: 0 0 0 5px rgba(232,138,155,0.25); }
+.jhm-m-circle svg { width: 14px; height: 14px; color: #fff; }
+.jhm-major-node.done .jhm-m-circle { background: var(--color-secondary); border-color: var(--color-secondary-dark); color: #fff; }
+.jhm-major-node.future .jhm-m-circle { background: #FFFDFB; border-color: #E2D7CC; color: #C2B7AC; }
+.jhm-major-node.actual-now .jhm-m-circle { background: var(--color-primary); border-color: var(--color-primary-dark); color: #fff; box-shadow: 0 0 0 5px rgba(232,138,155,0.25); }
 
-/* Fixed Actual Current Location Pin */
-.jh-actual-pin {
-  position: absolute;
-  top: 14px;
-  transform: translateX(-50%);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
+/* Browsing Notice Bar when selectedWeek != actualWeek */
+.browsing-return-bar {
+  display: none;
   align-items: center;
-  pointer-events: none;
+  justify-content: space-between;
+  background: rgba(232,138,155,0.08);
+  border: 1px solid rgba(232,138,155,0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 18px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--color-text);
 }
-.jh-actual-badge {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(201,95,117,0.4);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.jh-actual-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--color-primary-dark);
-  border: 2.5px solid #fff;
-  box-shadow: 0 0 0 3px rgba(232,138,155,0.4);
-  margin-top: 4px;
-}
-
-/* Browsing / Inspection Drag Handle Cursor */
-.jh-browse-thumb {
-  position: absolute;
-  top: 36px;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-  transition: left 0.15s ease-out;
-}
-.jh-browse-badge {
-  background: #343238;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-.jh-browse-handle {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+.browsing-return-bar.on { display: flex; }
+.browsing-return-btn {
   background: #FFFDFB;
-  border: 3px solid #343238;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  margin-top: 2px;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.browsing-return-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Weekly Focus Theme Banner */
+.weekly-focus-banner {
+  background: #FFFDFB;
+  border: 1px solid rgba(232,138,155,0.18);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-soft);
+}
+.wf-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.wf-text {
+  font-family: var(--font-serif-cjk);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Three Clean Direct Sections */
+.overview-sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.mvp-section-card {
+  background: var(--color-surface);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px 24px;
+  box-shadow: var(--shadow-card);
+}
+.mvp-sec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 10px;
+}
+.mvp-sec-title {
+  font-family: var(--font-serif-cjk);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mvp-sec-badge {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* Items inside direct section */
+.mvp-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mvp-item-row {
+  background: #FAF8F5;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.mvp-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mvp-item-title {
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--color-text);
+}
+.mvp-item-theme {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(232,138,155,0.12);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+.mvp-item-summary {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
+.mvp-item-bullets {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+.mvp-item-bullets li {
+  margin-bottom: 3px;
+}
+
+/* Bottom Navigation Bar */
+.overview-bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 28px;
+}
+.ov-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: #FFFDFB;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ov-nav-btn:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.ov-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.ov-week-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+.ov-week-selector-wrap select {
+  font-family: var(--font-cjk);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: #FFFDFB;
+  color: var(--color-text);
+  cursor: pointer;
 }
 
 </style>
@@ -996,59 +1195,59 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
       </div>
 
             <div class="tab-panel on" id="tab-overview">
-        <!-- YOUR JOURNEY Hero Progress Card V4 -->
-        <div class="card journey-hero-v4">
-          <div class="jh-top">
+        <!-- YOUR JOURNEY Hero Progress Card -->
+        <div class="card journey-hero-mvp">
+          <div class="jhm-top">
             <span class="eyebrow">YOUR JOURNEY</span>
-            <div class="jh-title-row">
-              <h2 class="jh-title">寶寶陪妳走到第 <span id="actualWeekNum">24</span> 週了 ♡ <span id="actualDaysText" style="font-size:16px; font-weight:500; color:var(--color-text-muted);">(第 168 天)</span></h2>
-              <div class="jh-percent"><span id="actualPercent">60%</span></div>
+            <div class="jhm-title-row">
+              <h2 class="jhm-title">寶寶陪妳走到第 <span id="actualWeekNum">24</span> 週了 ♡ <span id="actualDaysText" style="font-size:15px; font-weight:500; color:var(--color-text-muted);">(第 168 天)</span></h2>
+              <div class="jhm-percent"><span id="actualPercent">60%</span></div>
             </div>
-            <div class="jh-sub">
+            <div class="jhm-sub">
               <span id="actualStageName">第二孕期</span> ・ 距離預產期約 <span id="actualWeeksLeft">16</span> 週 <span id="actualCountdownDays">(倒數 112 天)</span>
             </div>
           </div>
 
-          <!-- 4 Major Stage Track + Fixed Actual Pin + Interactive Draggable Slider -->
-          <div class="jh-track-v4" id="jhTrackContainer">
+          <!-- Timeline Track + Fixed Actual Pin + Interactive Draggable Slider -->
+          <div class="jhm-track" id="jhTrackContainer">
             <!-- Range input slider for mouse drag -->
-            <input type="range" min="1" max="40" value="24" class="jh-slider-range" id="overviewWeekSlider">
+            <input type="range" min="1" max="40" value="24" class="jhm-slider-range" id="overviewWeekSlider" aria-label="孕週滑桿">
 
-            <div class="jh-track-line-bg">
-              <div class="jh-track-line-actual" id="actualLineFill" style="width: 58.9%;"></div>
+            <div class="jhm-track-line-bg">
+              <div class="jhm-track-line-actual" id="actualLineFill" style="width: 58.9%;"></div>
             </div>
 
             <!-- Fixed Actual Current Location Pin (固定的「現在位置」標記，不隨導航移動) -->
-            <div class="jh-actual-pin" id="actualCurrentPin" style="left: 58.9%;">
-              <div class="jh-actual-badge">● <span id="actualPinText">24週 現在位置</span></div>
-              <div class="jh-actual-dot"></div>
+            <div class="jhm-actual-pin" id="actualCurrentPin" style="left: 58.9%;">
+              <div class="jhm-actual-badge">● <span id="actualPinText">24週 現在位置</span></div>
+              <div class="jhm-actual-dot"></div>
             </div>
 
             <!-- Browsing Indicator Cursor (隨滑鼠拉動/導航移動的檢視游標) -->
-            <div class="jh-browse-thumb" id="browseThumbCursor" style="left: 58.9%;">
-              <div class="jh-browse-badge">🔍 檢視第 <span id="browseBadgeWeek">24</span> 週</div>
-              <div class="jh-browse-handle"></div>
+            <div class="jhm-browse-thumb" id="browseThumbCursor" style="left: 58.9%;">
+              <div class="jhm-browse-badge">🔍 檢視第 <span id="browseBadgeWeek">24</span> 週</div>
+              <div class="jhm-browse-handle"></div>
             </div>
 
             <!-- 4 Major Stage Fixed Nodes (1週, 14週, 29週, 40週) -->
-            <div class="jh-major-nodes">
-              <div class="jh-major-node done" id="mnode-1" style="left: 0%;">
-                <div class="jh-m-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="jhm-major-nodes">
+              <div class="jhm-major-node done" id="mnode-1" style="left: 0%;">
+                <div class="jhm-m-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
                 <span class="w-label">1週</span>
                 <span class="w-sub">開始</span>
               </div>
-              <div class="jh-major-node done" id="mnode-14" style="left: 33.3%;">
-                <div class="jh-m-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="jhm-major-node done" id="mnode-14" style="left: 33.3%;">
+                <div class="jhm-m-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
                 <span class="w-label">14週</span>
-                <span class="w-sub">第2孕期</span>
+                <span class="w-sub">第二孕期</span>
               </div>
-              <div class="jh-major-node future" id="mnode-29" style="left: 71.8%;">
-                <div class="jh-m-circle">○</div>
+              <div class="jhm-major-node future" id="mnode-29" style="left: 71.8%;">
+                <div class="jhm-m-circle">○</div>
                 <span class="w-label">29週</span>
-                <span class="w-sub">第3孕期</span>
+                <span class="w-sub">第三孕期</span>
               </div>
-              <div class="jh-major-node future" id="mnode-40" style="left: 100%;">
-                <div class="jh-m-circle">○</div>
+              <div class="jhm-major-node future" id="mnode-40" style="left: 100%;">
+                <div class="jhm-m-circle">○</div>
                 <span class="w-label">40週</span>
                 <span class="w-sub">見面</span>
               </div>
@@ -1056,63 +1255,60 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           </div>
         </div>
 
-        <!-- Weekly Theme Banner -->
-        <div class="weekly-theme-banner" id="overviewThemeBanner">
-          <span class="wt-tag">🎯 本週重點（第 <span id="themeWeekTitleNum">24</span> 週）</span>
-          <h3 class="wt-text" id="overviewThemeText">載入中...</h3>
+        <!-- Return to Actual Week Bar (Only visible when browsing other weeks) -->
+        <div class="browsing-return-bar" id="browsingReturnBar">
+          <div>目前檢視：<b>第 <span id="viewingWeekNumText">24</span> 週</b>（實際目前孕週：第 <span id="actualWeekNumNotice">24</span> 週）</div>
+          <button class="browsing-return-btn" id="returnToCurrentWeekBtn">回到本週</button>
         </div>
 
-        <!-- Three Stacked Sections -->
-        <div class="overview-content-sections">
+        <!-- Weekly Focus Theme Banner -->
+        <div class="weekly-focus-banner" id="overviewThemeBanner">
+          <span class="wf-tag">本週核心焦點・第 <span id="themeWeekTitleNum">24</span> 週</span>
+          <h3 class="wf-text" id="overviewThemeText">載入中...</h3>
+        </div>
+
+        <!-- Three Direct Full-Display Sections (No Accordion / No Modal) -->
+        <div class="overview-sections-container">
           <!-- Section 1: 媽咪本週身體變化 -->
-          <div class="overview-section-card">
-            <div class="sec-head">
-              <div class="sec-title-wrap">
-                <span class="sec-icon">🤰</span>
-                <h3>媽咪本週身體變化</h3>
-              </div>
-              <span class="sec-count" id="momChangesCount">2 則叮嚀</span>
+          <div class="mvp-section-card">
+            <div class="mvp-sec-header">
+              <h3 class="mvp-sec-title">媽咪本週身體變化</h3>
+              <span class="mvp-sec-badge" id="momChangesCount">2 則叮嚀</span>
             </div>
-            <div class="sec-body" id="overviewMomChanges"></div>
+            <div class="mvp-items-list" id="overviewMomChanges"></div>
           </div>
 
           <!-- Section 2: 媽咪本週提醒 -->
-          <div class="overview-section-card">
-            <div class="sec-head">
-              <div class="sec-title-wrap">
-                <span class="sec-icon">📋</span>
-                <h3>媽咪本週提醒</h3>
-              </div>
-              <span class="sec-count" id="momRemindersCount">3 則重點</span>
+          <div class="mvp-section-card">
+            <div class="mvp-sec-header">
+              <h3 class="mvp-sec-title">媽咪本週提醒</h3>
+              <span class="mvp-sec-badge" id="momRemindersCount">3 則重點</span>
             </div>
-            <div class="sec-body" id="overviewMomReminders"></div>
+            <div class="mvp-items-list" id="overviewMomReminders"></div>
           </div>
 
           <!-- Section 3: 神隊友本週任務 -->
-          <div class="overview-section-card">
-            <div class="sec-head">
-              <div class="sec-title-wrap">
-                <span class="sec-icon">💪</span>
-                <h3>神隊友本週任務</h3>
-              </div>
-              <span class="sec-count" id="partnerTasksCount">3 項行動</span>
+          <div class="mvp-section-card">
+            <div class="mvp-sec-header">
+              <h3 class="mvp-sec-title">神隊友本週任務</h3>
+              <span class="mvp-sec-badge" id="partnerTasksCount">3 項行動</span>
             </div>
-            <div class="sec-body" id="overviewPartnerTasks"></div>
+            <div class="mvp-items-list" id="overviewPartnerTasks"></div>
           </div>
         </div>
 
-        <!-- Bottom Navigation Bar -->
-        <div class="overview-nav-bar">
-          <button class="btn btn-ghost overview-nav-btn" id="overviewPrevWeekBtn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> 上一周
+        <!-- Bottom Week Navigation Bar -->
+        <div class="overview-bottom-nav">
+          <button class="ov-nav-btn" id="overviewPrevWeekBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> 上一週
           </button>
-          <div class="overview-week-picker">
+          <div class="ov-week-selector-wrap">
             <span>檢視第</span>
-            <select id="overviewWeekSelect"></select>
+            <select id="overviewWeekSelect" aria-label="週數選單"></select>
             <span>週</span>
           </div>
-          <button class="btn btn-primary overview-nav-btn" id="overviewNextWeekBtn">
-            下一周 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <button class="ov-nav-btn" id="overviewNextWeekBtn">
+            下一週 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
       </div>
@@ -1488,6 +1684,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
     <div class="modal-inner" id="settingsBody"><!-- JS 動態填入 --></div>
   </div>
 </div>
+
 
 
 <script>
@@ -2041,7 +2238,6 @@ function renderMapNodes(){
   
   var currentW = APP.currentWeek || 24;
   
-  // Find current active node based on gestational week
   var activeIdx = 0;
   for(var i=0; i<PRENATAL_MAP_NODES.length; i++){
     if(currentW >= PRENATAL_MAP_NODES[i].week){
@@ -5651,7 +5847,7 @@ var PREGNANCY_WEEKLY_MAPPING_DATA = {
 };
 
 /* ============================================================
-   孕期總覽 V4｜Fixed Actual Pin + Interactive Draggable Timeline
+   孕期總覽 MVP｜Fixed Actual Pin + Direct Reading Sections
    ============================================================ */
 var OVERVIEW_STATE_V4 = {
   actualWeek: 24,
@@ -5682,6 +5878,7 @@ function initActualHeaderUI(){
   var weeksLeftEl = document.getElementById('actualWeeksLeft');
   var daysTextEl = document.getElementById('actualDaysText');
   var countdownDaysEl = document.getElementById('actualCountdownDays');
+  var actualNoticeEl = document.getElementById('actualWeekNumNotice');
 
   if(weekNumEl) weekNumEl.textContent = actualW;
   if(percentEl) percentEl.textContent = percentVal + '%';
@@ -5689,6 +5886,7 @@ function initActualHeaderUI(){
   if(weeksLeftEl) weeksLeftEl.textContent = weeksLeftVal;
   if(daysTextEl) daysTextEl.textContent = '(第 ' + daysElapsed + ' 天)';
   if(countdownDaysEl) countdownDaysEl.textContent = '(倒數 ' + countdownDays + ' 天)';
+  if(actualNoticeEl) actualNoticeEl.textContent = actualW;
 
   var actualPct = Math.max(0, Math.min(100, ((actualW - 1) / 39) * 100));
   var lineFillEl = document.getElementById('actualLineFill');
@@ -5709,7 +5907,7 @@ function initActualHeaderUI(){
     var nEl = document.getElementById(mn.id);
     if(!nEl) return;
     nEl.classList.remove('done', 'actual-now', 'future');
-    var circleEl = nEl.querySelector('.jh-m-circle');
+    var circleEl = nEl.querySelector('.jhm-m-circle');
     if(mn.week === actualW){
       nEl.classList.add('actual-now');
       if(circleEl) circleEl.innerHTML = '●';
@@ -5726,6 +5924,7 @@ function initActualHeaderUI(){
 function renderBrowsingWeek(weekNum){
   weekNum = Math.max(1, Math.min(40, weekNum));
   OVERVIEW_STATE_V4.browsingWeek = weekNum;
+  var actualW = OVERVIEW_STATE_V4.actualWeek;
 
   var weeksList = (typeof PREGNANCY_WEEKLY_MAPPING_DATA !== 'undefined' && PREGNANCY_WEEKLY_MAPPING_DATA.weeks) ? PREGNANCY_WEEKLY_MAPPING_DATA.weeks : [];
   var weekData = null;
@@ -5734,6 +5933,7 @@ function renderBrowsingWeek(weekNum){
   }
   if(!weekData) weekData = {};
 
+  // 1. Browsing Thumb Position & Week Slider Sync
   var pct = Math.max(0, Math.min(100, ((weekNum - 1) / 39) * 100));
   var thumbEl = document.getElementById('browseThumbCursor');
   var badgeWeekEl = document.getElementById('browseBadgeWeek');
@@ -5743,11 +5943,25 @@ function renderBrowsingWeek(weekNum){
   if(badgeWeekEl) badgeWeekEl.textContent = weekNum;
   if(sliderEl) sliderEl.value = weekNum;
 
+  // 2. Return to Current Week Notice Bar (Shows only when weekNum != actualW)
+  var returnBar = document.getElementById('browsingReturnBar');
+  var viewingTextEl = document.getElementById('viewingWeekNumText');
+  if(returnBar){
+    if(weekNum !== actualW){
+      returnBar.classList.add('on');
+      if(viewingTextEl) viewingTextEl.textContent = weekNum;
+    } else {
+      returnBar.classList.remove('on');
+    }
+  }
+
+  // 3. Weekly Focus Theme Banner
   var themeWeekTitleEl = document.getElementById('themeWeekTitleNum');
   var themeTextEl = document.getElementById('overviewThemeText');
   if(themeWeekTitleEl) themeWeekTitleEl.textContent = weekNum;
   if(themeTextEl) themeTextEl.textContent = weekData.theme || '';
 
+  // 4. Render 3 Direct Full-Display Sections (No Accordion / No Modal)
   function renderSection(bodyId, countId, items, countSuffix){
     var body = document.getElementById(bodyId);
     var count = document.getElementById(countId);
@@ -5756,12 +5970,13 @@ function renderBrowsingWeek(weekNum){
     if(count) count.textContent = items.length + ' ' + countSuffix;
     body.innerHTML = items.map(function(item){
       var bulletsHtml = (item.items || []).map(function(b){ return '<li>' + b + '</li>'; }).join('');
-      return '<div class="ov-item-card">' +
-        '<div class="ov-item-head"><span class="ov-item-title">' + (item.title||'') + '</span>' +
-        (item.theme ? '<span class="ov-theme-chip">' + item.theme + '</span>' : '') +
+      return '<div class="mvp-item-row">' +
+        '<div class="mvp-item-head">' +
+        '  <span class="mvp-item-title">' + (item.title || '') + '</span>' +
+        (item.theme ? '  <span class="mvp-item-theme">' + item.theme + '</span>' : '') +
         '</div>' +
-        '<p class="ov-item-summary">' + (item.summary||'') + '</p>' +
-        '<ul class="ov-item-bullets">' + bulletsHtml + '</ul>' +
+        '<p class="mvp-item-summary">' + (item.summary || '') + '</p>' +
+        '<ul class="mvp-item-bullets">' + bulletsHtml + '</ul>' +
         '</div>';
     }).join('');
   }
@@ -5770,6 +5985,7 @@ function renderBrowsingWeek(weekNum){
   renderSection('overviewMomReminders', 'momRemindersCount', weekData.mom_reminders, '則重點');
   renderSection('overviewPartnerTasks', 'partnerTasksCount', weekData.partner_tasks, '項行動');
 
+  // 5. Update Navigation Control Status
   var prevBtn = document.getElementById('overviewPrevWeekBtn');
   var nextBtn = document.getElementById('overviewNextWeekBtn');
   var selEl   = document.getElementById('overviewWeekSelect');
@@ -5809,6 +6025,13 @@ document.addEventListener('DOMContentLoaded', function(){
   var nextBtn = document.getElementById('overviewNextWeekBtn');
   if(prevBtn){ prevBtn.addEventListener('click', function(){ renderBrowsingWeek(OVERVIEW_STATE_V4.browsingWeek - 1); }); }
   if(nextBtn){ nextBtn.addEventListener('click', function(){ renderBrowsingWeek(OVERVIEW_STATE_V4.browsingWeek + 1); }); }
+
+  var returnBtn = document.getElementById('returnToCurrentWeekBtn');
+  if(returnBtn){
+    returnBtn.addEventListener('click', function(){
+      renderBrowsingWeek(OVERVIEW_STATE_V4.actualWeek);
+    });
+  }
 
   renderBrowsingWeek(OVERVIEW_STATE_V4.actualWeek);
 });
