@@ -2755,9 +2755,27 @@ var PRENATAL_MAP_NODES = [
 var selectedMapIndex = 0;
 var sessionPhotoMap = {}; // In-memory session preview only (Do NOT write to localStorage)
 
+var PRENATAL_IMAGE_MAP = {
+  8: 'assets/images/prenatal-map/prenatal-week-08.png',
+  12: 'assets/images/prenatal-map/prenatal-week-12.png',
+  16: 'assets/images/prenatal-map/prenatal-week-16.png',
+  20: 'assets/images/prenatal-map/prenatal-week-20.png',
+  24: 'assets/images/prenatal-map/prenatal-week-24.png',
+  28: 'assets/images/prenatal-map/prenatal-week-28.png',
+  30: 'assets/images/prenatal-map/prenatal-week-30.png',
+  32: 'assets/images/prenatal-map/prenatal-week-32.png',
+  34: 'assets/images/prenatal-map/prenatal-week-34.png',
+  36: 'assets/images/prenatal-map/prenatal-week-36.png',
+  37: 'assets/images/prenatal-map/prenatal-week-37.png',
+  38: 'assets/images/prenatal-map/prenatal-week-38.png',
+  39: 'assets/images/prenatal-map/prenatal-week-39.png',
+  40: 'assets/images/prenatal-map/prenatal-week-40.png'
+};
+
 function getPrenatalIconPath(week){
+  if(PRENATAL_IMAGE_MAP[week]) return PRENATAL_IMAGE_MAP[week];
   var pad = (week < 10 ? '0' : '') + week;
-  return 'assets/prenatal-map/prenatal-week-' + pad + '.png';
+  return 'assets/images/prenatal-map/prenatal-week-' + pad + '.png';
 }
 
 function toggleSeasonalInfo(){
