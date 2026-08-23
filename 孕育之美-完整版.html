@@ -1488,259 +1488,663 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
     <div class="modal-inner" id="settingsBody"><!-- JS 動態填入 --></div>
   </div>
 </div>
+
+
 <script>
+/* ============ View Router（首頁 / 我的孕期 / 寶寶成長 / AI / 社群）============ */
+function goToView(name){
+  var vs = document.querySelectorAll('.view');
+  var sns = document.querySelectorAll('.sidebar .nav-item');
+  var bns = document.querySelectorAll('.bottom-nav .bn-item');
+  vs.forEach(function(v){ v.classList.toggle('on', v.id === 'view-' + name); });
+  sns.forEach(function(n){ n.classList.toggle('active', n.dataset.view === name); });
+  bns.forEach(function(n){ n.classList.toggle('active', n.dataset.view === name); });
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
 
-/* ============ View Router\uff08\u9996\u9801 / \u6211\u7684\u5b55\u671f / \u5bf6\u5bf6\u6210\u9577 / AI / \u793e\u7fa4\uff09============ */\r
-var views = document.querySelectorAll('.view');\r
-var sideNavItems = document.querySelectorAll('.sidebar .nav-item');\r
-var bottomNavItems = document.querySelectorAll('.bottom-nav .bn-item');\r
-\r
-function goToView(name){\r
-  views.forEach(function(v){ v.classList.toggle('on', v.id === 'view-' + name); });\r
-  sideNavItems.forEach(function(n){ n.classList.toggle('active', n.dataset.view === name); });\r
-  bottomNavItems.forEach(function(n){ n.classList.toggle('active', n.dataset.view === name); });\r
-  window.scrollTo({ top:0, behavior:'smooth' });\r
-}\r
-document.querySelectorAll('[data-view]').forEach(function(el){\r
-  el.addEventListener('click', function(){ goToView(el.dataset.view); });\r
-});\r
-\r
-\r
-/* ============================================================\r
-   Phase 1\uff5cEDD \u8a08\u7b97 & \u5b55\u9031\u9a45\u52d5\r
-   ============================================================ */\r
-var APP = {\r
-  edd: new Date('2026-11-20'),  // \u9810\u7522\u671f\uff08\u5f9e\u8a2d\u5b9a\u8b80\u53d6\uff09\r
-  nickname: '\u4f9d\u5a77\u5abd\u54aa',\r
-  currentWeek: 24,\r
-  currentDay: 3\r
-};\r
-\r
-function calcWeekInfo(edd){\r
-  var today = new Date();\r
-  today.setHours(0,0,0,0);\r
-  var eddDate = new Date(edd);\r
-  eddDate.setHours(0,0,0,0);\r
-  var daysToEdd = Math.round((eddDate - today) / 86400000);\r
-  // EDD \u5c0d\u61c9 40 \u9031\uff0c\u5012\u7b97\u76ee\u524d\u5b55\u9031\r
-  var daysPregnant = 280 - daysToEdd;\r
-  var weeks = Math.max(0, Math.floor(daysPregnant / 7));\r
-  var days = Math.max(0, daysPregnant % 7);\r
-  return { weeks: weeks, days: days, daysToEdd: Math.max(0, daysToEdd) };\r
-}\r
-\r
-function getTrimester(w){\r
-  if(w < 14) return '\u7b2c\u4e00\u5b55\u671f\u30fb\u64ad\u7a2e\u840c\u82bd\u968e\u6bb5';\r
-  if(w < 28) return '\u7b2c\u4e8c\u5b55\u671f\u30fb\u82b1\u82de\u6f38\u5c55\u968e\u6bb5';\r
-  return '\u7b2c\u4e09\u5b55\u671f\u30fb\u76db\u653e\u7b49\u5f85\u968e\u6bb5';\r
-}\r
-\r
-function updateWeekUI(){\r
-  var info = calcWeekInfo(APP.edd);\r
-  APP.currentWeek = info.weeks;\r
-  APP.currentDay = info.days;\r
-  var weekEl = document.getElementById('weekText');\r
-  var trimEl = document.getElementById('trimesterText');\r
-  var eddEl = document.getElementById('eddDays');\r
-  if(weekEl) weekEl.textContent = '\u598a\u5a20 ' + info.weeks + ' \u9031 ' + info.days + ' \u5929';\r
-  if(trimEl) trimEl.textContent = getTrimester(info.weeks);\r
-  if(eddEl) eddEl.textContent = info.daysToEdd;\r
-  // \u65e5\u8a18\u9031\u6a19\r
-  var dtag = document.getElementById('diaryWeekTag');\r
-  if(dtag) dtag.textContent = '\ud83c\udf38 \u7b2c ' + info.weeks + ' \u9031 ' + info.days + ' \u5929';\r
-}\r
-updateWeekUI();\r
-\r
-/* ============================================================\r
-   Phase 1\uff5cToday Check-in \u5fc3\u60c5\u9078\u64c7 + \u63d0\u793a + \u88dc\u5145\u6587\u5b57 + \u5b8c\u6210\u53cd\u994b\r
-   ============================================================ */\r
-var checkinMoods = document.getElementById('checkinMoods');\r
-var checkinHint = document.getElementById('checkinHint');\r
-var checkinDoneBtn = document.getElementById('checkinDoneBtn');\r
-var checkinForm = document.getElementById('checkinForm');\r
-var checkinDoneMsg = document.getElementById('checkinDoneMsg');\r
-var checkinSavedMood = document.getElementById('checkinSavedMood');\r
-\r
-if(checkinMoods){\r
-  checkinMoods.querySelectorAll('.mood').forEach(function(el){\r
-    el.addEventListener('click', function(){\r
-      checkinMoods.querySelectorAll('.mood').forEach(function(m){ m.classList.remove('sel'); });\r
-      el.classList.add('sel');\r
-      if(checkinHint) checkinHint.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-3 4-6 7-6 11a6 6 0 0 0 12 0c0-4-3-7-6-11Z"/></svg>' + el.dataset.hint;\r
-    });\r
-  });\r
-}\r
-if(checkinDoneBtn){\r
-  checkinDoneBtn.addEventListener('click', function(){\r
-    var selMood = checkinMoods ? checkinMoods.querySelector('.mood.sel') : null;\r
-    var moodText = selMood ? selMood.querySelector('span').textContent : '\u672a\u8a18\u9304';\r
-    if(checkinForm) checkinForm.style.display = 'none';\r
-    if(checkinDoneMsg) checkinDoneMsg.classList.add('on');\r
-    if(checkinSavedMood) checkinSavedMood.textContent = moodText;\r
-  });\r
-}\r
-\r
-/* ============================================================\r
-   Phase 1\uff5c\u672c\u9031\u63d0\u9192\u8cc7\u6599\uff08\u4f9d\u5b55\u9031\uff09\r
-   ============================================================ */\r
-var weeklyReminders = {\r
-  12:['\u7b2c\u4e00\u6b21\u5b8c\u6574\u7522\u6aa2\uff0c\u8a18\u5f97\u5e36\u5b55\u5a66\u5065\u5eb7\u624b\u518a','\u78ba\u8a8d\u65e9\u671f\u5510\u6c0f\u75c7\u7be9\u6aa2\u7d50\u679c','\u591a\u88dc\u5145\u8449\u9178\u8207\u9435\u8cea'],\r
-  16:['\u6bcd\u8840\u5510\u6c0f\u75c7\u7be9\u6aa2\u9031','\u53ef\u4ee5\u958b\u59cb\u8cb7\u5b55\u5a66\u88dd\u4e86\uff0c\u8863\u670d\u8cb7\u5927\u4e00\u865f\u6bd4\u8f03\u8212\u9069','\u7559\u610f\u8170\u9178\u75c7\u72c0\uff0c\u9069\u5ea6\u4f38\u5c55\u6709\u5e6b\u52a9'],\r
-  20:['\u9ad8\u5c64\u6b21\u8d85\u97f3\u6ce2\u672c\u9031\u91cd\u9ede','\u91ab\u5e2b\u6703\u8a73\u7d30\u6383\u63cf\u5bf6\u5bf6\u5668\u5b98\u767c\u80b2','\u53ef\u4ee5\u958b\u59cb\u548c\u5bf6\u5bf6\u8aaa\u8aaa\u8a71\u4e86'],\r
-  24:['\u598a\u5a20\u7cd6\u5c3f\u75c5\u7be9\u6aa2\u6e96\u5099\uff1a\u7be9\u6aa2\u524d\u8acb\u4f9d\u91ab\u56d1\u7981\u98df','\u7559\u610f\u96d9\u8173\u6c34\u816b\uff0c\u7761\u524d\u62ac\u817f\u4f11\u606f','\u8a18\u5f97\u88dc\u5145\u9435\u8cea\uff0c\u9810\u9632\u8ca7\u8840'],\r
-  28:['\u9081\u5165\u7b2c\u4e09\u5b55\u671f\uff0c\u958b\u59cb\u898f\u5283\u5f85\u7522\u6e05\u55ae','\u8840\u58d3\u8207\u6c34\u816b\u9700\u6301\u7e8c\u6ce8\u610f','\u53ef\u4ee5\u958b\u59cb\u60f3\u751f\u7522\u8a08\u756b\u4e86'],\r
-  32:['\u5bf6\u5bf6\u9010\u6f38\u5c31\u5b9a\u4f4d\uff0c\u80ce\u52d5\u66f4\u660e\u986f','\u6e96\u5099\u597d\u5f85\u7522\u5305\u548c\u5c31\u91ab\u806f\u7d61\u65b9\u5f0f','\u7df4\u7fd2\u547c\u5438\u6cd5\uff0c\u6709\u52a9\u65bc\u751f\u7522'],\r
-  36:['\u6bcf\u9031\u4f8b\u884c\u7522\u6aa2\uff0c\u91ab\u5e2b\u78ba\u8a8d\u80ce\u4f4d','B \u578b\u93c8\u7403\u83cc\u7be9\u6aa2\u5b89\u6392\u4e2d','\u8eab\u908a\u96a8\u6642\u5099\u597d\u5f85\u7522\u7269\u54c1'],\r
-  40:['\u9810\u7522\u671f\u5230\u56c9\uff01\u4fdd\u6301\u51b7\u975c\uff0c\u8207\u795e\u968a\u53cb\u4fdd\u6301\u806f\u7d61','\u51fa\u73fe\u9663\u75db\u898f\u5f8b\u6216\u7834\u6c34\u8acb\u7acb\u5373\u5c31\u91ab','\u6df1\u547c\u5438\uff0c\u59b3\u505a\u5f97\u5230\u7684\uff01']\r
-};\r
-function getWeeklyReminders(w){\r
-  var keys = Object.keys(weeklyReminders).map(Number).sort(function(a,b){return a-b;});\r
-  var bestKey = keys[0];\r
-  for(var i=0;i<keys.length;i++){ if(keys[i] <= w) bestKey = keys[i]; }\r
-  return weeklyReminders[bestKey] || ['\u4fdd\u6301\u898f\u5f8b\u4f5c\u606f\uff0c\u9069\u5ea6\u4f11\u606f','\u591a\u88dc\u5145\u6c34\u5206\u8207\u852c\u679c','\u6709\u4efb\u4f55\u4e0d\u9069\uff0c\u8a18\u5f97\u8aee\u8a62\u91ab\u5e2b'];\r
-}\r
-function renderWeeklyReminders(){\r
-  var listEl = document.getElementById('reminderList');\r
-  if(!listEl) return;\r
-  var reminders = getWeeklyReminders(APP.currentWeek);\r
-  listEl.innerHTML = reminders.map(function(r){\r
-    return '<div class="reminder-item"><div class="ri-dot">\ud83d\udccc</div><div>'+r+'</div></div>';\r
-  }).join('');\r
-}\r
-renderWeeklyReminders();\r
-\r
-/* ============================================================\r
-   Phase 2\uff5c\u9996\u9801\u8996\u89d2\u5207\u63db\uff08\u5b55\u5abd\u54aa vs \u795e\u968a\u53cb\uff09\r
-   ============================================================ */\r
-var partnerWeekData = {\r
-  12:{ desc:'\u7b2c 12 \u9031\uff0c\u5979\u53ef\u80fd\u9084\u5728\u5b55\u5410\u671f\u3002\u9019\u9031\u5979\u53ef\u4ee5\u505a\uff1a', tasks:['\u4e3b\u52d5\u554f\u5979\u4eca\u5929\u80c3\u53e3\u600e\u9ebc\u6a23','\u5e6b\u5979\u6e96\u5099\u6e05\u6de1\u3001\u597d\u6d88\u5316\u7684\u98df\u7269','\u966a\u5979\u53bb\u7b2c\u4e00\u6b21\u5b8c\u6574\u7522\u6aa2'], knowledge:'\u5b55\u5410\u901a\u5e38\u5728 12-14 \u9031\u5f8c\u6703\u9010\u6f38\u7de9\u89e3\uff0c\u4f46\u6bcf\u500b\u4eba\u4e0d\u540c\uff0c\u8acb\u7528\u8010\u5fc3\u966a\u4f34\u5979\u5ea6\u904e\u3002' },\r
-  16:{ desc:'\u7b2c 16 \u9031\uff0c\u5979\u7684\u809a\u5b50\u958b\u59cb\u660e\u986f\u4e86\uff0c\u5fc3\u60c5\u4e5f\u6bd4\u8f03\u7a69\u5b9a\u3002', tasks:['\u966a\u5979\u901b\u901b\u5b55\u5a66\u88dd\uff0c\u6311\u5e7e\u4ef6\u8212\u9069\u7684\u8863\u670d','\u4e3b\u52d5\u554f\u554f\u5979\u9019\u9031\u8eab\u9ad4\u611f\u89ba\u600e\u9ebc\u6a23','\u8a08\u756b\u4e00\u6b21\u8f15\u9b06\u7684\u77ed\u9014\u5916\u51fa'], knowledge:'\u9032\u5165\u7b2c\u4e8c\u5b55\u671f\uff0c\u5b55\u5abd\u54aa\u901a\u5e38\u80fd\u91cf\u56de\u5347\uff0c\u662f\u5b89\u6392\u8f15\u9b06\u6d3b\u52d5\u7684\u597d\u6642\u6a5f\u3002' },\r
-  20:{ desc:'\u7b2c 20 \u9031\uff0c\u9ad8\u5c64\u6b21\u8d85\u97f3\u6ce2\u9019\u9031\u8981\u505a\u4e86\uff0c\u5979\u53ef\u80fd\u65e2\u671f\u5f85\u53c8\u7dca\u5f35\u3002', tasks:['\u966a\u5979\u4e00\u8d77\u53bb\u9ad8\u5c64\u6b21\u8d85\u97f3\u6ce2','\u6e96\u5099\u597d\u554f\u91ab\u5e2b\u7684\u554f\u984c\u6e05\u55ae','\u8d85\u97f3\u6ce2\u5f8c\u6176\u795d\u4e00\u4e0b\uff0c\u54ea\u6015\u53ea\u662f\u5403\u5979\u6700\u559c\u6b61\u7684\u6771\u897f'], knowledge:'\u9ad8\u5c64\u6b21\u8d85\u97f3\u6ce2\u6703\u8a73\u7d30\u6383\u63cf\u5bf6\u5bf6\u7684\u5668\u5b98\u767c\u80b2\uff0c\u966a\u5728\u8eab\u908a\u8b93\u5979\u66f4\u5b89\u5fc3\u3002' },\r
-  24:{ desc:'\u7b2c 24 \u9031\uff0c\u5979\u6b63\u5728\u9762\u5c0d\u598a\u5a20\u7cd6\u5c3f\u75c5\u7be9\u6aa2\u7684\u6e96\u5099\uff0c\u53ef\u80fd\u6709\u4e9b\u7dca\u5f35\u3002', tasks:['\u63d0\u9192\u5979\u7be9\u6aa2\u524d\u9700\u8981\u7a7a\u8179\uff0c\u5e6b\u5979\u5b89\u6392\u597d\u4f5c\u606f','\u966a\u5979\u53bb\u7be9\u6aa2\uff0c\u7b49\u5019\u6642\u7d66\u5979\u9f13\u52f5','\u7be9\u6aa2\u5f8c\u6e96\u5099\u5979\u559c\u6b61\u7684\u8f15\u98df\u7292\u52de\u5979'], knowledge:'\u598a\u5a20\u7cd6\u5c3f\u75c5\u7be9\u6aa2\u524d\uff0c\u5979\u9700\u8981\u7a7a\u8179\u4e00\u6bb5\u6642\u9593\u3002\u966a\u5979\u53bb\uff0c\u7d50\u675f\u5f8c\u6e96\u5099\u5979\u559c\u6b61\u7684\u8f15\u98df\u3002' },\r
-  28:{ desc:'\u7b2c 28 \u9031\uff0c\u9032\u5165\u7b2c\u4e09\u5b55\u671f\u4e86\uff01\u5979\u7684\u8eab\u9ad4\u8ca0\u64d4\u958b\u59cb\u589e\u52a0\u3002', tasks:['\u4e00\u8d77\u5217\u5f85\u7522\u6e05\u55ae\uff0c\u5206\u5de5\u5408\u4f5c','\u5e6b\u5979\u6309\u6469\u5c0f\u817f\uff0c\u7de9\u89e3\u6c34\u816b','\u958b\u59cb\u8a0e\u8ad6\u751f\u7522\u8a08\u756b\u548c\u5230\u91ab\u9662\u7684\u4ea4\u901a\u65b9\u5f0f'], knowledge:'\u7b2c\u4e09\u5b55\u671f\u958b\u59cb\uff0c\u5979\u7684\u7761\u7720\u53ef\u80fd\u8b8a\u5dee\uff0c\u53ef\u4ee5\u5e6b\u5979\u8cb7\u5b55\u5a66\u6795\u6216\u8abf\u6574\u7761\u7720\u74b0\u5883\u3002' },\r
-  36:{ desc:'\u7b2c 36 \u9031\uff0c\u751f\u7522\u5012\u6578\u8a08\u6642\u4e2d\uff01\u5979\u9700\u8981\u4f60\u7684\u5168\u529b\u652f\u6301\u3002', tasks:['\u78ba\u4fdd\u624b\u6a5f\u96a8\u6642\u958b\u8457\uff0c\u65b9\u4fbf\u5979\u806f\u7d61\u4f60','\u5e6b\u5979\u6574\u7406\u597d\u5f85\u7522\u5305','\u7df4\u7fd2\u5f9e\u5bb6\u5230\u91ab\u9662\u7684\u8def\u7dda\u548c\u6642\u9593'], knowledge:'\u9019\u500b\u968e\u6bb5\uff0c\u5979\u53ef\u80fd\u96a8\u6642\u9700\u8981\u4f60\u3002\u4fdd\u6301\u96fb\u8a71\u66a2\u901a\uff0c\u719f\u6089\u5c31\u91ab\u8def\u7dda\u975e\u5e38\u91cd\u8981\u3002' }\r
-};\r
-\r
-function getPartnerData(w){\r
-  var keys = Object.keys(partnerWeekData).map(Number).sort(function(a,b){return a-b;});\r
-  var bestKey = keys[0];\r
-  for(var i=0;i<keys.length;i++){ if(keys[i] <= w) bestKey = keys[i]; }\r
-  return partnerWeekData[bestKey] || partnerWeekData[24];\r
-}\r
-\r
-function renderPartnerView(){\r
-  var w = APP.currentWeek;\r
-  var d = getPartnerData(w);\r
-  var desc = document.getElementById('partnerHeroDesc');\r
-  var taskList = document.getElementById('partnerTaskList');\r
-  var know = document.getElementById('partnerKnowledge');\r
-  var tipTxt = document.getElementById('partnerTipTxt');\r
-  var tipLabel = document.getElementById('partnerTipLabel');\r
-  if(desc) desc.textContent = d.desc;\r
-  if(know) know.textContent = d.knowledge;\r
-  if(tipTxt) tipTxt.textContent = d.tasks[0] || '';\r
-  if(tipLabel) tipLabel.textContent = '\u672c\u9031\u968a\u53cb\u4efb\u52d9\u30fb\u7b2c ' + w + ' \u9031';\r
-  if(taskList){\r
-    taskList.innerHTML = d.tasks.map(function(t,i){\r
-      return '<div class="partner-task-item" data-idx="'+i+'"><div class="pt-check"></div><div class="pt-txt">'+t+'</div></div>';\r
-    }).join('');\r
-    taskList.querySelectorAll('.partner-task-item').forEach(function(item){\r
-      item.addEventListener('click', function(){ item.classList.toggle('done'); });\r
-    });\r
-  }\r
-}\r
-renderPartnerView();\r
-\r
-document.querySelectorAll('.view-switch button').forEach(function(btn){\r
-  btn.addEventListener('click', function(){\r
-    var group = btn.closest('.view-switch');\r
-    group.querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });\r
-    btn.classList.add('on');\r
-    var isPartner = group.querySelectorAll('button')[1] === btn;\r
-    var momEl = document.getElementById('momViewHome');\r
-    var partnerEl = document.getElementById('partnerViewHome');\r
-    var checkinCardEl = document.querySelector('.hero .checkin-card');\r
-    if(momEl){ if(isPartner){ momEl.classList.add('hidden'); } else { momEl.classList.remove('hidden'); } }\r
-    if(partnerEl){ partnerEl.classList.toggle('on', isPartner); }\r
-    if(checkinCardEl){ checkinCardEl.style.display = isPartner ? 'none' : ''; }\r
-  });\r
-});\r
-\r
-/* ============ \u6211\u7684\u5b55\u671f\uff1aTabs ============ */\r
-var tabBtns = document.querySelectorAll('#view-journey .tab-btn');\r
-var tabPanels = { overview: document.getElementById('tab-overview'), map: document.getElementById('tab-map'), notes: document.getElementById('tab-notes'), diary: document.getElementById('tab-diary') };\r
-tabBtns.forEach(function(btn){\r
-  btn.addEventListener('click', function(){\r
-    tabBtns.forEach(function(b){ b.classList.remove('on'); });\r
-    btn.classList.add('on');\r
-    Object.keys(tabPanels).forEach(function(k){ tabPanels[k].classList.remove('on'); });\r
-    tabPanels[btn.dataset.tab].classList.add('on');\r
-  });\r
-});\r
-\r
-/* ============ \u6211\u7684\u5b55\u671f\uff1a\u7522\u6aa2\u5730\u5716 ============ */\r
-// legacy mapData disabled\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-\r
-/* ============================================================\r
-   Frontend Integration 02 V2\uff5cPrenatal Checkup Map Data Adapter\r
-   Design: \u300c\u5b55\u80b2\u82b1\u5712\u300dBotanical Icon + 7-Section Detail Panel\r
-   Medical Source: data/medical/medical-kb.production.json\r
-   Personal Layer: localStorage + IndexedDB (Photo)\r
-   ============================================================ */\r
-var PRENATAL_MAP_NODES = [\r
-  {\r
-    "week": 8,\r
-    "visit_number": 1,\r
-    "visit_title": "\u7b2c 1 \u6b21\u516c\u8cbb\u7522\u6aa2\uff08\u7b2c 8 \u9031\uff09",\r
-    "routine_items": [\r
-      "\u51fa\u8840\u3001\u8179\u75db\u3001\u5641\u5fc3\u5614\u5410\u3001\u6392\u5c3f\u4e0d\u9069\u7b49\u75c7\u72c0\u751f\u7406\u554f\u8a3a",\r
-      "\u57fa\u672c\u9ad4\u7406\u6aa2\u67e5\uff08\u9ad4\u91cd\u3001\u8840\u58d3\u3001\u4e73\u623f\u3001\u5b50\u5bae\u5e95\u9ad8\u5ea6\u6e2c\u91cf\uff09"\r
-    ],\r
-    "publicly_funded_items": [\r
-      "\u7b2c 1 \u6b21\u7522\u524d\u516c\u8cbb\u8d85\u97f3\u6ce2\u6aa2\u67e5\uff08\u5efa\u8b70\u57f7\u884c\u5340\u9593\uff1a8~16\u9031\uff0c\u8a55\u4f30\u80ce\u5152\u5fc3\u8df3\u3001\u80da\u80ce\u6578\u53ca\u9810\u7522\u671f\u4f30\u7b97\uff09"\r
-    ],\r
-    "optional_items": [\r
-      {\r
-        "id": "MED-PRENATAL-OPTIONAL-04",\r
-        "title": "\u810a\u9ad3\u6027\u808c\u8089\u840e\u7e2e\u75c7\uff08SMA\uff09\u5e36\u56e0\u8005\u57fa\u56e0\u7be9\u6aa2",\r
-        "recommended_window": "\u5efa\u8b70\u6642\u9593\uff1a8\u201312\u9031 (\u6216\u5b55\u524d)",\r
-        "summary": "SMA \u5e36\u56e0\u8005\u57fa\u56e0\u7be9\u6aa2\uff08\u5b55\u524d\u6216\u61f7\u5b55\u65e9\u671f\uff09\uff0c\u62bd\u53d6\u6bcd\u8840\u6aa2\u6e2c SMN1 \u57fa\u56e0\u8907\u88fd\u6578\uff0c\u8a55\u4f30\u810a\u9ad3\u6027\u808c\u8089\u840e\u7e2e\u75c7\u5e36\u56e0\u98a8\u96aa\u3002",\r
-        "cost_info": "\u81ea\u8cbb\u9078\u64c7\u6027\u9805\u76ee (\u9ad8\u9f61/\u7279\u7570\u689d\u4ef6\u6709\u570b\u5065\u7f72\u88dc\u52a9)",\r
-        "source_record_ids": [\r
-          "MED-PRENATAL-OPTIONAL-04"\r
-        ]\r
-The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
-"}
-function renderMapNodes")
-            if pos != -1:
-                print("Found renderMapNodes in transcript_full.jsonl!")
-                found_block = content_str[pos:pos+5000]
-                break
-
-if found_block:
-    with open(r"C:\\Users\\11\\.gemini\\antigravity-ide\\brain\\421cb71d-8313-4f56-9007-62ccbd43e368\\scratch\\map_functions.js", "w", encoding="utf-8") as out:
-        out.write(found_block.replace("\\\
-", "\
-").replace('\\\\"', '"'))
-    print("Saved map functions to scratch!")
-else:
-    print("Not found.")
-", "Description": "Search transcript for map functions", "Overwrite": true, "TargetFile": "C:\\Users\\11\\.gemini\\antigravity-ide\\brain\\421cb71d-8313-4f56-9007-62ccbd43e368\\scratch\\recover_map_fn.py", "toolAction": "Recovering map functions from transcript", "toolSummary": "Recover map functions
+document.addEventListener('click', function(e){
+  var target = e.target.closest('[data-view]');
+  if(target && target.dataset.view){
+    goToView(target.dataset.view);
+  }
+});
 
 /* ============================================================
-   Frontend Integration 02 V3｜Single Clean Listener & Overview Renderer
+   Phase 1｜EDD 計算 & 孕週驅動
+   ============================================================ */
+var APP = {
+  edd: new Date('2026-11-20'),
+  nickname: '依婷媽咪',
+  currentWeek: 24,
+  currentDay: 3
+};
+
+function calcWeekInfo(edd){
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var eddDate = new Date(edd);
+  eddDate.setHours(0,0,0,0);
+  var daysToEdd = Math.round((eddDate - today) / 86400000);
+  var daysPregnant = 280 - daysToEdd;
+  var weeks = Math.max(0, Math.floor(daysPregnant / 7));
+  var days = Math.max(0, daysPregnant % 7);
+  return { weeks: weeks, days: days, daysToEdd: Math.max(0, daysToEdd) };
+}
+
+function getTrimester(w){
+  if(w < 14) return '第一孕期・播種萌芽階段';
+  if(w < 28) return '第二孕期・花苞漸展階段';
+  return '第三孕期・盛放等待階段';
+}
+
+function updateWeekUI(){
+  var info = calcWeekInfo(APP.edd);
+  APP.currentWeek = info.weeks;
+  APP.currentDay = info.days;
+  var weekEl = document.getElementById('weekText');
+  var trimEl = document.getElementById('trimesterText');
+  var eddEl = document.getElementById('eddDays');
+  if(weekEl) weekEl.textContent = '妊娠 ' + info.weeks + ' 週 ' + info.days + ' 天';
+  if(trimEl) trimEl.textContent = getTrimester(info.weeks);
+  if(eddEl) eddEl.textContent = info.daysToEdd;
+  var dtag = document.getElementById('diaryWeekTag');
+  if(dtag) dtag.textContent = '🌸 第 ' + info.weeks + ' 週 ' + info.days + ' 天';
+}
+updateWeekUI();
+
+/* ============================================================
+   Phase 1｜Today Check-in 心情選擇
+   ============================================================ */
+var checkinMoods = document.getElementById('checkinMoods');
+var checkinHint = document.getElementById('checkinHint');
+var checkinDoneBtn = document.getElementById('checkinDoneBtn');
+var checkinForm = document.getElementById('checkinForm');
+var checkinDoneMsg = document.getElementById('checkinDoneMsg');
+var checkinSavedMood = document.getElementById('checkinSavedMood');
+
+if(checkinMoods){
+  checkinMoods.querySelectorAll('.mood').forEach(function(m){
+    m.addEventListener('click', function(){
+      checkinMoods.querySelectorAll('.mood').forEach(function(x){ x.classList.remove('sel'); });
+      m.classList.add('sel');
+      if(checkinHint) checkinHint.textContent = m.dataset.hint || '';
+    });
+  });
+}
+
+if(checkinDoneBtn){
+  checkinDoneBtn.addEventListener('click', function(){
+    var selMood = checkinMoods ? checkinMoods.querySelector('.mood.sel') : null;
+    var moodText = selMood ? selMood.querySelector('span').textContent : '未記錄';
+    if(checkinForm) checkinForm.style.display = 'none';
+    if(checkinDoneMsg) checkinDoneMsg.style.display = 'block';
+    if(checkinSavedMood) checkinSavedMood.textContent = '（已記錄：' + moodText + '）';
+  });
+}
+
+/* ============================================================
+   Phase 1｜Tab Switching for 我的孕期 (#view-journey)
+   ============================================================ */
+document.querySelectorAll('#view-journey .tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var target = btn.dataset.tab;
+    document.querySelectorAll('#view-journey .tab-btn').forEach(function(b){ b.classList.toggle('active', b === btn); });
+    document.querySelectorAll('#view-journey .tab-panel').forEach(function(p){ p.classList.toggle('on', p.id === 'tab-' + target); });
+  });
+});
+
+/* ============================================================
+   Phase 1｜View Switcher (媽咪視角 vs 準爸爸視角)
+   ============================================================ */
+document.querySelectorAll('.view-switch button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var group = btn.closest('.view-switch');
+    group.querySelectorAll('button').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    var isPartner = group.querySelectorAll('button')[1] === btn;
+    var momEl = document.getElementById('momViewHome');
+    var partnerEl = document.getElementById('partnerViewHome');
+    if(momEl) momEl.style.display = isPartner ? 'none' : 'block';
+    if(partnerEl) partnerEl.style.display = isPartner ? 'block' : 'none';
+  });
+});
+
+/* ============================================================
+   產檢地圖｜Prenatal Checkup Map Data & Renderer
+   ============================================================ */
+var PRENATAL_MAP_NODES = [
+  {
+    "week": 8,
+    "visit_number": 1,
+    "visit_title": "第 1 次公費產檢（第 8 週）",
+    "routine_items": [
+      "出血、腹痛、噁心嘔吐、排尿不適等症狀生理問診",
+      "基本體理檢查（體重、血壓、乳房、子宮底高度測量）"
+    ],
+    "publicly_funded_items": [
+      "第 1 次產前公費超音波檢查（建議執行區間：8~16週，評估胎兒心跳、胚胎數及預產期估算）"
+    ],
+    "optional_items": [
+      {
+        "id": "MED-PRENATAL-OPTIONAL-04",
+        "title": "脊髓性肌肉萎縮症（SMA）帶因者基因篩檢",
+        "recommended_window": "建議時間：8–12週 (或孕前)",
+        "summary": "SMA 帶因者基因篩檢（孕前或懷孕早期），抽取母血檢測 SMN1 基因複製數，評估脊髓性肌肉萎縮症帶因風險。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-04"
+        ]
+      },
+      {
+        "id": "MED-PRENATAL-OPTIONAL-05",
+        "title": "X染色體脆折症基因篩檢",
+        "recommended_window": "建議時間：8–12週 (或孕前)",
+        "summary": "X染色體脆折症基因篩檢（孕前或懷孕早期），分析 FMR1 基因 CGG 區域重複數，評估家族遺傳性智力障礙帶因風險。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-05"
+        ]
+      }
+    ],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-OPTIONAL-04",
+      "MED-PRENATAL-OPTIONAL-05",
+      "MED-PRENATAL-VISIT-01"
+    ]
+  },
+  {
+    "week": 12,
+    "visit_number": 2,
+    "visit_title": "第 2 次公費產檢（第 12 週）",
+    "routine_items": [
+      "孕期生理適應與不適症狀問診",
+      "例行體重、血壓測量"
+    ],
+    "publicly_funded_items": [
+      "血液常規檢查（白血球 WBC、紅血球 RBC、血小板 Plt、血球容積比 Hct、血色素 Hb、平均紅血球體積 MCV）",
+      "ABO 血型及 Rh 因子檢驗",
+      "德國麻疹抗體檢驗 (Rubella IgG)",
+      "B 型肝炎血清標誌檢驗 (HBsAg, HBeAg)",
+      "梅毒檢查 (VDRL / RPR)",
+      "愛滋病毒篩檢 (Anti-HIV)",
+      "尿液常規檢查（尿蛋白、尿糖）"
+    ],
+    "optional_items": [
+      {
+        "id": "MED-PRENATAL-OPTIONAL-01",
+        "title": "懷孕初期唐氏症篩檢",
+        "recommended_window": "建議時間：11–13+6週",
+        "summary": "懷孕初期唐氏症篩檢（11–14週），結合超音波測量胎兒頸部透明帶/鼻樑骨與母血血清標誌分析，評估唐氏症染色體異常風險。本項為篩檢非確診。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-01"
+        ]
+      },
+      {
+        "id": "MED-PRENATAL-OPTIONAL-02",
+        "title": "非侵入性胎兒染色體檢測（NIPT）",
+        "recommended_window": "建議時間：10週以上 (最佳10-14週)",
+        "summary": "非侵入性胎兒染色體檢測（NIPT，10週以上），抽取母血分析游離胎兒 DNA 評估染色體異常風險。屬於高準確度篩檢，不能取代羊膜穿刺確診。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-02"
+        ]
+      },
+      {
+        "id": "MED-PRENATAL-OPTIONAL-03",
+        "title": "第一孕期子癲前症篩檢",
+        "recommended_window": "建議時間：11–13+6週",
+        "summary": "第一孕期子癲前症篩檢（11–14週），整合母體病史、血壓、子宮動脈血流與母血生物標記，評估子癲前症發生風險。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-03"
+        ]
+      },
+      {
+        "id": "MED-PRENATAL-OPTIONAL-04",
+        "title": "脊髓性肌肉萎縮症（SMA）帶因者基因篩檢",
+        "recommended_window": "建議時間：8–12週 (或孕前)",
+        "summary": "SMA 帶因者基因篩檢（孕前或懷孕早期），抽取母血檢測 SMN1 基因複製數，評估脊髓性肌肉萎縮症帶因風險。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-04"
+        ]
+      },
+      {
+        "id": "MED-PRENATAL-OPTIONAL-05",
+        "title": "X染色體脆折症基因篩檢",
+        "recommended_window": "建議時間：8–12週 (或孕前)",
+        "summary": "X染色體脆折症基因篩檢（孕前或懷孕早期），分析 FMR1 基因 CGG 區域重複數，評估家族遺傳性智力障礙帶因風險。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-05"
+        ]
+      }
+    ],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-OPTIONAL-01",
+      "MED-PRENATAL-OPTIONAL-02",
+      "MED-PRENATAL-OPTIONAL-03",
+      "MED-PRENATAL-OPTIONAL-04",
+      "MED-PRENATAL-OPTIONAL-05",
+      "MED-PRENATAL-VISIT-02"
+    ]
+  },
+  {
+    "week": 16,
+    "visit_number": 3,
+    "visit_title": "第 3 次公費產檢（第 16 週）",
+    "routine_items": [
+      "懷孕中期生理變化與症狀問診",
+      "例行體重、血壓、胎心音測量"
+    ],
+    "publicly_funded_items": [
+      "第 3 次公費產檢例行檢查（若16週前尚未完成第1次公費超音波，可於此時補做）"
+    ],
+    "optional_items": [
+      {
+        "id": "MED-PRENATAL-OPTIONAL-06",
+        "title": "懷孕中期唐氏症篩檢",
+        "recommended_window": "建議時間：15–20週",
+        "summary": "懷孕中期唐氏症篩檢（15–20週），抽取母血分析二項、三項或四項血清標誌，評估唐氏症與神經管缺陷風險。屬於補救性篩檢非確診。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-06"
+        ]
+      },
+      {
+        "id": "MED-PRENATAL-OPTIONAL-07",
+        "title": "羊膜穿刺／產前遺傳診斷",
+        "recommended_window": "建議時間：16–18週",
+        "summary": "羊膜穿刺（16–18週），在超音波引導下抽取羊水進行細胞染色體分析，為染色體異常之權威診斷性檢查（Diagnostic Test）。符合高齡等條件者國健署提供部分費用減免補助。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-07"
+        ]
+      }
+    ],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-OPTIONAL-06",
+      "MED-PRENATAL-OPTIONAL-07",
+      "MED-PRENATAL-VISIT-03"
+    ]
+  },
+  {
+    "week": 20,
+    "visit_number": 4,
+    "visit_title": "第 4 次公費產檢（第 20 週）",
+    "routine_items": [
+      "胎動感受與身體不適問診",
+      "例行體重、血壓、胎心音、子宮底高度測量"
+    ],
+    "publicly_funded_items": [
+      "第 2 次產前公費超音波檢查（建議區間：20週前後，詳細評估胎兒器官結構、胎位、羊水量及胎盤位置）"
+    ],
+    "optional_items": [
+      {
+        "id": "MED-PRENATAL-OPTIONAL-08",
+        "title": "高層次超音波",
+        "recommended_window": "建議時間：約 20–24週",
+        "summary": "高層次超音波（約 20–24 週），由專業醫師對胎兒各器官構造進行詳細掃描評估。屬選擇性高階影像檢查，非公費例行超音波。",
+        "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+        "source_record_ids": [
+          "MED-PRENATAL-OPTIONAL-08"
+        ]
+      }
+    ],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-OPTIONAL-08",
+      "MED-PRENATAL-VISIT-04"
+    ]
+  },
+  {
+    "week": 24,
+    "visit_number": 5,
+    "visit_title": "第 5 次公費產檢（第 24 週）",
+    "routine_items": [
+      "日常飲食、胎動與體重變化問診",
+      "例行體重、血壓、胎心音、水腫與靜脈曲張檢查"
+    ],
+    "publicly_funded_items": [
+      "妊娠糖尿病篩檢（75g 口服葡萄糖耐量試驗 OGTT，建議執行區間：24~28週，公費全額補助）",
+      "貧血檢驗（血色素 Hb、血球容積比 Hct，建議執行區間：24~28週，公費全額補助）"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-05"
+    ]
+  },
+  {
+    "week": 28,
+    "visit_number": 6,
+    "visit_title": "第 6 次公費產檢（第 28 週）",
+    "routine_items": [
+      "每日胎動自我監測紀錄與不適症狀問診",
+      "例行體重、血壓、胎心音、水腫與靜脈曲張檢查"
+    ],
+    "publicly_funded_items": [
+      "妊娠糖尿病篩檢（75g OGTT，若24週已完成無須重複施作）",
+      "貧血檢驗（Hb / Hct，若24週已完成無須重複施作）"
+    ],
+    "optional_items": [],
+    "vaccines": [
+      {
+        "id": "MED-PREG-VACCINE-01",
+        "title": "百日咳疫苗(Tdap疫苗)",
+        "recommended_window": "建議時間：27–36週 (最佳 28–32 週)",
+        "summary": "Tdap 減量破傷風白喉非細胞性百日咳混合疫苗（建議 27–36 週），每次懷孕接種 1 劑，有效保護剛出生的嬰兒預防百日咳。",
+        "funding_type": "自費 / 政策推廣建議項目",
+        "recommendation_status": "台灣婦產科醫學會與衛福部疾管署建議每次懷孕接種 1 劑",
+        "policy_sensitive": true,
+        "source_record_ids": [
+          "MED-PREG-VACCINE-01"
+        ]
+      }
+    ],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PREG-VACCINE-01",
+      "MED-PRENATAL-VISIT-06"
+    ]
+  },
+  {
+    "week": 30,
+    "visit_number": 7,
+    "visit_title": "第 7 次公費產檢（第 30 週）",
+    "routine_items": [
+      "胎動狀況與子宮收縮情形問診",
+      "例行體重、血壓、胎心音、胎位觸診檢查"
+    ],
+    "publicly_funded_items": [
+      "第 7 次公費產檢例行檢查與胎位觸診檢查"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-07"
+    ]
+  },
+  {
+    "week": 32,
+    "visit_number": 8,
+    "visit_title": "第 8 次公費產檢（第 32 週）",
+    "routine_items": [
+      "胎動、宮縮與體重增加速度問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "第 3 次產前公費超音波檢查（建議執行區間：32週後，評估胎兒生長體重、胎位、胎盤位置及羊水量）",
+      "第 2 次梅毒血清檢查 (VDRL / RPR)"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-08"
+    ]
+  },
+  {
+    "week": 34,
+    "visit_number": 9,
+    "visit_title": "第 9 次公費產檢（第 34 週）",
+    "routine_items": [
+      "宮縮頻率、水腫與胎動狀況問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "第 9 次公費產檢例行檢查與胎位檢查"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-09"
+    ]
+  },
+  {
+    "week": 36,
+    "visit_number": 10,
+    "visit_title": "第 10 次公費產檢（第 36 週）",
+    "routine_items": [
+      "產兆觀察、宮縮頻率與胎動問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "孕婦乙型鏈球菌篩檢（GBS，採陰道與肛門拭子檢體，建議執行區間：35~37週，公費全額補助）"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-10"
+    ]
+  },
+  {
+    "week": 37,
+    "visit_number": 11,
+    "visit_title": "第 11 次公費產檢（第 37 週）",
+    "routine_items": [
+      "宮縮頻率、破水、落紅等三大產兆問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "第 11 次公費產檢與足月母胎安危評估"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-11"
+    ]
+  },
+  {
+    "week": 38,
+    "visit_number": 12,
+    "visit_title": "第 12 次公費產檢（第 38 週）",
+    "routine_items": [
+      "陣痛、破水、落紅狀況與胎動問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "第 12 次公費產檢與胎心音/宮縮狀況評估"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-12"
+    ]
+  },
+  {
+    "week": 39,
+    "visit_number": 13,
+    "visit_title": "第 13 次公費產檢（第 39 週）",
+    "routine_items": [
+      "產兆發展與胎動紀錄問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "第 13 次公費產檢與胎兒安危評估"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-13"
+    ]
+  },
+  {
+    "week": 40,
+    "visit_number": 14,
+    "visit_title": "第 14 次公費產檢（第 40 週）",
+    "routine_items": [
+      "預產期當週產兆狀況與胎動問診",
+      "例行體重、血壓、胎心音、胎位檢查"
+    ],
+    "publicly_funded_items": [
+      "第 14 次公費產檢與過期妊娠胎兒安危評估（含羊水量與胎盤功能評估）"
+    ],
+    "optional_items": [],
+    "vaccines": [],
+    "notes": [
+      "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+    ],
+    "source_record_ids": [
+      "MED-PRENATAL-VISIT-14"
+    ]
+  }
+];
+
+var selectedMapIndex = 0;
+
+function renderMapNodes(){
+  var container = document.getElementById('mapNodesContainer');
+  if(!container) return;
+  container.innerHTML = '';
+  
+  var currentW = APP.currentWeek || 24;
+  
+  // Find current active node based on gestational week
+  var activeIdx = 0;
+  for(var i=0; i<PRENATAL_MAP_NODES.length; i++){
+    if(currentW >= PRENATAL_MAP_NODES[i].week){
+      activeIdx = i;
+    }
+  }
+  selectedMapIndex = activeIdx;
+
+  var total = PRENATAL_MAP_NODES.length;
+  var trackWidth = 1100;
+  
+  PRENATAL_MAP_NODES.forEach(function(node, idx){
+    var leftPos = 30 + (idx / (total - 1)) * (trackWidth - 60);
+    var topPos = 60 + Math.sin(idx * 0.7) * 35;
+    
+    var stateClass = 'future';
+    if(idx < activeIdx) stateClass = 'done';
+    else if(idx === activeIdx) stateClass = 'now';
+    
+    var nodeEl = document.createElement('div');
+    nodeEl.className = 'map-node ' + stateClass + (idx === selectedMapIndex ? ' selected' : '');
+    nodeEl.style.position = 'absolute';
+    nodeEl.style.left = leftPos + 'px';
+    nodeEl.style.top = topPos + 'px';
+    nodeEl.style.cursor = 'pointer';
+    
+    var iconSym = stateClass === 'done' ? '🌿' : (stateClass === 'now' ? '🌸' : '🌱');
+    
+    nodeEl.innerHTML = 
+      '<div class="node-flower" style="width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#FFFDFB; border:2px solid ' + (stateClass==='done'?'#A8BFA8':(stateClass==='now'?'#E88A9B':'#C7BFC0')) + '; box-shadow:0 2px 6px rgba(0,0,0,0.08); font-size:16px;">' + iconSym + '</div>' +
+      '<div class="node-label" style="font-size:11px; font-weight:700; text-align:center; margin-top:4px; white-space:nowrap; color:var(--color-text);">' + node.week + '週</div>' +
+      '<div class="node-sub" style="font-size:10px; color:var(--color-text-muted); text-align:center; white-space:nowrap;">第 ' + node.visit_number + ' 次</div>';
+      
+    nodeEl.addEventListener('click', function(){
+      selectedMapIndex = idx;
+      document.querySelectorAll('.map-node').forEach(function(el, i){
+        el.classList.toggle('selected', i === idx);
+      });
+      showMapDetail(idx);
+    });
+    
+    container.appendChild(nodeEl);
+  });
+
+  showMapDetail(selectedMapIndex);
+}
+
+function showMapDetail(idx){
+  var detailEl = document.getElementById('mapDetail');
+  if(!detailEl || !PRENATAL_MAP_NODES[idx]) return;
+  var d = PRENATAL_MAP_NODES[idx];
+  
+  var routineHtml = (d.routine_items || []).map(function(item){ return '<li>' + item + '</li>'; }).join('');
+  var publicHtml = (d.publicly_funded_items || []).map(function(item){ return '<li><span class="badge-public" style="background:#EBF5EB; color:#2E7D32; font-size:11px; padding:2px 6px; border-radius:4px; margin-right:6px; font-weight:600;">公費</span>' + item + '</li>'; }).join('');
+  
+  var optionalHtml = '';
+  if(d.optional_items && d.optional_items.length > 0){
+    optionalHtml = '<div style="margin-top:14px;"><h4 style="font-size:13px; color:var(--color-primary-dark); margin-bottom:8px;">💡 自費選擇性產檢項目</h4>' +
+      d.optional_items.map(function(opt){
+        return '<div style="padding:10px 12px; background:rgba(232,138,155,0.06); border-radius:8px; margin-bottom:8px; border:1px solid rgba(232,138,155,0.15);">' +
+               '<div style="font-weight:700; font-size:13px; color:var(--color-text);">' + opt.title + ' <span style="font-size:11px; font-weight:normal; color:var(--color-text-muted);">(' + opt.recommended_window + ')</span></div>' +
+               '<p style="font-size:12px; color:var(--color-text-muted); margin:4px 0;">' + opt.summary + '</p>' +
+               '<div style="font-size:11px; color:var(--color-primary);">' + opt.cost_info + '</div>' +
+               '</div>';
+      }).join('') + '</div>';
+  }
+
+  var vaccineHtml = '';
+  if(d.vaccines && d.vaccines.length > 0){
+    vaccineHtml = '<div style="margin-top:14px;"><h4 style="font-size:13px; color:#2E7D32; margin-bottom:8px;">💉 孕期建議疫苗項目</h4>' +
+      d.vaccines.map(function(vac){
+        return '<div style="padding:10px 12px; background:#F1F8E9; border-radius:8px; margin-bottom:8px; border:1px solid #C5E1A5;">' +
+               '<div style="font-weight:700; font-size:13px; color:#2E7D32;">' + vac.title + ' <span style="font-size:11px; font-weight:normal; color:#558B2F;">(' + vac.recommended_window + ')</span></div>' +
+               '<p style="font-size:12px; color:var(--color-text); margin:4px 0;">' + vac.summary + '</p>' +
+               '<div style="font-size:11px; color:#33691E;">' + vac.recommendation_status + '</div>' +
+               '</div>';
+      }).join('') + '</div>';
+  }
+
+  detailEl.innerHTML = 
+    '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--color-border); padding-bottom:10px;">' +
+    '  <div>' +
+    '    <span style="font-size:12px; color:var(--color-primary-dark); font-weight:700;">第 ' + d.visit_number + ' 次產檢里程碑</span>' +
+    '    <h3 style="font-size:18px; margin:4px 0 0; color:var(--color-text);">' + d.visit_title + '</h3>' +
+    '  </div>' +
+    '  <span class="badge" style="background:var(--color-primary-light); color:var(--color-primary-dark); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700;">建議孕週：' + d.week + ' 週</span>' +
+    '</div>' +
+    '<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">' +
+    '  <div>' +
+    '    <h4 style="font-size:13px; color:var(--color-text); margin-bottom:8px;">🩺 常規檢查項目</h4>' +
+    '    <ul style="font-size:12.5px; line-height:1.7; padding-left:18px; color:var(--color-text-muted);">' + routineHtml + '</ul>' +
+    '  </div>' +
+    '  <div>' +
+    '    <h4 style="font-size:13px; color:var(--color-text); margin-bottom:8px;">✨ 本次重點 / 公費補助</h4>' +
+    '    <ul style="font-size:12.5px; line-height:1.7; padding-left:18px; color:var(--color-text);">' + publicHtml + '</ul>' +
+    '  </div>' +
+    '</div>' +
+    optionalHtml +
+    vaccineHtml;
+}
+
+/* ============================================================
+   Phase 2｜40 週溫心陪伴版衛教 Mapping 資料庫
    ============================================================ */
 var PREGNANCY_WEEKLY_MAPPING_DATA = {
   "metadata": {
@@ -5246,182 +5650,6 @@ var PREGNANCY_WEEKLY_MAPPING_DATA = {
   ]
 };
 
-var OVERVIEW_STATE_V3 = {
-  selectedWeek: 24
-};
-
-function renderOverviewWeek(weekNum){
-  weekNum = Math.max(1, Math.min(40, weekNum));
-  OVERVIEW_STATE_V3.selectedWeek = weekNum;
-
-  var weeksList = (PREGNANCY_WEEKLY_MAPPING_DATA && PREGNANCY_WEEKLY_MAPPING_DATA.weeks) ? PREGNANCY_WEEKLY_MAPPING_DATA.weeks : [];
-  var weekData = weeksList.find(function(w){ return w.week === weekNum; }) || (weeksList[0] || {});
-
-  // 1. Top Header Updates
-  var weekNumEl = document.getElementById('overviewWeekNum');
-  var percentEl = document.getElementById('overviewPercent');
-  var stageNameEl = document.getElementById('overviewStageName');
-  var weeksLeftEl = document.getElementById('overviewWeeksLeft');
-  var themeTextEl = document.getElementById('overviewThemeText');
-  var daysTextEl = document.getElementById('overviewDaysText');
-  var countdownDaysEl = document.getElementById('overviewCountdownDays');
-
-  var percentVal = Math.round((weekNum / 40) * 100);
-  var stageText = weekNum < 14 ? '第一孕期' : (weekNum < 29 ? '第二孕期' : '第三孕期');
-  var weeksLeftVal = Math.max(0, 40 - weekNum);
-  var daysElapsed = weekNum * 7;
-  var countdownDays = Math.max(0, 280 - daysElapsed);
-
-  if(weekNumEl) weekNumEl.textContent = weekNum;
-  if(percentEl) percentEl.textContent = percentVal + '%';
-  if(stageNameEl) stageNameEl.textContent = stageText;
-  if(weeksLeftEl) weeksLeftEl.textContent = weeksLeftVal;
-  if(themeTextEl) themeTextEl.textContent = weekData.theme || '';
-  if(daysTextEl) daysTextEl.textContent = '(第 ' + daysElapsed + ' 天)';
-  if(countdownDaysEl) countdownDaysEl.textContent = '(倒數 ' + countdownDays + ' 天)';
-
-  // 2. Track Fill & Dynamic Pin Position
-  var pct = Math.max(0, Math.min(100, ((weekNum - 1) / 39) * 100));
-  var fillEl = document.getElementById('overviewTimelineFill');
-  var pinEl = document.getElementById('overviewCurrentPin');
-  var pinTextEl = document.getElementById('pinWeekText');
-
-  if(fillEl) fillEl.style.width = pct + '%';
-  if(pinEl) pinEl.style.left = pct + '%';
-  if(pinTextEl) pinTextEl.textContent = weekNum + '週 現在';
-
-  // 3. Update 4 Major Fixed Milestone Nodes (1週, 14週, 29週, 40週)
-  var majorNodes = [
-    { id: 'mnode-1', week: 1, label: '1週', sub: '開始' },
-    { id: 'mnode-14', week: 14, label: '14週', sub: '第2孕期' },
-    { id: 'mnode-29', week: 29, label: '29週', sub: '第3孕期' },
-    { id: 'mnode-40', week: 40, label: '40週', sub: '見面' }
-  ];
-
-  majorNodes.forEach(function(mn){
-    var nEl = document.getElementById(mn.id);
-    if(!nEl) return;
-    nEl.classList.remove('done', 'now', 'future');
-    var circleEl = nEl.querySelector('.jh-m-circle');
-
-    if(mn.week === weekNum){
-      nEl.classList.add('now');
-      if(circleEl) circleEl.innerHTML = '●';
-    } else if(mn.week < weekNum){
-      nEl.classList.add('done');
-      if(circleEl) circleEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
-    } else {
-      nEl.classList.add('future');
-      if(circleEl) circleEl.innerHTML = '○';
-    }
-  });
-
-  // 4. Render Section 1: Mom Changes
-  var mcBody = document.getElementById('overviewMomChanges');
-  var mcCount = document.getElementById('momChangesCount');
-  if(mcBody){
-    var items = weekData.mom_changes || [];
-    if(mcCount) mcCount.textContent = items.length + ' 則叮嚀';
-    mcBody.innerHTML = items.map(function(item){
-      var bulletsHtml = (item.items || []).map(function(b){ return '<li>' + b + '</li>'; }).join('');
-      return '<div class="ov-item-card">' +
-             '  <div class="ov-item-head"><span class="ov-item-title">' + item.title + '</span></div>' +
-             '  <p class="ov-item-summary">' + item.summary + '</p>' +
-             '  <ul class="ov-item-bullets">' + bulletsHtml + '</ul>' +
-             '</div>';
-    }).join('');
-  }
-
-  // 5. Render Section 2: Mom Reminders
-  var mrBody = document.getElementById('overviewMomReminders');
-  var mrCount = document.getElementById('momRemindersCount');
-  if(mrBody){
-    var items = weekData.mom_reminders || [];
-    if(mrCount) mrCount.textContent = items.length + ' 則重點';
-    mrBody.innerHTML = items.map(function(item){
-      var bulletsHtml = (item.items || []).map(function(b){ return '<li>' + b + '</li>'; }).join('');
-      return '<div class="ov-item-card">' +
-             '  <div class="ov-item-head"><span class="ov-item-title">' + item.title + '</span>' + (item.theme ? '<span class="ov-theme-chip">' + item.theme + '</span>' : '') + '</div>' +
-             '  <p class="ov-item-summary">' + item.summary + '</p>' +
-             '  <ul class="ov-item-bullets">' + bulletsHtml + '</ul>' +
-             '</div>';
-    }).join('');
-  }
-
-  // 6. Render Section 3: Partner Tasks
-  var ptBody = document.getElementById('overviewPartnerTasks');
-  var ptCount = document.getElementById('partnerTasksCount');
-  if(ptBody){
-    var items = weekData.partner_tasks || [];
-    if(ptCount) ptCount.textContent = items.length + ' 項行動';
-    ptBody.innerHTML = items.map(function(item){
-      var bulletsHtml = (item.items || []).map(function(b){ return '<li>' + b + '</li>'; }).join('');
-      return '<div class="ov-item-card">' +
-             '  <div class="ov-item-head"><span class="ov-item-title">' + item.title + '</span></div>' +
-             '  <p class="ov-item-summary">' + item.summary + '</p>' +
-             '  <ul class="ov-item-bullets">' + bulletsHtml + '</ul>' +
-             '</div>';
-    }).join('');
-  }
-
-  // 7. Navigation Controls
-  var prevBtn = document.getElementById('overviewPrevWeekBtn');
-  var nextBtn = document.getElementById('overviewNextWeekBtn');
-  var selEl = document.getElementById('overviewWeekSelect');
-
-  if(prevBtn) prevBtn.disabled = (weekNum <= 1);
-  if(nextBtn) nextBtn.disabled = (weekNum >= 40);
-  if(selEl) selEl.value = weekNum;
-}
-
-document.addEventListener('DOMContentLoaded', function(){
-  // Populate Week Selector Options 1-40
-  var sel = document.getElementById('overviewWeekSelect');
-  if(sel){
-    sel.innerHTML = '';
-    for(var i=1; i<=40; i++){
-      var opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = i;
-      sel.appendChild(opt);
-    }
-    sel.addEventListener('change', function(){
-      renderOverviewWeek(parseInt(sel.value, 10));
-    });
-  }
-
-  // Prev / Next Week Buttons
-  var prevBtn = document.getElementById('overviewPrevWeekBtn');
-  var nextBtn = document.getElementById('overviewNextWeekBtn');
-
-  if(prevBtn){
-    prevBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      renderOverviewWeek(OVERVIEW_STATE_V3.selectedWeek - 1);
-    });
-  }
-  if(nextBtn){
-    nextBtn.addEventListener('click', function(e){
-      e.preventDefault();
-      renderOverviewWeek(OVERVIEW_STATE_V3.selectedWeek + 1);
-    });
-  }
-
-  // Major Node Click handlers
-  document.querySelectorAll('.jh-major-node').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      var w = parseInt(btn.dataset.week, 10);
-      if(w) renderOverviewWeek(w);
-    });
-  });
-
-  renderOverviewWeek(24);
-});
-
-
-</script>
-<script>
 /* ============================================================
    孕期總覽 V4｜Fixed Actual Pin + Interactive Draggable Timeline
    ============================================================ */
@@ -5552,7 +5780,9 @@ function renderBrowsingWeek(weekNum){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
+  updateWeekUI();
   initActualHeaderUI();
+  renderMapNodes();
 
   var sel = document.getElementById('overviewWeekSelect');
   if(sel){
