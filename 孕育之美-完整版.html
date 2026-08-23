@@ -36,7 +36,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .btn-ghost{ background:var(--color-background); color:var(--color-text); box-shadow:inset 0 0 0 1px rgba(52,50,56,0.1); font-weight:500; }
 
 /* ============ App Shell ============ */
-.app{ display:grid; grid-template-columns:232px 1fr; min-height:100vh; }
+.app{ display:grid; grid-template-columns:232px minmax(0, 1fr); min-height:100vh; max-width:100%; box-sizing:border-box; }
 .sidebar{ background:linear-gradient(180deg, #F6EFE6, var(--color-background)); padding:28px 18px 24px; display:flex; flex-direction:column; gap:32px; position:relative; }
 .sidebar::after{ content:""; position:absolute; top:0; right:0; bottom:0; width:1px; background:linear-gradient(180deg, transparent, rgba(232,138,155,0.18) 20%, rgba(232,138,155,0.18) 80%, transparent); }
 .brand{ display:flex; align-items:center; gap:10px; padding:0 6px; cursor:pointer; }
@@ -54,7 +54,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .sidebar-foot .eyebrow{ font-size:9.5px; }
 .sidebar-foot p{ margin:6px 0 0; font-size:12px; color:var(--color-text-muted); line-height:1.65; }
 
-.main{ padding:24px 40px 64px; position:relative; }
+.main{ padding:24px 36px 64px; position:relative; min-width:0; max-width:100%; box-sizing:border-box; }
 .topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; gap:16px; flex-wrap:wrap; }
 .breadcrumb{ font-size:12px; color:var(--color-text-faint); }
 .breadcrumb b{ color:var(--color-primary-dark); font-weight:600; }
@@ -491,31 +491,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   .growth-hero{ flex-direction:column; text-align:center; }
   .growth-hero .stats .row{ justify-content:center; }
 }
-
-/* ============ 產檢地圖 Integration Styles (Batch 02 + 02B + 02C) ============ */
-.map-filter-row{ display:flex; gap:10px; margin-bottom:18px; overflow-x:auto; padding-bottom:4px; }
-.map-filter-btn{ border:none; background:var(--color-surface); box-shadow:var(--shadow-soft); padding:8px 16px; border-radius:var(--radius-pill); font-size:12px; font-weight:600; color:var(--color-text-muted); cursor:pointer; transition:.2s; white-space:nowrap; display:inline-flex; align-items:center; gap:6px; }
-.map-filter-btn.active{ background:var(--color-primary); color:#fff; box-shadow:0 8px 18px -6px rgba(201,95,117,0.4); }
-.map-filter-btn .cnt{ font-size:10.5px; opacity:.85; background:rgba(0,0,0,0.08); padding:2px 7px; border-radius:999px; }
-.map-filter-btn.active .cnt{ background:rgba(255,255,255,0.25); color:#fff; }
-
-.map-node.type-routine .bud{ border-color:var(--color-secondary); }
-.map-node.type-optional .bud{ border-color:var(--color-primary); }
-.map-node.type-vaccine .bud{ border-color:var(--color-accent); }
-
-.type-pill{ font-size:11px; padding:4px 10px; border-radius:var(--radius-pill); font-weight:600; }
-.type-pill.type-routine{ background:rgba(168,191,168,0.22); color:#4E6B44; }
-.type-pill.type-optional{ background:rgba(232,138,155,0.18); color:var(--color-primary-dark); }
-.type-pill.type-vaccine{ background:rgba(243,216,167,0.35); color:#7E5C1B; }
-
-.evidence-box{ font-size:11px; color:var(--color-text-muted); background:linear-gradient(135deg, rgba(255,255,255,0.6), rgba(246,222,224,0.3)); border-left:3px solid var(--color-primary-dark); padding:10px 14px; border-radius:8px; margin-top:14px; line-height:1.6; }
-
-
-.map-track svg.path{ pointer-events: none !important; }
-.map-node{ z-index: 10 !important; pointer-events: auto !important; }
-.map-node .bud{ pointer-events: auto !important; }
-
-
 
 /* ============ 孕育花園 Botanical Garden Icon CSS ============ */
 .map-node .bud{
@@ -1002,6 +977,539 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   cursor: pointer;
 }
 
+
+
+
+
+
+
+
+/* ============ 產檢地圖 14 張 PNG Icon 專用精緻樣式 ============ */
+.map-card {
+  padding: 24px 20px 22px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.map-track {
+  position: relative;
+  min-width: 1180px;
+  height: 200px;
+  padding: 10px 0;
+}
+.map-node {
+  position: absolute;
+  width: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform: translateX(-50%);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+.map-node:hover {
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Icon Wrapper - 保持乾淨、無實心圓框/方框裁切 */
+.prenatal-icon-wrapper {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+/* PNG 圖片核心設定 - 絕對不裁切、保持原始比例 */
+.prenatal-map-icon {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transition: filter 0.25s ease;
+}
+
+/* 狀態呈現 - 不破壞 PNG 素材本身 */
+/* 1. Completed: 小型 ✓ 狀態標記在右上角 */
+.map-node.done .prenatal-icon-wrapper {
+  opacity: 0.95;
+}
+.node-done-check {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(95,122,85,0.35);
+  border: 1.5px solid #fff;
+  z-index: 2;
+}
+
+/* 2. Current: 溫和品牌粉色 Halo / Glow，不遮擋圖形 */
+.map-node.now .prenatal-map-icon {
+  filter: drop-shadow(0 0 10px rgba(232,138,155,0.7)) drop-shadow(0 4px 12px rgba(201,95,117,0.3));
+  animation: currentIconFloat 3s ease-in-out infinite alternate;
+}
+@keyframes currentIconFloat {
+  0% { transform: translateY(0); filter: drop-shadow(0 0 8px rgba(232,138,155,0.6)); }
+  100% { transform: translateY(-3px); filter: drop-shadow(0 0 14px rgba(232,138,155,0.85)) drop-shadow(0 6px 14px rgba(201,95,117,0.35)); }
+}
+
+/* 3. Future: 降低整體 opacity */
+.map-node.future .prenatal-icon-wrapper {
+  opacity: 0.6;
+}
+
+/* 4. Selected Node: 雅緻外圍光暈 */
+.map-node.selected .prenatal-map-icon {
+  filter: drop-shadow(0 0 8px rgba(201,95,117,0.75));
+}
+.map-node.selected .node-label {
+  color: var(--color-primary-dark) !important;
+  font-weight: 800 !important;
+}
+
+/* 孕週文字標籤 - 獨立位於圖片下方 */
+.map-node .node-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 2px;
+  white-space: nowrap;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+.map-node .node-sub {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Responsive Icon Sizes */
+@media (max-width: 1024px) {
+  .prenatal-icon-wrapper { width: 60px; height: 60px; }
+  .map-node { width: 68px; }
+  .map-track { min-width: 1080px; height: 185px; }
+}
+@media (max-width: 768px) {
+  .prenatal-icon-wrapper { width: 52px; height: 52px; }
+  .map-node { width: 60px; }
+  .map-track { min-width: 980px; height: 175px; }
+}
+
+
+/* ============ 產檢地圖 精修樣式 (Frontend Integration 04) ============ */
+.map-card {
+  padding: 24px 20px 20px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.map-track {
+  position: relative;
+  min-width: 1050px;
+  height: 170px;
+  padding: 10px 0;
+}
+.map-node {
+  position: absolute;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transform: translateX(-50%);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+.map-node:hover { transform: translateX(-50%) translateY(-3px); }
+.map-node .node-flower {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFDFB;
+  border: 2px solid #D6CBC1;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+  position: relative;
+  transition: all 0.25s ease;
+}
+.map-node.now .node-flower {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(232,138,155,0.25), 0 4px 12px rgba(201,95,117,0.3);
+}
+.map-node.done .node-flower {
+  border-color: var(--color-secondary);
+  background: #F4F8F4;
+}
+.map-node.future .node-flower {
+  opacity: 0.65;
+}
+.map-node.selected .node-flower {
+  outline: 2.5px solid var(--color-primary-dark);
+  outline-offset: 2px;
+}
+.node-check-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.prenatal-map-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Seasonal Flu Info Bar (Low Visual Weight) */
+.seasonal-info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(246,222,224,0.35), #FAF6F0);
+  border: 1px solid rgba(232,138,155,0.2);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  font-size: 12.5px;
+  color: var(--color-text);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.sib-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sib-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background: rgba(232,138,155,0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.sib-title { font-weight: 600; }
+.sib-desc { font-size: 12px; color: var(--color-text-muted); }
+.sib-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+.sib-toggle-btn:hover { text-decoration: underline; }
+.seasonal-info-expanded {
+  display: none;
+  padding: 10px 16px;
+  margin: -10px 0 16px;
+  background: #FFFDFB;
+  border: 1px solid rgba(232,138,155,0.15);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.seasonal-info-expanded.on { display: block; }
+
+/* Detail Card Hierarchy */
+.map-detail-card {
+  padding: 24px 28px 28px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(0,0,0,0.04);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.md-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.md-title-group h2 {
+  font-family: var(--font-serif-cjk);
+  font-size: 20px;
+  color: var(--color-text);
+  margin: 0 0 4px;
+}
+.md-week-sub {
+  font-size: 12px;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.md-rec-badge {
+  background: rgba(232,138,155,0.12);
+  color: var(--color-primary-dark);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(232,138,155,0.2);
+}
+
+.md-sections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.md-content-block {
+  background: #FAF8F5;
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.md-block-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  display: block;
+}
+.md-block-title {
+  font-family: var(--font-serif-cjk);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 10px;
+}
+.md-block-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.md-block-list li { margin-bottom: 4px; }
+
+.md-stage-learn-block {
+  grid-column: 1 / -1;
+  background: #FFFDFB;
+  border: 1px solid rgba(232,138,155,0.18);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+
+/* Personal Layer */
+.personal-record-card {
+  margin-top: 22px;
+  padding: 20px 22px 22px;
+  background: radial-gradient(ellipse at 92% 10%, rgba(246,222,224,0.35), transparent 70%), #FFFDFB;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(232,138,155,0.25);
+  box-shadow: 0 4px 16px rgba(154,110,100,0.05);
+}
+.prc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(232,138,155,0.15);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.prc-title {
+  font-family: var(--font-serif-cjk);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+.prc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 16px;
+  margin-bottom: 16px;
+}
+.prc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.prc-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.prc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.prc-input {
+  font-family: var(--font-cjk);
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: #FFFDFB;
+  color: var(--color-text);
+  width: 100%;
+  box-sizing: border-box;
+}
+.prc-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(232,138,155,0.18);
+}
+.prc-photo-zone {
+  border-top: 1px dashed rgba(0,0,0,0.08);
+  padding-top: 14px;
+  margin-top: 10px;
+}
+.prc-photo-action-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.prc-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: #FAF6F0;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.prc-upload-btn:hover {
+  background: rgba(232,138,155,0.15);
+  border-color: var(--color-primary);
+}
+.prc-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 12px;
+  font-size: 11.5px;
+  color: #8C8990;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.prc-remove-btn:hover {
+  color: #C95F75;
+  border-color: #C95F75;
+  background: rgba(201,95,117,0.05);
+}
+.prc-preview-img {
+  max-width: 220px;
+  max-height: 180px;
+  border-radius: 8px;
+  border: 1px solid #EAE3DA;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: block;
+  margin-top: 10px;
+}
+.prc-photo-notice {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+  display: block;
+  line-height: 1.4;
+}
+.prc-save-btn {
+  margin-top: 16px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(201,95,117,0.3);
+  transition: all 0.2s ease;
+}
+.prc-save-btn:hover {
+  box-shadow: 0 6px 16px rgba(201,95,117,0.4);
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px){
+  .main { padding: 18px 16px 60px; }
+  .md-sections-grid { grid-template-columns: 1fr; }
+  .prc-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -1319,24 +1827,39 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div class="lg"><span class="dot" style="background:#E88A9B;"></span>本週建議 / 當前階段</div>
           <div class="lg"><span class="dot" style="background:#C7BFC0;"></span>未來項目</div>
         </div>
+
         <div class="card map-card">
-          <div class="map-track" style="min-width:1150px; height:180px;">
-            <svg class="path" viewBox="0 0 1150 180" preserveAspectRatio="none">
-              <path d="M 30 130 C 130 40, 250 40, 380 110 S 650 160, 780 90 S 950 30, 1120 80" fill="none" stroke="#E9DFD3" stroke-width="3.5" stroke-dasharray="3 8" stroke-linecap="round"/>
+          <div class="map-track" style="min-width:1050px; height:170px;">
+            <svg class="path" viewBox="0 0 1050 170" preserveAspectRatio="none">
+              <path d="M 30 120 C 130 35, 240 35, 360 100 S 600 150, 720 85 S 880 25, 1020 75" fill="none" stroke="#E9DFD3" stroke-width="3.5" stroke-dasharray="3 8" stroke-linecap="round"/>
             </svg>
             <div id="mapNodesContainer"></div>
           </div>
         </div>
 
-        <!-- 全年/季節性健康提醒 Banner -->
-        <div id="seasonalNoticeBanner" style="margin:14px 0; padding:12px 16px; background:linear-gradient(135deg, #FFFDF0, #FFF8E7); border-radius:var(--radius-md); border-left:4px solid #E6A23C; box-shadow:var(--shadow-soft); font-size:12.5px; color:var(--color-text);">
-          🛡️ <b>全年／季節性健康提醒（流感疫苗）</b>：孕婦屬衛福部疾管署公費流感疫苗優先接種對象。流感季開打時不分孕期皆可接種，安全保護母體與寶寶。
+        <!-- 季節性健康提醒（低視覺權重 Info Bar） -->
+        <div class="seasonal-info-bar" id="seasonalInfoBar">
+          <div class="sib-left">
+            <span class="sib-badge">🛡️ 季節性健康提醒</span>
+            <span class="sib-title">流感疫苗</span>
+            <span class="sib-desc">孕婦屬衛福部疾管署公費流感疫苗優先對象，流感季開打隨到隨打</span>
+          </div>
+          <button class="sib-toggle-btn" id="seasonalToggleBtn" type="button" onclick="toggleSeasonalInfo()">了解更多 ›</button>
+        </div>
+        <div class="seasonal-info-expanded" id="seasonalInfoExpanded">
+          孕婦為流感重症高風險族群。流感季開打時不分孕期皆可接種，安全保護母體與新生兒健康。
         </div>
 
-        <div class="card map-detail" id="mapDetail"></div>
+        <!-- 產檢詳細卡片 -->
+        <div class="map-detail-card" id="mapDetail"></div>
+
+        <!-- 官方資料來源聲明 Footer -->
+        <div class="map-source-footer">
+          本頁醫療衛教內容依衛生福利部國民健康署孕產相關官方資料整理
+        </div>
       </div>
 
-<div class="tab-panel" id="tab-notes">
+      <div class="tab-panel" id="tab-notes">
         <div class="card notes-composer">
           <div class="nc-row">
             <input type="text" id="noteInput" placeholder="想問醫生什麼？先記下來…">
@@ -1807,7 +2330,7 @@ document.querySelectorAll('.view-switch button').forEach(function(btn){
 });
 
 /* ============================================================
-   產檢地圖｜Prenatal Checkup Map Data & Renderer
+   產檢地圖｜Prenatal Checkup Map Data & Renderer (Refined)
    ============================================================ */
 var PRENATAL_MAP_NODES = [
   {
@@ -2230,13 +2753,67 @@ var PRENATAL_MAP_NODES = [
 ];
 
 var selectedMapIndex = 0;
+var sessionPhotoMap = {}; // In-memory session preview only (Do NOT write to localStorage)
+
+function getPrenatalIconPath(week){
+  var pad = (week < 10 ? '0' : '') + week;
+  return 'assets/prenatal-map/prenatal-week-' + pad + '.png';
+}
+
+function toggleSeasonalInfo(){
+  var el = document.getElementById('seasonalInfoExpanded');
+  var btn = document.getElementById('seasonalToggleBtn');
+  if(!el) return;
+  var isOpen = el.classList.toggle('on');
+  if(btn) btn.textContent = isOpen ? '收起 ‹' : '了解更多 ›';
+}
+
+function getPersonalRecordKey(visitNum){
+  return 'prenatal_record_visit_' + visitNum;
+}
+
+function loadPersonalRecord(visitNum){
+  try {
+    var raw = localStorage.getItem(getPersonalRecordKey(visitNum));
+    return raw ? JSON.parse(raw) : {};
+  } catch(e){
+    return {};
+  }
+}
+
+function savePersonalRecord(visitNum, data){
+  try {
+    // Strictly store only text records (no photo in localStorage)
+    var toSave = {
+      date: data.date || '',
+      weight: data.weight || '',
+      bpSys: data.bpSys || '',
+      bpDia: data.bpDia || '',
+      fhr: data.fhr || ''
+    };
+    localStorage.setItem(getPersonalRecordKey(visitNum), JSON.stringify(toSave));
+    var badge = document.getElementById('saveBadge_' + visitNum);
+    if(badge){
+      badge.textContent = '✓ 紀錄已儲存';
+      badge.style.opacity = '1';
+    }
+  } catch(e){}
+}
+
+function removeSessionPhoto(visitNum){
+  delete sessionPhotoMap[visitNum];
+  var pBox = document.getElementById('prPhotoPreviewBox_' + visitNum);
+  var fileInput = document.getElementById('prPhotoInput_' + visitNum);
+  if(pBox) pBox.innerHTML = '';
+  if(fileInput) fileInput.value = '';
+}
 
 function renderMapNodes(){
   var container = document.getElementById('mapNodesContainer');
   if(!container) return;
   container.innerHTML = '';
   
-  var currentW = APP.currentWeek || 24;
+  var currentW = (typeof APP !== 'undefined' && APP.currentWeek) ? APP.currentWeek : 24;
   
   var activeIdx = 0;
   for(var i=0; i<PRENATAL_MAP_NODES.length; i++){
@@ -2247,11 +2824,11 @@ function renderMapNodes(){
   selectedMapIndex = activeIdx;
 
   var total = PRENATAL_MAP_NODES.length;
-  var trackWidth = 1100;
+  var trackWidth = 1000;
   
   PRENATAL_MAP_NODES.forEach(function(node, idx){
     var leftPos = 30 + (idx / (total - 1)) * (trackWidth - 60);
-    var topPos = 60 + Math.sin(idx * 0.7) * 35;
+    var topPos = 55 + Math.sin(idx * 0.72) * 32;
     
     var stateClass = 'future';
     if(idx < activeIdx) stateClass = 'done';
@@ -2262,14 +2839,20 @@ function renderMapNodes(){
     nodeEl.style.position = 'absolute';
     nodeEl.style.left = leftPos + 'px';
     nodeEl.style.top = topPos + 'px';
-    nodeEl.style.cursor = 'pointer';
     
-    var iconSym = stateClass === 'done' ? '🌿' : (stateClass === 'now' ? '🌸' : '🌱');
+    var iconPath = getPrenatalIconPath(node.week);
+    var fallbackSymbol = stateClass === 'done' ? '🌿' : (stateClass === 'now' ? '🌸' : '🌱');
     
     nodeEl.innerHTML = 
-      '<div class="node-flower" style="width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#FFFDFB; border:2px solid ' + (stateClass==='done'?'#A8BFA8':(stateClass==='now'?'#E88A9B':'#C7BFC0')) + '; box-shadow:0 2px 6px rgba(0,0,0,0.08); font-size:16px;">' + iconSym + '</div>' +
-      '<div class="node-label" style="font-size:11px; font-weight:700; text-align:center; margin-top:4px; white-space:nowrap; color:var(--color-text);">' + node.week + '週</div>' +
-      '<div class="node-sub" style="font-size:10px; color:var(--color-text-muted); text-align:center; white-space:nowrap;">第 ' + node.visit_number + ' 次</div>';
+      '<div class="node-flower">' +
+      '  <img class="prenatal-map-icon" src="' + iconPath + '" alt="第 ' + node.visit_number + ' 次產檢"' +
+      '       onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'inline-block\';"' +
+      '       style="width:24px; height:24px; object-fit:contain; display:block;">' +
+      '  <span class="node-icon-fallback" style="display:none; font-size:15px;">' + fallbackSymbol + '</span>' +
+      (stateClass === 'done' ? '<span class="node-check-badge">✓</span>' : '') +
+      '</div>' +
+      '<span class="node-label" style="font-size:11px; font-weight:700; text-align:center; margin-top:2px; white-space:nowrap; color:var(--color-text);">' + node.week + '週</span>' +
+      '<span class="node-sub" style="font-size:10px; color:var(--color-text-muted); text-align:center; white-space:nowrap;">第 ' + node.visit_number + ' 次</span>';
       
     nodeEl.addEventListener('click', function(){
       selectedMapIndex = idx;
@@ -2289,54 +2872,188 @@ function showMapDetail(idx){
   var detailEl = document.getElementById('mapDetail');
   if(!detailEl || !PRENATAL_MAP_NODES[idx]) return;
   var d = PRENATAL_MAP_NODES[idx];
+  var visitNum = d.visit_number;
+  var rec = loadPersonalRecord(visitNum);
+  var photoPreview = sessionPhotoMap[visitNum] || '';
   
+  // Section 01: 產檢項目
   var routineHtml = (d.routine_items || []).map(function(item){ return '<li>' + item + '</li>'; }).join('');
-  var publicHtml = (d.publicly_funded_items || []).map(function(item){ return '<li><span class="badge-public" style="background:#EBF5EB; color:#2E7D32; font-size:11px; padding:2px 6px; border-radius:4px; margin-right:6px; font-weight:600;">公費</span>' + item + '</li>'; }).join('');
   
-  var optionalHtml = '';
-  if(d.optional_items && d.optional_items.length > 0){
-    optionalHtml = '<div style="margin-top:14px;"><h4 style="font-size:13px; color:var(--color-primary-dark); margin-bottom:8px;">💡 自費選擇性產檢項目</h4>' +
-      d.optional_items.map(function(opt){
-        return '<div style="padding:10px 12px; background:rgba(232,138,155,0.06); border-radius:8px; margin-bottom:8px; border:1px solid rgba(232,138,155,0.15);">' +
-               '<div style="font-weight:700; font-size:13px; color:var(--color-text);">' + opt.title + ' <span style="font-size:11px; font-weight:normal; color:var(--color-text-muted);">(' + opt.recommended_window + ')</span></div>' +
-               '<p style="font-size:12px; color:var(--color-text-muted); margin:4px 0;">' + opt.summary + '</p>' +
-               '<div style="font-size:11px; color:var(--color-primary);">' + opt.cost_info + '</div>' +
-               '</div>';
-      }).join('') + '</div>';
+  // Section 02: 公費項目
+  var publicItems = d.publicly_funded_items || [];
+  var publicHtml = '';
+  if(publicItems.length > 0){
+    publicHtml = publicItems.map(function(item){
+      return '<li><span style="background:#EBF5EB; color:#2E7D32; font-size:11px; padding:1px 6px; border-radius:4px; margin-right:6px; font-weight:600;">公費</span>' + item + '</li>';
+    }).join('');
+  } else {
+    publicHtml = '<li style="color:var(--color-text-muted); list-style:none;">本次產檢以常規體理與問診檢查為主。</li>';
   }
+  
+  // Section 03: 這個階段可以了解 (自費項目 + 疫苗)
+  var hasOptional = (d.optional_items && d.optional_items.length > 0);
+  var hasVaccines = (d.vaccines && d.vaccines.length > 0);
+  var stageLearnHtml = '';
 
-  var vaccineHtml = '';
-  if(d.vaccines && d.vaccines.length > 0){
-    vaccineHtml = '<div style="margin-top:14px;"><h4 style="font-size:13px; color:#2E7D32; margin-bottom:8px;">💉 孕期建議疫苗項目</h4>' +
-      d.vaccines.map(function(vac){
-        return '<div style="padding:10px 12px; background:#F1F8E9; border-radius:8px; margin-bottom:8px; border:1px solid #C5E1A5;">' +
+  if(hasOptional || hasVaccines){
+    var optContent = '';
+    if(hasOptional){
+      optContent = d.optional_items.map(function(opt){
+        return '<div style="padding:10px 14px; background:rgba(232,138,155,0.06); border-radius:8px; margin-bottom:8px; border:1px solid rgba(232,138,155,0.15);">' +
+               '<div style="font-weight:700; font-size:13px; color:var(--color-text);">' + opt.title + ' <span style="font-size:11px; font-weight:normal; color:var(--color-text-muted);">(' + opt.recommended_window + ')</span></div>' +
+               '<p style="font-size:12px; color:var(--color-text-muted); margin:4px 0 3px;">' + opt.summary + '</p>' +
+               '<div style="font-size:11px; color:var(--color-primary-dark); font-weight:500;">' + opt.cost_info + '</div>' +
+               '</div>';
+      }).join('');
+    }
+    var vacContent = '';
+    if(hasVaccines){
+      vacContent = d.vaccines.map(function(vac){
+        return '<div style="padding:10px 14px; background:#F1F8E9; border-radius:8px; margin-bottom:8px; border:1px solid #C5E1A5;">' +
                '<div style="font-weight:700; font-size:13px; color:#2E7D32;">' + vac.title + ' <span style="font-size:11px; font-weight:normal; color:#558B2F;">(' + vac.recommended_window + ')</span></div>' +
-               '<p style="font-size:12px; color:var(--color-text); margin:4px 0;">' + vac.summary + '</p>' +
+               '<p style="font-size:12px; color:var(--color-text); margin:4px 0 3px;">' + vac.summary + '</p>' +
                '<div style="font-size:11px; color:#33691E;">' + vac.recommendation_status + '</div>' +
                '</div>';
-      }).join('') + '</div>';
+      }).join('');
+    }
+    stageLearnHtml = 
+      '<div class="md-stage-learn-block">' +
+      '  <span class="md-block-num">03</span>' +
+      '  <h4 class="md-block-title">這個階段可以了解</h4>' +
+      optContent +
+      vacContent +
+      '</div>';
   }
 
+  // Personal Record Layer HTML
+  var personalRecordHtml = 
+    '<div class="personal-record-card">' +
+    '  <div class="prc-header">' +
+    '    <h4 class="prc-title">♡ 我的產檢紀錄・第 ' + visitNum + ' 次產檢紀錄</h4>' +
+    '    <span class="pr-save-badge" id="saveBadge_' + visitNum + '">✓ 紀錄就緒</span>' +
+    '  </div>' +
+    '  <div class="prc-grid">' +
+    '    <div class="prc-field">' +
+    '      <label class="prc-label" for="prDate_' + visitNum + '">實際產檢日</label>' +
+    '      <div class="prc-input-wrap">' +
+    '        <input type="date" class="prc-input" id="prDate_' + visitNum + '" value="' + (rec.date || '') + '">' +
+    '      </div>' +
+    '    </div>' +
+    '    <div class="prc-field">' +
+    '      <label class="prc-label" for="prWeight_' + visitNum + '">媽咪體重</label>' +
+    '      <div class="prc-input-wrap">' +
+    '        <input type="number" step="0.1" class="prc-input" id="prWeight_' + visitNum + '" placeholder="例如 56.5" value="' + (rec.weight || '') + '">' +
+    '        <span class="pr-unit">kg</span>' +
+    '      </div>' +
+    '    </div>' +
+    '    <div class="prc-field">' +
+    '      <label class="prc-label">產檢血壓</label>' +
+    '      <div class="prc-input-wrap">' +
+    '        <input type="number" class="prc-input" style="max-width:80px;" id="prBpSys_' + visitNum + '" placeholder="收縮壓" value="' + (rec.bpSys || '') + '">' +
+    '        <span>/</span>' +
+    '        <input type="number" class="prc-input" style="max-width:80px;" id="prBpDia_' + visitNum + '" placeholder="舒張壓" value="' + (rec.bpDia || '') + '">' +
+    '        <span class="pr-unit">mmHg</span>' +
+    '      </div>' +
+    '    </div>' +
+    '    <div class="prc-field">' +
+    '      <label class="prc-label" for="prFhr_' + visitNum + '">胎心音 (FHR)</label>' +
+    '      <div class="prc-input-wrap">' +
+    '        <input type="number" class="prc-input" id="prFhr_' + visitNum + '" placeholder="例如 145" value="' + (rec.fhr || '') + '">' +
+    '        <span class="pr-unit">bpm</span>' +
+    '      </div>' +
+    '    </div>' +
+    '  </div>' +
+    '  <div class="prc-photo-zone">' +
+    '    <label class="prc-label">產檢照片 / 超音波照片</label>' +
+    '    <input type="file" accept="image/*" id="prPhotoInput_' + visitNum + '" style="display:none;">' +
+    '    <div class="prc-photo-action-row">' +
+    '      <button type="button" class="prc-upload-btn" onclick="document.getElementById(\'prPhotoInput_' + visitNum + '\').click()">' +
+    '        📷 選擇照片預覽' +
+    '      </button>' +
+    (photoPreview ? '      <button type="button" class="prc-remove-btn" onclick="removeSessionPhoto(' + visitNum + '); showMapDetail(' + idx + ');">✕ 移除照片</button>' : '') +
+    '    </div>' +
+    '    <span class="prc-photo-notice">目前照片僅供本次預覽，重新整理頁面後將不會保留。</span>' +
+    '    <div id="prPhotoPreviewBox_' + visitNum + '">' +
+           (photoPreview ? '<img src="' + photoPreview + '" class="prc-preview-img" alt="產檢超音波照片預覽">' : '') +
+    '    </div>' +
+    '  </div>' +
+    '  <button type="button" class="prc-save-btn" id="prSaveBtn_' + visitNum + '">' +
+    '    💾 儲存這次紀錄' +
+    '  </button>' +
+    '</div>';
+
   detailEl.innerHTML = 
-    '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid var(--color-border); padding-bottom:10px;">' +
-    '  <div>' +
-    '    <span style="font-size:12px; color:var(--color-primary-dark); font-weight:700;">第 ' + d.visit_number + ' 次產檢里程碑</span>' +
-    '    <h3 style="font-size:18px; margin:4px 0 0; color:var(--color-text);">' + d.visit_title + '</h3>' +
+    '<div class="md-top-header">' +
+    '  <div class="md-title-group">' +
+    '    <span class="md-week-sub">' + d.week + ' WEEK</span>' +
+    '    <h2>' + d.visit_title + '</h2>' +
     '  </div>' +
-    '  <span class="badge" style="background:var(--color-primary-light); color:var(--color-primary-dark); padding:4px 12px; border-radius:999px; font-size:12px; font-weight:700;">建議孕週：' + d.week + ' 週</span>' +
+    '  <span class="md-rec-badge">建議孕週：第 ' + d.week + ' 週</span>' +
     '</div>' +
-    '<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">' +
-    '  <div>' +
-    '    <h4 style="font-size:13px; color:var(--color-text); margin-bottom:8px;">🩺 常規檢查項目</h4>' +
-    '    <ul style="font-size:12.5px; line-height:1.7; padding-left:18px; color:var(--color-text-muted);">' + routineHtml + '</ul>' +
+    '<div class="md-sections-grid">' +
+    '  <div class="md-content-block">' +
+    '    <span class="md-block-num">01</span>' +
+    '    <h4 class="md-block-title">產檢項目</h4>' +
+    '    <ul class="md-block-list">' + routineHtml + '</ul>' +
     '  </div>' +
-    '  <div>' +
-    '    <h4 style="font-size:13px; color:var(--color-text); margin-bottom:8px;">✨ 本次重點 / 公費補助</h4>' +
-    '    <ul style="font-size:12.5px; line-height:1.7; padding-left:18px; color:var(--color-text);">' + publicHtml + '</ul>' +
+    '  <div class="md-content-block">' +
+    '    <span class="md-block-num">02</span>' +
+    '    <h4 class="md-block-title">公費項目</h4>' +
+    '    <ul class="md-block-list">' + publicHtml + '</ul>' +
     '  </div>' +
+    (stageLearnHtml ? '  ' + stageLearnHtml : '') +
     '</div>' +
-    optionalHtml +
-    vaccineHtml;
+    personalRecordHtml;
+
+  // Bind inputs & buttons
+  function bindPersonalRecordInputs(){
+    var dEl = document.getElementById('prDate_' + visitNum);
+    var wEl = document.getElementById('prWeight_' + visitNum);
+    var sEl = document.getElementById('prBpSys_' + visitNum);
+    var diaEl = document.getElementById('prBpDia_' + visitNum);
+    var fEl = document.getElementById('prFhr_' + visitNum);
+    var saveBtn = document.getElementById('prSaveBtn_' + visitNum);
+    var fileEl = document.getElementById('prPhotoInput_' + visitNum);
+
+    function triggerSave(){
+      var current = {
+        date: dEl ? dEl.value : '',
+        weight: wEl ? wEl.value : '',
+        bpSys: sEl ? sEl.value : '',
+        bpDia: diaEl ? diaEl.value : '',
+        fhr: fEl ? fEl.value : ''
+      };
+      savePersonalRecord(visitNum, current);
+    }
+
+    [dEl, wEl, sEl, diaEl, fEl].forEach(function(el){
+      if(el){
+        el.addEventListener('input', triggerSave);
+        el.addEventListener('change', triggerSave);
+      }
+    });
+
+    if(saveBtn){
+      saveBtn.addEventListener('click', triggerSave);
+    }
+
+    if(fileEl){
+      fileEl.addEventListener('change', function(e){
+        var file = e.target.files && e.target.files[0];
+        if(file){
+          var reader = new FileReader();
+          reader.onload = function(evt){
+            var dataUrl = evt.target.result;
+            sessionPhotoMap[visitNum] = dataUrl; // Session preview only (Do NOT write to localStorage)
+            showMapDetail(idx); // Refresh detail card with preview and remove button
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+  }
+
+  bindPersonalRecordInputs();
 }
 
 /* ============================================================
