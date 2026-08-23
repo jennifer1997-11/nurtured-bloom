@@ -1,0 +1,3503 @@
+{
+  "metadata": {
+    "version": "2.1.0",
+    "generated_at": "2026-08-22",
+    "description": "孕育之美 Pregnancy Weekly Mapping Layer (Warm Conversational Tone) — Week 1-40 孕期總覽",
+    "content_types": {
+      "mom_changes": "媽咪本週身體變化 (2 items/week, 溫和生理適應)",
+      "mom_reminders": "媽咪本週提醒 (3 items/week, 衛教與生活叮嚀)",
+      "partner_tasks": "神隊友本週任務 (3 items/week, 陪伴與實質行動)"
+    },
+    "editorial_rules": {
+      "tone": "Reassuring, friendly, warm, and supportive (陪伴感與溫柔叮嚀)",
+      "no_red_flags_in_mom_changes": true,
+      "no_fake_week_precision": true,
+      "only_approved_evidence": true,
+      "distinct_content_per_week": true,
+      "source_of_truth": "knowledge/medical/records/",
+      "natural_warm_tone_no_bureaucracy": true
+    }
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "stage": "trimester_1",
+      "theme": "適應新生命的到來，靜心體會身體微妙變化",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "感知微感變化與荷爾蒙適應",
+          "summary": "孕期剛開始，體內荷爾蒙正靜靜產生變化。有些孕媽咪可能會開始感覺月經暫停、乳房微脹，或伴隨輕微的疲倦感與體溫微升。",
+          "items": [
+            "身體正在適應新的荷爾蒙節奏，感到疲倦或嗜睡是極為正常的自然生理反應。",
+            "若感到體力較易消耗，給自己多一點休息的時間與空間。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "溫柔聆聽身體訊號",
+          "summary": "每個人的孕早期感受都不盡相同。請帶著輕鬆心情感受身體的小改變，無須過度擔心或緊張。",
+          "items": [
+            "順應身體的步調，累了就適度歇息。",
+            "若有任何困惑，可記錄下來準備於初次產檢時向醫師諮詢。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRIENT-FOLATE-001",
+          "title": "開始每日補充葉酸",
+          "summary": "葉酸是幫助寶寶神經管正常發育與紅血球形成的重要營養素。建議孕期每日攝取 600 微克 (μg)。",
+          "items": [
+            "飲食來源：可多選擇深綠色蔬菜（菠菜、空心菜）、黑豆、蛋黃與芭樂。",
+            "溫馨叮嚀：若日常飲食攝取不足，可請醫師評估處方適合的葉酸補充劑。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "給自己充裕的休息步調",
+          "summary": "孕初期生活作息宜保持規律，避免長時間加班與熬夜，日間若感到疲倦可安排 15~30 分鐘短暫午休。",
+          "items": [
+            "放慢日常步調，不讓自己處於過度疲憊狀態。",
+            "聽聽喜歡的輕音樂，讓身心維持愉悅放鬆。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "保持輕鬆溫和的散步習慣",
+          "summary": "無孕期合併症的孕媽咪適度活動是相當安全的。可以從每日輕柔散步開始，維持良好的血液循環。",
+          "items": [
+            "強度原則：以步速平緩、微喘但仍能順暢交談為宜。",
+            "安全注意事項：穿著合腳防滑平底鞋，避免高強度劇烈運動。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "溫柔傾聽與給予陪伴空間",
+          "summary": "面對新身分的轉變，孕媽咪可能伴隨期待與不安。神隊友主動的一句關心與溫暖擁抱，是最好的心靈支柱。",
+          "items": [
+            "主動關心：「今天感覺怎麼樣？有什麼我可以幫忙的嗎？」",
+            "耐性傾聽不指責，給予滿滿的安全感與支持。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "主動分擔日常採買與輕微家事",
+          "summary": "理解伴侶初期的體力消耗，主動接手提重物、吸塵與日常採買，讓伴侶有充足的時間休息。",
+          "items": [
+            "承包搬運重物與大掃除等粗重工作。",
+            "打造無壓力、乾淨舒適的家居環境。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-LEARN-001",
+          "title": "一起了解孕期基礎衛教知識",
+          "summary": "主動翻閱孕產照護知識，了解孕期初期母體可能的生理改變，用知識給予伴侶最貼心的照顧。",
+          "items": [
+            "研讀孕產育兒衛教指南基礎章節。",
+            "把心中好奇或疑問記在手冊上，產檢時一起請教醫師。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 2,
+      "stage": "trimester_1",
+      "theme": "溫柔應對早晨微噁，採清淡少量多餐原則",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T1-NAUSEA-001",
+          "title": "體會胃口轉變與早晨微噁",
+          "summary": "晨起時若感到輕微噁心或胃口改變，是孕初期荷爾蒙帶來的常見適應過程。多數孕媽咪會在滿 3 個月後逐漸好轉。",
+          "items": [
+            "起床前可以先在床邊吃 1~2 片蘇打餅乾或乾吐司緩和胃部。",
+            "順應當時想吃的清淡食物，切勿強迫自己進食過飽。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "察覺嗅覺與味覺敏感",
+          "summary": "這個階段對特定氣味（如油煙、重香精或二手菸）可能較為敏感，這是身體本能的自我保護機制。",
+          "items": [
+            "儘量避開油煙重的廚房環境或刺激性味覺源。",
+            "保持室內空氣流通與清爽環境。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRITION-NAUSEA-DIET-001",
+          "title": "孕吐時的舒緩飲食策略",
+          "summary": "掌握「少量多餐、清淡、乾濕分開」原則。飯湯分開進食可減少胃部膨脹反胃感。",
+          "items": [
+            "乾濕分開：用餐時先吃乾食，間隔 30 分鐘後再小口喝湯或水。",
+            "水分補充：採用小口多次補充水分，避免大口灌水引發嘔吐。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-BODY-CARE-001",
+          "title": "維持胸部與體感舒適",
+          "summary": "胸部可能開始感到微脹或敏感，建議選購包覆性佳、無壓迫感的棉質胸罩。",
+          "items": [
+            "避免穿著過緊或有硬鋼圈的衣物。",
+            "保持肌膚乾爽，洗澡水溫溫和不宜過熱。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "飯後輕鬆散步幫助消化",
+          "summary": "餐後安排 15~20 分鐘輕鬆散步，能促進腸胃蠕動與舒緩胃脹感。",
+          "items": [
+            "步調輕鬆舒適，避免飯後立即躺下。",
+            "聽聽音樂散步，保持愉快心情。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T1-COMFORT-001",
+          "title": "配合飲食口味與避開重氣味",
+          "summary": "體諒伴侶對氣味的敏感，主動幫忙準備清淡食物，避開在室內下廚煎炒重油煙料理。",
+          "items": [
+            "主動幫忙準備清淡少油的餐點或點心。",
+            "維持家中空氣清新，及時倒垃圾與排煙。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "包辦餐後碗盤清洗與家務",
+          "summary": "餐後主動清洗碗盤與整理廚房，避免伴侶長時間接觸廚餘或清潔劑氣味。",
+          "items": [
+            "承包洗碗、清理廚餘與晾衣服等工作。",
+            "讓伴侶餐後能舒適坐下休息。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "給予貼心陪伴與言語安慰",
+          "summary": "當伴侶因嘔吐不適而心情低落時，給予溫柔的撫背與安慰，讓她知道你一直在旁邊支持著。",
+          "items": [
+            "遞上溫水或濕毛巾，溫柔撫背舒緩不適。",
+            "用言語表達感謝與體貼：「辛苦了，有我在」。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 3,
+      "stage": "trimester_1",
+      "theme": "關注睡眠與體力節奏，打造舒適休養環境",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "體力消耗與瞌睡感的自然適應",
+          "summary": "黃體素濃度上升會讓人感到容易瞌睡或體力不濟，這是身體正投入大量能量培育新生命的象徵。",
+          "items": [
+            "不要勉強自己維持過往高強度的工作量。",
+            "夜晚試著提早 30 分鐘入睡，建立固定作息。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "給身體充足的放鬆時間",
+          "summary": "聽從身體的召喚，當感覺疲倦時暫時放下手邊事務，閉目養神 10 分鐘就能補充精神。",
+          "items": [
+            "工作間隔記得起身伸展身心。",
+            "維持心情沉靜放鬆。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "建立規律休息與優質睡眠環境",
+          "summary": "保持臥室通風涼爽、燈光柔和。睡前儘量減少使用手機電子產品，幫助順利入睡。",
+          "items": [
+            "睡眠環境：保持床單乾淨舒適，枕頭支撐良好。",
+            "作息調節：日間疲倦可午休 20~30 分鐘，避免睡過久影響夜間入睡。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T1-OVERVIEW-001",
+          "title": "初期飲食營養均衡原則",
+          "summary": "初期熱量無須大幅額外增加，關鍵在於攝取優質蛋白質、多元蔬菜與充足水分。",
+          "items": [
+            "食物選擇：多選原型食物，少吃高糖與高油加工品。",
+            "水分補充：每日維持充足水分攝取。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "輕柔伸展與維持肢體靈活",
+          "summary": "睡前或日間可進行簡單的頸部與肩部輕柔伸展，緩和肌肉緊繃感。",
+          "items": [
+            "動作原則：保持呼吸平順，不憋氣不拉扯。",
+            "安全第一：若感覺頭暈不適即暫停休息。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "主動承包粗重家務與居家清潔",
+          "summary": "把搬重物、吸塵拖地與大掃除等體力活全數接過來，讓孕媽咪有充裕的時間好好休養。",
+          "items": [
+            "負責居家粗重工作與提拿重物。",
+            "讓伴侶不因家務未做完而感到焦慮不安。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "營造安靜溫馨的休息氛圍",
+          "summary": "睡前主動調暗家中燈光、降低電視音量，為伴侶打造無打擾的良好睡眠氛圍。",
+          "items": [
+            "調暗環境燈光，減少噪音干擾。",
+            "準備一杯微溫開水放在床頭。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "共同維持規律健康的家庭作息",
+          "summary": "神隊友陪同一起早睡早起、少熬夜，用行動帶動家庭健康良好的生活型態。",
+          "items": [
+            "陪伴伴侶一起早睡放鬆。",
+            "減少夜間不必要的聚會與娛樂安排。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 4,
+      "stage": "trimester_1",
+      "theme": "呵護肌膚與胸部變化，挑選舒適透氣衣著",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "乳房脹感與溫熱感的溫柔照護",
+          "summary": "受荷爾蒙影響，胸部可能感覺微脹，體溫也維持在較高水準，屬常見生理改變。",
+          "items": [
+            "穿著包覆支撐佳、無鋼圈的透氣胸罩。",
+            "洗澡水溫宜溫和不宜高溫燙洗。"
+          ]
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-BODY-CARE-001",
+          "title": "溫和肌膚保濕",
+          "summary": "皮脂分泌改變時，選擇成分單純的保濕乳液舒緩肚皮與全身肌膚。",
+          "items": [
+            "洗澡後輕柔塗抹保濕乳液。",
+            "避免過度揉捏乳頭敏感部位。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-LIFESTYLE-CLOTHING-COMFORT-001",
+          "title": "選擇寬鬆棉質吸汗衣著",
+          "summary": "孕期體溫較高，選擇寬鬆、透氣吸汗的棉質衣物與合腳防滑平底鞋。",
+          "items": [
+            "衣著選擇：吸汗透氣棉質為主。",
+            "鞋款挑選：合腳低跟或防滑平底鞋。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-FOLATE-001",
+          "title": "持續補充豐富葉酸食材",
+          "summary": "葉酸補充不間斷，多吃菠菜、空心菜、黑豆與蛋黃。",
+          "items": [
+            "葉酸來源：深綠色蔬菜與豆類。",
+            "烹調叮嚀：避免過度久煮破壞葉酸。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "每日 30 分鐘累計溫和活動",
+          "summary": "透過日常散步與家務活動，累計每日身體活動量。",
+          "items": [
+            "強度標準：微微發熱但說話順暢。",
+            "水分準備：隨身帶水瓶補水。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "給予體貼情緒支持與擁抱",
+          "summary": "當伴侶因體力或情緒起伏感疲倦時，給予溫暖擁抱與言語安慰。",
+          "items": [
+            "擁抱與傾聽伴侶的感受。",
+            "不隨意指責情緒變化。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "負責清洗衣物與環境維持",
+          "summary": "主動清洗曬乾衣物與整理房間，維持乾淨清爽環境。",
+          "items": [
+            "包辦洗衣服與晾衣家務。",
+            "確保浴室防滑安全。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-LEARN-001",
+          "title": "紀錄伴侶身體感受與疑問",
+          "summary": "將伴侶這幾週的生理感受紀錄下來，便於日後諮詢。",
+          "items": [
+            "筆記伴侶的不適與習慣。",
+            "準備產檢諮詢問題清單。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 5,
+      "stage": "trimester_1",
+      "theme": "守護初期口腔健康，建立好刷牙習慣",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-ORAL-CARE-PREGNANCY-CHANGES-001",
+          "title": "牙齦充血敏感的溫柔護理",
+          "summary": "黃體素增加易使牙齦充血腫脹或刷牙時輕微出血，這是孕期常見改變。",
+          "items": [
+            "選擇軟毛小頭牙刷，動作輕柔。",
+            "切勿因輕微出血而不敢刷牙。"
+          ]
+        },
+        {
+          "source_record_id": "MED-ORAL-CARE-HYGIENE-001",
+          "title": "孕吐後的口腔稀釋保護",
+          "summary": "孕吐中的胃酸易侵蝕琺瑯質，吐後建議先以溫水漱口。",
+          "items": [
+            "吐後先用溫水或淡鹽水漱口。",
+            "隔 30 分鐘後再刷牙保護琺瑯質。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-ORAL-CARE-HYGIENE-001",
+          "title": "餐後與睡前正確潔牙",
+          "summary": "養成餐後與睡前刷牙、搭配牙線清潔牙縫的好習慣。",
+          "items": [
+            "清潔習慣：餐後睡前正確刷牙。",
+            "牙線使用：輕柔清潔牙縫殘渣。"
+          ],
+          "theme": "oral"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-NAUSEA-DIET-001",
+          "title": "適量攝取含維生素 B6 食物",
+          "summary": "糙米、瘦肉、蛋黃與燕麥富含 B6，有助於舒緩初期噁心感。",
+          "items": [
+            "好用食材：糙米飯、燕麥、雞肉。",
+            "進食原則：不強迫進食，少量多餐。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "適度放鬆舒緩壓力",
+          "summary": "感到緊繃時可以做深度呼吸或聽舒緩音樂，讓身心平靜。",
+          "items": [
+            "睡眠品質：營造安靜舒適臥室。",
+            "心情放鬆：擺放喜歡的綠植或音樂。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-LEARN-001",
+          "title": "主動閱讀專業孕產衛教資訊",
+          "summary": "主動閱讀孕產衛教指南，了解孕初期口腔與飲食保健重點。",
+          "items": [
+            "研讀手冊衛教內容。",
+            "拒絕未經證實的坊間偏方。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "幫忙準備漱口水與潔牙用品",
+          "summary": "貼心準備軟毛牙刷與溫水，提醒伴侶餐後清潔。",
+          "items": [
+            "備妥軟毛牙刷與潔牙用品。",
+            "關心伴侶餐後舒適度。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "給予正面鼓勵與讚美",
+          "summary": "肯定伴侶在孕初期的付出與堅持，傳遞堅定愛意。",
+          "items": [
+            "多用鼓勵話語表達關懷。",
+            "感謝伴侶為寶寶的付出。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 6,
+      "stage": "trimester_1",
+      "theme": "聆聽生命的初次心跳，安心守護母胎健康",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T1-URINARY-FREQUENCY-001",
+          "title": "適應子宮擴大帶來的頻尿感",
+          "summary": "子宮逐漸變大壓迫膀胱，排尿次數增多屬正常生理現象。",
+          "items": [
+            "有尿意即前往排尿，切勿憋尿。",
+            "白天多喝水，睡前 2 小時適度減少飲水量。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "體會胚胎穩健發育的喜悅",
+          "summary": "這個階段胚胎正快速發育，維持沉靜平穩心情最佳。",
+          "items": [
+            "保持心情愉快與心情放鬆。",
+            "若有輕微下腹緊繃可坐下休息。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-RED-FLAG-VAGINAL-BLEEDING-001",
+          "title": "安心衛教：認識健康保護警訊",
+          "summary": "保持情緒安定。若遇到異常劇烈腹痛或陰道出血，知道第一時間尋求婦產科協助。",
+          "items": [
+            "安心常識：若有異常出血應臥床並就醫。",
+            "就醫準備：記錄出血顏色與量供醫師參考。"
+          ],
+          "theme": "safety"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-FOLATE-001",
+          "title": "維持每日葉酸 600 微克",
+          "summary": "持續補充足量葉酸，支持寶寶腦部與神經發育。",
+          "items": [
+            "飲食來源：深綠色蔬菜與豆類。",
+            "均衡飲食：搭配多樣化蔬果。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "保持輕柔活動與適度水份",
+          "summary": "運動前後注意補充水分，避免在高溫環境長時間活動。",
+          "items": [
+            "運動補水：運動中適時補充水分。",
+            "環境選擇：選擇涼爽通風場所。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-T1-HEARTBEAT-001",
+          "title": "陪伴聆聽心跳與心理支持",
+          "summary": "陪伴伴侶面對第一次產檢與聽心跳的興奮與緊張感。",
+          "items": [
+            "給予伴侶堅定的情感依靠。",
+            "陪伴共享初次聽見心跳的感動。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T1-WARNING-001",
+          "title": "安心陪伴：熟悉的就醫常識",
+          "summary": "熟悉就醫流程與聯絡電話，當伴侶有身體不適時第一時間陪伴赴診。",
+          "items": [
+            "知道重要診所與醫院聯絡電話。",
+            "陪伴就醫時安撫伴侶情緒。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "承擔夜間家務讓伴侶早睡",
+          "summary": "夜間主動完成家事收拾，讓伴侶無後顧之憂提早休息。",
+          "items": [
+            "包辦夜間垃圾清理與碗盤收拾。",
+            "提醒伴侶放鬆準備入睡。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 7,
+      "stage": "trimester_1",
+      "theme": "舒緩姿態改變的微暈，維持溫和生活步調",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T1-DIZZINESS-HEADACHE-001",
+          "title": "注意姿態改變與輕微頭暈",
+          "summary": "姿勢快速改變時易有輕微頭暈，起身時動作放慢即可緩和。",
+          "items": [
+            "床邊起身採「先側身坐起、再緩步站立」。",
+            "若頭暈時立即就地坐下或蹲下休息。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "放慢步調，聆聽身體反饋",
+          "summary": "依體力狀態動態調整工作與生活節奏，避免過度勞累。",
+          "items": [
+            "工作間隔適度伸展放鬆。",
+            "聽聽輕音樂舒緩情緒。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-TRAVEL-TRANSPORT-SAFETY-001",
+          "title": "注重外出行走與搭車安全",
+          "summary": "搭乘交通工具時繫妥安全帶，外出行走穿著防滑平底鞋。",
+          "items": [
+            "搭車安全：腰帶繫於肚圍下方大腿根部。",
+            "行走安全：踏階穩健，避免攜帶重物。"
+          ],
+          "theme": "travel"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "維持充足休息與水分",
+          "summary": "每天補充約 1500~2000cc 水分，促進新陳代謝。",
+          "items": [
+            "補水習慣：小口多次飲用溫開水。",
+            "充分休息：避免連續長時間久坐。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T1-OVERVIEW-001",
+          "title": "攝取多元微量元素",
+          "summary": "多吃富含維生素 C 與 B 群的新鮮水果與全穀類。",
+          "items": [
+            "優質水果：芭樂、柑橘類。",
+            "全穀雜糧：燕麥、糙米。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "陪伴日常散步與注意步伐",
+          "summary": "排定傍晚雙人散步時間，放慢步伐陪伴走動。",
+          "items": [
+            "陪伴散步，注意地面防滑。",
+            "牽手陪伴，給予安全感。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "接手家中粗重與需要攀高工作",
+          "summary": "登高拿物品或搬重物全由神隊友一手包辦。",
+          "items": [
+            "承包搬重物與登高家務。",
+            "確保居家行走路線無雜物。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "問候與關心今日體力狀態",
+          "summary": "下班回家溫柔詢問：「今天體力還好嗎？想吃什麼清淡的？」",
+          "items": [
+            "主動關心伴侶今日感受。",
+            "耐性傾聽並提供實質協助。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 8,
+      "stage": "trimester_1",
+      "theme": "迎接第 1 次例行產檢，開啟健康照護紀錄",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T1-CHECKUP-001",
+          "title": "迎向第 1 次產檢與照護里程碑",
+          "summary": "帶著期待心情接受第 1 次例行產檢，了解胚胎發育與預產期估算。",
+          "items": [
+            "評估胎兒心跳與胚胎數。",
+            "進行基礎身體檢查與驗尿。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "適應初階段身心轉變",
+          "summary": "身體逐步適應孕期，心情也隨產檢確立而更加踏實。",
+          "items": [
+            "記錄自己的生理數據（體重、血壓）。",
+            "抱持安心放鬆的心情。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-01",
+          "title": "第 1 次產檢項目與安心照顧指導",
+          "summary": "包含問診、體重血壓、第 1 次超音波與健康安心照顧指導。",
+          "items": [
+            "產檢項目：問診、尿糖尿蛋白、產檢超音波。",
+            "安心照顧指導：領取手冊並了解初期照護。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-FOLATE-001",
+          "title": "持續注重葉酸與均衡飲食",
+          "summary": "配合醫師與專業衛教叮嚀，每日持續補充 600 微克葉酸。",
+          "items": [
+            "飲食來源：深綠色蔬菜與豆類。",
+            "衛教配合：依醫師叮嚀補充。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-BODY-CARE-001",
+          "title": "維持胸部與肌膚清爽舒適",
+          "summary": "穿著包覆支撐良好胸罩，保持肌膚乾爽透氣。",
+          "items": [
+            "胸罩選擇：包覆透氣無壓迫。",
+            "個人衛生：保持皮膚清爽。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T1-CHECKUP-001",
+          "title": "全程陪伴第 1 次產檢與紀錄",
+          "summary": "攜帶手冊與健保卡，全程陪伴產檢，記錄醫師叮嚀。",
+          "items": [
+            "排開時間陪同參加第 1 次產檢。",
+            "幫忙記錄胎兒心跳與健康說明。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "與醫師共同諮詢共享決策",
+          "summary": "將積累的健康疑問向醫師請教，共同參與照顧決策。",
+          "items": [
+            "整理心中的照護疑問同詢問。",
+            "支持伴侶的健康選擇。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "分享聽見心跳與看見胚胎的感動",
+          "summary": "產檢後與伴侶分享感動，表達對未來的期待。",
+          "items": [
+            "共同討論並感受新生命誕生。",
+            "給予伴侶堅定的陪伴承諾。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 9,
+      "stage": "trimester_1",
+      "theme": "養成規律輕度活動，保持心肺健康與好心情",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "每週累計 150 分鐘溫和活動",
+          "summary": "健康孕媽咪每週進行累計 150 分鐘中等強度活動是安全且有益的。",
+          "items": [
+            "每日分次累計約 30 分鐘。",
+            "以步速輕鬆、能正常交談為原則。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "感受體力與循環好轉",
+          "summary": "規律輕度活動有助於促進血液循環與改善孕期悶脹感。",
+          "items": [
+            "飯後或傍晚進行散步。",
+            "活動後適度休息與補充水分。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "選擇適合的中期前運動項目",
+          "summary": "快走、游泳與孕婦瑜珈都是手冊推薦的良好運動項目。",
+          "items": [
+            "推薦項目：快走、孕婦瑜珈、固定式單車。",
+            "安全原則：避開碰撞與高跌倒風險運動。"
+          ],
+          "theme": "exercise"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-FISH-MERCURY-001",
+          "title": "聰明選擇低汞優質魚類",
+          "summary": "每週可攝取 1~2 份小型魚類（鯖魚、鮭魚、秋刀魚），避免深海大型魚。",
+          "items": [
+            "低汞選擇：鯖魚、秋刀魚、鮭魚。",
+            "避免項目：鯊魚、旗魚、油魚。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "運動後充足休息與放鬆",
+          "summary": "運動後適度喝水，休養身心，不讓體力透支。",
+          "items": [
+            "水分補充：運動後小口飲水。",
+            "肢體放鬆：抬高下肢放鬆肌肉。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "排定雙人散步，養成健康習慣",
+          "summary": "邀約伴侶一同進行傍晚散步，增進夫妻情誼與體力健康。",
+          "items": [
+            "主動提出一同散步的邀約。",
+            "貼心準備水瓶與散步鞋。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "主動包辦粗重家事讓伴侶專心活動",
+          "summary": "包辦家中搬重物與繁重清潔，讓伴侶輕鬆無負擔。",
+          "items": [
+            "負擔家中粗重工作。",
+            "讓伴侶能安心安排運動時間。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "關心運動後的舒適度",
+          "summary": "運動後關心伴侶肌肉狀態，幫忙準備溫水或適度拉筋。",
+          "items": [
+            "關心運動後身體反饋。",
+            "準備溫水補充水分。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 10,
+      "stage": "trimester_1",
+      "theme": "了解初期自費篩檢選擇，共享醫療資訊與決策",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-PRENATAL-OPTIONAL-01",
+          "title": "了解初期唐氏症篩檢資訊",
+          "summary": "初期唐氏症篩檢（建議 11~14 週）包含超音波測量頸部透明帶與抽血。",
+          "items": [
+            "評估超音波頸部透明帶厚度。",
+            "結合母血血清學指標評估風險。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "身心趨於穩定，安心迎接檢驗",
+          "summary": "隨著滿 10 週，初期不適感逐漸適應，帶著安心心情評估檢驗。",
+          "items": [
+            "保持心情平穩，不盲目焦慮。",
+            "有疑問與醫師充分討論。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-OPTIONAL-01",
+          "title": "初期自費篩檢項目衛教了解",
+          "summary": "與醫師溝通了解各項自費篩檢之效益與適用對象。",
+          "items": [
+            "篩檢時機：建議 11~14 週進行。",
+            "共享決策：依個人需求與醫師評估。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-FOODBORNE-INFECTION-001",
+          "title": "飲食安全：避免生食與交叉污染",
+          "summary": "食物應完全煮熟，生熟食砧板刀具分開，預防李斯特菌與寄生蟲感染。",
+          "items": [
+            "烹調原則：肉類海鮮蛋類徹底煮熟。",
+            "衛生習慣：洗淨雙手與蔬果。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-ORAL-CARE-HYGIENE-001",
+          "title": "維持牙齒與牙齦日常清潔",
+          "summary": "持續維持餐後正確刷牙與牙線使用，維護口腔健康。",
+          "items": [
+            "刷牙要領：軟毛牙刷輕柔清潔。",
+            "牙線配合：清理牙縫殘渣。"
+          ],
+          "theme": "oral"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "共同研讀篩檢說明與共享決策",
+          "summary": "與伴侶一起閱讀自費篩檢衛教單張，產檢時共同與醫師討論。",
+          "items": [
+            "研讀篩檢資訊，共享醫療決策。",
+            "支持伴侶的決定與選擇。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "把關餐飲食材衛生與熟透",
+          "summary": "外食或下廚時，確認食物徹底煮熟，保障伴侶飲食安全。",
+          "items": [
+            "確保肉類與海鮮徹底熟透。",
+            "不購買來源不明或生冷食品。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "陪伴舒緩檢驗前的不安情緒",
+          "summary": "用溫和言語關心伴侶：「我們一起聽醫師評估，不用緊張。」",
+          "items": [
+            "表達溫暖關懷與傾聽。",
+            "做伴侶最安心的依靠。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 11,
+      "stage": "trimester_1",
+      "theme": "注重孕期食品安全與清潔，安心享受每一餐",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-NUTRITION-FOODBORNE-INFECTION-001",
+          "title": "享用煮熟美食，保護母胎健康",
+          "summary": "養成吃熟食、喝沸煮水的好習慣，新鮮原型食材最能提供豐富營養。",
+          "items": [
+            "避免生魚片、生生菜或未加熱剩菜。",
+            "選擇現煮熟透的美食。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "食慾逐漸好轉的安心感受",
+          "summary": "孕吐感逐漸減輕退去，能開始享受多樣化的營養食物。",
+          "items": [
+            "選擇多色新鮮蔬果。",
+            "維持適量高纖與優質蛋白。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRITION-FISH-MERCURY-001",
+          "title": "海鮮選擇：低汞小型魚類",
+          "summary": "每週攝取 1~2 份鯖魚、秋刀魚、鮭魚，補充優質蛋白與 Omega-3。",
+          "items": [
+            "好魚選擇：鯖魚、鮭魚、秋刀魚。",
+            "注意避開：大型深海掠食魚類。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-CLOTHING-COMFORT-001",
+          "title": "穿著防滑平底鞋與寬鬆衣物",
+          "summary": "腹部漸有線條，換上合腳防滑平底鞋，行走更有安全感。",
+          "items": [
+            "鞋款選擇：防滑底、合腳低跟。",
+            "衣著挑選：無壓迫感寬鬆裙裝或褲裝。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "維持每日規律活動習慣",
+          "summary": "飯後散步 20 分鐘，促進腸胃蠕動與新陳代謝。",
+          "items": [
+            "活動原則：步調輕鬆，維持呼吸順暢。",
+            "室內伸展：可配合輕柔孕婦瑜珈。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "協助採買新鮮熟透食物",
+          "summary": "主動採買新鮮食材，下廚時確保食物加熱徹底。",
+          "items": [
+            "買菜時挑選新鮮原型食材。",
+            "確保料理全熟後方端上桌。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "定期清洗冰箱與廚房清潔",
+          "summary": "幫忙清潔冰箱與廚房環境，防止細菌滋生。",
+          "items": [
+            "清理冰箱過期食品與擦拭。",
+            "維持餐具清潔乾淨。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "讚美伴侶的飲食與照顧努力",
+          "summary": "誇獎伴侶認真維持健康的努力，增進家庭溫暖。",
+          "items": [
+            "表達讚美與正面肯認。",
+            "共享溫馨用餐時光。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 12,
+      "stage": "trimester_1",
+      "theme": "歡慶初期里程碑，準備邁入舒適中期",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T1-MOTHER-001",
+          "title": "喜悅邁向滿 3 個月里程碑",
+          "summary": "多數孕媽咪在此時孕吐與疲倦顯著減輕，身心感到煥然一新。",
+          "items": [
+            "氣色與食慾好轉，心情更加開朗。",
+            "肚圍微微展現孕期溫柔線條。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T1-CHECKUP-001",
+          "title": "確認初期胎兒發育良好",
+          "summary": "經過初期多次產檢與評估，胎兒發育穩健，母體狀況良好。",
+          "items": [
+            "抱持感恩與期待的心情。",
+            "做好邁入孕中期的準備。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-02",
+          "title": "第 2 次例行產檢與照護小結",
+          "summary": "建議第 12 週進行第 2 次例行產檢，核對各項基礎檢查與溫心問診與健檢。",
+          "items": [
+            "產檢項目：問診、體重血壓、尿糖尿蛋白。",
+            "中期準備：了解中期飲食熱量與營養需求。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T1-OVERVIEW-001",
+          "title": "初期營養總結與中期銜接",
+          "summary": "補足葉酸與基礎水分，準備迎向中期鈣與蛋白加量期。",
+          "items": [
+            "營養銜接：準備適度增加優質蛋白。",
+            "飲食習慣：維持良好原型飲食。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "保持好心情與規律休養",
+          "summary": "維持優質睡眠與愉快情緒，為中期活動充飽電。",
+          "items": [
+            "睡眠品質：維持規律早睡早起。",
+            "休閒放鬆：安排輕鬆戶外活動。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "陪伴慶祝安然度過初期",
+          "summary": "帶伴侶吃一頓溫馨餐點或安排輕旅行，慶祝順利通過孕初期考驗。",
+          "items": [
+            "表達感謝：「老婆辛苦了，第一階段順利完成！」",
+            "陪伴策劃中期舒適生活。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T1-CHECKUP-001",
+          "title": "陪同參加第 2 次產檢",
+          "summary": "陪同前往醫療院所產檢，一起聽取醫師對初始發育的評估。",
+          "items": [
+            "協助保管媽媽手冊與重要文件。",
+            "陪伴聽取產檢數據與建議。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PLAN-001",
+          "title": "開始展望中期的生活與活動規劃",
+          "summary": "與伴侶輕鬆聊聊中期想去的散步景點或爸媽教室計畫。",
+          "items": [
+            "共同討論中期的輕鬆休閒計畫。",
+            "展現神隊友的主動與熱忱。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_1"
+    },
+    {
+      "week": 13,
+      "stage": "trimester_2",
+      "theme": "迎向舒適孕中期，熱量與優質蛋白適度加量",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "感受中期舒適與肚圍微隆",
+          "summary": "孕吐逐漸消失，食慾顯著好轉，肚圍開始展現孕期溫柔特徵。",
+          "items": [
+            "精神與體力大幅恢復，心情愉悅。",
+            "留意避免暴飲暴食導致體重暴增。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "體力恢復，享受好氣色",
+          "summary": "這是整個孕期相對最舒服的黃金階段，可以好好享受美味飲食。",
+          "items": [
+            "氣色紅潤，活力充沛。",
+            "保持輕鬆愉快的日常生活。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRITION-T2-OVERVIEW-001",
+          "title": "中期營養：熱量+300kcal、蛋白+10g",
+          "summary": "孕中期每日熱量增加 300 大卡，蛋白質增加 10 公克，滿足胎兒快速成長。",
+          "items": [
+            "熱量加量：約等於多吃一碗無油海鮮粥或鮮奶。",
+            "蛋白質加量：多補充蛋、豆腐、瘦肉、豆漿。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-T2-POSTURE-001",
+          "title": "注意體型改變與站姿平衡",
+          "summary": "肚圍漸大重心前移，運動與站立時保持背部挺直，避免關節扭轉。",
+          "items": [
+            "姿勢要領：保持挺胸收腹，避免過度伸展。",
+            "活動選擇：快走、孕婦瑜珈、水中慢游。"
+          ],
+          "theme": "exercise"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-CLOTHING-COMFORT-001",
+          "title": "換上舒適托腹帶與寬鬆褲裝",
+          "summary": "若覺得腹部有下墜拉扯感，可開始使用托腹帶減輕腰背壓力。",
+          "items": [
+            "托腹選擇：選用包覆性佳透氣托腹帶。",
+            "鞋款搭配：防滑平底鞋確保行走安全。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "準備高蛋白與優質原型食材",
+          "summary": "主動採買雞肉、鮮魚、豆腐與新鮮蔬菜，準備營養滿分的晚餐。",
+          "items": [
+            "採買優質高蛋白與新鮮蔬果。",
+            "為伴侶準備少油少鹽美味餐點。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "關心腰背感受，提供適度按摩",
+          "summary": "睡前幫忙按壓肩頸與背部肌肉，減輕伴侶一天下來的疲勞。",
+          "items": [
+            "幫忙輕柔按壓肩頸與腰背。",
+            "準備溫熱腳墊舒緩腿部。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PLAN-001",
+          "title": "開始討論中期旅遊與休閒規劃",
+          "summary": "趁著中期身體舒適，與伴侶規劃輕鬆的近郊散步或輕旅行。",
+          "items": [
+            "規劃輕鬆不勞累的散步行程。",
+            "陪伴享受中期的美好光景。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 14,
+      "stage": "trimester_2",
+      "theme": "補充關鍵鈣質與維生素 D，奠定骨骼發育基礎",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-NUTRIENT-CALCIUM-001",
+          "title": "關注骨骼健康與肌肉放鬆",
+          "summary": "寶寶骨骼正快速發育，母體對鈣質的需求提升至每日 1000 毫克。",
+          "items": [
+            "多吃黑芝麻、小魚乾、豆腐、鮮奶。",
+            "適度補充鈣質有助於夜間肌肉放鬆。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "感覺身體輕盈，活力充沛",
+          "summary": "食慾與活動力良好，這是最適合進行溫和運動與休閒的時期。",
+          "items": [
+            "適度進行戶外走動散步。",
+            "保持心情開朗愉快。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRIENT-CALCIUM-001",
+          "title": "每日補充 1000mg 鈣質",
+          "summary": "鈣質是寶寶骨骼牙齒發育的基石，也能預防母體骨質流失。",
+          "items": [
+            "優質來源：鮮奶、起司、黑芝麻、傳統豆腐。",
+            "吸收叮嚀：避免與高草酸食物同餐過量食用。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-VITAMIN-D-001",
+          "title": "曬太陽補充維生素 D",
+          "summary": "維生素 D 能促進鈣質吸收。建議每日清晨或傍晚曬太陽 10~15 分鐘。",
+          "items": [
+            "曬太陽技巧：陽光溫和時曬手臂或腿部。",
+            "食物補充：鮭魚、蛋黃、黑木耳、強化牛奶。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "每週 150 分鐘中等強度活動",
+          "summary": "持續維持規律快走或孕婦瑜珈，增加肌肉力量與骨密度。",
+          "items": [
+            "運動習慣：每週至少 3~5 次。",
+            "強度控制：保持能順暢對話的步速。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "陪伴戶外散步與曬太陽",
+          "summary": "利用週末晴朗早晨，牽手陪伴侶去公園散步 15 分鐘曬太陽。",
+          "items": [
+            "陪伴戶外散步吸取維生素 D。",
+            "準備遮陽帽子與隨身水瓶。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "準備富含鈣質的營養點心",
+          "summary": "午後為伴侶準備一杯鮮奶、優格或一小把黑芝麻堅果作為點心。",
+          "items": [
+            "準備鮮奶、優格或起司點心。",
+            "細心照顧伴侶的營養需求。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "分擔家居整理讓伴侶多休息",
+          "summary": "接手需要蹲下或搬運粗重物品的清潔家事。",
+          "items": [
+            "包辦低頭蹲下與搬重物家務。",
+            "打造清潔溫馨的居家氛圍。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 15,
+      "stage": "trimester_2",
+      "theme": "關注腰背姿勢與重心改變，預防背部負擔",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-BACK-PAIN-001",
+          "title": "體會腹部微重與腰背肌肉拉扯",
+          "summary": "隨著肚圍擴大重心前移，腰背肌群開始承受較多張力，偶有酸感。",
+          "items": [
+            "坐立時後背可放置靠墊支撐。",
+            "避免長時間站立或維持同一姿勢。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "身形漸展孕期溫柔姿態",
+          "summary": "隆起的肚圍展現新生命的成長痕跡，穿上寬鬆舒適的孕婦裝。",
+          "items": [
+            "享受身形改變的獨特美麗。",
+            "選擇柔軟貼身的棉質內著。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-EXERCISE-T2-POSTURE-001",
+          "title": "維護良好挺拔姿勢",
+          "summary": "站立時雙腳微開與肩同寬，收腹挺胸，避免腰椎過度往前挺發力。",
+          "items": [
+            "姿勢技巧：頭頂向上延伸，重心放在足底。",
+            "坐姿叮嚀：坐椅宜有背靠，腳平踏地面。"
+          ],
+          "theme": "exercise"
+        },
+        {
+          "source_record_id": "MED-SYMPTOM-T2-BACK-PAIN-001",
+          "title": "腰背酸痛的日常舒緩",
+          "summary": "休息時可進行適度局部熱敷，或請伴侶協助輕柔按壓腹背肌肉。",
+          "items": [
+            "熱敷舒緩：使用溫毛巾熱敷腰部 10 分鐘。",
+            "睡姿選擇：側臥時兩腿間夾一小枕頭。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T2-OVERVIEW-001",
+          "title": "均衡飲食補充微量元素",
+          "summary": "多吃富含鎂與鋅的堅果與全穀類，支持肌肉與神經健康。",
+          "items": [
+            "好用食材：核桃、腰果、糙米、胚芽。",
+            "進食建議：每日一小把無鹽堅果。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "貼心腰背舒緩按摩",
+          "summary": "睡前用溫熱的手掌為伴侶做腰背肌群的輕柔按壓與撫摸。",
+          "items": [
+            "學習簡單的腰背放鬆按壓技巧。",
+            "詢問按壓力度是否舒適。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "主動接手需要彎腰撿拾的工作",
+          "summary": "撿拾地上物品、拖地與清掃貓砂等工作全由神隊友一手包辦。",
+          "items": [
+            "包辦彎腰與地面清潔工作。",
+            "提醒伴侶避免彎腰提重物。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-LEARN-001",
+          "title": "了解托腹帶與人體工學靠墊",
+          "summary": "主動研究合適的人體工學腰靠與托腹帶，幫伴侶準備好。",
+          "items": [
+            "幫忙挑選合適的辦公腰靠。",
+            "展現細緻入微的貼心照顧。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 16,
+      "stage": "trimester_2",
+      "theme": "第 3 次產檢與中期篩檢評估，掌握成長步調",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "經產婦可能感受到極輕微胎動",
+          "summary": "第二胎以上的孕媽咪可能在這個階段開始感受到如小魚划水般的輕微胎動。",
+          "items": [
+            "初產婦多在 20 週感受，無需著急。",
+            "享受身心平穩的舒暢感。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PRENATAL-OPTIONAL-06",
+          "title": "安心迎接中期各項檢驗",
+          "summary": "配合醫師步調進行第 3 次產檢，確認血壓、體重與胎兒成長。",
+          "items": [
+            "定期紀錄體重與血壓變化。",
+            "心情保持輕鬆愉快。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-03",
+          "title": "第 3 次例行產檢項目衛教",
+          "summary": "包含問診、身體檢查、尿糖尿蛋白與中期唐氏症篩檢諮詢。",
+          "items": [
+            "產檢重點：量測子宮底高度與胎心音。",
+            "自費諮詢：中期唐血篩檢或 NIPT 諮詢。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-PRENATAL-OPTIONAL-06",
+          "title": "中期唐氏症篩檢衛教了解",
+          "summary": "建議 15~20 週可評估進行中期四指標唐氏症篩檢或 NIPT。",
+          "items": [
+            "篩檢時機：建議 15~20 週評估。",
+            "專業諮詢：依年齡與醫師建議決定。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "維持每週規律中等強度運動",
+          "summary": "持續進行快走與孕婦瑜珈，提升肌耐力與心肺功能。",
+          "items": [
+            "運動好處：控制體重過快增加。",
+            "安全叮嚀：運動中避免過熱補水。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "全程陪同第 3 次產檢",
+          "summary": "排開工作陪伴伴侶產檢，聽取超音波與健康數據報告。",
+          "items": [
+            "陪伴參加產檢並記錄醫師囑咐。",
+            "給予伴侶堅定的心理支持。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PLAN-001",
+          "title": "共同了解自費篩檢資訊",
+          "summary": "與伴侶一起研讀篩檢說明，尊重並支持伴侶的醫療選擇。",
+          "items": [
+            "與伴侶共同了解檢驗價值。",
+            "擔當可靠的資訊共享決策者。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "產檢後一同享用美味餐點",
+          "summary": "產檢結束後陪伴侶吃一頓喜歡的健康美食，放鬆心情。",
+          "items": [
+            "陪伴享用愉快輕鬆的餐點。",
+            "表達對伴侶與寶寶的愛。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 17,
+      "stage": "trimester_2",
+      "theme": "補充 DHA 支持發育，享受健康海鮮與藻類",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-NUTRIENT-DHA-001",
+          "title": "關注寶寶腦部與視網膜發育",
+          "summary": "DHA 是胎兒神經與視覺發育的關鍵成分，孕中期每日建議攝取至少 200 毫克。",
+          "items": [
+            "多吃小型油脂海魚或植物海藻。",
+            "享受多元化的原型健康食材。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "胃口大開與營養高效吸收",
+          "summary": "食慾與消化狀況良好，營養能有效轉化為寶寶成長能量。",
+          "items": [
+            "選擇原型優質食材。",
+            "避免過量含糖飲料與甜點。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRIENT-DHA-001",
+          "title": "每日建議攝取至少 200mg DHA",
+          "summary": "透過每週 1~2 份小型海魚（鯖魚、鮭魚、秋刀魚）或藻油補充劑攝取。",
+          "items": [
+            "優質來源：鯖魚、鮭魚、秋刀魚、午仔魚。",
+            "植物選擇：海藻類、藻油補充劑。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-FISH-MERCURY-001",
+          "title": "避開大型深海魚類重金屬",
+          "summary": "孕期建議避免食用鯊魚、旗魚、鮪魚、油魚等大型深海魚，選擇小型魚類更安心。",
+          "items": [
+            "安全指南：優先選擇小型低汞魚。",
+            "烹調要領：清蒸、乾煎簡單調味。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-HYGIENE-001",
+          "title": "保持皮膚與個人清潔乾爽",
+          "summary": "採淋浴方式，浴室做好防滑措施，注意水溫適中。",
+          "items": [
+            "沐浴原則：採溫和淋浴，水溫約 38°C。",
+            "防滑安全：浴室鋪設防滑墊。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "採買小型優質魚類與烹調",
+          "summary": "主動去市場採買新鮮鯖魚或鮭魚，為伴侶烹調清蒸或乾煎魚排。",
+          "items": [
+            "選購新鮮低汞小型海魚。",
+            "細心處理魚刺與衛生。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "維護浴室防滑與環境安全",
+          "summary": "檢查浴室防滑墊是否穩固，及時清理地面水漬。",
+          "items": [
+            "鋪設浴室防滑墊與把手。",
+            "確保居家行走路線乾燥安全。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "關心伴侶每日營養與心情",
+          "summary": "下班後與伴侶分享一天的趣事，營造輕鬆和諧家庭氣氛。",
+          "items": [
+            "陪伴聊天紓解工作壓力。",
+            "讚美伴侶的健康生活型態。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 18,
+      "stage": "trimester_2",
+      "theme": "練習骨盆底肌運動，增進肌力與遠離漏尿困擾",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-EXERCISE-PELVIC-FLOOR-001",
+          "title": "強化骨盆底肌群支撐力",
+          "summary": "隨肚圍漸大腹壓增加，練習凱格爾運動能有效預防孕期與產後漏尿。",
+          "items": [
+            "集中注意力於骨盆底肌收縮放鬆。",
+            "每天可分次練習，養成習慣。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "體會肌肉張力與身心和諧",
+          "summary": "適度鍛鍊能讓身體更有支撐力，減少孕期下背與骨盆底沉重感。",
+          "items": [
+            "練習時保持自然呼吸不憋氣。",
+            "感覺疲倦時適度休息。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-EXERCISE-PELVIC-FLOOR-001",
+          "title": "凱格爾運動練習要領",
+          "summary": "收縮骨盆底肌群（類似憋尿感）持續數秒後放鬆，重複 10~15 次。",
+          "items": [
+            "動作要領：集中收縮骨盆底肌，臀部大腿放鬆。",
+            "排尿叮嚀：切勿在排尿過程中練習。"
+          ],
+          "theme": "exercise"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ENVIRONMENT-HYDRATION-001",
+          "title": "運動環境與補水注意事項",
+          "summary": "選擇通風涼爽場所，運動前後適量補水，避免高溫悶熱。",
+          "items": [
+            "環境選擇：涼爽通風室內場所。",
+            "水分補給：隨身帶水小口補充。"
+          ],
+          "theme": "exercise"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-SODIUM-PROCESSED-FOOD-001",
+          "title": "控制鹽分與加工食品",
+          "summary": "減少高鹽、醃製與加工食品攝取，有助於維持血壓與減輕水腫。",
+          "items": [
+            "飲食原則：清淡調味，少沾重鹹醬料。",
+            "食材選擇：多吃原型新鮮蔬果。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "鼓勵並陪同進行輕柔運動",
+          "summary": "陪伴侶一起做孕婦瑜珈或凱格爾運動，互相叮嚀保持正常呼吸。",
+          "items": [
+            "陪伴一起做簡單伸展與運動。",
+            "提醒運動中補水與不憋氣。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "控制家菜鹽分，少用加工醬料",
+          "summary": "下廚或買外食時特別注意少鹽少油，照顧伴侶血管與血壓健康。",
+          "items": [
+            "烹調時減少食鹽與味精用量。",
+            "少買醃製肉類與罐頭食品。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "準備涼爽通風的運動空間",
+          "summary": "幫伴侶鋪好瑜珈墊，開好電扇或空調保持通風。",
+          "items": [
+            "準備乾淨瑜珈墊與毛巾。",
+            "保持運動空間涼爽舒適。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 19,
+      "stage": "trimester_2",
+      "theme": "滋潤肌膚與舒緩張力，維持全身水嫩與舒適",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-ITCHY-SKIN-001",
+          "title": "感受肚皮擴張與肚圍張力",
+          "summary": "肚皮與大腿皮膚快速拉扯擴張，可能出現微乾癢或緊繃感。",
+          "items": [
+            "選擇成分單純的保濕霜或油脂。",
+            "切勿用尖銳指甲抓撓肚皮。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "細心呵護身體每一吋肌膚",
+          "summary": "洗澡後是塗抹保濕養護的最佳時機，享受肌膚水潤舒適感。",
+          "items": [
+            "用溫水洗澡，避免洗澡水過熱。",
+            "保持肌膚清爽透氣。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-LIFESTYLE-BODY-CARE-001",
+          "title": "孕期肌膚保濕與按摩要領",
+          "summary": "洗澡後取適量保濕乳液或妊娠油，以順時針方向輕柔塗抹腹部與大腿。",
+          "items": [
+            "保濕要領：取適量乳液輕柔塗抹。",
+            "溫和撫摸：動作輕柔，避免過度用力。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-SYMPTOM-T2-ITCHY-SKIN-001",
+          "title": "舒緩肌膚乾癢的小技巧",
+          "summary": "穿著寬鬆透氣棉質衣物，若乾癢持續可使用冷敷包局部冰敷舒緩。",
+          "items": [
+            "衣物選擇：純棉吸汗透氣衣著。",
+            "局部舒緩：冷毛巾輕敷皮膚。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-DHA-001",
+          "title": "持續補充多元優質營養",
+          "summary": "持續攝取深海小型魚或藻類，兼顧肌膚健康與寶寶發育。",
+          "items": [
+            "原型食物：鯖魚、鮭魚、海帶。",
+            "補充劑：諮詢醫師選用藻油。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "貼心幫忙塗抹保濕乳液",
+          "summary": "洗澡後主動接過保濕乳液，溫柔幫伴侶塗抹肚皮與背部肌膚。",
+          "items": [
+            "用溫熱的手幫伴侶塗抹乳液。",
+            "輕柔撫摸肚皮，增進夫妻情誼。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "協助貼身衣物清洗與晾曬",
+          "summary": "幫忙用溫和洗劑清洗伴侶的貼身棉質衣物並充分晾乾。",
+          "items": [
+            "使用溫和不刺激洗劑洗衣。",
+            "確保衣物在陽光下晒乾。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "讚美伴侶孕期美麗曲線",
+          "summary": "用真心讚美讓伴侶對孕期身形改變建立自信與安全感。",
+          "items": [
+            "誇獎伴侶肚皮線條非常溫柔美麗。",
+            "表達無條件的愛與支持。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 20,
+      "stage": "trimester_2",
+      "theme": "第 4 次產檢與詳細超音波，靜心感受神奇胎動",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-FETAL-MOVEMENT-001",
+          "title": "初產婦約在 20–24 週首度感受胎動",
+          "summary": "初產婦多在 20–24 週開始感受到如小泡泡破裂或輕微敲擊般的神奇胎動。",
+          "items": [
+            "靜下心來輕觸肚皮感受互動。",
+            "胎動是寶寶健康成長的重要訊號。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "喜悅邁入孕期下半場",
+          "summary": "滿 20 週標誌著孕期過半，母體與胎兒狀態穩定良好。",
+          "items": [
+            "充滿期待地迎接胎動日常。",
+            "保持好心情與良好作息。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-04",
+          "title": "第 4 次例行產檢與詳細超音波",
+          "summary": "建議第 20 週進行第 4 次產檢，包含第 2 次公費詳細超音波檢查。",
+          "items": [
+            "超音波重點：評估器官結構、胎位與羊水量。",
+            "例行檢查：體重血壓、測量宮底高度。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-FETAL-MOVEMENT-001",
+          "title": "認識胎動發育里程碑",
+          "summary": "胎動象徵胎兒神經與肌肉機能發展良好，是親子連結的起點。",
+          "items": [
+            "發展里程：20~24 週胎動漸趨明顯。",
+            "互動體驗：放放輕音樂與寶寶說話。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-CALCIUM-001",
+          "title": "維持鈣質與維生素 D 充足",
+          "summary": "骨骼與器官快速成長期，持續維持每日 1000mg 鈣質攝取。",
+          "items": [
+            "飲食補充：豆腐、鮮奶、芝麻。",
+            "戶外活動：適度曬太陽 15 分鐘。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-BABY-CONNECTION-001",
+          "title": "把手放肚皮上一同感受第一次胎動",
+          "summary": "當伴侶感覺胎動時，靜靜把手放在肚皮上共同體驗這份感動。",
+          "items": [
+            "手輕放肚皮，靜心體會胎動。",
+            "對著肚子溫柔說話：「寶寶你好呀」。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同觀看第 2 次產檢超音波",
+          "summary": "陪同產檢，在超音波螢幕前一起觀看寶寶清晰的器官結構與動作。",
+          "items": [
+            "陪伴看超音波螢幕並記錄影像。",
+            "向醫師諮詢胎兒發育進度。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "分享初次體驗胎動的幸福感",
+          "summary": "與伴侶聊天討論對寶寶未來的期待，享受美好的雙人世界。",
+          "items": [
+            "討論對寶寶的期許與準備。",
+            "給予伴侶無限的包容與愛護。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 21,
+      "stage": "trimester_2",
+      "theme": "預防下肢生理性水腫，適度抬腳與活動腳踝",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-EDEMA-001",
+          "title": "體會下肢靜脈回流減緩與輕微水腫",
+          "summary": "子宮擴大壓迫下腔靜脈，傍晚時腳踝或腳背可能出現輕微生理性水腫。",
+          "items": [
+            "按壓腳背若有輕微凹陷屬常見現象。",
+            "若水腫延伸至手部臉部應告知醫師。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "注意肢體循環與舒適度",
+          "summary": "透過適度活動與抬腳，促進下肢血液順暢回流。",
+          "items": [
+            "避免長期保持同一個坐姿或站姿。",
+            "工作時適度轉動腳踝。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-EDEMA-001",
+          "title": "下肢水腫的日常照護指南",
+          "summary": "休息時適度抬高雙腿，穿著舒適寬鬆的鞋襪與棉質衣物。",
+          "items": [
+            "抬腿舒緩：休息時用枕頭將雙腿抬高 15~20 度。",
+            "鞋款挑選：穿著合腳防滑寬鬆鞋款。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-CLOTHING-COMFORT-001",
+          "title": "避免穿著過緊束縛的衣物",
+          "summary": "避免穿著過緊的襪口或緊身褲，以免阻礙靜脈回流。",
+          "items": [
+            "衣著原則：寬鬆透氣無壓迫。",
+            "襪子選擇：無痕彈性寬口襪。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "規律轉動腳踝與散步",
+          "summary": "坐在椅子上時可以順時針、逆時針轉動腳踝，促進血液回流。",
+          "items": [
+            "腳踝運動：上下屈伸與旋轉腳踝。",
+            "散步習慣：每日飯後輕鬆慢步。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "夜晚幫忙伴侶做腿部舒緩按摩",
+          "summary": "準備舒適腳墊，夜晚陪伴看電視時幫伴侶做小腿由下往上的輕柔按摩。",
+          "items": [
+            "幫伴侶放置好抬腿枕頭。",
+            "由腳踝往膝蓋方向輕柔按壓。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "接手需要長時間站立的家務",
+          "summary": "主動接手煮飯洗碗與站立烹調工作，讓伴侶能坐下休息。",
+          "items": [
+            "包辦站立洗碗與廚房清潔。",
+            "讓伴侶工作後能安心抬腿。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "提醒伴侶工作間歇起身活動",
+          "summary": "傳訊息溫柔提醒伴侶：「工作一小時記得起來走走、轉轉腳踝喔」。",
+          "items": [
+            "貼心提醒起身活動身體。",
+            "準備防滑寬鬆鞋款。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 22,
+      "stage": "trimester_2",
+      "theme": "預防夜晚小腿抽筋，注重保暖與適度伸展",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-LEG-CRAMPS-001",
+          "title": "應對夜間小腿肌肉突然抽筋",
+          "summary": "孕期因血液循環負擔增重或鈣磷平衡改變，半夜小腿肌肉偶有突然抽筋痛感。",
+          "items": [
+            "抽筋發作時將腳板向上背屈伸展肌肉。",
+            "平時注重下肢保暖。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "維持肌肉放鬆與足部溫暖",
+          "summary": "睡前做好雙腿拉筋與保暖，讓夜間睡眠更沉穩。",
+          "items": [
+            "睡前穿著透氣保暖長褲或長襪。",
+            "避免空調冷風直吹雙腿。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-LEG-CRAMPS-001",
+          "title": "睡前小腿腓腸肌伸展技巧",
+          "summary": "睡前面對牆壁做小腿後側弓箭步伸展，放鬆腓腸肌群 1~2 分鐘。",
+          "items": [
+            "睡前伸展：做小腿後側輕柔拉筋。",
+            "保暖護理：睡前泡溫熱水腳 10 分鐘。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-CALCIUM-001",
+          "title": "飲食補足鈣質與鎂元素",
+          "summary": "多吃傳統豆腐、黑芝麻、深綠色蔬菜與堅果，維持肌肉神經穩定。",
+          "items": [
+            "鈣質來源：豆腐、小魚乾、鮮奶。",
+            "鎂元素來源：堅果、全穀類、香蕉。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "營造優質放鬆睡眠環境",
+          "summary": "睡前不看刺激性新聞或手機，聽聽放鬆音樂入睡。",
+          "items": [
+            "睡前放鬆：點溫和香氛或聽輕音樂。",
+            "充足睡眠：維持每日 7~8 小時睡眠。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "神隊友應對半夜抽筋急救技巧",
+          "summary": "若伴侶半夜因抽筋痛醒，第一時間坐起幫她將腳板向上背屈拉直。",
+          "items": [
+            "迅速協助將腳趾向上背屈伸展小腿。",
+            "用手掌溫熱撫摸抽筋肌肉痛點。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "睡前準備一杯溫鮮奶",
+          "summary": "睡前為伴侶端上一杯溫鮮奶或小碗芝麻糊，補充鈣質與幫助入睡。",
+          "items": [
+            "準備溫鮮奶或黑芝麻飲品。",
+            "關心伴侶夜間保暖狀況。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "確保臥室被褥保暖與被子無過重",
+          "summary": "幫伴侶蓋好保暖被子，避免腳步受涼引發抽筋。",
+          "items": [
+            "為伴侶蓋好足部被子。",
+            "調整空調溫度與風向。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 23,
+      "stage": "trimester_2",
+      "theme": "關注高纖與水份攝取，保持腸道暢通無負擔",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-NUTRITION-FIBER-WATER-001",
+          "title": "體會腸道蠕動改變與保養",
+          "summary": "受黃體素影響腸道蠕動減慢，加上子宮擴大壓迫，需特別注重排便順暢。",
+          "items": [
+            "每日攝取充足膳食纖維與水分。",
+            "養成固定時間蹲廁所的習慣。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "感覺腸胃輕鬆，身心舒暢",
+          "summary": "透過正確飲食調節排便，讓身體保持輕盈無負擔。",
+          "items": [
+            "補足水分，避免便秘引發脹氣。",
+            "適度散步促進腸道蠕動。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRITION-FIBER-WATER-001",
+          "title": "每日水份 2000cc 與蔬果 3+2 份",
+          "summary": "每日飲水約 2000cc，搭配 3 份蔬菜與 2 份水果（如蘋果、芭樂、奇異果）。",
+          "items": [
+            "水份補充：起床先喝一杯溫開水。",
+            "高纖食材：燕麥、地瓜、木耳、深色蔬菜。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-SODIUM-PROCESSED-FOOD-001",
+          "title": "減少高鹽醃製與加工食品",
+          "summary": "控制飲食鈉含量，多吃原型食材，減輕心臟負擔與生理性水腫。",
+          "items": [
+            "減鹽技巧：用香草、檸檬取代濃醬。",
+            "避開加工：少吃罐頭、火鍋料、泡麵。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "飯後散步促進腸道蠕動",
+          "summary": "餐後散步 20 分鐘是天然促進腸胃蠕動的最佳良方。",
+          "items": [
+            "散步習慣：三餐飯後動一動。",
+            "輕鬆步調：維持心情愉快輕鬆。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "準備高纖水果與多元蔬菜餐點",
+          "summary": "主動洗切好蘋果、奇異果與芭樂裝盒，方便伴侶隨時補充纖維。",
+          "items": [
+            "貼心洗切高纖新鮮水果。",
+            "下廚時多煮 2 道高纖蔬菜。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "提醒並為伴侶遞上溫開水",
+          "summary": "看到伴侶在忙時，順手遞上一杯溫開水，提醒補足水分。",
+          "items": [
+            "隨手遞上溫開水提醒飲用。",
+            "關心伴侶腸胃消化狀態。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "洗滌水果與準備高纖點心",
+          "summary": "主動清洗蔬果殘留，準備燕麥片或地瓜作為健康下午點心。",
+          "items": [
+            "清洗蔬果乾淨衛生。",
+            "準備健康無負擔的高纖點心。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 24,
+      "stage": "trimester_2",
+      "theme": "第 5 次產檢與血糖篩檢，掌握代謝與營養健康",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T2-CHECKUP-001",
+          "title": "迎向第 5 次產檢與健康檢測",
+          "summary": "建議第 24 週進行第 5 次例行產檢，重點評估母體代謝與貧血狀況。",
+          "items": [
+            "掌握妊娠糖尿病篩檢結果。",
+            "關心血紅素與鐵質狀況。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "胎兒快速成長，注重均衡控糖",
+          "summary": "胎兒成長迅速，維持血糖平穩與均衡營養能讓母胎都健康。",
+          "items": [
+            "選擇低 GI 全穀原型食物。",
+            "維持規律活動幫助代謝。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-05",
+          "title": "第 5 次例行產檢與血糖檢測",
+          "summary": "包含妊娠糖尿病口服葡萄糖耐受試驗與血紅素與血壓檢驗。",
+          "items": [
+            "產檢項目：妊娠糖篩檢、血紅素檢驗。",
+            "照顧重點：了解控糖飲食與高纖搭配。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T2-OVERVIEW-001",
+          "title": "控糖與均衡飲食策略",
+          "summary": "避免含糖飲料與精緻甜點，多吃全穀雜糧與蛋白質。",
+          "items": [
+            "控糖要領：以糙米地瓜取代白米飯。",
+            "甜點替代：以低糖水果或無糖優格取代。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "飯後散步幫助血糖平穩",
+          "summary": "餐後散步 15~20 分鐘能有效輔助餐後血糖平穩下降。",
+          "items": [
+            "運動時機：飯後 30 分鐘內走動。",
+            "步速控制：溫和穩定散步。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪伴第 5 次產檢與血糖測試",
+          "summary": "陪同伴侶參加血糖測試產檢，給予耐性等待與溫暖關懷。",
+          "items": [
+            "陪伴進行葡萄糖耐受測試。",
+            "準備測試後的美味健康餐點。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "陪伴執行低糖原型飲食",
+          "summary": "神隊友一起少喝含糖飲料、少吃甜食，用行動支持伴侶控糖。",
+          "items": [
+            "與伴侶一起改喝無糖茶或開水。",
+            "不買甜食蛋糕誘惑伴侶。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "肯定伴侶為健康所做的努力",
+          "summary": "讚美伴侶認真配合產檢與控糖的毅力，給予情緒支持。",
+          "items": [
+            "讚美伴侶的自律與用心。",
+            "表達對全家健康的信心。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 25,
+      "stage": "trimester_2",
+      "theme": "規劃爸媽教室與學習育兒技能，提升新手安全感",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PARENT-CLASS-001",
+          "title": "共同學習生產與育兒新知",
+          "summary": "參加爸媽教室能幫助新手爸媽了解生產流程、減痛技巧與嬰兒照護。",
+          "items": [
+            "學習拉瑪澤呼吸與減痛放鬆。",
+            "練習新生兒洗澡與換尿布。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "感受充滿生命的規律胎動",
+          "summary": "胎動模式越來越有規律，身心感受充實與安心。",
+          "items": [
+            "在安靜時感受寶寶動靜。",
+            "保持心情開朗自信。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PARENT-CLASS-001",
+          "title": "爸媽教室學習重點衛教",
+          "summary": "透過實作演練降低對生產的焦慮，建立雙人團隊合作默契。",
+          "items": [
+            "學習重點：生產產程演變、按摩放術。",
+            "照護技能：抱法、哺育支援、洗澡實作。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-PSYCHOSOCIAL-SUPPORT-001",
+          "title": "建立心理支持與家人溝通",
+          "summary": "與伴侶及家人溝通產後月子照護與分工，減輕焦慮感。",
+          "items": [
+            "溝通技巧：坦誠表達內心需求。",
+            "資源規劃：確認月子與家務後援。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-PELVIC-FLOOR-001",
+          "title": "持續練習骨盆底肌保養",
+          "summary": "每天堅持練習凱格爾運動，為後期的產道支撐做準備。",
+          "items": [
+            "運動要領：收縮放鬆，配合平穩呼吸。",
+            "每日目標：分次練習 15-20 次。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PARENT-CLASS-001",
+          "title": "主動排定時間參加爸媽教室",
+          "summary": "主動協調假日時間，報名醫療院所舉辦的爸媽教室課程。",
+          "items": [
+            "主動報名並排定爸媽教室行程。",
+            "課堂上認真聽講並參與實作演練。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PLAN-001",
+          "title": "討論月子照顧與產後家務分工",
+          "summary": "與伴侶輕鬆討論產後月子地點（月子中心、月嫂）與請假安排。",
+          "items": [
+            "討論月子照護細節與預算。",
+            "主動承諾產後家務分工。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "表達對成為好爸爸的熱忱",
+          "summary": "告訴伴侶：「我們一起學習，我會是你最強大的後盾！」",
+          "items": [
+            "展現學習育兒的主動性。",
+            "讓伴侶充滿踏實的安全感。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 26,
+      "stage": "trimester_2",
+      "theme": "注意交通移動與搭車安全，正確繫妥安全帶",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-TRAVEL-TRANSPORT-SAFETY-001",
+          "title": "體會肚圍隆起與交通安全要領",
+          "summary": "肚圍顯著隆起，外出搭車時務必正確繫妥安全帶保護母胎。",
+          "items": [
+            "肩帶橫跨兩乳之間胸前。",
+            "腰帶繫於肚圍下方大腿根部，嚴禁橫壓肚皮。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "行走步態穩健，注重身體重心",
+          "summary": "適應重心前移，行走時步伐放平放穩，不穿高跟鞋。",
+          "items": [
+            "踩階梯時握緊扶手。",
+            "避免攜帶重物移動。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-TRAVEL-TRANSPORT-SAFETY-001",
+          "title": "孕婦搭車與駕車安全規範",
+          "summary": "無論坐前座或後座均應繫安全帶。車禍即使輕微也應就醫檢查。",
+          "items": [
+            "繫帶要領：肩帶過胸、腰帶過大腿根部。",
+            "碰撞處置：若有交通碰撞均應就醫檢查。"
+          ],
+          "theme": "travel"
+        },
+        {
+          "source_record_id": "MED-TRAVEL-GENERAL-001",
+          "title": "長途移動的休息原則",
+          "summary": "長途搭車每 1~2 小時應下車或在走道伸展活動 5 分鐘。",
+          "items": [
+            "途中活動：定時下車活動伸展下肢。",
+            "隨身必備：攜帶媽媽手冊與健保卡。"
+          ],
+          "theme": "travel"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-CLOTHING-COMFORT-001",
+          "title": "穿著合腳防滑平底鞋",
+          "summary": "外出時選擇抓地力佳、低跟防滑的平底休閒鞋。",
+          "items": [
+            "鞋款安全：橡膠防滑大底。",
+            "衣著舒適：寬鬆不壓迫褲裝。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-PREPARE-001",
+          "title": "開車平穩並貼心協助上下車",
+          "summary": "開車時保持平穩車速避免急煞，下車時主動為伴侶開車門與牽扶。",
+          "items": [
+            "駕車平穩，保持安全車距。",
+            "貼心牽扶伴侶上下車。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "幫忙攜帶外出背包與購物袋",
+          "summary": "外出時主動將所有背包與購買物品接過去拿，不讓伴侶受負重。",
+          "items": [
+            "承包外出所有背包與購物袋。",
+            "讓伴侶輕鬆空手行走。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "長途駕車定時停靠服務區休息",
+          "summary": "長途移動時主動停靠服務區，陪伴侶下車散步與上廁所。",
+          "items": [
+            "主動安排途中休息停靠點。",
+            "提醒伴侶補充水分與上廁所。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 27,
+      "stage": "trimester_2",
+      "theme": "注重陰道衛生與分泌物觀察，維持乾爽舒心",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T2-VAGINAL-DISCHARGE-001",
+          "title": "觀察正常分泌物與個人衛生",
+          "summary": "受賀爾蒙刺激分泌物增多，正常應為透明或蛋清狀無味。",
+          "items": [
+            "選擇透氣純棉內褲並勤加洗滌。",
+            "切勿進行陰道內灌洗以免破壞菌叢。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "維持私密處乾爽與清爽體感",
+          "summary": "注重個人衛生，保持私密處乾爽通風，讓日常生活更舒心。",
+          "items": [
+            "穿著透氣裙裝或寬鬆褲裝。",
+            "如廁後由前往後擦拭。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-LIFESTYLE-HYGIENE-001",
+          "title": "私密處照護與清潔原則",
+          "summary": "採用溫和水流清洗外陰部，保持乾爽，不使用含重香精清潔劑。",
+          "items": [
+            "清潔要領：水溫溫和，僅洗外陰。",
+            "衣著通風：避免穿著過緊牛仔褲。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-SYMPTOM-T2-VAGINAL-DISCHARGE-001",
+          "title": "異常分泌物的辨識與就醫",
+          "summary": "若分泌物呈現豆腐渣狀、綠色或伴隨劇烈搔癢異味應告知醫師。",
+          "items": [
+            "安心衛教：異味搔癢時尋求婦產科檢查。",
+            "生活習慣：多喝水、不憋尿。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-DHA-001",
+          "title": "持續均衡飲食與微量元素",
+          "summary": "多吃優質原型食物與低汞海鮮，提升整體免疫力與健康。",
+          "items": [
+            "飲食均衡：優質蛋白與豐富蔬果。",
+            "補充水分：促進新陳代謝。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "協助貼身內著清潔與曬太陽",
+          "summary": "用溫和清洗劑手洗伴侶貼身內著，並放在陽光下充分晒乾殺菌。",
+          "items": [
+            "幫忙洗滌與晾曬貼身衣物。",
+            "確保衣物在通風陽光處曬乾。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "維護浴室與臥室乾爽清潔",
+          "summary": "保持浴室通風乾燥，及時更換浴室腳踏墊與毛巾。",
+          "items": [
+            "定期清洗更換毛巾與腳踏墊。",
+            "保持浴室通風乾爽。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "關心伴侶日常舒適感",
+          "summary": "細心詢問伴侶穿著與居家體感，給予貼心照顧。",
+          "items": [
+            "詢問家中溫度與濕度是否舒適。",
+            "隨時提供所需貼心服務。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 28,
+      "stage": "trimester_2",
+      "theme": "第 6 次產檢與中期總結，迎接孕後期倒數",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T2-MOTHER-001",
+          "title": "圓滿完成孕中期，邁向最後階段",
+          "summary": "胎兒成長穩定，肚圍顯著，順利通過中期各項考驗與檢查。",
+          "items": [
+            "體力與心情維持良好狀態。",
+            "抱持期待與信心迎接孕後期。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T2-CHECKUP-001",
+          "title": "確認中期各項指標均正常",
+          "summary": "第 6 次產檢確認血糖、血壓與胎兒成長曲線均令人安心。",
+          "items": [
+            "紀錄中期體重增加幅度。",
+            "感謝自己的用心照顧。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-06",
+          "title": "第 6 次例行產檢與衛教總結",
+          "summary": "建議第 28 週進行第 6 次產檢，核對中期健康報告與後期衛教。",
+          "items": [
+            "產檢重點：細心例行檢查、測量宮底高度。",
+            "後期衛教：了解後期鐵質需求與產兆知識。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-CALCIUM-001",
+          "title": "持續補足鈣質與維生素 D",
+          "summary": "中期邁向後期，持續維持每日 1000mg 鈣質與適度日照。",
+          "items": [
+            "骨骼維護：鮮奶、豆腐、芝麻。",
+            "日照時間：每日溫和曬太陽。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "保持好心情與規律活動",
+          "summary": "維持每週 150 分鐘輕鬆散步，為後期的體力做儲備。",
+          "items": [
+            "活動步調：輕鬆穩定，不勉強累疲。",
+            "休養放鬆：維持良好睡眠作息。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "讚美與感謝伴侶圓滿通過中期",
+          "summary": "給伴侶一個大大的擁抱：「恭喜我們順利通過中期，老婆妳太棒了！」",
+          "items": [
+            "真心表達讚美與佩服。",
+            "陪伴歡慶中期圓滿結束。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同參加第 6 次產檢",
+          "summary": "陪同前往產檢，與醫師討論孕後期的生活與產前準備規劃。",
+          "items": [
+            "陪伴產檢並記錄後期叮嚀。",
+            "展現全程參與的承諾。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PLAN-001",
+          "title": "開始規劃後期的待產包與假期",
+          "summary": "與伴侶輕鬆聊聊後期的待產包準備清單與神隊友陪產假安排。",
+          "items": [
+            "初步盤點待產用品清單。",
+            "確認工作請假與後援規劃。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_2"
+    },
+    {
+      "week": 29,
+      "stage": "trimester_3",
+      "theme": "邁入孕後期產前倒數，適度調整活動與呼吸步調",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T3-BREATHLESSNESS-001",
+          "title": "體會子宮頂壓迫膈肌與輕微微喘",
+          "summary": "孕後期子宮頂上升壓迫膈肌，活動或爬樓梯時易有輕微呼吸急促感。",
+          "items": [
+            "活動時步調放慢，呼吸保持深沉平穩。",
+            "進食採少量多餐，避免胃部過飽擠壓膈肌。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "圓潤孕肚，安心邁入產前倒數",
+          "summary": "體重穩定增加，身形展現孕後期溫柔光彩，準備迎接倒數階段。",
+          "items": [
+            "保持沉靜安定心情。",
+            "適度休息不逞強。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-NUTRITION-T3-OVERVIEW-001",
+          "title": "孕後期營養：注重鐵質與高纖",
+          "summary": "後期熱量維護 +300kcal，特別注重鐵質（每日 45mg 結構）與充足纖維水份。",
+          "items": [
+            "鐵質攝取：紅肉、深綠蔬菜、豬肝。",
+            "水份纖維：多吃蔬果防止後期便祕。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-SYMPTOM-T3-BREATHLESSNESS-001",
+          "title": "呼吸舒緩與姿勢調整",
+          "summary": "感到微喘時可坐下稍作後仰，或將雙手舉高伸展胸腔幫助換氣。",
+          "items": [
+            "舒緩姿勢：坐姿稍微後仰放鬆胸腔。",
+            "睡眠角度：頭部床頭適度墊高。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "放慢步調的輕鬆散步",
+          "summary": "運動以輕鬆慢步為主，避開高溫悶熱，感到疲倦即坐下休養。",
+          "items": [
+            "運動原則：步調極其溫和散步。",
+            "休息準備：隨時有座位可休息。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "全面接手粗重家務與粗活",
+          "summary": "後期伴侶體力負擔大，粗重家事、大掃除與提拿物品全由神隊友包辦。",
+          "items": [
+            "承包家中所有提重物與粗重家事。",
+            "確保家裡動線平整安全。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "陪伴慢步走動並注意呼吸",
+          "summary": "陪伴侶散步時放慢步伐，配合伴侶的呼吸節奏。",
+          "items": [
+            "配合伴侶步伐，隨時準備扶持。",
+            "準備溫水與拭汗毛巾。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+          "title": "提醒伴侶避免過度勞累",
+          "summary": "隨時關注伴侶狀態，溫柔提醒：「累了我們就坐下休息一下喔」。",
+          "items": [
+            "貼心提醒適度休息。",
+            "做最暖心的安全後盾。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 30,
+      "stage": "trimester_3",
+      "theme": "第 7 次產檢（開啟每兩週一次），加強鐵質備血儲備",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "察覺母體與胎兒血容量需求大增",
+          "summary": "後期胎兒快速積聚鐵質與血液，母體補充充足鐵質能預防貧血與疲倦。",
+          "items": [
+            "多吃富含鐵質的原型食物。",
+            "飯後可補充富含維生素 C 的水果促進鐵吸收。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-CHECKUP-001",
+          "title": "迎向每 2 週一次的密貼產檢",
+          "summary": "滿 30 週後產檢頻率轉為每 2 週 1 次，更密切掌握母胎安危。",
+          "items": [
+            "按時參加每一次例行產檢照護。",
+            "記錄每日胎動狀況。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-07",
+          "title": "第 7 次例行產檢與安心照顧指導",
+          "summary": "建議第 30 週進行第 7 次產檢，包含溫心問診與健檢、體重血壓與胎心音。",
+          "items": [
+            "產檢重點：測量宮底高度與胎兒生長。",
+            "頻率切換：滿 30 週後每 2 週產檢 1 次。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-NUTRIENT-IRON-001",
+          "title": "每日鐵質補充與食物來源",
+          "summary": "後期每日鐵質需求增加至 45mg（15mg食物 + 30mg處方補充劑，經醫師評估）。",
+          "items": [
+            "優質來源：豬肝、蛤蜊、紅肉、黑豆、深色蔬菜。",
+            "吸收要領：搭配維生素 C 水果（芭樂、柑橘）。"
+          ],
+          "theme": "nutrition"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "保持充裕睡眠與午休",
+          "summary": "每天保證充足睡眠，白天疲倦時安排 30 分鐘午休。",
+          "items": [
+            "睡眠習慣：左側臥位搭配側睡枕。",
+            "體力維護：避免連續走動過久。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同第 7 次產檢並記錄數據",
+          "summary": "陪同產檢，了解胎兒預估體重與母體血紅素狀況。",
+          "items": [
+            "陪伴產檢，幫忙拿手冊與文件。",
+            "關心醫師對鐵質補充的建議。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-NUTRITION-001",
+          "title": "烹調富含鐵質與維生素 C 的晚餐",
+          "summary": "買紅肉、深色蔬菜與芭樂，為伴侶準備補鐵又美味的餐點。",
+          "items": [
+            "採買優質牛肉、菠菜與新鮮水果。",
+            "準備豐富健康的補鐵餐點。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "關心伴侶有無貧血或頭暈感",
+          "summary": "溫柔詢問伴侶蹲下起身時是否會頭暈，提醒動作放慢。",
+          "items": [
+            "貼心提醒起身動作放慢。",
+            "隨時提供手臂牽扶。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 31,
+      "stage": "trimester_3",
+      "theme": "關注恥骨與骨盆底舒適，採取側臥放鬆姿勢",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T3-PUBIC-PAIN-001",
+          "title": "體會鬆弛素作用與恥骨兩側微酸",
+          "summary": "孕後期受鬆弛素影響與胎頭下移壓迫，恥骨聯合處偶有輕微酸感。",
+          "items": [
+            "雙腿移動時儘量保持平行雙腿動作。",
+            "避免跨大步或雙腿過度張開。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "感受下腹沉重與姿態調整",
+          "summary": "下腹部沉重感增加，站立與坐下時動作放輕放緩。",
+          "items": [
+            "翻身或起床時先側身再起身。",
+            "使用月亮枕支撐腹部。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-SYMPTOM-T3-PUBIC-PAIN-001",
+          "title": "恥骨酸痛的日常姿勢照顧",
+          "summary": "下車或起床時雙膝儘量併攏轉身，減少骨盆兩側拉扯。",
+          "items": [
+            "日常生活：雙腿併攏下車與翻身。",
+            "托腹輔助：適度使用托腹帶減輕拉扯。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "左側臥位與睡眠支撐枕",
+          "summary": "睡眠採左側臥位，兩腿間與腹部下方夾適度軟枕支撐。",
+          "items": [
+            "睡姿要領：左側臥位促進胎盤血流。",
+            "枕頭支撐：膝蓋間與腹下放月亮枕。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-PELVIC-FLOOR-001",
+          "title": "溫和骨盆底肌保養",
+          "summary": "持續進行凱格爾運動，維護骨盆底肌肉支撐力。",
+          "items": [
+            "運動原則：動作輕柔，不憋氣發力。",
+            "休息配合：運動後充分臥床放鬆。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T2-COMFORT-001",
+          "title": "擺放月亮枕與側睡支撐枕",
+          "summary": "睡前幫忙伴侶擺好左側臥位所需的月亮枕與雙腿間夾枕。",
+          "items": [
+            "幫忙調整枕頭位置與角度。",
+            "確認伴侶側臥姿勢舒適。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "包辦所有需要跨步與蹲下的家事",
+          "summary": "擦地板、整理低處櫃子等家務由神隊友一手包辦。",
+          "items": [
+            "包辦低處整理與地面清潔。",
+            "避免伴侶頻繁蹲下或大跨步。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "關心伴侶行動舒適度",
+          "summary": "上下車時貼心牽扶，並提醒：「慢慢來，腳併攏再轉出來喔」。",
+          "items": [
+            "貼心提醒動作要領。",
+            "用愛與細心照顧伴侶。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 32,
+      "stage": "trimester_3",
+      "theme": "第 8 次產檢與評估胎位，維護晚期睡眠品質",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-SYMPTOM-T3-INSOMNIA-001",
+          "title": "應對晚期翻身費力與夜間易醒",
+          "summary": "因肚圍大、頻尿或胎動活躍，晚期夜間睡眠可能較為斷續或易醒。",
+          "items": [
+            "白天不喝含咖啡因飲料，睡前不看手機。",
+            "半夜醒來時放鬆呼吸，不焦慮。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "準備迎接第 8 次產檢與胎位評估",
+          "summary": "胎兒體重持續累積，超音波能清楚評估胎位與成長狀況。",
+          "items": [
+            "記錄寶寶的胎動規律。",
+            "抱持安心期待的心情。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-08",
+          "title": "第 8 次例行產檢與超音波評估",
+          "summary": "建議第 32 週進行第 8 次產檢，包含超音波評估胎位、羊水與成長。",
+          "items": [
+            "產檢重點：產檢超音波檢查胎位與生長。",
+            "例行檢查：測量血壓體重與尿糖尿蛋白。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-SYMPTOM-T3-INSOMNIA-001",
+          "title": "晚期睡眠品質維護技巧",
+          "summary": "睡前泡溫水腳 10 分鐘，聽舒緩音樂，保持臥室通風涼爽。",
+          "items": [
+            "睡前儀式：溫水泡腳、聽輕音樂。",
+            "飲水調整：睡前 2 小時減少喝水量。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T3-OVERVIEW-001",
+          "title": "補足鈣鐵與高纖營養",
+          "summary": "持續維持鈣質、鐵質與膳食纖維攝取，避免後期便秘與抽筋。",
+          "items": [
+            "營養重點：豆腐、紅肉、深色蔬菜。",
+            "高纖飲食：木耳、燕麥、水果。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T3-34-36-001",
+          "title": "睡前提供溫水泡腳與按摩",
+          "summary": "為伴侶準備一盆溫熱水泡腳，並做肩頸頭部輕柔舒壓按摩。",
+          "items": [
+            "準備溫水泡腳盆與毛巾。",
+            "幫伴侶做肩頸放鬆按摩。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同第 8 次產檢看超音波",
+          "summary": "陪同產檢，觀看超音波了解胎位狀況與預估體重。",
+          "items": [
+            "陪伴產檢，聆聽醫師對胎位的說明。",
+            "給予伴侶關懷與支持。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "維護睡眠環境靜謐",
+          "summary": "深夜主動降低活動音量，確保臥室安靜無光干擾。",
+          "items": [
+            "調暗燈光，關閉不必要噪音。",
+            "守護伴侶的好品質睡眠。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 33,
+      "stage": "trimester_3",
+      "theme": "每天固定時間數胎動，掌握胎兒活力訊號",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-RED-FLAG-DECREASED-FETAL-MOVEMENT-001",
+          "title": "體會子宮內大動作推擠與胎動",
+          "summary": "子宮空間相對變窄，胎動多呈現有力的大動作推擠或伸展。",
+          "items": [
+            "每日固定時間靜下心數胎動。",
+            "胎動是寶寶活力與安危的最直觀訊號。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "建立母胎專屬的動態默契",
+          "summary": "餐後或靜臥時感受寶寶的動靜，建立充滿愛的母胎默契。",
+          "items": [
+            "餐後放鬆休息感受胎動。",
+            "心情保持沉靜愉悅。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-RED-FLAG-DECREASED-FETAL-MOVEMENT-001",
+          "title": "每日胎動計數與安心衛教指南",
+          "summary": "每日餐後或特定時間靜臥計數。若 2 小時內胎動少於 10 次或較平時減少一半以上應就醫。",
+          "items": [
+            "安心計數：餐後靜臥 1 小時，有 3 次以上胎動即安心。",
+            "就醫時機：若胎動明顯減少或停止，傳統立即至醫院評估。"
+          ],
+          "theme": "safety"
+        },
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-FETAL-MOVEMENT-001",
+          "title": "掌握胎兒活力觀察要領",
+          "summary": "了解胎動是寶寶在子宮內健康成長的靈魂訊號。",
+          "items": [
+            "健康指標：規律胎動代表供氧與發育良好。",
+            "親子互動：拍拍肚皮與寶寶對話。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-AEROBIC-001",
+          "title": "維持極溫和的散步習慣",
+          "summary": "餐後進行 15 分鐘輕鬆慢步，幫助消化與促進血液循環。",
+          "items": [
+            "運動原則：步調緩慢，不勉強累疲。",
+            "水分準備：隨身攜帶溫開水。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-FETAL-MOVEMENT-001",
+          "title": "與伴侶一同記錄每日胎動",
+          "summary": "每天陪伴伴侶一起靜心記錄胎動計數，共享父職陪伴的幸福。",
+          "items": [
+            "陪伴侶一起靜下心數胎動。",
+            "在肚皮旁說話：「寶寶加油喔」。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "包辦家中重物與日常粗活",
+          "summary": "讓伴侶能有充足時間靜坐休息與數胎動，不因家務分心。",
+          "items": [
+            "負責所有重物提拿與家事。",
+            "確保伴侶有充裕休養時間。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "給予心理安全感與情緒依靠",
+          "summary": "告訴伴侶：「有任何狀況我隨時都在，你安心休息。」",
+          "items": [
+            "表達無條件的情感支持。",
+            "做伴侶最沉著的港灣。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 34,
+      "stage": "trimester_3",
+      "theme": "第 9 次產檢與準備待產包，盤點母嬰用品清單",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "感受胎頭下降與上腹輕鬆",
+          "summary": "胎頭可能開始微降進入骨盆，上腹壓迫感稍微減輕，胃口微幅改善。",
+          "items": [
+            "胃部擠壓感舒緩，呼吸較順暢。",
+            "下腹重墜感增加，走動宜放慢。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-34-36-001",
+          "title": "準備待產物品，迎接誕生倒數",
+          "summary": "開始盤點並打包待產包，將重要證件與物品置於門口易拿處。",
+          "items": [
+            "打包待產必備衛材與衣物。",
+            "心情充滿期待與踏實。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-09",
+          "title": "第 9 次例行產檢與照顧重點",
+          "summary": "建議第 34 週進行第 9 次產檢，包含問診、胎位確認與待產包指導。",
+          "items": [
+            "產檢重點：細心例行檢查、評估胎位與胎心音。",
+            "待產衛教：指導待產包準備與產兆辨識。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-34-36-001",
+          "title": "待產包打包清單與準備",
+          "summary": "包含產後看護墊、產後衛生棉、個人清潔用品、媽媽手冊與健保卡。",
+          "items": [
+            "證件類：媽媽手冊、雙方身分證、健保卡。",
+            "衛材類：看護墊、產後衛生棉、沖洗瓶。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T3-OVERVIEW-001",
+          "title": "維持均衡營養與體力儲備",
+          "summary": "補足蛋白質、鐵質與優質澱粉，為即將到來的分娩儲備體力。",
+          "items": [
+            "體力儲備：燕麥、瘦肉、雞蛋、鮮奶。",
+            "水分補充：溫開水與高纖蔬果。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-SUPPLIES-001",
+          "title": "共同清點並打包待產包",
+          "summary": "與伴侶一起清點待產用品清單，幫忙將重物妥善放入待產包行李箱。",
+          "items": [
+            "主動幫忙整理並打包待產包行李。",
+            "將行李箱放在玄關門口易拿處。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同第 9 次產檢並確認請假",
+          "summary": "陪同產檢，並向公司確認神隊友陪產假與產檢假的申請流程。",
+          "items": [
+            "陪同參加第 9 次產檢。",
+            "確認陪產假申請與緊急聯絡流程。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "協助安裝汽車安全座椅",
+          "summary": "主動將新生兒汽車安全座椅安裝於車上並測試穩固度。",
+          "items": [
+            "安裝並檢查汽座穩固度。",
+            "確保前往醫院的車況良好。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 35,
+      "stage": "trimester_3",
+      "theme": "施打百日咳疫苗 (Tdap)，傳遞母體抗體給寶寶",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-PREG-VACCINE-01",
+          "title": "給予新生兒早期保護力",
+          "summary": "孕期接種百日咳 Tdap 疫苗能產生高效價抗體並通過胎盤傳給寶寶。",
+          "items": [
+            "保護新生兒出生後前幾個月的健康。",
+            "疫苗安全性經衛生主管機關核可。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "感受充滿母愛的防護屏障",
+          "summary": "帶著愛與期待接種疫苗，為寶寶建立第一道健康屏障。",
+          "items": [
+            "施打後手臂可能微酸，多休息即可。",
+            "保持心情放鬆舒暢。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PREG-VACCINE-01",
+          "title": "百日咳 Tdap 疫苗接種衛教",
+          "summary": "建議 27~36 週期間接種 1 劑百日咳 Tdap 疫苗，抗體傳遞效果最佳。",
+          "items": [
+            "接種時機：建議 27~36 週（最佳 28~32 週）。",
+            "母胎效益：同時保護孕婦與 6 個月內新生兒。"
+          ],
+          "theme": "vaccine"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "疫苗施打後的休養與補水",
+          "summary": "接種後多喝溫開水，當天安排充分休息，避免手臂過度提重。",
+          "items": [
+            "休養要領：多喝水、避免手臂提重物。",
+            "局部照顧：若注射處微腫可適度冷敷。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+          "title": "維持溫和極輕度活動",
+          "summary": "運動以室內輕鬆伸展與短暫散步為主，不增加身體負擔。",
+          "items": [
+            "活動步調：極其溫和散步。",
+            "休養第一：感到疲倦隨時休息。"
+          ],
+          "theme": "exercise"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同施打疫苗與貼心照顧",
+          "summary": "陪伴侶前往診所施打百日咳疫苗，幫忙拿藥與照顧施打後狀況。",
+          "items": [
+            "陪同施打疫苗並關心體感。",
+            "接過所有手提背包與重物。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+          "title": "準備溫水與關注手臂酸痛",
+          "summary": "回家後遞上溫水，關心伴侶手臂酸痛感，幫忙按摩肩頸。",
+          "items": [
+            "遞上溫開水提醒補充水分。",
+            "幫伴侶放鬆未施打側的肩頸。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+          "title": "包辦所有家務讓伴侶完全休養",
+          "summary": "接種當天主動承擔所有晚餐準備與家務收拾。",
+          "items": [
+            "承包晚餐與廚房收拾工作。",
+            "讓伴侶能早早入睡休息。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 36,
+      "stage": "trimester_3",
+      "theme": "第 10 次產檢與 GBS 乙型鏈球菌篩檢，確認生產規劃",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "體會不定期假性宮縮與準備",
+          "summary": "偶有無痛、不規則的肚皮變硬（假性宮縮），屬身體為分娩做準備。",
+          "items": [
+            "假性宮縮時坐下休息、改變姿勢即可緩和。",
+            "若為規則陣痛應準備就醫。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-CHECKUP-001",
+          "title": "產前最後一個月，安心備產",
+          "summary": "滿 36 週標誌著即將邁入足月，醫療團隊隨時提供完整護航。",
+          "items": [
+            "確認待產醫院急診動線。",
+            "抱持信心迎接寶寶。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-10",
+          "title": "第 10 次例行產檢與 GBS 篩檢",
+          "summary": "建議第 36 週進行第 10 次產檢，包含孕婦乙型鏈球菌 (GBS) 採樣篩檢。",
+          "items": [
+            "產檢重點：GBS 採樣篩檢（建議 35~37 週）。",
+            "例行檢查：體重血壓、胎位與胎心音。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-34-36-001",
+          "title": "確認生產方式與待產醫院動線",
+          "summary": "與醫師確認生產方式（自然產/剖腹產預約）與急診入院流程。",
+          "items": [
+            "流程確認：醫院夜間急診入口與報到處。",
+            "文件準備：媽媽手冊、證件放待產包。"
+          ],
+          "theme": "lifestyle"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T3-OVERVIEW-001",
+          "title": "補充好消化高營養餐點",
+          "summary": "飲食採少量多餐，選擇優質蛋白與易消化的原型食物。",
+          "items": [
+            "好消化食材：蒸蛋、魚湯、豆腐、燕麥粥。",
+            "避免項目：過度油膩或易脹氣食物。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-PLANNING-001",
+          "title": "實地演練前往醫院的急診動線",
+          "summary": "開車實地走一次前往產檢醫院的路線，確認夜間急診入口與停車位。",
+          "items": [
+            "實地走訪醫院夜間急診路線。",
+            "確認車上汽油加滿、待產包已放門口。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同第 10 次產檢與聽取 GBS 報告",
+          "summary": "陪同產檢並了解 GBS 篩檢結果與生產時的抗體護航說明。",
+          "items": [
+            "陪同進行第 10 次產檢。",
+            "向醫師確認產兆發生時的聯絡方式。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "給予伴侶無限的勇氣與肯定",
+          "summary": "握緊伴侶的手：「快要跟寶寶見面了，你真的非常堅強美麗！」",
+          "items": [
+            "用堅定語言給予信心。",
+            "做伴侶最安心的守護者。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 37,
+      "stage": "trimester_3",
+      "theme": "邁入足月 (≥37週)，熟記三大產兆與隨時待命",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-LABOR-SIGN-CONTRACTIONS-001",
+          "title": "邁入足月 (≥37週)，隨時安心待命",
+          "summary": "滿 37 週寶寶已發育成熟。體會子宮收縮頻率，隨時準備迎接收生。",
+          "items": [
+            "熟悉規則陣痛（約 5 分鐘一次）。",
+            "心情保持沉著安定。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "聽從身體召喚，靜候分娩",
+          "summary": "身體已做足準備，隨時可能出現產兆啟動分娩程序。",
+          "items": [
+            "待產包與證件隨身準備妥當。",
+            "充份休息累積生產體力。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-11",
+          "title": "第 11 次產檢（開啟每週 1 次）",
+          "summary": "建議第 37 週進行第 11 次產檢，滿 37 週後每週例行產檢照護 1 次。",
+          "items": [
+            "產檢頻率：滿 37 週起每週產檢 1 次。",
+            "細心例行檢查：足月母胎安危與宮縮評估。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-LABOR-SIGN-CONTRACTIONS-001",
+          "title": "三大產兆辨識：規則陣痛、破水、落紅",
+          "summary": "熟記三大產兆特徵。一旦出現破水或規則陣痛立即前往醫院急診。",
+          "items": [
+            "規則陣痛：陣痛越發頻繁強烈（約5分鐘1次）。",
+            "破水：透明水樣液體流出，破水後禁止泡澡。"
+          ],
+          "theme": "safety"
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-BIRTH-READY-001",
+          "title": "待產包與證件最終確認",
+          "summary": "確認媽媽手冊、健保卡、雙方身分證與待產包已在門口就緒。",
+          "items": [
+            "證件就位：身分證、健保卡、媽媽手冊。",
+            "通訊暢通：神隊友手機 24 小時開機。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-T3-LABOR-SIGN-001",
+          "title": "神隊友產兆警覺與隨時出發準備",
+          "summary": "熟記三大產兆，一旦伴侶出現破水或規則陣痛立即拿待產包前往醫院。",
+          "items": [
+            "出現破水或規則陣痛【立即陪伴就醫】。",
+            "絕不講「再躺躺看」，第一時間出發。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-BIRTH-READY-001",
+          "title": "保持電話通暢與車輛備妥",
+          "summary": "神隊友手機保持 24 小時響鈴通暢，車子汽油加滿。",
+          "items": [
+            "手機保持 24 小時響鈴與電量充足。",
+            "確認醫院急診入口與交通動線。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-LABOR-COMPANION-001",
+          "title": "給予伴侶最安定堅定的眼神",
+          "summary": "握著伴侶的手：「別怕，我全程都會在你身邊陪伴你。」",
+          "items": [
+            "展現沉著冷靜的眼神與態度。",
+            "給予最強大的心理依靠。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 38,
+      "stage": "trimester_3",
+      "theme": "第 12 次產檢，保持沉著與學習產房陪產技巧",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-LABOR-SIGN-ROM-001",
+          "title": "感知胎頭下降與產前沉靜",
+          "summary": "身體放慢步調，沉靜等待規則宮縮或破水信號啟動分娩。",
+          "items": [
+            "保持充沛體力與安定心情。",
+            "飲食小口補充水分與熱量。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "充份休息，為生產儲備能量",
+          "summary": "多臥床休息或做輕柔呼吸，不讓自己體力過度消耗。",
+          "items": [
+            "放鬆身心肌肉。",
+            "隨時準備前往產房。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-12",
+          "title": "第 12 次例行產檢與安危評估",
+          "summary": "建議第 38 週進行第 12 次產檢，評估胎位、羊水量與胎心音。",
+          "items": [
+            "產檢重點：母胎安危評估與胎位確認。",
+            "衛教提醒：破水與陣痛就醫時機。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-LABOR-SIGN-ROM-001",
+          "title": "破水處置與安全就醫原則",
+          "summary": "若出現陰道流出透明水樣液體（破水），應墊乾淨看護墊並立即就醫。",
+          "items": [
+            "就醫叮嚀：破水後禁止泡澡或陰道灌洗。",
+            "立即赴診：無論有無陣痛均需立即就醫。"
+          ],
+          "theme": "safety"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "保持放鬆與小口補水",
+          "summary": "待產前維持輕鬆放鬆，補足高能量易消化食物與水分。",
+          "items": [
+            "營養補充：雞精、鮮奶、粥品、果汁。",
+            "水分補給：小口多次補充溫水。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-KNOWLEDGE-LABOR-SUPPORT-001",
+          "title": "複習減痛按摩與呼吸引導技巧",
+          "summary": "複習爸媽教室學到的腰背按摩與拉瑪澤呼吸引導，準備在產房運用。",
+          "items": [
+            "複習腰背與骶骨按壓放術技巧。",
+            "引導伴侶做平穩深呼吸。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-LABOR-COMPANION-001",
+          "title": "待產全程沉著陪伴與服務",
+          "summary": "待產時協助伴侶擦拭汗水、小口餵水、調整舒適姿勢。",
+          "items": [
+            "待產時協助擦汗與小口餵水。",
+            "遵從醫護人員指導協助伴侶。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-CORE-PRENATAL-001",
+          "title": "陪同第 12 次產檢與確認急診報到",
+          "summary": "陪伴產檢，再次確認醫院急診辦理住院手續流程。",
+          "items": [
+            "陪同產檢並攜帶所有相關證件。",
+            "熟悉急診辦理住院手續細節。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 39,
+      "stage": "trimester_3",
+      "theme": "第 13 次產檢與產前放鬆，安心陪伴迎接誕生",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-LABOR-SIGN-BLOODY-SHOW-001",
+          "title": "體會落紅與產前生理準備",
+          "summary": "可能出現少量粉紅或褐色黏液分泌物（落紅），代表子宮頸開始軟化。",
+          "items": [
+            "若僅有少量落紅可在家觀察陣痛。",
+            "若出現大量鮮血或破水應立即就醫。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "帶著自信與期待等待臨盆",
+          "summary": "與寶寶心靈相通，相信自己的身體具備順利分娩的本能。",
+          "items": [
+            "深呼吸保持放鬆平靜。",
+            "期待與寶寶親密相見。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-13",
+          "title": "第 13 次例行產檢與胎心監測",
+          "summary": "建議第 39 週進行第 13 次產檢，評估子宮收縮與胎兒健康狀況。",
+          "items": [
+            "產檢重點：胎兒心跳與宮縮頻率監測。",
+            "產前衛教：過期妊娠預防與陣痛就醫。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-LABOR-SIGN-BLOODY-SHOW-001",
+          "title": "落紅與就醫時機辨識",
+          "summary": "落紅為子宮頸開始擴張的信號。若伴隨規則 5 分鐘陣痛即前往醫院。",
+          "items": [
+            "安心衛教：少量落紅為正常前兆。",
+            "就醫標準：伴隨規則強烈陣痛時赴診。"
+          ],
+          "theme": "safety"
+        },
+        {
+          "source_record_id": "MED-NUTRITION-T3-OVERVIEW-001",
+          "title": "補充易消化熱量食物",
+          "summary": "準備黑糖水、蜂蜜水或白粥，隨時為分娩補充熱量。",
+          "items": [
+            "熱量準備：白粥、果汁、黑糖水。",
+            "飲食原則：少食多餐，不吃重油。"
+          ],
+          "theme": "nutrition"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-LABOR-COMPANION-001",
+          "title": "待產房全程沉著與情緒安定",
+          "summary": "在待產房陪伴伴侶，給予最溫柔的擁抱與堅定不移的愛。",
+          "items": [
+            "在待產房全程給予安撫與陪伴。",
+            "協助伴侶更換乾淨看護墊。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-BIRTH-READY-001",
+          "title": "準備好相機與新生兒用品",
+          "summary": "確認相機電量充足，將寶寶回家時要穿的包巾與衣物準備妥當。",
+          "items": [
+            "確認相機與手機電量飽滿。",
+            "備妥寶寶出院包巾與汽座。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "對伴侶表達最深切的感激與愛",
+          "summary": "在伴侶耳邊輕聲說：「老婆你辛苦了，我會一直在你身邊加油。」",
+          "items": [
+            "傾聽伴侶心聲並給予勇氣。",
+            "做最貼心稱職的神隊友。"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    },
+    {
+      "week": 40,
+      "stage": "trimester_3",
+      "theme": "第 14 次預產期產檢，醫療團隊共同守護母胎平安",
+      "mom_changes": [
+        {
+          "source_record_id": "MED-STAGE-T3-CHECKUP-001",
+          "title": "迎接預產期，配合醫師評估",
+          "summary": "抵達預產期（第 40 週），配合婦產科醫師評估胎盤功能與羊水量。",
+          "items": [
+            "保持平平靜放鬆，無須焦慮。",
+            "聽從醫師專業分娩建議。"
+          ]
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-MOTHER-001",
+          "title": "身體已完備，隨時迎接誕生",
+          "summary": "母體與寶寶都已做足準備，安心信任醫療團隊的護航。",
+          "items": [
+            "保持良好的體力與精神。",
+            "期待與寶寶幸福相見。"
+          ]
+        }
+      ],
+      "mom_reminders": [
+        {
+          "source_record_id": "MED-PRENATAL-VISIT-14",
+          "title": "第 14 次預產期例行產檢",
+          "summary": "建議第 40 週進行第 14 次產檢，評估過期妊娠與催產分娩計畫。",
+          "items": [
+            "產檢重點：評估羊水量、胎盤功能與胎心音。",
+            "專業溝通：與醫師討論催產或引產時間點。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-STAGE-T3-CHECKUP-001",
+          "title": "過期妊娠評估與醫療溝通",
+          "summary": "若超過預產期未分娩，醫師會評估母胎狀況建議適當催產時機。",
+          "items": [
+            "專業護航：相信醫療團隊專業評估。",
+            "母胎安全：定期監測胎心音與羊水。"
+          ],
+          "theme": "checkup"
+        },
+        {
+          "source_record_id": "MED-LIFESTYLE-REST-001",
+          "title": "保持充足體力與放鬆好心情",
+          "summary": "繼續保持充沛的休息與輕鬆心情，隨時準備歡慶寶寶誕生。",
+          "items": [
+            "體力維護：充分休息不焦慮。",
+            "心情準備：滿懷喜悅迎接新生命。"
+          ],
+          "theme": "lifestyle"
+        }
+      ],
+      "partner_tasks": [
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-LABOR-COMPANION-001",
+          "title": "全程堅定陪伴與醫療團隊溝通",
+          "summary": "陪同第 14 次產檢，與醫師溝通催產計畫，全程守護伴侶與寶寶。",
+          "items": [
+            "陪同產檢並與醫療團隊密切溝通。",
+            "陪伴迎接分娩时刻的到來。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-T3-BIRTH-READY-001",
+          "title": "完成產房與住院手續準備",
+          "summary": "隨身帶好所有證件與待產行李，做好入院報到準備。",
+          "items": [
+            "隨身保管身分證、健保卡與手冊。",
+            "隨時準備辦理入院與陪產。"
+          ]
+        },
+        {
+          "source_record_id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+          "title": "用愛迎接新生命，成為稱職神隊友",
+          "summary": "緊握伴侶的手，共同見證新生命的降臨，開啟幸福家庭新篇章。",
+          "items": [
+            "用全心全意的愛陪伴分娩。",
+            "準備好成為最稱職的新手爸爸！"
+          ]
+        }
+      ],
+      "pregnancy_stage": "trimester_3"
+    }
+  ]
+}

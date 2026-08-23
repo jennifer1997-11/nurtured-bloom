@@ -1,0 +1,11 @@
+{
+  "gap_id": "GAP-XXXX-001",
+  "topic": "",
+  "gap_status": "SOURCE_GAP_LOCAL",
+  "taiwan_policy_specific": false,
+  "requested_fields": [],
+  "searched_sources": [],
+  "candidate_sources": [],
+  "resolution": "pending",
+  "created_at": "YYYY-MM-DD"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "MED-EXERCISE-T3-CONTINUE-001",
+  "topic": "孕後期持續運動與姿勢",
+  "category": "pregnancy_exercise_adjustment",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29_weeks_or_more",
+  "content": {
+    "title": "孕後期持續運動與姿勢",
+    "summary": "孕後期若無身體不適可持續運動；運動或休息時建議以斜躺或站姿取代長久平躺，避免仰臥位低血壓。",
+    "recommendations": [
+      "已有運動習慣者，無不適可依身體狀況持續進行",
+      "尚未建立運動習慣者仍可依體力從輕度活動開始",
+      "運動或休息姿勢：建議以斜躺或站姿取代完全平躺，預防仰臥位低血壓",
+      "維持有氧、肌力與骨盆底肌活動"
+    ],
+    "avoid_or_cautions": [
+      "避免長久完全仰臥平躺（仰臥易壓迫下腔靜脈造成頭暈噁心低血壓）",
+      "避免高強度或體力無法負荷之劇烈活動"
+    ],
+    "stop_and_seek_help_if": [
+      "出現宮縮頻繁、破水、出血或嚴重頭暈喘應立刻停止就醫"
+    ],
+    "special_conditions": [
+      "此姿勢建議針對運動與休息時之姿勢調整，非全身性生活禁令"
+    ],
+    "bullets": [
+      "姿勢調整：運動與休息時以斜躺或站姿取代長久平躺（防低血壓）。",
+      "習慣延續：無不適可持續活動；新手亦可從輕度散步開始。",
+      "安全界線：感覺疲倦或腹部發硬時應隨時停止休息。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 44,
+      "section": "懷孕後期運動與姿勢建議",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

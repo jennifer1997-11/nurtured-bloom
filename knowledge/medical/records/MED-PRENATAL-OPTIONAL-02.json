@@ -1,0 +1,53 @@
+{
+  "id": "MED-PRENATAL-OPTIONAL-02",
+  "topic": "非侵入性胎兒染色體檢測（NIPT）",
+  "category": "genetic_screening",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "10 weeks or later",
+  "content": {
+    "title": "非侵入性胎兒染色體檢測（NIPT）",
+    "purpose": "透過孕婦血液中的游離胎兒 DNA 評估胎兒染色體異常（如 T21, T18, T13）風險。",
+    "recommended_window": "10 weeks or later",
+    "screening_or_diagnostic": "screening",
+    "invasive": false,
+    "funding_type": "self_paid_or_varies",
+    "suitable_population": "懷孕10週以上欲評估胎兒染色體異常風險之孕婦。",
+    "important_limitations": "NIPT 屬於篩檢（Screening）非診斷性檢查（Diagnostic Test），不得描述為確診，不可取代羊膜穿刺，正常結果亦無法排除所有染色體或遺傳疾病。高風險結果應進行診斷性檢查。",
+    "policy_sensitive": false,
+    "summary": "非侵入性胎兒染色體檢測（NIPT，10週以上），抽取母血分析游離胎兒 DNA 評估染色體異常風險。屬於高準確度篩檢，不能取代羊膜穿刺確診。",
+    "bullets": [
+      "建議區間：10週以上。",
+      "檢查性質：非侵入性基因篩檢（Screening，非確診）。",
+      "核心限制：不可取代羊膜穿刺，正常結果無法排除所有遺傳疾病，高風險者須進一步確診。",
+      "費用型態：自費或依機構自負額方案（self_paid_or_varies）。"
+    ],
+    "disclaimer": "NIPT 報告正常不能完全排除罕見基因突變；報告高風險須經羊膜穿刺確診。"
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "孕期產檢項目建議指南",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "source_id": "HPA-OFFICIAL-WEB",
+      "page": 1,
+      "section": "NIPT 官方衛教資訊",
+      "url": "https://www.hpa.gov.tw",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "MED-PRETERM-SIGN-BLEEDING-001",
+  "topic": "早產警訊：陰道出血",
+  "category": "preterm_labor_warning",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20_to_less_than_37_weeks",
+  "content": {
+    "title": "早產警訊：陰道出血",
+    "severity": "urgent",
+    "summary": "【早產警訊（滿20週至未滿37週）】出現大量陰道出血或少量持續性陰道出血。",
+    "common_presentations": [
+      "陰道流出鮮血、大量出血或持續不斷的血絲粘液"
+    ],
+    "self_care_or_actions": [
+      "立刻靜臥並準備衛生棉墊，請家人陪同立即前往產房急診"
+    ],
+    "red_flags": [
+      "未滿37週陰道出血"
+    ],
+    "when_to_seek_care": "請立刻前往醫院產房或急診進行安胎評估。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "未滿37週出現陰道出血",
+      "urgent_if": "未滿37週陰道出血或大量出血",
+      "do_not_reassure_if": "絕對不可延誤就醫評估"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 24,
+      "section": "認識早產徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "MED-PARTNER-CORE-PARENT-CLASS-001",
+  "topic": "一起參加爸媽教室",
+  "category": "partner_support",
+  "partner_type": "learning_preparation",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2_3",
+  "recommended_window": "13-40 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "一起參加爸媽教室",
+    "summary": "安排時間與伴侶共同參加醫療院所或衛生單位舉辦之爸媽教室，實作學習生產與育兒技能。",
+    "action_items": [
+      "安排假日或空檔時間，和伴侶一起報名參加爸媽教室",
+      "共同學習生產流程、減痛放鬆姿勢、按摩技巧與待產準備",
+      "實作演練新生兒洗澡、抱法、換尿布與哺育照顧技巧"
+    ],
+    "partner_knowledge": "爸媽教室提供實體演練機會，能讓伴侶在生產臨盆時不慌張，成為真正稱職的陪產者。",
+    "why_it_matters": "親自演練減痛與育兒技巧，能建立伴侶的照顧自信心。",
+    "safety_note": "實作課程應配合現場護理師或助產師專業指導演練。",
+    "bullets": [
+      "共同報名：陪同參加醫療院所爸媽教室課程。",
+      "學習減痛：演練生產放鬆、呼吸與陪產按摩技巧。",
+      "育兒演練：學習新生兒洗澡、抱法與換尿布技能。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 16,
+      "section": "爸媽教室與產前準備",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

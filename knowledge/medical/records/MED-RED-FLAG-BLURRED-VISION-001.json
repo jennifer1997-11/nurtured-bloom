@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-BLURRED-VISION-001",
+  "topic": "視力模糊",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "視力模糊",
+    "severity": "urgent",
+    "summary": "【危險徵兆】突發性視力模糊、出現複視或閃光眼花，為重度子癲前症之典型危險器官警訊。",
+    "common_presentations": [
+      "看東西模糊不清、眼前出現黑點或閃爍光芒"
+    ],
+    "self_care_or_actions": [
+      "立即停止駕車或危險活動，靜坐休息並請家屬陪同就醫"
+    ],
+    "red_flags": [
+      "視力模糊"
+    ],
+    "when_to_seek_care": "屬急迫危險徵兆，應立即前往醫療院所急診或婦產科。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "視覺有任何異常改變",
+      "urgent_if": "視力模糊、閃光或複視",
+      "do_not_reassure_if": "不可誤認為一般眼睛乾澀疲勞"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

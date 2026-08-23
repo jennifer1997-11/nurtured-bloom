@@ -1,0 +1,58 @@
+{
+  "id": "MED-SYMPTOM-T1-NAUSEA-001",
+  "topic": "孕吐／噁心",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-12 weeks",
+  "content": {
+    "title": "孕吐／噁心",
+    "severity": "self_care",
+    "summary": "晨吐與噁心感為懷孕初期常見生理現象，多數孕婦在懷孕 3 個月後逐漸改善好轉。",
+    "common_presentations": [
+      "晨起噁心、想吐，但一天中任何時間都可能發生",
+      "對特定食物味道或嗅覺特別敏感、食慾改變"
+    ],
+    "self_care_or_actions": [
+      "少量多餐、避免空腹過久",
+      "避免油膩、難消化或調味過重的食物",
+      "乾濕分開（用餐時液體與固體分開進食）",
+      "孕吐後可適度漱口，並少量多次補充水分"
+    ],
+    "red_flags": [
+      "持續嚴重嘔吐無法進食或喝水",
+      "體重明顯減輕或出現脫水現象（尿量極少、頭暈）"
+    ],
+    "when_to_seek_care": "孕吐極為嚴重且飲食無法改善，或伴隨脫水現象時，應就醫評估。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "持續嚴重嘔吐無法進食、無法補充水分",
+      "urgent_if": "伴隨劇烈腹痛、吐血或嚴重大幅體重減輕",
+      "do_not_reassure_if": "孕婦表示完全無法喝水且有頭暈脫水症狀"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 10,
+      "section": "懷孕初期常見小問題",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

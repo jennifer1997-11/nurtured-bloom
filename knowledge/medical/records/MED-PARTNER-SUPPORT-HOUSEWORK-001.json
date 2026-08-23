@@ -1,0 +1,56 @@
+{
+  "id": "MED-PARTNER-SUPPORT-HOUSEWORK-001",
+  "topic": "分擔家事、給她休息",
+  "category": "partner_support",
+  "partner_type": "maternal_comfort_support",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "分擔家事、給她休息",
+    "summary": "主動承擔吸塵、洗碗、提重物與粗重家務，讓孕媽咪有充份的時間休息恢復體力。",
+    "action_items": [
+      "主動承擔家中的粗重家務（如提重物、搬家具、大掃除）",
+      "負責日常吸塵、拖地、洗碗與晾衣服等需要彎腰抬重的工作",
+      "鼓勵伴侶多休息放鬆，不讓她因家務感到焦慮"
+    ],
+    "partner_knowledge": "孕期體力消耗大且關節鬆弛，分擔粗重家務能有效避免孕婦腰椎受傷與過度疲勞。",
+    "why_it_matters": "主動分擔家務是神隊友最直接、最能減輕伴侶負擔的實質愛意。",
+    "safety_note": "孕婦應避免提拿超過 5 公斤以上重物或攀高作業。",
+    "bullets": [
+      "承擔粗重：負責提重物、大掃除與粗重家務。",
+      "日常分擔：協助洗碗、晾衣與清潔等體力家事。",
+      "充份休息：打造無負擔環境讓伴侶放鬆休息。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "伴侶與家人陪伴叮嚀",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 6,
+      "section": "家事分擔與支持",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

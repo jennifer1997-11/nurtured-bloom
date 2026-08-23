@@ -1,0 +1,23 @@
+{
+  "gap_id": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "topic": "孕期1-40週逐週胎兒身長體重與代表性比喻",
+  "gap_status": "SOURCE_GAP_LOCAL",
+  "taiwan_policy_specific": false,
+  "requested_fields": [
+    "weekly_fetal_length_crl",
+    "weekly_fetal_weight_gram",
+    "weekly_fruit_vegetable_analogy"
+  ],
+  "searched_sources": [
+    "HPA-MOTHER-EDU-2026-06",
+    "HPA-MOTHER-HEALTH-2026-06"
+  ],
+  "candidate_sources": [
+    "NHS-OFFICIAL-WEB",
+    "WHO-OFFICIAL-WEB"
+  ],
+  "resolution": "resolved",
+  "created_at": "2026-08-19",
+  "notes": "本地國健署手冊無1-40週逐週身長與體重資料。經人類審核員正式核准導入權威外部來源：身長與大小比喻引用 UK NHS (Best Start in Life week-by-week guide)；體重參考值引用 WHO Fetal Growth Charts (sex-neutral EFW 50th percentile)。人類審核完成，紀錄已全數 approved，本缺口正式結案 (resolved)。",
+  "resolved_at": "2026-08-20"
+}

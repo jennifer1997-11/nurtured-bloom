@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T3-CONSTIPATION-001",
+  "topic": "便祕",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "便祕",
+    "severity": "self_care",
+    "summary": "孕期黃體素減緩腸道蠕動，加上後期子宮壓迫直腸，容易引起排便不順或便祕。",
+    "common_presentations": [
+      "排便次數減少、大便乾硬、排便費力"
+    ],
+    "self_care_or_actions": [
+      "充足水分攝取（手冊建議每日約 2,000cc 作一般飲食衛教參考）",
+      "多攝取高纖維食物（全穀雜糧、蔬菜、水果）",
+      "養成規律排便習慣，適度進行散步運動"
+    ],
+    "red_flags": [
+      "嚴重便祕伴隨劇烈腹痛、嘔吐",
+      "排便大量鮮血或長期便祕無法解便"
+    ],
+    "when_to_seek_care": "若飲食調整後便祕仍嚴重無效，應諮詢醫師評估安全軟便劑，切勿自行服用瀉藥。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "便祕嚴重且飲食調整無改善",
+      "urgent_if": "伴隨劇烈腹痛、嘔吐或大量腸胃道出血",
+      "do_not_reassure_if": "孕婦欲自行購買成藥瀉藥使用"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 30,
+      "section": "懷孕後期常見小問題",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

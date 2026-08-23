@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-T3-34-36-001",
+  "topic": "孕後期：34–36週胎位與生產準備",
+  "category": "partner_support",
+  "partner_type": "pregnancy_stage_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "34-36 weeks",
+  "trigger_week": "34-36",
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions",
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "孕後期：34–36週胎位與生產準備",
+    "summary": "約 34–36 週胎位多已趨於固定，陪同產檢了解胎位與乙型鏈球菌篩檢，完成最終生產準備。",
+    "action_items": [
+      "陪伴參加 34-36 週產檢，了解胎位與乙型鏈球菌 (GBS) 篩檢結果",
+      "與醫師確認生產方式、待產醫院規定與陪產注意事項",
+      "確認請假流程與產後家務後援機制"
+    ],
+    "partner_knowledge": "爸爸手冊「爸爸大事記」指出，34–36 週胎位多已趨於固定，是確認生產方式的關鍵期。",
+    "why_it_matters": "與醫師確認好生產細節，能讓最後衝刺階段更加踏實安心。",
+    "safety_note": "胎位是否正或需否剖腹應由婦產科醫師超音波評估，不可自行判斷。",
+    "bullets": [
+      "產檢陪伴：了解 34-36 週胎位與 GBS 篩檢狀況。",
+      "生產確認：與醫師確認生產與陪產細節。",
+      "後勤確認：確認工作請假與產後家務後援。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 15,
+      "section": "34-36週胎位與產前確認",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-PRENATAL-VISIT-11"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

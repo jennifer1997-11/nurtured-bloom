@@ -1,0 +1,58 @@
+{
+  "id": "MED-NUTRITION-FISH-MERCURY-001",
+  "topic": "孕期魚類怎麼吃",
+  "category": "pregnancy_food_safety",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期魚類怎麼吃",
+    "daily_reference_value": "7-9 portions (245-315 g)/week, avoid large predatory fish",
+    "unit": "portions_per_week",
+    "purpose": "補充優質蛋白質與 DHA，同時防範大型深海魚之甲基汞重金屬累積風險。",
+    "food_sources": [
+      "鯖魚",
+      "秋刀魚",
+      "鮭魚",
+      "午仔魚",
+      "虱目魚/鱸魚"
+    ],
+    "recommendations": [
+      "手冊建議每週均衡攝取 7–9 份（245–315 公克）各種魚類",
+      "每週可安排 1–2 份富含油脂的小型海魚以獲取 DHA",
+      "食用魚類應多樣化輪替，不固定單一魚種"
+    ],
+    "avoid_or_limit": [
+      "避免食用大型深海掠食性魚類：豆腐鯊、旗魚、大型鮪魚、油魚",
+      "控制大型魚類攝取量以降低甲基汞暴露"
+    ],
+    "special_notes": [
+      "不可將魚類汞風險簡化為「孕婦不能吃魚」，適量攝取小型魚對母胎營養非常有益。"
+    ],
+    "summary": "孕期每週建議攝取 7-9 份各式魚類，魚種多樣輪替；應避免食用大型深海魚（豆腐鯊、旗魚、大型鮪魚、油魚）以防甲基汞過量。",
+    "bullets": [
+      "每週總量：7–9 份各式魚類（約 245–315 g/週）。",
+      "輪替原則：魚種多樣化輪替，優先選擇小型海魚。",
+      "避開標的：避免大型深海魚（豆腐鯊、旗魚、大型鮪魚、油魚）。",
+      "正確觀念：不因重金屬而完全禁吃魚，小型魚富含 DHA 對胎兒極佳。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 25,
+      "section": "魚類與甲基汞安全指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

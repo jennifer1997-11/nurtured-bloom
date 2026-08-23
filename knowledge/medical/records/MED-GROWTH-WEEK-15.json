@@ -1,0 +1,52 @@
+{
+  "id": "MED-GROWTH-WEEK-15",
+  "topic": "懷孕第 15 週胎兒身長體重與大小比喻",
+  "category": "baby_development",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "week_start": 15,
+  "week_end": 15,
+  "content": {
+    "gestational_week": 15,
+    "length_cm": 10.1,
+    "length_measurement_type": "head-to-bottom",
+    "estimated_weight_g": 114,
+    "estimated_weight_reference": "WHO_50TH_PERCENTILE",
+    "size_analogy_zh": "蘋果",
+    "size_analogy_en": "apple",
+    "analogy_type": "editorial_visualization",
+    "medical_claim": false,
+    "summary": "懷孕第 15 週寶寶身長約 10.1 cm（測量方式：head-to-bottom）；體重參考值為 114 g；大小比喻約像一顆/一根 蘋果 (apple)。",
+    "bullets": [
+      "身長 (cm)：10.1 cm（測量方式：head-to-bottom；來源：NHS Week 15）",
+      "體重參考值 (g)：114 g（來源：WHO EFW 50th percentile）",
+      "大小比喻：蘋果 (apple)［編輯視覺化比喻，非醫療診斷測量］"
+    ],
+    "disclaimer": "身長與體重為一般孕週發育參考值，每個寶寶成長速度不同，實際生長情形請以產檢超音波及醫療人員評估為準。"
+  },
+  "source_refs": [
+    {
+      "source_id": "NHS-OFFICIAL-WEB",
+      "section": "NHS Week 15",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/week-by-week-guide-to-pregnancy/",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "source_id": "WHO-OFFICIAL-WEB",
+      "section": "WHO EFW 50th percentile",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5261648/",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "approved_web_research",
+  "evidence": {
+    "source_level": 2,
+    "jurisdiction": "INTL",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "notes": "依據 weekly-fetal-growth-reference-v1.0.md 嚴格造冊建立 Candidate Record，保留 needs_review / human_reviewed: false 等待人工審核。",
+  "last_reviewed_at": "2026-08-20"
+}

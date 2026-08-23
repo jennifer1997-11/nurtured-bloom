@@ -1,0 +1,56 @@
+{
+  "id": "MED-NUTRITION-FIBER-WATER-001",
+  "topic": "膳食纖維與水分",
+  "category": "pregnancy_dietary_pattern",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "膳食纖維與水分",
+    "daily_reference_value": "Water approx 2,000 cc/day, Veggies & Fruits 3+2 portions",
+    "unit": "cc_and_portions_per_day",
+    "purpose": "促進腸道蠕動、預防孕期便祕與維持良好新陳代謝。",
+    "food_sources": [
+      "糙米/南瓜/全穀雜糧",
+      "各式深淺色蔬菜",
+      "新鮮水果",
+      "白開水"
+    ],
+    "recommendations": [
+      "後期手冊建議每日補充約 2,000 cc 水分",
+      "每日攝取 3 份蔬菜 + 2 份水果（合計約 5 個拳頭大小）",
+      "主食可用全穀與未精製雜糧取代部分精製白米麵食"
+    ],
+    "avoid_or_limit": [
+      "避免以含糖飲料或高糖果汁取代白開水"
+    ],
+    "special_notes": [
+      "每日 2,000 cc 為一般健康孕婦衛教參考；若有個人特殊疾病醫囑需限水者，應遵照醫師指示。"
+    ],
+    "summary": "孕中後期建議每日補足約 2,000 cc 水分，並落實「3 蔬 2 果」與全穀雜糧飲食，有助促進腸道蠕動預防便祕。",
+    "bullets": [
+      "水分參考：每日約 2,000 cc 白開水。",
+      "蔬果目標：每日 3 份蔬菜 + 2 份水果（3 蔬 2 果）。",
+      "主食選擇：以糙米、南瓜、燕麥等未精製雜糧為主。",
+      "預防效益：充足纖維搭配水分可有效預防孕期便祕。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 39,
+      "section": "膳食纖維與水分攝取建議",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

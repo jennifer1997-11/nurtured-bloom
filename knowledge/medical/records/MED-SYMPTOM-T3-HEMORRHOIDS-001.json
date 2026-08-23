@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T3-HEMORRHOIDS-001",
+  "topic": "痔瘡",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29-40 weeks",
+  "content": {
+    "title": "痔瘡",
+    "severity": "self_care",
+    "summary": "便祕用力加上子宮壓迫骨盆靜脈回流，易導致肛門靜脈曲張形成痔瘡。",
+    "common_presentations": [
+      "肛門處腫痛、排便時衛生紙擦拭有鮮血或有靜脈組織突出"
+    ],
+    "self_care_or_actions": [
+      "預防便祕：多喝水與多吃高纖食物，避免蹲廁所過久",
+      "溫水坐浴：每日 3–4 次，每次約 5–10 分鐘溫水坐浴舒緩血管",
+      "避免久坐久站，保持肛門清潔乾爽"
+    ],
+    "red_flags": [
+      "痔瘡嚴重脫出無法推回且劇烈疼痛",
+      "排便持續大量出血"
+    ],
+    "when_to_seek_care": "若痔瘡腫痛劇烈或出血較多，應就醫由專業醫師開立安全軟膏或處方。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "痔瘡腫痛顯著或排便出血",
+      "urgent_if": "痔瘡嵌頓劇痛、組織壞死或大量出血",
+      "do_not_reassure_if": "出血量多且持續不退"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 31,
+      "section": "懷孕後期常見小問題",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "MED-GROWTH-WEEK-25",
+  "topic": "懷孕第 25 週胎兒身長體重與大小比喻",
+  "category": "baby_development",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "week_start": 25,
+  "week_end": 25,
+  "content": {
+    "gestational_week": 25,
+    "length_cm": 34.6,
+    "length_measurement_type": "head-to-heel",
+    "estimated_weight_g": 778,
+    "estimated_weight_reference": "WHO_50TH_PERCENTILE",
+    "size_analogy_zh": "櫛瓜",
+    "size_analogy_en": "courgette",
+    "analogy_type": "editorial_visualization",
+    "medical_claim": false,
+    "summary": "懷孕第 25 週寶寶身長約 34.6 cm（測量方式：head-to-heel）；體重參考值為 778 g；大小比喻約像一顆/一根 櫛瓜 (courgette)。",
+    "bullets": [
+      "身長 (cm)：34.6 cm（測量方式：head-to-heel；來源：NHS Week 25）",
+      "體重參考值 (g)：778 g（來源：WHO EFW 50th percentile）",
+      "大小比喻：櫛瓜 (courgette)［編輯視覺化比喻，非醫療診斷測量］"
+    ],
+    "disclaimer": "身長與體重為一般孕週發育參考值，每個寶寶成長速度不同，實際生長情形請以產檢超音波及醫療人員評估為準。"
+  },
+  "source_refs": [
+    {
+      "source_id": "NHS-OFFICIAL-WEB",
+      "section": "NHS Week 25",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/week-by-week-guide-to-pregnancy/",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "source_id": "WHO-OFFICIAL-WEB",
+      "section": "WHO EFW 50th percentile",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5261648/",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "approved_web_research",
+  "evidence": {
+    "source_level": 2,
+    "jurisdiction": "INTL",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "notes": "依據 weekly-fetal-growth-reference-v1.0.md 嚴格造冊建立 Candidate Record，保留 needs_review / human_reviewed: false 等待人工審核。",
+  "last_reviewed_at": "2026-08-20"
+}

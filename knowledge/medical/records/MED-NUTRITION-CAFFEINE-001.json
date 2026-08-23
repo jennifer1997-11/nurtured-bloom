@@ -1,0 +1,56 @@
+{
+  "id": "MED-NUTRITION-CAFFEINE-001",
+  "topic": "孕期咖啡因",
+  "category": "pregnancy_food_limit",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期咖啡因",
+    "daily_reference_value": "Max 200-300 mg/day",
+    "unit": "mg_per_day",
+    "purpose": "控制每日咖啡因總攝取量，降低胎兒受過量咖啡因刺激之潛在風險。",
+    "food_sources": [
+      "咖啡",
+      "茶類（綠茶/紅茶/奶茶）",
+      "可樂/汽水",
+      "巧克力",
+      "提神飲料"
+    ],
+    "recommendations": [
+      "專家建議孕婦每日咖啡因總攝取量應控制在 200–300 毫克 (mg) 以下",
+      "留意咖啡以外之咖啡因來源（茶、可樂、巧克力、能量飲）",
+      "購買現煮咖啡時可參考門市紅/黃/綠咖啡因紅黃綠標示"
+    ],
+    "avoid_or_limit": [
+      "避免每日過量飲用高濃度咖啡或高劑量提神飲料"
+    ],
+    "special_notes": [
+      "前台不可將「一天一杯」當作絕對安全劑量，因不同飲品濃度差異極大，應以每日總毫克數評估。"
+    ],
+    "summary": "孕期建議每日咖啡因攝取上限為 200–300 毫克，除咖啡外亦須留意茶飲、巧克力及可樂等含咖啡因食物。",
+    "bullets": [
+      "每日上限：控制在 200–300 毫克以下（Max 200–300 mg/day）。",
+      "隱形來源：茶、奶茶、可樂、巧克力及能量飲料亦含咖啡因。",
+      "評估基準：應以「每日總毫克數」評估，而非單純以「杯數」計算。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 10,
+      "section": "孕期咖啡因攝取指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

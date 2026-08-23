@@ -1,0 +1,51 @@
+{
+  "id": "MED-PARTNER-SUPPORT-SELFCARE-001",
+  "topic": "神隊友也要照顧自己",
+  "category": "partner_support",
+  "partner_type": "partner_self_care",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "神隊友也要照顧自己",
+    "summary": "父職角色的轉變同樣伴隨壓力，伴侶也需要維護自身身心健康、適度運動與抒發管道。",
+    "action_items": [
+      "理解自己在面對身分轉變、經濟與照顧壓力時感到焦慮是正常的",
+      "維持個人基本的運動習慣與健康飲食，確保充足體力",
+      "與伴侶、親友或新手爸爸社群分享心情，適時抒發壓力",
+      "若感到情緒極度不堪重負，主動尋求心理諮詢或醫療專業協助"
+    ],
+    "partner_knowledge": "爸爸手冊提醒，照顧好伴侶自己的身心健康，才有持久的能量陪伴與照顧全家人。",
+    "why_it_matters": "神隊友不是超人，照顧好自己才能成為家庭長遠穩固的後盾。",
+    "safety_note": "本 Record 旨在提供壓力宣洩衛教，不做心理疾病之診斷。",
+    "bullets": [
+      "正視壓力：理解面對父職轉變的壓力是正常的。",
+      "維持健康：維持基本運動與休閒，補足自身體力。",
+      "尋求支持：適時與親友溝通，需要時諮詢專業。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 24,
+      "section": "新手爸爸的自我照護與壓力調適",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

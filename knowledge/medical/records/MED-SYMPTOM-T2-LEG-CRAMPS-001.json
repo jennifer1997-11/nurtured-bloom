@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T2-LEG-CRAMPS-001",
+  "topic": "腳抽筋",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "腳抽筋",
+    "severity": "self_care",
+    "summary": "孕期因血液循環負擔或體內鈣磷平衡改變，夜晚夜間小腿肌肉容易突然抽筋劇痛。",
+    "common_presentations": [
+      "夜間睡眠中突發小腿或腳掌肌肉痙攣劇痛"
+    ],
+    "self_care_or_actions": [
+      "抽筋發生時：將腿部伸直，手將腳趾朝小腿方向輕柔反折拉伸",
+      "預防措施：睡前可做下肢伸展、熱敷或溫水泡腳按摩",
+      "避免久坐久站，坐姿 40–60 分鐘應起身活動",
+      "飲食均衡，若持續嚴重可諮詢醫師或營養師"
+    ],
+    "red_flags": [
+      "單側小腿持續腫脹、發紅或劇烈壓痛（需排除深部靜脈血栓）"
+    ],
+    "when_to_seek_care": "一般抽筋可自行舒緩，若頻率極高或單側小腿出現腫痛發紅應諮詢醫師。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "抽筋非常頻繁影響睡眠",
+      "urgent_if": "單側小腿明顯腫脹、發紅、壓痛",
+      "do_not_reassure_if": "單側小腿腫痛（需注意血栓危險）"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 19,
+      "section": "懷孕中期常見小問題",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

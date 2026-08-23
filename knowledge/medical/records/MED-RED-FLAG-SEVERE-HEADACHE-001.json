@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-SEVERE-HEADACHE-001",
+  "topic": "持續或劇烈頭痛",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "持續或劇烈頭痛",
+    "severity": "urgent",
+    "summary": "【危險徵兆】孕期出現持續不退或突發性劇烈頭痛，需特別防範妊娠高血壓或子癲前症。",
+    "common_presentations": [
+      "頭部劇烈疼痛、充血感、休息後完全無法緩解"
+    ],
+    "self_care_or_actions": [
+      "停止手邊工作靜臥休息，量測血壓並立即準備就醫"
+    ],
+    "red_flags": [
+      "持續或劇烈頭痛"
+    ],
+    "when_to_seek_care": "應儘速至醫院就診檢查血壓與尿蛋白。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "頭痛持續不退",
+      "urgent_if": "持續或劇烈頭痛",
+      "do_not_reassure_if": "不可當作一般疲勞頭痛處置"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

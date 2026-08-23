@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-RUPTURE-MEMBRANES-001",
+  "topic": "陰道持續流出水樣液體／疑似破水",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "陰道持續流出水樣液體／疑似破水",
+    "severity": "urgent",
+    "summary": "【危險徵兆】陰道不自主噴出或持續緩慢流出透明無黏性水樣液體（羊水），為破水緊急徵兆。",
+    "common_presentations": [
+      "感覺褲底突濕一大片，或有清澈液體不受控制陸續流出"
+    ],
+    "self_care_or_actions": [
+      "墊上乾淨衛生棉墊，保持清潔並立即前往醫院，切勿灌洗陰道"
+    ],
+    "red_flags": [
+      "陰道持續流出水樣液體"
+    ],
+    "when_to_seek_care": "應立即前往醫療院所由產科醫師確認是否破水與處理。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "疑似液體流出",
+      "urgent_if": "陰道持續流出水樣液體（破水警訊）",
+      "do_not_reassure_if": "絕對不可當成一般分泌物處理"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

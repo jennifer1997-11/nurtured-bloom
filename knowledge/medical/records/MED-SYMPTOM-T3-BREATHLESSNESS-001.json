@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T3-BREATHLESSNESS-001",
+  "topic": "呼吸急促／輕微心悸",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29-40 weeks",
+  "content": {
+    "title": "呼吸急促／輕微心悸",
+    "severity": "monitor",
+    "summary": "懷孕後期子宮向上壓迫橫膈膜加上心臟循環負擔增加，活動時易感覺氣喘或輕微心悸。",
+    "common_presentations": [
+      "爬樓梯或活動後感覺呼吸較喘、心跳加快"
+    ],
+    "self_care_or_actions": [
+      "放慢說話與活動節奏，避免急促動作",
+      "感到氣喘時停下休息，採半坐臥姿勢或放鬆深呼吸",
+      "運動過程中若感到喘不過氣應立即停止運動"
+    ],
+    "red_flags": [
+      "休息狀態下仍明顯呼吸困難、胸悶胸痛",
+      "嘴唇發紺（青紫）、暈厥或心悸持續不退"
+    ],
+    "when_to_seek_care": "若在休息時仍感到呼吸困難、胸痛胸悶或嘴唇發紫，應立即就醫。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "輕微喘不過氣且休息後未完全緩解",
+      "urgent_if": "休息時呼吸困難、胸痛、嘴唇發紫或暈厥",
+      "do_not_reassure_if": "靜止休息時仍嚴重呼吸困難"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 28,
+      "section": "懷孕後期常見小問題與運動注意事項",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

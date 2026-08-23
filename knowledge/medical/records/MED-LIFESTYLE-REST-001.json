@@ -1,0 +1,62 @@
+{
+  "id": "MED-LIFESTYLE-REST-001",
+  "topic": "孕期休息與生活節奏",
+  "category": "pregnancy_lifestyle",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期休息與生活節奏",
+    "summary": "依國健署手冊衛教，孕期生活應保持規律作息、充分休息與適度放鬆，避免過度疲勞。",
+    "recommendations": [
+      "生活作息保持規律，避免熬夜與過度勞累",
+      "日間感到疲倦時，可安排適度短暫休息或午睡",
+      "依個人身體狀況動態調整工作與日常生活步調"
+    ],
+    "avoid_or_cautions": [
+      "避免長期處於高壓、連續熬夜或過度疲憊狀態"
+    ],
+    "stop_and_seek_help_if": [
+      "若出現持續性嚴重失眠或極度衰弱，應尋求醫師評估"
+    ],
+    "special_conditions": [
+      "高危險妊娠或有醫囑要求安胎者，應依醫師指示靜養"
+    ],
+    "bullets": [
+      "生活作息：保持規律作息，避免過度勞累與熬夜。",
+      "彈性休息：白天疲倦時可安排短暫午休放鬆。",
+      "身體聆聽：依孕期體力變化動態調整生活與工作節奏。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "懷孕初期生活保健",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 26,
+      "section": "懷孕中期生活保健",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 40,
+      "section": "懷孕後期生活保健",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

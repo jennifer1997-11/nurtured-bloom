@@ -1,0 +1,56 @@
+{
+  "id": "MED-NUTRIENT-IODINE-001",
+  "topic": "碘",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "碘",
+    "daily_reference_value": 225,
+    "unit": "microgram_per_day",
+    "purpose": "合成甲狀腺素，維持母體代謝與促進胎兒腦部神經發育。",
+    "food_sources": [
+      "含碘加碘鹽",
+      "海帶/紫菜",
+      "海藻類",
+      "海鮮魚貝類"
+    ],
+    "recommendations": [
+      "懷孕全階段每日建議攝取 225 微克 (μg) 碘",
+      "烹調時優先選擇加碘鹽",
+      "適量攝取海帶、紫菜與海鮮類食物"
+    ],
+    "avoid_or_limit": [
+      "甲狀腺疾病患者應依醫師處方指示調整碘攝取量"
+    ],
+    "special_notes": [
+      "外食族或使用無碘鹽（如高級進口岩鹽）者需特別注意碘攝取是否不足。"
+    ],
+    "summary": "孕期每日建議攝取 225 微克碘，有助於胎兒腦部發育與甲狀腺功能，日常烹調建議選用含碘鹽並適量補充海藻海鮮。",
+    "bullets": [
+      "每日參考值：225 微克（225 μg/day）。",
+      "主要功能：甲狀腺素合成、胎兒腦部神經發育。",
+      "優質來源：加碘鹽、海帶、紫菜、海魚海鮮。",
+      "注意事項：選用食鹽時注意標示「加碘鹽」。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 9,
+      "section": "碘質補充說明",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

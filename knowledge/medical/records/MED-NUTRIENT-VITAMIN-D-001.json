@@ -1,0 +1,57 @@
+{
+  "id": "MED-NUTRIENT-VITAMIN-D-001",
+  "topic": "維生素 D",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "維生素 D",
+    "daily_reference_value": 10,
+    "unit": "microgram_per_day",
+    "equivalent": "400 IU",
+    "purpose": "促進腸道鈣質吸收，幫助胎兒骨骼正常發育與免疫健康。",
+    "food_sources": [
+      "富含油脂魚類（鮭魚/鯖魚）",
+      "蛋黃",
+      "乾香菇",
+      "強化維生素D乳品/豆漿"
+    ],
+    "recommendations": [
+      "懷孕中後期每日建議攝取 10 微克 (10 μg / 400 IU)",
+      "適度進行溫和日曬（手冊提及曬太陽有助體內產生維生素 D）",
+      "飲食搭配富含維生素 D 之食物"
+    ],
+    "avoid_or_limit": [
+      "日曬應注意防曬避免過度曝曬曬傷"
+    ],
+    "special_notes": [
+      "手冊提及之日曬為輔助性衛教，不得任意宣稱為保證足量或替代補充劑之醫囑處方。"
+    ],
+    "summary": "懷孕中後期每日建議攝取 10 微克（400 IU）維生素 D 幫助鈣質吸收與骨骼發育，可透過油脂魚類、蛋黃、強化乳品及適度日曬補充。",
+    "bullets": [
+      "每日參考值：10 微克（10 μg / 400 IU）。",
+      "主要功能：促進腸道鈣質吸收、支持骨骼與免疫健康。",
+      "優質來源：鮭魚、蛋黃、乾香菇、強化乳品豆漿。",
+      "日曬輔助：適度溫和日曬有助體內合成維生素 D。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 23,
+      "section": "懷孕中期維生素D補充說明",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

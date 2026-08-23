@@ -1,0 +1,55 @@
+{
+  "id": "MED-PARTNER-T3-LABOR-SIGN-001",
+  "topic": "足月附近：把產兆放在一般陪伴提醒之前",
+  "category": "partner_support",
+  "partner_type": "warning_sign_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "37-40 weeks",
+  "trigger_week": "37-40",
+  "priority": "critical",
+  "frontend_targets": [
+    "partner_weekly_actions",
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "足月附近：把產兆放在一般陪伴提醒之前",
+    "summary": "足月（≥37週）隨時可能臨盆，神隊友應優先注意產兆發作，若出現陣痛、破水或大出血立即就醫。",
+    "action_items": [
+      "熟悉三大產兆：規則陣痛（約5分鐘一次）、破水（持續流出水樣液體）、落紅/出血",
+      "一旦出現破水或規則陣痛，立即前往產檢醫院急診，切勿以為「再休息看看」",
+      "保持電話通暢，攜帶待產包與雙方證件隨時出發"
+    ],
+    "partner_knowledge": "足月破水或規則陣痛代表分娩過程已啟動，安全就醫比任何一般陪伴活動都重要。",
+    "why_it_matters": "第一時間正確反應能確保母胎安全順利抵達醫院分娩。",
+    "safety_note": "本警訊優先權為最高 critical，不得以一般「陪她散步休息」覆蓋就醫決策。",
+    "bullets": [
+      "產兆警覺：熟悉規則陣痛、破水與大量出血。",
+      "立即就醫：出現產兆時立即攜待產包前往醫院。",
+      "隨時待命：保持通訊通暢，隨時準備出發陪產。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 18,
+      "section": "足月產兆與陪產就醫",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-LABOR-SIGN-CONTRACTIONS-001",
+    "MED-LABOR-SIGN-ROM-001",
+    "MED-LABOR-SIGN-BLOODY-SHOW-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

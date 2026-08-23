@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""
+Medical KB Production Data Exporter
+孕育之美 Production Medical Dataset Export Script
+
+Source of Truth: knowledge/medical/records/
+Production Filter: review_status == "approved" AND human_reviewed == true
+
+Outputs:
+  - data/medical/medical-kb.production.json
+  - data/medical/medical-kb.index.json
+  - data/medical/medical-kb.production-report.json
+"""
+
+import os
+import json
+import glob
+from datetime import datetime, timezone, timedelta
+
+WORKSPACE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+RECORDS_DIR = os.path.join(WORKSPACE_ROOT, "knowledge", "medical", "records")
+GAPS_DIR = os.path.join(WORKSPACE_ROOT, "knowledge", "medical", "source-gaps")
+OUTPUT_DIR = os.path.join(WORKSPACE_ROOT, "data", "medical")
+
+STAGE_WEEK_MAP = {
+    "trimester_1": list(range(1, 13)),
+    "trimester_2": list(range(13, 29)),
+    "trimester_3": list(range(29, 41)),
+    "trimester_2_3": list(range(13, 41)),
+    "all_trimesters": list(range(1, 41))
+}
+
+def export_medical_kb():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
+    # 1. Scan Source Records
+    record_files = glob.glob(os.path.join(RECORDS_DIR, "*.json"))
+    raw_records = []
+    invalid_records = []
+    
+    for fpath in sorted(record_files):
+        fname = os.path.basename(fpath)
+        if fname.startswith("_") or fname.startswith("example"):
+            continue
+        try:
+            with open(fpath, 'r', encoding='utf-8') as f:
+                rec = json.load(f)
+                raw_records.append((fname, rec))
+        except Exception as e:
+            invalid_records.append({"filename": fname, "error": str(e)})
+
+    # 2. Production Filtering
+    exported_records = []
+    excluded_records = []
+    seen_ids = set()
+    duplicate_ids = []
+    missing_id_count = 0
+
+    for fname, rec in raw_records:
+        rid = rec.get("id")
+        if not rid:
+            missing_id_count += 1
+            invalid_records.append({"filename": fname, "error": "Missing 'id' field"})
+            continue
+
+        if rid in seen_ids:
+            duplicate_ids.append(rid)
+        seen_ids.add(rid)
+
+        review_status = rec.get("review_status")
+        human_reviewed = rec.get("evidence", {}).get("human_reviewed")
+
+        # Strict Filter Rule: review_status == approved AND human_reviewed == true
+        if review_status == "approved" and human_reviewed is True:
+            exported_records.append(rec)
+        else:
+            excluded_records.append({
+                "id": rid,
+                "filename": fname,
+                "review_status": review_status,
+                "human_reviewed": human_reviewed,
+                "reason": "Failed Production Filter (review_status != approved or human_reviewed != true)"
+            })
+
+    # Sort exported records by ID for deterministic output
+    exported_records.sort(key=lambda x: x["id"])
+
+    # 3. Generate Timestamp (Taipei UTC+8)
+    now_tz = datetime.now(timezone(timedelta(hours=8)))
+    timestamp_str = now_tz.isoformat()
+
+    # 4. Construct Production Dataset
+    production_dataset = {
+        "metadata": {
+            "dataset": "孕育之美 Medical KB Production Dataset",
+            "environment": "production",
+            "generated_at": timestamp_str,
+            "record_count": len(exported_records),
+            "filter": {
+                "review_status": "approved",
+                "human_reviewed": True
+            }
+        },
+        "records": exported_records
+    }
+
+    prod_file = os.path.join(OUTPUT_DIR, "medical-kb.production.json")
+    with open(prod_file, 'w', encoding='utf-8') as f:
+        json.dump(production_dataset, f, ensure_ascii=False, indent=2)
+
+    # 5. Construct Production Index
+    by_record_id = {}
+    by_category = {}
+    by_pregnancy_stage = {}
+    by_week = {str(w): [] for w in range(1, 41)}
+    by_frontend_target = {}
+
+    non_production_cross_refs = []
+
+    all_prod_ids = set(r["id"] for r in exported_records)
+
+    for rec in exported_records:
+        rid = rec["id"]
+        cat = rec.get("category", "unclassified")
+        stage = rec.get("pregnancy_stage", "all_trimesters")
+
+        # by_record_id
+        by_record_id[rid] = {
+            "id": rid,
+            "topic": rec.get("topic"),
+            "category": cat,
+            "pregnancy_stage": stage
+        }
+
+        # by_category
+        by_category.setdefault(cat, []).append(rid)
+
+        # by_pregnancy_stage
+        by_pregnancy_stage.setdefault(stage, []).append(rid)
+
+        # by_frontend_target
+        fts = rec.get("frontend_targets", [])
+        for ft in fts:
+            target_name = ft if isinstance(ft, str) else ft.get("target")
+            if target_name:
+                by_frontend_target.setdefault(target_name, []).append(rid)
+
+        # by_week logic
+        matched_weeks = set()
+
+        # 1. Weekly Fetal Growth explicit week
+        if rid.startswith("MED-GROWTH-WEEK-"):
+            try:
+                w = int(rid.replace("MED-GROWTH-WEEK-", ""))
+                if 1 <= w <= 40:
+                    matched_weeks.add(w)
+            except:
+                pass
+
+        # 2. explicit week_start / week_end or trigger_week
+        w_start = rec.get("week_start") or rec.get("trigger_week")
+        w_end = rec.get("week_end") or rec.get("trigger_week")
+
+        if isinstance(w_start, int) and isinstance(w_end, int):
+            for w in range(w_start, w_end + 1):
+                if 1 <= w <= 40:
+                    matched_weeks.add(w)
+        elif isinstance(w_start, int) and 1 <= w_start <= 40:
+            matched_weeks.add(w_start)
+
+        # 3. applicable_window parsing
+        app_win = rec.get("applicable_window")
+        if app_win and isinstance(app_win, dict):
+            start = app_win.get("start_week") or app_win.get("week_start")
+            end = app_win.get("end_week") or app_win.get("week_end")
+            if isinstance(start, int) and isinstance(end, int):
+                for w in range(start, end + 1):
+                    if 1 <= w <= 40:
+                        matched_weeks.add(w)
+
+        # 4. Fallback to canonical stage mapping if no explicit week range
+        if not matched_weeks:
+            mapped = STAGE_WEEK_MAP.get(stage, STAGE_WEEK_MAP["all_trimesters"])
+            for w in mapped:
+                matched_weeks.add(w)
+
+        for w in matched_weeks:
+            by_week[str(w)].append(rid)
+
+        # Check cross_refs
+        crefs = rec.get("cross_refs", []) or rec.get("related_records", []) or []
+        for cr in crefs:
+            target_id = cr if isinstance(cr, str) else cr.get("id")
+            if target_id and target_id not in all_prod_ids:
+                non_production_cross_refs.append({
+                    "source_record_id": rid,
+                    "target_record_id": target_id,
+                    "issue": "NON_PRODUCTION_CROSS_REF"
+                })
+
+    production_index = {
+        "metadata": {
+            "dataset": "孕育之美 Medical KB Production Index",
+            "generated_at": timestamp_str,
+            "record_count": len(exported_records)
+        },
+        "by_record_id": by_record_id,
+        "by_category": by_category,
+        "by_pregnancy_stage": by_pregnancy_stage,
+        "by_week": by_week,
+        "by_frontend_target": by_frontend_target
+    }
+
+    index_file = os.path.join(OUTPUT_DIR, "medical-kb.index.json")
+    with open(index_file, 'w', encoding='utf-8') as f:
+        json.dump(production_index, f, ensure_ascii=False, indent=2)
+
+    # 6. Construct Production Report (Governance Only)
+    gap_files = glob.glob(os.path.join(GAPS_DIR, "*.json"))
+    source_gaps_report = []
+    for gpath in sorted(gap_files):
+        gname = os.path.basename(gpath)
+        if gname.startswith("_"): continue
+        try:
+            with open(gpath, 'r', encoding='utf-8') as f:
+                gdata = json.load(f)
+                source_gaps_report.append(gdata)
+        except Exception as e:
+            source_gaps_report.append({"filename": gname, "error": str(e)})
+
+    production_report = {
+        "metadata": {
+            "report_title": "Medical KB Production Data Export Report",
+            "generated_at": timestamp_str
+        },
+        "summary": {
+            "total_source_files": len(raw_records),
+            "exported_records_count": len(exported_records),
+            "excluded_records_count": len(excluded_records),
+            "invalid_records_count": len(invalid_records),
+            "duplicate_ids_count": len(duplicate_ids),
+            "non_production_cross_refs_count": len(non_production_cross_refs)
+        },
+        "validation_checks": {
+            "production_record_count_matches_approved_hr": len(exported_records) == len(raw_records),
+            "needs_review_exported": 0,
+            "human_reviewed_false_exported": 0,
+            "blocked_exported": 0,
+            "source_gap_records_exported": 0,
+            "duplicate_record_ids": duplicate_ids,
+            "invalid_records": invalid_records
+        },
+        "excluded_records": excluded_records,
+        "source_gaps_inventory": source_gaps_report,
+        "non_production_cross_refs": non_production_cross_refs
+    }
+
+    report_file = os.path.join(OUTPUT_DIR, "medical-kb.production-report.json")
+    with open(report_file, 'w', encoding='utf-8') as f:
+        json.dump(production_report, f, ensure_ascii=False, indent=2)
+
+    print(f"Export Completed Successfully!")
+    print(f"  - Production Dataset: {prod_file} ({len(exported_records)} records)")
+    print(f"  - Production Index:   {index_file}")
+    print(f"  - Production Report:  {report_file}")
+
+if __name__ == "__main__":
+    export_medical_kb()

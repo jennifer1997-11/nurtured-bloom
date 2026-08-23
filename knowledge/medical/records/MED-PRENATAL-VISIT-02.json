@@ -1,0 +1,75 @@
+{
+  "id": "MED-PRENATAL-VISIT-02",
+  "topic": "第 2 次產檢（建議 12 週）時程與檢查項目",
+  "category": "prenatal_checkup",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "visit_number": 2,
+  "recommended_gestational_week": 12,
+  "recommended_window": "未滿13週",
+  "week_start": 12,
+  "week_end": 12,
+  "content": {
+    "title": "第 2 次產檢（建議 12 週）",
+    "summary": "第 2 次公費產檢（建議孕週：第 12 週）。問診：孕期生理適應與不適症狀 身體檢查：體重、血壓 血液常規檢查（白血球 WBC、紅血球 RBC、血小板 Plt、血球容積比 Hct、血色素 Hb、平均紅血球體積 MCV） ABO 血型及 Rh 因子檢驗 德國麻疹抗體檢驗 (Rubella IgG) B 型肝炎血清標誌檢驗 (HBsAg, HBeAg) 梅毒檢查 (VDRL / RPR) 愛滋病毒篩檢 (Anti-HIV) 尿液常規檢查",
+    "routine_checkups": [
+      "問診：孕期生理適應與不適症狀",
+      "身體檢查：體重、血壓",
+      "實驗室檢查／驗尿：尿蛋白、尿糖"
+    ],
+    "specific_tests": [
+      "血液常規檢查（白血球 WBC、紅血球 RBC、血小板 Plt、血球容積比 Hct、血色素 Hb、平均紅血球體積 MCV）",
+      "ABO 血型及 Rh 因子檢驗",
+      "德國麻疹抗體檢驗 (Rubella IgG)",
+      "B 型肝炎血清標誌檢驗 (HBsAg, HBeAg)",
+      "梅毒檢查 (VDRL / RPR)",
+      "愛滋病毒篩檢 (Anti-HIV)",
+      "尿液常規檢查"
+    ],
+    "publicly_funded_items": [
+      "例行檢查（問診、身體檢查、尿蛋白、尿糖）",
+      "基礎血液與尿液常規檢驗套組（含血型、Rh、德國麻疹、B肝、梅毒、愛滋）"
+    ],
+    "health_education": [
+      "初次血液檢驗結果說明與孕期生活照顧衛教指導"
+    ],
+    "notes": [
+      "基礎血液與尿液檢查於第2次產檢（約12週）執行。"
+    ],
+    "bullets": [
+      "建議孕週：第 12 週（檢查區間：未滿13週）。",
+      "例行檢查：問診、身體檢查、實驗室檢查／驗尿",
+      "特定檢驗／檢查：血液常規檢查（白血球 WBC、紅血球 RBC、血小板 Plt、血球容積比 Hct、血色素 Hb、平均紅血球體積 MCV）；ABO 血型及 Rh 因子檢驗；德國麻疹抗體檢驗 (Rubella IgG)；B 型肝炎血清標誌檢驗 (HBsAg, HBeAg)；梅毒檢查 (VDRL / RPR)；愛滋病毒篩檢 (Anti-HIV)；尿液常規檢查",
+      "公費項目：例行檢查（問診、身體檢查、尿蛋白、尿糖）；基礎血液與尿液常規檢驗套組（含血型、Rh、德國麻疹、B肝、梅毒、愛滋）",
+      "衛教指導：初次血液檢驗結果說明與孕期生活照顧衛教指導"
+    ],
+    "cta": "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "產檢時間表懷孕3階段（第 2 次產檢 建議 12 週）",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 4,
+      "section": "PART 1 孕媽咪和胎兒的變化（產檢時程 第 2 次）",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4839",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據國健署孕媽咪健康手冊與衛教手冊（115年6月版）產檢時間表建立 Candidate Record，保留 needs_review / human_reviewed: false 等待人工審核。"
+}

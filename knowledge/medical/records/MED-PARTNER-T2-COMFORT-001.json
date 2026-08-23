@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-T2-COMFORT-001",
+  "topic": "孕中期：陪伴面對身體變化",
+  "category": "partner_support",
+  "partner_type": "maternal_comfort_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-28 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "孕中期：陪伴面對身體變化",
+    "summary": "孕中期腹部漸大、可能出現腰痠背痛、水腫或皮膚妊娠紋，神隊友給予按摩與體諒。",
+    "action_items": [
+      "幫忙按摩肩頸與腰背，協助塗抹保濕乳液舒緩肚皮張力",
+      "準備合適腳墊讓伴侶休息時抬高下肢舒緩水腫",
+      "陪伴適度散步運動，協助搬運重物"
+    ],
+    "partner_knowledge": "腹部隆起使身體重心前移，腰背肌群持續受力，按摩與適度休息能大幅緩解痠痛。",
+    "why_it_matters": "貼心的局部按摩與溫柔撫慰，能促進兩人感情與情緒安定。",
+    "safety_note": "若水腫快速擴及臉部手部或伴隨劇烈頭痛，應警覺為 Red Flag 迅速就醫。",
+    "bullets": [
+      "按摩撫慰：協助肩頸腰背按摩與保濕乳液塗抹。",
+      "抬腳舒緩：準備腳墊協助下肢抬高舒緩水腫。",
+      "體力支援：主動提重物，陪伴溫和散步活動。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 8,
+      "section": "孕中期身體變化與陪伴",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-SYMPTOM-T2-BACK-PAIN-001",
+    "MED-RED-FLAG-FACE-HAND-SWELLING-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

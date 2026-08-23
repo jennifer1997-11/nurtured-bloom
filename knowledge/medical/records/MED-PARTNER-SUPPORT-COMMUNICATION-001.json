@@ -1,0 +1,50 @@
+{
+  "id": "MED-PARTNER-SUPPORT-COMMUNICATION-001",
+  "topic": "給剛剛好的關心",
+  "category": "partner_support",
+  "partner_type": "maternal_comfort_support",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "給剛剛好的關心",
+    "summary": "以傾聽與體諒回應伴侶的情緒需求，主動詢問「現在需要什麼幫忙」，避免說教與過度關心壓力。",
+    "action_items": [
+      "主動溫柔詢問：「今天感覺怎麼樣？有什麼我可以幫忙的嗎？」",
+      "耐心傾聽伴侶的焦慮或不適，給予擁抱與同理，不急著指責或說教",
+      "尊重伴侶的休息意願，給予適度個人空間，避免過度窒息式的緊盯"
+    ],
+    "partner_knowledge": "孕期情緒起伏多源於賀爾蒙與對未來的擔憂，溫暖的傾聽比給予大道理更能安撫心靈。",
+    "why_it_matters": "剛剛好的關心能讓伴侶感受尊重與支持，不會感到被掌控或講評。",
+    "safety_note": "避免說出「妳太敏感了」、「大家懷孕都這樣」等否定同理心的話語。",
+    "bullets": [
+      "主動詢問：問問伴侶現在最需要什麼幫忙。",
+      "同理傾聽：耐心陪伴傾聽，不批判說教。",
+      "適度空間：給予溫暖支持，同時尊重休息空間。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 5,
+      "section": "情緒支持與溝通",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

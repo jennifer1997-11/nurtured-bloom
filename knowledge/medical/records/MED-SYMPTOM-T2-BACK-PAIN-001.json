@@ -1,0 +1,56 @@
+{
+  "id": "MED-SYMPTOM-T2-BACK-PAIN-001",
+  "topic": "腰痠背痛",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "腰痠背痛",
+    "severity": "self_care",
+    "summary": "懷孕中後期隨著胎兒體重增加與姿勢改變，腰背肌群負擔加重，易產生痠痛感。",
+    "common_presentations": [
+      "下背部、腰部或骨盆兩側肌肉痠痛、姿勢改變時加重"
+    ],
+    "self_care_or_actions": [
+      "避免久站、久坐與提搬重物",
+      "坐立時保持良好姿勢，可以舒適度適時使用托腹帶",
+      "適度進行腰背伸展運動、局部熱敷或輕柔按摩"
+    ],
+    "red_flags": [
+      "持續性腰痠且伴隨腹部變硬收縮",
+      "劇烈腰痛延伸至下肢麻木無力"
+    ],
+    "when_to_seek_care": "若出現「持續腰痠伴隨腹部變硬」屬早產或危險徵兆，應儘速就醫。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "腰痠持續加重且休息無效",
+      "urgent_if": "持續腰痠且伴隨腹部規律變硬（宮縮危險徵兆）",
+      "do_not_reassure_if": "腰痠伴隨宮縮變硬（未滿37週需防早產）"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 18,
+      "section": "懷孕中期常見小問題",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "MED-PARTNER-SUPPORT-LABOR-COMPANION-001",
+  "topic": "待產時耐心陪伴",
+  "category": "partner_support",
+  "partner_type": "labor_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "labor_preparation_and_labor",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "待產時耐心陪伴",
+    "summary": "產房待產時保持冷靜，用正向話語鼓勵，協助擦汗、補充水分，並配合醫護人員指導。",
+    "action_items": [
+      "待產全程保持沉著冷靜，給予伴侶堅定的眼神與正向鼓勵話語",
+      "陣痛間歇時協助小口補充水分、擦拭汗水，協助調整舒適姿勢",
+      "經醫護人員評估許可下，適度給予腰背按摩或引導拉瑪澤呼吸",
+      "隨時回應產婦需求，成為產婦與醫護人員溝通的堅強後盾"
+    ],
+    "partner_knowledge": "陪產者的鎮定與溫柔陪伴，能刺激產婦體內催產素分泌，幫助減痛與產程進展。",
+    "why_it_matters": "在最艱辛的分娩時刻親自陪伴，是伴侶一輩子最深刻珍貴的依靠。",
+    "safety_note": "任何下床走動、按摩或飲食補助均應事先詢問醫護人員是否適宜。",
+    "bullets": [
+      "鎮定陪伴：保持沉著冷靜，給予堅定正向鼓勵。",
+      "細心照顧：陣痛間歇協助擦汗、補水與調整姿勢。",
+      "醫護配合：任何減痛動作均配合醫護專業指導。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 19,
+      "section": "產房陪產與減痛技巧",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

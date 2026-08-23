@@ -1,0 +1,60 @@
+{
+  "id": "MED-NUTRITION-T1-OVERVIEW-001",
+  "topic": "懷孕初期飲食營養重點",
+  "category": "pregnancy_nutrition_stage",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "less_than_13_weeks",
+  "content": {
+    "title": "懷孕初期飲食營養重點",
+    "daily_reference_value": "Calories +0 kcal, Protein +10 g",
+    "unit": "kcal_and_g_per_day",
+    "purpose": "維持母體基礎健康與胚胎初期器官分化發展，無需過度增加熱量攝取。",
+    "food_sources": [
+      "深綠色蔬菜",
+      "瘦肉",
+      "豆類",
+      "全穀類",
+      "蛋黃"
+    ],
+    "recommendations": [
+      "熱量需求：不需特別增加（+0 大卡）",
+      "蛋白質：每日增加 10 公克",
+      "葉酸、鐵、碘、維生素 B12：整個孕期都要攝取足量",
+      "飲食以營養均衡為原則，非「一人吃兩人補」"
+    ],
+    "avoid_or_limit": [
+      "避免空腹過久",
+      "避免油膩與重口味刺激性食物",
+      "若孕吐胃口不佳，勿強迫進食"
+    ],
+    "special_notes": [
+      "孕吐或胃口不佳時不必擔心胎兒營養不足，胚胎初期熱量需求低，可依身體狀況彈性調整飲食。"
+    ],
+    "summary": "懷孕初期（<13週）熱量不需特別增加（+0大卡），蛋白質每日增加10公克，重點在於足量攝取葉酸、鐵、碘與B12，以均衡飲食為原則。",
+    "bullets": [
+      "每日熱量：較孕前增加 0 大卡（+0 kcal/day）。",
+      "蛋白質：每日增加 10 公克（+10 g/day）。",
+      "重點營養素：葉酸 (600 μg)、鐵 (15 mg)、碘 (225 μg)、維生素 B12 (2.6 μg)。",
+      "飲食心態：初期若孕吐胃口差不必強迫進食，依狀況調整適度少量多餐。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 8,
+      "section": "懷孕初期飲食營養重點",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

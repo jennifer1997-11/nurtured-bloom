@@ -1,0 +1,57 @@
+{
+  "id": "MED-LIFESTYLE-PSYCHOSOCIAL-SUPPORT-001",
+  "topic": "孕期心理支持與家人陪伴",
+  "category": "pregnancy_psychosocial_support",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期心理支持與家人陪伴",
+    "summary": "孕期體內賀爾蒙與角色轉換易引發情緒波動，需要伴侶與家人給予理解、陪伴與實質分擔。",
+    "recommendations": [
+      "孕媽咪感到情緒壓力時，主動向伴侶或家人表達感受與需求",
+      "伴侶積極陪伴參與產檢，共同學習孕產與育兒知識",
+      "家人主動分擔家務，提供充份休息空間與情緒支持"
+    ],
+    "avoid_or_cautions": [
+      "避免將所有孕期準備與家事負擔單獨落於孕婦一人",
+      "避免過度關心造成孕婦心理負擔與壓力"
+    ],
+    "stop_and_seek_help_if": [
+      "若出現持續情緒低落、嚴重焦慮或無助感，應尋求專業心理或醫療諮詢"
+    ],
+    "special_conditions": [
+      "本 Record 為支持性衛教，不作為心理疾病之診斷"
+    ],
+    "bullets": [
+      "情緒表達：孕媽咪適時向家人表達情緒與實質需求。",
+      "神隊友陪伴：伴侶陪同產檢、分擔家事並給予心理支持。",
+      "尋求協助：情緒長期低落焦慮時主動諮詢專業醫療。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 1,
+      "section": "孕期心理變化與支持",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 6,
+      "section": "神隊友陪伴與家事分擔",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

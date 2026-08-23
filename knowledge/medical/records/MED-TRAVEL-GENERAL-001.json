@@ -1,0 +1,58 @@
+{
+  "id": "MED-TRAVEL-GENERAL-001",
+  "topic": "孕期外出旅行一般原則",
+  "category": "pregnancy_travel",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期外出旅行一般原則",
+    "summary": "孕期出行應評估身體狀況，安排鬆緩行程，隨身攜帶媽媽手冊與健保卡，有高危風險者應先諮詢醫師。",
+    "recommendations": [
+      "行程安排宜鬆緩，避免緊湊疲勞",
+      "隨身攜帶《孕媽咪健康手冊》與健保卡",
+      "事先了解目的地周邊醫療資源與緊急聯絡方式",
+      "高危險妊娠或有安胎病史者出遊前應諮詢婦產科醫師"
+    ],
+    "avoid_or_cautions": [
+      "避免去衛生條件不佳、傳染病流行或醫療不便之地區",
+      "避免參加劇烈顛簸或高冒險性旅遊活動"
+    ],
+    "stop_and_seek_help_if": [
+      "旅途中若出現出血、腹痛、宮縮或破水應立即於當地就醫"
+    ],
+    "special_conditions": [
+      "懷孕中期（14–28 週）通常為身體較平穩舒適之出遊時機"
+    ],
+    "bullets": [
+      "準備工作：隨身攜帶孕媽咪健康手冊與健保卡，確認當地醫療。",
+      "行程原則：步調鬆緩避免過度奔波疲勞。",
+      "醫療諮詢：有合併症或高危風險者出遊前應諮詢醫師。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 18,
+      "section": "懷孕初期外出旅遊",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 33,
+      "section": "懷孕中期外出旅行",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

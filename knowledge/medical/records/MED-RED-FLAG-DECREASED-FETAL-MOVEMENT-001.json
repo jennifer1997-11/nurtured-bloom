@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-DECREASED-FETAL-MOVEMENT-001",
+  "topic": "胎動停止或比平常活動量少一半",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20-40 weeks",
+  "content": {
+    "title": "胎動停止或比平常活動量少一半",
+    "severity": "urgent",
+    "summary": "【危險徵兆】胎動為胎兒健康關鍵指標！若感覺胎動完全停止或活動量較平日減少一半以上屬緊急警訊。",
+    "common_presentations": [
+      "長時間未感受胎動，或仔細胎動計數明顯低於平日平均的一半"
+    ],
+    "self_care_or_actions": [
+      "可先吃少許食物或喝溫水，左側臥靜心記錄胎動 1 小時，若仍無反應需立刻就醫"
+    ],
+    "red_flags": [
+      "胎動停止或比平常活動量少一半"
+    ],
+    "when_to_seek_care": "應立即前往產科急診進行胎兒心音與超音波監視評估。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "感覺胎動減少",
+      "urgent_if": "胎動停止或活動量少於平常的一半",
+      "do_not_reassure_if": "絕對不可因「後期空間變小胎動會減少」而弱化此警訊！"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

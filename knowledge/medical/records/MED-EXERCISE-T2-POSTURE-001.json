@@ -1,0 +1,51 @@
+{
+  "id": "MED-EXERCISE-T2-POSTURE-001",
+  "topic": "孕中期運動姿勢調整",
+  "category": "pregnancy_exercise_adjustment",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13_to_less_than_29_weeks",
+  "content": {
+    "title": "孕中期運動姿勢調整",
+    "summary": "孕中期肚圍漸大、重心轉移，運動時應特別留意身體姿勢平衡，避免過度伸展與過度彎曲。",
+    "recommendations": [
+      "運動原則延續初期，每週維持至少 150 分鐘身體活動",
+      "動作宜和緩，特別留意姿勢平衡與穩定",
+      "找家人或伴侶陪伴運動，增加樂趣與安全性"
+    ],
+    "avoid_or_cautions": [
+      "避免關節過度彎曲、過度扭轉或過度拉伸延伸",
+      "避免突發快速改變方向之動作"
+    ],
+    "stop_and_seek_help_if": [
+      "運動中出現腹部變硬宮縮、頭暈或喘不過氣應立即停止"
+    ],
+    "special_conditions": [
+      "鬆弛素分泌增加使關節較鬆弛，伸展動作宜適度"
+    ],
+    "bullets": [
+      "姿勢要點：避免關節過度彎曲、扭轉或過度拉伸。",
+      "活動持續：每週維持至少 150 分鐘中等強度活動。",
+      "家人陪伴：邀請伴侶或家人陪伴運動提高安全與動力。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 32,
+      "section": "懷孕中期規律運動姿勢調整",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

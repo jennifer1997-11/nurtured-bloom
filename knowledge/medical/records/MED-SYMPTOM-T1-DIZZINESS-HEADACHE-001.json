@@ -1,0 +1,57 @@
+{
+  "id": "MED-SYMPTOM-T1-DIZZINESS-HEADACHE-001",
+  "topic": "頭暈／頭痛",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "頭暈／頭痛",
+    "severity": "monitor",
+    "summary": "懷孕初期姿勢改變或賀爾蒙變化易引發輕微頭暈頭痛，需注意休息與避免姿態性低血壓。",
+    "common_presentations": [
+      "站立或改變姿勢時感到頭昏眼花",
+      "顳側或頭部輕微鈍痛、疲倦"
+    ],
+    "self_care_or_actions": [
+      "避免同一姿勢站立或坐太久，起身動作宜放慢",
+      "適度安排活動與充分休息，避免過度勞累",
+      "可做肩頸輕柔伸展或局部按摩放鬆"
+    ],
+    "red_flags": [
+      "持續不退或突發性劇烈頭痛",
+      "頭痛伴隨視力模糊、手腳浮腫或血壓偏高"
+    ],
+    "when_to_seek_care": "若出現持續或劇烈頭痛、休息無法緩解時，應儘速就醫檢查。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "頭痛持續不退或休息後仍未好轉",
+      "urgent_if": "劇烈頭痛伴隨視力模糊、右上腹痛或血壓過高",
+      "do_not_reassure_if": "中後期突發劇烈頭痛（需防範子癲前症）"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "懷孕初期常見小問題",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

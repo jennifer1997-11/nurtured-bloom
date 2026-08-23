@@ -1,0 +1,40 @@
+{
+  "id": "MED-STAGE-T2-001",
+  "topic": "懷孕中期概覽",
+  "category": "mother_changes",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "week_start": 13,
+  "week_end": 28,
+  "content": {
+    "summary": "懷孕中期為13週至未滿29週；此階段多數孕媽咪孕吐會減輕，腹部逐漸明顯，並可能出現腰痠背痛、腳抽筋、水腫等孕期不適。",
+    "bullets": [
+      "懷孕中期建議於第16、20、24、28週進行產檢。",
+      "第一胎大約在16至20週可感受到胎動，第二胎可能更早。",
+      "每週維持至少150分鐘的身體活動。"
+    ],
+    "cta": "若有不適或個人醫療疑問，請諮詢婦產科醫師。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 5,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕中期",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": false
+  },
+  "review_status": "needs_review",
+  "reviewer": null,
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "示範資料。正式上線前請以原始PDF人工再次核對。"
+}

@@ -1,0 +1,55 @@
+{
+  "id": "MED-NUTRITION-ALCOHOL-001",
+  "topic": "懷孕期間避免飲酒",
+  "category": "pregnancy_food_avoidance",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "懷孕期間避免飲酒",
+    "daily_reference_value": "0 g (Avoid completely)",
+    "unit": "zero_tolerance",
+    "purpose": "完全預防胎兒酒精症候群 (FAS) 與胎兒發育遲緩風險。",
+    "food_sources": [
+      "葡萄酒/紅酒",
+      "啤酒",
+      "調酒/烈酒",
+      "含酒精料理（如未完全揮發之酒釀/麻油雞）"
+    ],
+    "recommendations": [
+      "懷孕全階段應完全避免飲酒（Avoid alcohol completely）",
+      "選擇無酒精替代飲品"
+    ],
+    "avoid_or_limit": [
+      "嚴禁飲用任何含有酒精成分之酒類與飲料",
+      "不提供任何「安全酒量」或「少量可飲」建議"
+    ],
+    "special_notes": [
+      "酒精會通過胎盤影響胎兒，可能造成胎兒酒精症候群、生長遲緩及智能障礙。"
+    ],
+    "summary": "懷孕期間應完全避免飲酒，酒精會增加胎兒酒精症候群與發育遲緩風險，孕期沒有任何安全的飲酒量。",
+    "bullets": [
+      "建議原則：懷孕期間完全避免飲酒（Avoid alcohol）。",
+      "風險提示：增加胎兒酒精症候群 (FAS)、生長遲緩及智能障礙風險。",
+      "系統規範：絕不提供「安全酒量」或「少許無妨」之宣稱。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 13,
+      "section": "孕期避酒說明",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

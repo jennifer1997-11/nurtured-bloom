@@ -1,0 +1,46 @@
+{
+  "id": "MED-PRENATAL-OPTIONAL-04",
+  "topic": "脊髓性肌肉萎縮症（SMA）帶因者基因篩檢",
+  "category": "carrier_screening",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "preconception_or_pregnancy",
+  "content": {
+    "title": "脊髓性肌肉萎縮症（SMA）帶因者基因篩檢",
+    "purpose": "了解準父母／孕婦是否為 SMA 隱性遺傳基因帶因者，協助評估胎兒遺傳風險。",
+    "recommended_window": "preconception_or_pregnancy",
+    "screening_or_diagnostic": "screening",
+    "invasive": false,
+    "funding_type": "self_paid_or_varies",
+    "suitable_population": "備孕中或懷孕初期欲評估 SMA 帶因風險之夫妻。",
+    "important_limitations": "為單基因體染色體隱性帶因者篩檢（Carrier Screening），不得與「新生兒 SMA 篩檢」混淆。一次抽血終身受用。",
+    "policy_sensitive": false,
+    "summary": "SMA 帶因者基因篩檢（孕前或懷孕早期），抽取母血檢測 SMN1 基因複製數，評估脊髓性肌肉萎縮症帶因風險。",
+    "bullets": [
+      "建議時間：備孕期或懷孕早期（一生一次）。",
+      "檢查性質：父母帶因者篩檢（Carrier Screening）。",
+      "重要區分：屬於父母帶因篩檢，非新生兒篩檢。",
+      "費用型態：自費或依院所方案（self_paid_or_varies）。"
+    ],
+    "disclaimer": "若母親為帶因者，父親需亦接受檢測，以進一步評估胎兒患病機率。"
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "孕期產檢項目建議指南",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

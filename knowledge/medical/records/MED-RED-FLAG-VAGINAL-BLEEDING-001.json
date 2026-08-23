@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-VAGINAL-BLEEDING-001",
+  "topic": "陰道出血",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "陰道出血",
+    "severity": "urgent",
+    "summary": "【危險徵兆】孕期任何階段出現陰道出血（不論出血量多少），均屬國健署列管之危險徵兆。",
+    "common_presentations": [
+      "陰道流出點狀血絲、褐色分泌物或鮮紅色血液"
+    ],
+    "self_care_or_actions": [
+      "請立即臥床休息並聯絡就醫，記錄出血量與顏色，不可自行抹藥或灌洗"
+    ],
+    "red_flags": [
+      "陰道出血（不管量多少）"
+    ],
+    "when_to_seek_care": "應立即或儘速前往醫療院所由婦產科醫師評估檢查。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "出現任何陰道出血",
+      "urgent_if": "陰道出血（不管量多少）",
+      "do_not_reassure_if": "不可回答「少量血絲沒關係」"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

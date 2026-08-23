@@ -1,0 +1,57 @@
+{
+  "id": "MED-NUTRIENT-PROTEIN-001",
+  "topic": "孕期蛋白質",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期蛋白質",
+    "daily_reference_value": "+10 g compared with non-pregnant requirement",
+    "unit": "g_per_day",
+    "purpose": "建造與修補母體組織、胎盤及胎兒器官肌肉成長。",
+    "food_sources": [
+      "豆類與豆製品（豆腐/豆干）",
+      "魚類與海鮮",
+      "蛋類",
+      "肉類（禽肉/畜肉）",
+      "乳品類"
+    ],
+    "recommendations": [
+      "孕期各階段皆建議較平時每日增加 10 公克蛋白質",
+      "優先選擇優質蛋白質（豆、魚、蛋、肉、奶類）",
+      "素食孕婦應多元搭配豆類與全穀類以獲得完整胺基酸"
+    ],
+    "avoid_or_limit": [
+      "避免過度依賴高脂肪高鹽分的加工肉品（如香腸、臘肉）"
+    ],
+    "special_notes": [
+      "一般成人每日蛋白質可用體重 (kg) × 1.1g 估算，孕期在此基礎上每日額外 +10g。"
+    ],
+    "summary": "孕期全階段每日建議額外增加 10 公克蛋白質，優先選擇優質蛋白質食物如豆魚蛋肉奶類，幫助胎兒組織與器官建造。",
+    "bullets": [
+      "每日參考值：較孕前增加 10 公克（+10 g/day）。",
+      "主要功能：胎兒細胞器官發育與母體組織增建。",
+      "優質來源：豆製品、鮮魚、雞蛋、瘦肉、牛奶。",
+      "飲食提示：素食者可藉由黃豆製品與穀類搭配補足。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 8,
+      "section": "孕期蛋白質補充指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

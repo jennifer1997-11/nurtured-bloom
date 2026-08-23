@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "report_title": "Medical KB Production Data Export Report",
+    "generated_at": "2026-08-21T13:38:17.271486+08:00"
+  },
+  "summary": {
+    "total_source_files": 172,
+    "exported_records_count": 172,
+    "excluded_records_count": 0,
+    "invalid_records_count": 0,
+    "duplicate_ids_count": 0,
+    "non_production_cross_refs_count": 0
+  },
+  "validation_checks": {
+    "production_record_count_matches_approved_hr": true,
+    "needs_review_exported": 0,
+    "human_reviewed_false_exported": 0,
+    "blocked_exported": 0,
+    "source_gap_records_exported": 0,
+    "duplicate_record_ids": [],
+    "invalid_records": []
+  },
+  "excluded_records": [],
+  "source_gaps_inventory": [
+    {
+      "gap_id": "GAP-STAGE-WEEKLY-GROWTH-001",
+      "topic": "孕期1-40週逐週胎兒身長體重與代表性比喻",
+      "gap_status": "SOURCE_GAP_LOCAL",
+      "taiwan_policy_specific": false,
+      "requested_fields": [
+        "weekly_fetal_length_crl",
+        "weekly_fetal_weight_gram",
+        "weekly_fruit_vegetable_analogy"
+      ],
+      "searched_sources": [
+        "HPA-MOTHER-EDU-2026-06",
+        "HPA-MOTHER-HEALTH-2026-06"
+      ],
+      "candidate_sources": [
+        "NHS-OFFICIAL-WEB",
+        "WHO-OFFICIAL-WEB"
+      ],
+      "resolution": "resolved",
+      "created_at": "2026-08-19",
+      "notes": "本地國健署手冊無1-40週逐週身長與體重資料。經人類審核員正式核准導入權威外部來源：身長與大小比喻引用 UK NHS (Best Start in Life week-by-week guide)；體重參考值引用 WHO Fetal Growth Charts (sex-neutral EFW 50th percentile)。人類審核完成，紀錄已全數 approved，本缺口正式結案 (resolved)。",
+      "resolved_at": "2026-08-20"
+    }
+  ],
+  "non_production_cross_refs": []
+}

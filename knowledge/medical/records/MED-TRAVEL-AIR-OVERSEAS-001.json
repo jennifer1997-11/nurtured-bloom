@@ -1,0 +1,51 @@
+{
+  "id": "MED-TRAVEL-AIR-OVERSEAS-001",
+  "topic": "孕期搭機與海外旅行",
+  "category": "pregnancy_travel",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期搭機與海外旅行",
+    "summary": "孕期搭機前應評估身體狀況，準備相關醫療文件；各航空公司搭機限制屬動態政策，請出發前自行確認。",
+    "recommendations": [
+      "搭機前建議先由產科醫師評估母胎身體健康狀況",
+      "隨身攜帶孕婦健康手冊與英文醫療病歷摘要",
+      "機上多喝水並適時在走道伸展活動雙腿"
+    ],
+    "avoid_or_cautions": [
+      "避免前往醫療資源不足或流行傳染病高風險地區",
+      "搭機週數限制、適航證明等屬航空公司動態政策，本 KB 不硬編碼特定週數規定"
+    ],
+    "stop_and_seek_help_if": [
+      "搭機過程中若出現陣痛、破水或大出血應尋求機上急救並緊急降落就醫"
+    ],
+    "special_conditions": [
+      "若需要特定航空公司搭機週數規定，應查詢最新 Airline Policy，非硬編於 Medical KB"
+    ],
+    "bullets": [
+      "醫師評估：搭機前先請婦產科醫師評估健康適航狀況。",
+      "機上保健：搭機期間多補充水分，定時在走道活動伸展。",
+      "動態政策：各航空公司搭機限制週數與證明文件屬動態政策，請出發前向航空公司確認。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 33,
+      "section": "搭機與海外旅遊衛生指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

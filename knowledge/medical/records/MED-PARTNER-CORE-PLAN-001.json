@@ -1,0 +1,52 @@
+{
+  "id": "MED-PARTNER-CORE-PLAN-001",
+  "topic": "討論生產、哺乳、育兒與家務分工",
+  "category": "partner_support",
+  "partner_type": "birth_parenting_planning",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2_3",
+  "recommended_window": "13-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions",
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "討論生產、哺乳、育兒與家務分工",
+    "summary": "孕中後期主動與伴侶溝通生產計畫、陪產安排、坐月子照顧、哺育方式與產後家務分工。",
+    "action_items": [
+      "與伴侶討論生產願景與減痛需求，並於產檢時與醫師溝通",
+      "討論產後坐月子與照顧方式（月子中心、月嫂或家人協助）",
+      "討論產後哺乳意願與神隊友哺育支持分工",
+      "明確規劃寶寶出生後兩人家務與夜間照顧輪班模式"
+    ],
+    "partner_knowledge": "國健署手冊建議伴侶提前溝通產後育兒分工，能建立共識並大幅降低產後衝突。",
+    "why_it_matters": "雙方充分溝通與尊重，能讓孕媽咪充滿被支持與被重視的安全感。",
+    "safety_note": "不把特定生產方式（自然產/剖腹產）或哺乳方式（母乳/配方奶）描述為唯一標準，尊重個案與醫療建議。",
+    "bullets": [
+      "生產計畫：溝通減痛與陪產需求，尊重伴侶意願。",
+      "月子規劃：確認產後照顧與月子資源安排。",
+      "家務分工：提前溝通產後夜間照顧與家務分工架構。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 22,
+      "section": "生產計畫與產後照顧討論",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

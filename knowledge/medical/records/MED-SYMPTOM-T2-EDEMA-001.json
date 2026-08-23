@@ -1,0 +1,56 @@
+{
+  "id": "MED-SYMPTOM-T2-EDEMA-001",
+  "topic": "下肢水腫",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "下肢水腫",
+    "severity": "self_care",
+    "summary": "孕期子宮擴大壓迫下腔靜脈，導致血液回流較慢，中後期易於下肢出現輕微生理性水腫。",
+    "common_presentations": [
+      "雙腳腳踝、腳背或小腿傍晚出現輕微浮腫，按壓略有凹陷"
+    ],
+    "self_care_or_actions": [
+      "避免長期維持同一站姿或坐姿",
+      "工作或休息時可適度活動腳踝，休息時可以舒適度將雙腿適當抬高",
+      "穿著舒適寬鬆鞋襪，避免過緊束縛"
+    ],
+    "red_flags": [
+      "臉部和手部突發顯著浮腫",
+      "水腫迅速加重且伴隨頭痛、視力模糊或血壓升高"
+    ],
+    "when_to_seek_care": "下肢水腫若延伸至臉部、手部，或伴隨高血壓頭痛，屬子癲前症危險徵兆，應儘速就醫。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "水腫範圍擴大至全身",
+      "urgent_if": "臉部及手部明顯浮腫、伴隨劇烈頭痛或視力模糊",
+      "do_not_reassure_if": "出現手部臉部水腫（此非一般生理水腫）"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 20,
+      "section": "懷孕中期常見小問題",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

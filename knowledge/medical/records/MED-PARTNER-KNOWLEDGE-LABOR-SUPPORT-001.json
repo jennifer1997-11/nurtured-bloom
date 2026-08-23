@@ -1,0 +1,47 @@
+{
+  "id": "MED-PARTNER-KNOWLEDGE-LABOR-SUPPORT-001",
+  "topic": "陪產不是站在旁邊，而是事先準備",
+  "category": "partner_support",
+  "partner_type": "labor_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "陪產不是站在旁邊，而是事先準備",
+    "summary": "陪產者除了現場給予正向鼓勵，更應事先理解產程演變、減痛放術與按摩技巧，並顧好自身體力。",
+    "action_items": [],
+    "partner_knowledge": "伴侶陪產不只是在產房旁觀，而是事先學習呼吸減痛、按摩放鬆與給予情緒支持，成為最強隊友。",
+    "why_it_matters": "萬全的行前準備能讓伴侶在關鍵時刻給予最實質的安撫。",
+    "safety_note": "陪產時應聽從醫護人員指示，不干擾醫療處置進行。",
+    "bullets": [
+      "主動陪產：事先學習減痛按摩與呼吸引導技巧。",
+      "後盾支持：保持體力與沉著，做產婦最強大的依靠。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 19,
+      "section": "神隊友陪產準備",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-PARTNER-SUPPORT-LABOR-COMPANION-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

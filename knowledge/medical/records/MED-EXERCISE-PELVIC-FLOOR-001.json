@@ -1,0 +1,51 @@
+{
+  "id": "MED-EXERCISE-PELVIC-FLOOR-001",
+  "topic": "骨盆底肌運動",
+  "category": "pregnancy_exercise",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "骨盆底肌運動",
+    "summary": "懷孕初期即可開始練習骨盆底肌收縮運動（凱格爾運動），強化骨盆底肌群以預防孕期與產後漏尿失禁。",
+    "recommendations": [
+      "懷孕初期即可開始練習骨盆底肌收縮放鬆",
+      "集中注意力於骨盆底肌群（類似憋尿時的收縮感），收縮持續數秒後放鬆",
+      "每日可分次練習，養成規律習慣"
+    ],
+    "avoid_or_cautions": [
+      "排尿過程中請勿頻繁做收縮訓練，以免影響正常排尿反射",
+      "訓練時臀部與大腿肌肉應保持放鬆，勿憋氣"
+    ],
+    "stop_and_seek_help_if": [
+      "若練習過程中出現腹部疼痛不適應暫停"
+    ],
+    "special_conditions": [
+      "手冊強調有助於預防孕期與產後壓力性尿失禁"
+    ],
+    "bullets": [
+      "開始時機：懷孕初期即可開始進行。",
+      "主要效益：強化骨盆底肌肉支撐力，預防孕期與產後漏尿。",
+      "動作要領：專注收縮骨盆底肌，保持正常呼吸不憋氣。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 17,
+      "section": "骨盆底肌運動",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

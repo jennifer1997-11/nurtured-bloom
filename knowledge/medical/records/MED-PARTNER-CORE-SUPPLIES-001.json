@@ -1,0 +1,50 @@
+{
+  "id": "MED-PARTNER-CORE-SUPPLIES-001",
+  "topic": "準備孕產與育兒用品",
+  "category": "partner_support",
+  "partner_type": "birth_preparation",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2_3",
+  "recommended_window": "13-40 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "準備孕產與育兒用品",
+    "summary": "孕中後期與伴侶一起盤點準備待產包與新生兒必備用品，理解各項用品用途與安全規範。",
+    "action_items": [
+      "與伴侶一起清點並準備待產包（產後衛生棉、看護墊、個人清潔用品）",
+      "盤點新生兒衣物、包巾、奶瓶、嬰兒床與汽車安全座椅",
+      "協助搬運重物與整理幼兒房間環境"
+    ],
+    "partner_knowledge": "提前準備齊全孕產與育兒用品，能在臨盆時迅速提包出發，減少無謂恐慌。",
+    "why_it_matters": "主動參與用品採買與環境整備，能減輕孕媽咪後期的體力負擔。",
+    "safety_note": "汽車安全座椅必須選擇合格規範，並事先於車上正確安裝練習。",
+    "bullets": [
+      "待產準備：提前收拾完成待產包用品。",
+      "育兒盤點：準備新生兒必備衣物、包巾與安全汽座。",
+      "分擔體力：承擔搬運與房間環境佈置等體力活。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 20,
+      "section": "待產包與用品清單",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

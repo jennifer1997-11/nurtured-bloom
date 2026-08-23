@@ -1,0 +1,56 @@
+{
+  "id": "MED-SYMPTOM-T1-URINARY-FREQUENCY-001",
+  "topic": "頻尿",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "頻尿",
+    "severity": "self_care",
+    "summary": "懷孕初期與後期因子宮擴大壓迫膀胱，易出現排尿次數增多，屬常見生理改變。",
+    "common_presentations": [
+      "排尿頻率明顯增加，特別是夜間頻尿"
+    ],
+    "self_care_or_actions": [
+      "有尿意即去排尿，切勿憋尿",
+      "採分散式補充水分，白天充足飲水",
+      "晚餐後至睡前可適度減少水分攝取以改善夜尿"
+    ],
+    "red_flags": [
+      "小便時伴隨灼熱感、刺痛感",
+      "尿量明顯減少、發燒或尿液混濁出血"
+    ],
+    "when_to_seek_care": "若頻尿伴隨小便疼痛、灼熱感或尿量減少，應就醫檢查排除尿道感染。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "排尿疼痛、刺痛、灼熱或尿液有異味",
+      "urgent_if": "伴隨發燒、腰痛或發冷",
+      "do_not_reassure_if": "有小便灼熱疼痛等尿路感染症狀"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "懷孕初期常見小問題",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

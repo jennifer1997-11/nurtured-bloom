@@ -1,0 +1,61 @@
+{
+  "id": "MED-EXERCISE-STOP-WARNING-001",
+  "topic": "運動禁忌與立即停止警訊",
+  "category": "pregnancy_exercise_safety",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "運動禁忌與立即停止警訊",
+    "summary": "高危險妊娠需經醫師評估；運動中若出現陰道出血、腹痛、宮縮、破水或呼吸困難等警訊，應立即停止運動並就醫！",
+    "recommendations": [
+      "高危險妊娠（如早產史、產前出血、前置胎盤、妊娠高血壓）應先諮詢婦產科醫師",
+      "運動中出現任何停止警訊，必須【立即停止運動 (STOP EXERCISE)】",
+      "停止運動後靜坐休息並評估症狀，必要時前往醫院"
+    ],
+    "avoid_or_cautions": [
+      "嚴禁在出現停止警訊時硬撐或「休息一下繼續運動」"
+    ],
+    "stop_and_seek_help_if": [
+      "陰道出血",
+      "腹痛",
+      "規律疼痛的子宮收縮",
+      "陰道流出水樣液體（破水）",
+      "呼吸困難",
+      "頭暈或劇烈頭痛",
+      "肌肉無力影響平衡",
+      "小腿疼痛或腫脹"
+    ],
+    "special_conditions": [
+      "本警訊優先權高於一般運動建議，若與 Batch 03 Red Flag 同時命中，以 Red Flag 就醫建議為優先。"
+    ],
+    "bullets": [
+      "高危評估：高危險妊娠或有孕期合併症者應先諮詢醫師。",
+      "立即停止：出現出血、腹痛、宮縮、破水、喘、頭暈等必須【立即停止運動】。",
+      "安全處置：切勿硬撐或休息後繼續運動，應依警訊導向醫療評估。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 17,
+      "section": "運動安全與停止警訊",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-RED-FLAG-VAGINAL-BLEEDING-001",
+    "MED-RED-FLAG-SEVERE-ABDOMINAL-PAIN-001",
+    "MED-RED-FLAG-RUPTURE-MEMBRANES-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

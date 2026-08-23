@@ -1,0 +1,48 @@
+{
+  "id": "MED-STAGE-T3-MOTHER-001",
+  "topic": "懷孕後期媽咪身體與生理變化",
+  "category": "mother_changes",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "week_start": 29,
+  "week_end": 40,
+  "content": {
+    "summary": "懷孕後期為29週以上，進入產前倒數階段。媽咪體重持續增加、身形明顯，乳房乳暈增大且顏色加深，並可能出現呼吸急促、恥骨痛、失眠、便祕、痔瘡等不適，且越靠近預產期子宮收縮越頻繁。",
+    "bullets": [
+      "體重持續增加，外形明顯可看出是孕婦。",
+      "乳房增大，乳暈變大且顏色加深。",
+      "可能面臨呼吸急促、恥骨痛、失眠、便祕、痔瘡等孕期困擾。",
+      "靠近預產期時，通常子宮收縮的情形會越來越頻繁。",
+      "請密切留意落紅、破水、規則陣痛等三大產兆（37～42週均為正常生產期）。"
+    ],
+    "cta": "若出現規則宮縮陣痛、破水、陰道出血等產兆或危險徵兆，請立即前往醫療院所待產或就醫。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 6,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕後期 29週以上（媽咪的變化）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 9,
+      "section": "產檢時間表懷孕3階段－懷孕後期（29 週以上）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "經人工核對國健署115年6月版衛教手冊與健康手冊，已核准通過。"
+}

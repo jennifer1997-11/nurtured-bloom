@@ -1,0 +1,126 @@
+{
+  "registry_version": "2.0",
+  "last_checked": "2026-08-19",
+  "sources": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "pdf",
+      "title": "孕媽咪衛教手冊",
+      "publisher": "衛生福利部國民健康署",
+      "edition": "115年6月",
+      "official_url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4839",
+      "local_file": "source-files/孕媽咪衛教手冊_115年6月.pdf",
+      "approved": true
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "pdf",
+      "title": "孕媽咪健康手冊",
+      "publisher": "衛生福利部國民健康署",
+      "edition": "115年6月",
+      "official_url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "local_file": "source-files/孕媽咪健康手冊_115年6月.pdf",
+      "approved": true
+    },
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "pdf",
+      "title": "爸爸孕產育兒衛教手冊",
+      "publisher": "衛生福利部國民健康署",
+      "edition": "114年9月",
+      "official_url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4748",
+      "local_file": "source-files/爸爸孕產育兒衛教手冊_114年9月.pdf",
+      "approved": true
+    },
+    {
+      "source_id": "HPA-MAMMY-WEB",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "website",
+      "title": "孕產兒關懷網站",
+      "publisher": "衛生福利部國民健康署",
+      "approved_domains": [
+        "mammy.hpa.gov.tw"
+      ],
+      "approved": true
+    },
+    {
+      "source_id": "HPA-OFFICIAL-WEB",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "website",
+      "title": "衛生福利部國民健康署",
+      "publisher": "衛生福利部國民健康署",
+      "approved_domains": [
+        "hpa.gov.tw"
+      ],
+      "approved": true
+    },
+    {
+      "source_id": "MOHW-OFFICIAL-WEB",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "website",
+      "title": "衛生福利部",
+      "publisher": "衛生福利部",
+      "approved_domains": [
+        "mohw.gov.tw"
+      ],
+      "approved": true
+    },
+    {
+      "source_id": "WHO-OFFICIAL-WEB",
+      "priority": 2,
+      "jurisdiction": "INTL",
+      "type": "website",
+      "title": "World Health Organization",
+      "publisher": "WHO",
+      "approved_domains": [
+        "who.int"
+      ],
+      "approved": true
+    },
+    {
+      "source_id": "ACOG-OFFICIAL-WEB",
+      "priority": 2,
+      "jurisdiction": "US",
+      "type": "website",
+      "title": "American College of Obstetricians and Gynecologists",
+      "publisher": "ACOG",
+      "approved_domains": [
+        "acog.org"
+      ],
+      "approved": true
+    },
+    {
+      "source_id": "NHS-OFFICIAL-WEB",
+      "priority": 2,
+      "jurisdiction": "UK",
+      "type": "website",
+      "title": "NHS Best Start in Life – Week-by-week guide to pregnancy",
+      "publisher": "UK National Health Service (NHS)",
+      "approved_domains": [
+        "nhs.uk"
+      ],
+      "approved": true
+    },
+    {
+      "source_id": "CDC-OFFICIAL-WEB",
+      "priority": 1,
+      "jurisdiction": "TW",
+      "type": "website",
+      "title": "衛生福利部疾病管制署",
+      "publisher": "衛生福利部疾病管制署",
+      "approved_domains": [
+        "cdc.gov.tw"
+      ],
+      "approved": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "id": "MED-EXERCISE-ENVIRONMENT-HYDRATION-001",
+  "topic": "運動環境、熱量與補水",
+  "category": "pregnancy_exercise_safety",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "運動環境、熱量與補水",
+    "summary": "運動應選擇通風涼爽場所，避免在高溫環境運動，並隨時補充水分與注意血糖。",
+    "recommendations": [
+      "選擇通風涼爽或有空調之場所運動",
+      "運動過程中隨時適量補充白開水，避免脫水",
+      "避免空腹過久後運動，運動前可適度補充輕食點心"
+    ],
+    "avoid_or_cautions": [
+      "避免在溫度高於 32°C (>32°C) 之過熱或悶熱場地運動",
+      "避免在高溫烈日下曝曬運動"
+    ],
+    "stop_and_seek_help_if": [
+      "運動中出現大量冒冷汗、頭暈、發冷或心悸（低血糖或體溫過高警訊）應停止"
+    ],
+    "special_conditions": [
+      "體溫遽升可能影響胎兒，通風散熱極為重要"
+    ],
+    "bullets": [
+      "高溫禁忌：避免在 >32°C 之過熱或悶熱環境下運動。",
+      "通風環境：選擇涼爽、通風良好或有空調之場地。",
+      "水分血糖：運動中適時補水，避免空腹過久運動防止低血糖。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 16,
+      "section": "運動環境與安全衛教",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

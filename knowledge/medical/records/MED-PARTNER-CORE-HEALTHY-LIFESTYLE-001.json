@@ -1,0 +1,52 @@
+{
+  "id": "MED-PARTNER-CORE-HEALTHY-LIFESTYLE-001",
+  "topic": "一起改善生活習慣",
+  "category": "partner_support",
+  "partner_type": "healthy_lifestyle",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "一起改善生活習慣",
+    "summary": "打造無菸居家環境，戒除一手菸並拒絕二手菸危害，陪同養成規律作息與健康生活方式。",
+    "action_items": [
+      "若有吸菸習慣應主動戒菸，打造完全無菸的居家生活環境",
+      "絕不在孕婦身邊或室內吸菸，保護母胎免於二手菸與三手菸危害",
+      "陪同伴侶維持規律作息、適度戶外散步與健康飲食"
+    ],
+    "partner_knowledge": "二手菸與三手菸殘留有害物質會大幅增加早產、低出生體重與胎兒生長遲緩風險。",
+    "why_it_matters": "伴侶一起戒菸與調整生活作息，能讓孕媽咪感受團隊作戰的溫暖陪伴。",
+    "safety_note": "遠離菸害是保護母胎健康的最基本防線。",
+    "bullets": [
+      "主動戒菸：若有吸菸習慣應積極尋求戒菸協助。",
+      "無菸居家：嚴禁在室內或孕婦身邊吸菸，遠離三手菸危害。",
+      "共同作息：陪同調整規律作息與溫和戶外活動。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 10,
+      "section": "戒菸與無菸環境",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-LIFESTYLE-TOBACCO-EXPOSURE-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

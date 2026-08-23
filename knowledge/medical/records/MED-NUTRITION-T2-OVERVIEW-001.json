@@ -1,0 +1,60 @@
+{
+  "id": "MED-NUTRITION-T2-OVERVIEW-001",
+  "topic": "懷孕中期飲食營養重點",
+  "category": "pregnancy_nutrition_stage",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13_to_less_than_29_weeks",
+  "content": {
+    "title": "懷孕中期飲食營養重點",
+    "daily_reference_value": "Calories +300 kcal, Protein +10 g",
+    "unit": "kcal_and_g_per_day",
+    "purpose": "支持胎兒快速組織器官發育與母體生理改變，適度增加熱量與關鍵營養素。",
+    "food_sources": [
+      "乳製品",
+      "深海魚類（鯖魚/鮭魚）",
+      "豆干/豆腐",
+      "黑芝麻",
+      "蔬菜水果"
+    ],
+    "recommendations": [
+      "每日熱量：相較孕前增加 300 大卡（+300 kcal/day）",
+      "蛋白質：持續增加 10 公克（+10 g/day）",
+      "開始／持續補足：鈣 (1000 mg)、DHA (200 mg)、維生素 D (10 μg / 400 IU)",
+      "葉酸、鐵、碘、維生素 B12 仍須持續補足",
+      "多吃高纖食物與補充水分"
+    ],
+    "avoid_or_limit": [
+      "避免以高油、高糖、空熱量食物充當 300 大卡補充",
+      "避免含糖飲料與精製甜點"
+    ],
+    "special_notes": [
+      "增加的 300 大卡應以優質點心（如牛奶、豆漿、燕麥、水果）補充，非任意大吃。"
+    ],
+    "summary": "懷孕中期（13-28週）每日熱量增加 300 大卡，蛋白質增加 10 公克，並開始特別注重鈣 (1000mg)、DHA (200mg) 及維生素 D 的攝取。",
+    "bullets": [
+      "每日熱量：較孕前增加 300 大卡（+300 kcal/day）。",
+      "蛋白質：每日增加 10 公克（+10 g/day）。",
+      "新增重點：鈣 (1,000 mg)、DHA (200 mg)、維生素 D (10 μg / 400 IU)。",
+      "點心選擇：以鮮奶、豆漿、堅果、水果等營養食物補充 300 大卡。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 22,
+      "section": "懷孕中期飲食營養重點",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

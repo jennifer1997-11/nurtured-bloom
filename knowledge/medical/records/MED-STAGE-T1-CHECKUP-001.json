@@ -1,0 +1,46 @@
+{
+  "id": "MED-STAGE-T1-CHECKUP-001",
+  "topic": "懷孕初期建議產檢時程與檢查項目",
+  "category": "prenatal_checkup",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "week_start": 1,
+  "week_end": 12,
+  "content": {
+    "summary": "懷孕初期（未滿13週）建議分別於第8週及第12週各進行一次公費產檢，包含例行檢查、第1次超音波檢查、產前衛教指導及基礎血液尿液檢驗。",
+    "bullets": [
+      "產檢時程安排：懷孕初期建議於第8週（第1次產檢）與第12週（第2次產檢）各進行一次產檢。",
+      "第1次產檢（建議第8週）：例行檢查（問診如出血腹痛症狀、身體檢查如體重血壓、尿蛋白與尿糖）、第1次超音波檢查（8~16週）、第1次孕婦產前健康照護衛教指導。",
+      "第2次產檢（建議第12週）：例行檢查、血液常規項目（白血球WBC、紅血球RBC、血小板Plt、血球容積比Hct、血色素Hb、平均紅血球體積MCV）、ABO血型、Rh因子、德國麻疹抗體、B型肝炎血清標誌檢驗、梅毒檢查、愛滋病毒篩檢及尿液常規。"
+    ],
+    "cta": "請記得攜帶孕媽咪健康手冊及健保卡，依建議時程按時前往醫療院所接受產檢。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 4,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕初期 未滿13週（產檢時程）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "產檢時間表懷孕3階段－懷孕初期（未滿 13 週）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "公費產檢時程與項目嚴格依據國健署孕媽咪健康手冊115年6月版時程表整理。經人工核對已核准通過。"
+}

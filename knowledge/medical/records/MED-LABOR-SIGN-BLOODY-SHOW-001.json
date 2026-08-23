@@ -1,0 +1,54 @@
+{
+  "id": "MED-LABOR-SIGN-BLOODY-SHOW-001",
+  "topic": "三大產兆：落紅／見紅",
+  "category": "labor_sign",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "37-40 weeks",
+  "content": {
+    "title": "三大產兆：落紅／見紅",
+    "severity": "monitor",
+    "summary": "【足月產兆（滿37週以上）】子宮頸開始擴張成熟，混合黏液的少量粉紅色或褐色血絲排出。",
+    "common_presentations": [
+      "陰道排出少量混有黏液的粉紅色或褐色血絲"
+    ],
+    "self_care_or_actions": [
+      "若僅為少量落紅且無規則陣痛或破水，可在家繼續觀察並準備待產包",
+      "注意是否陸續出現規則陣痛或破水狀況"
+    ],
+    "red_flags": [
+      "出血量大如月經、鮮紅色出血（非一般落紅，屬危險徵兆）"
+    ],
+    "when_to_seek_care": "少量落紅可觀察；若出血量較多或合併規則陣痛破水時，前往醫院。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "落紅且出現規則陣痛",
+      "urgent_if": "出血量多如月經量或鮮紅血塊",
+      "do_not_reassure_if": "大量出血不可當成普通落紅"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 16,
+      "section": "三大產兆與前往醫院時機",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 35,
+      "section": "認識產兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

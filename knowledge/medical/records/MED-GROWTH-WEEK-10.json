@@ -1,0 +1,46 @@
+{
+  "id": "MED-GROWTH-WEEK-10",
+  "topic": "懷孕第 10 週胎兒身長體重與大小比喻",
+  "category": "baby_development",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "week_start": 10,
+  "week_end": 10,
+  "content": {
+    "gestational_week": 10,
+    "length_cm": 3.0,
+    "length_measurement_type": "head-to-bottom",
+    "estimated_weight_g": null,
+    "estimated_weight_reference": null,
+    "size_analogy_zh": "小杏桃",
+    "size_analogy_en": "small apricot",
+    "analogy_type": "editorial_visualization",
+    "medical_claim": false,
+    "summary": "懷孕第 10 週寶寶身長約 3.0 cm（測量方式：head-to-bottom）；體重參考值為 N/A；大小比喻約像一顆/一根 小杏桃 (small apricot)。",
+    "bullets": [
+      "身長 (cm)：3.0 cm（測量方式：head-to-bottom；來源：NHS Week 10）",
+      "體重參考值 (g)：N/A（來源：N/A）",
+      "大小比喻：小杏桃 (small apricot)［編輯視覺化比喻，非醫療診斷測量］"
+    ],
+    "disclaimer": "身長與體重為一般孕週發育參考值，每個寶寶成長速度不同，實際生長情形請以產檢超音波及醫療人員評估為準。"
+  },
+  "source_refs": [
+    {
+      "source_id": "NHS-OFFICIAL-WEB",
+      "section": "NHS Week 10",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/week-by-week-guide-to-pregnancy/",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "approved_web_research",
+  "evidence": {
+    "source_level": 2,
+    "jurisdiction": "INTL",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "notes": "依據 weekly-fetal-growth-reference-v1.0.md 嚴格造冊建立 Candidate Record，保留 needs_review / human_reviewed: false 等待人工審核。",
+  "last_reviewed_at": "2026-08-20"
+}

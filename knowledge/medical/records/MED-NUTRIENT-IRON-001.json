@@ -1,0 +1,65 @@
+{
+  "id": "MED-NUTRIENT-IRON-001",
+  "topic": "鐵",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "鐵",
+    "daily_reference_value": "15 mg/day (T1-T2), 45 mg/day (T3)",
+    "unit": "mg_per_day",
+    "purpose": "製造血紅素供應母體血容量增加、胎兒發育及儲備新生兒前幾個月鐵質所需。",
+    "food_sources": [
+      "蛤蜊",
+      "章魚",
+      "豬肝/腰子",
+      "蛋黃",
+      "深色蔬菜",
+      "全穀類"
+    ],
+    "recommendations": [
+      "懷孕初、中期每日建議 15 毫克 (mg)",
+      "懷孕後期增加至每日 45 毫克 (mg)",
+      "後期 45 mg 中，15 mg 可由飲食攝取，30 mg 建議於醫師諮詢評估下額外補充",
+      "餐後可搭配富含維生素 C 之水果（如芭樂、奇異果）促進非血紅素鐵吸收"
+    ],
+    "avoid_or_limit": [
+      "用餐時避免同時飲用濃茶或咖啡，以免單寧酸抑制鐵質吸收"
+    ],
+    "special_notes": [
+      "不可將後期 45 mg/day 套用為全孕期固定需求，應依孕期階段調整。"
+    ],
+    "summary": "鐵質在孕初/中期每日需求為 15 mg，後期因應胎兒鐵質儲備增加至 45 mg/day（含 30mg 補充劑經醫師評估），預防母體貧血與早產。",
+    "bullets": [
+      "每日參考值：初/中期 15 mg/day；後期 45 mg/day。",
+      "後期結構：15 mg 由食物攝取 + 30 mg 補充劑（需諮詢醫師）。",
+      "優質來源：蛤蜊、豬肝、紅肉、蛋黃、深色蔬菜。",
+      "吸收技巧：餐後吃維生素 C 水果助吸收，避免飯後立即喝濃茶咖啡。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 9,
+      "section": "鐵質補充說明",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 38,
+      "section": "懷孕後期鐵質增加說明",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

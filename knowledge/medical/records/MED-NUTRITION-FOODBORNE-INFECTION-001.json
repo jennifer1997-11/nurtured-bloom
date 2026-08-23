@@ -1,0 +1,63 @@
+{
+  "id": "MED-NUTRITION-FOODBORNE-INFECTION-001",
+  "topic": "避免生飲生食與食品交叉污染",
+  "category": "pregnancy_food_safety",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "避免生飲生食與食品交叉污染",
+    "daily_reference_value": "Fully cooked food, raw-cooked separation",
+    "unit": "food_safety_standard",
+    "purpose": "防範李斯特菌 (Listeria) 及弓形蟲 (Toxoplasma) 等孕期食源性病原體感染。",
+    "food_sources": [
+      "完全加熱煮熟之肉類海鮮",
+      "洗淨之生鮮蔬菜水果",
+      "經巴氏殺菌之乳品"
+    ],
+    "recommendations": [
+      "避免生飲生食（生魚片、生生蠔、半熟蛋、生生生乳）",
+      "食物應徹底加熱完全煮熟後再食用",
+      "生食與熟食處理應分開，避免共用刀具與砧板交叉污染",
+      "蔬果食用前必須徹底清洗乾淨"
+    ],
+    "avoid_or_limit": [
+      "避免未經巴氏殺菌之生乳或軟起司",
+      "避免食用未煮熟之生肉、生生火腿或未洗淨之生菜"
+    ],
+    "special_notes": [
+      "家中有養寵物（尤其是貓隻糞便清理）或處理生肉者，應特別注意洗手衛生以防弓形蟲感染。"
+    ],
+    "summary": "孕期應避免生飲生食（生魚片、半熟蛋、生乳），注意生熟食分開處理與徹底煮熟，有效防範李斯特菌與弓形蟲感染風險。",
+    "bullets": [
+      "加熱原則：食物徹底加熱煮熟，避免生魚片、半熟蛋與生乳。",
+      "衛生處理：生熟食砧板刀具分開，避免交叉污染。",
+      "清洗要求：蔬果食用前充分洗淨。",
+      "感染防範：防範李斯特菌症與弓形蟲感染，養寵物/處理生肉後徹底洗手。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 46,
+      "section": "李斯特菌症預防指引",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 48,
+      "section": "弓形蟲感染症預防指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

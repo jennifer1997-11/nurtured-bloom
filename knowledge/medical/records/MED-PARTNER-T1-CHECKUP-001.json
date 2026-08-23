@@ -1,0 +1,52 @@
+{
+  "id": "MED-PARTNER-T1-CHECKUP-001",
+  "topic": "孕初期：8–12週手冊與定期產檢",
+  "category": "partner_support",
+  "partner_type": "prenatal_participation",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "8-12 weeks",
+  "trigger_week": "8-12",
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "孕初期：8–12週手冊與定期產檢",
+    "summary": "領取《孕媽咪健康手冊》後，陪同進行首次常規產檢與例行抽血尿液檢查。",
+    "action_items": [
+      "領手冊後，和伴侶一起仔細閱讀手冊衛教資訊",
+      "陪同參加第一次例行產檢，一起記錄胎兒心跳與發育狀況",
+      "將心中疑問記在手冊上，產檢時共同向醫師請教"
+    ],
+    "partner_knowledge": "約 8–12 週通常為領取手冊與第一次常規產檢時間，是母胎健康紀錄的重要起點。",
+    "why_it_matters": "第一次產檢陪伴能共同見證新生命的開端，意義重大。",
+    "safety_note": "自費產檢項目應共同了解後 shared decision，不強迫或單方決定。",
+    "bullets": [
+      "領冊閱讀：領取手冊後一起研讀衛教資訊。",
+      "首檢陪伴：陪同進行第一次常規產檢與抽血檢查。",
+      "疑問記錄：將問題整理記於手冊，共同請教醫師。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 4,
+      "section": "領冊與首次產檢",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-PRENATAL-VISIT-01"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

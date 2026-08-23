@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T3-INSOMNIA-001",
+  "topic": "失眠／淺眠",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29-40 weeks",
+  "content": {
+    "title": "失眠／淺眠",
+    "severity": "self_care",
+    "summary": "後期因肚子變大肚圍壓迫、頻尿、腳抽筋或對生產焦慮，常導致入睡困難或淺眠多夢。",
+    "common_presentations": [
+      "夜間入睡困難、半夜頻繁醒來、睡不沉"
+    ],
+    "self_care_or_actions": [
+      "睡前減少使用 3C 產品，營造舒適睡眠環境",
+      "建立固定睡前儀式（聽輕音樂、輕柔伸展、溫水泡腳）",
+      "白天可適度進行規律散步運動與短暫午休"
+    ],
+    "red_flags": [
+      "嚴重焦慮、情緒長期低落憂鬱",
+      "長期嚴重失眠無法正常生活"
+    ],
+    "when_to_seek_care": "若長期嚴重失眠且影響身心健康，應諮詢醫師，切勿自行服用安眠藥物。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "嚴重失眠影響精神與情緒狀況",
+      "urgent_if": "伴隨嚴重憂鬱傾向或自傷意念",
+      "do_not_reassure_if": "孕婦詢問自行服用安眠藥（絕對禁止）"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 32,
+      "section": "懷孕後期常見小問題",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

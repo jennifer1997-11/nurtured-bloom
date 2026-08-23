@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-URINARY-CHANGE-001",
+  "topic": "尿量明顯減少或排尿疼痛／灼熱",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "尿量明顯減少或排尿疼痛／灼熱",
+    "severity": "urgent",
+    "summary": "【危險徵兆】小便次數大量減少或解尿時刺痛灼熱，提示嚴重腎臟功能受損或急尿路感染。",
+    "common_presentations": [
+      "全天尿量極少、小便時尿道灼熱劇痛"
+    ],
+    "self_care_or_actions": [
+      "補充水分並記錄排尿狀況，儘速就醫檢驗尿液"
+    ],
+    "red_flags": [
+      "尿量明顯減少或排尿疼痛／灼熱"
+    ],
+    "when_to_seek_care": "應儘速就醫檢查排除急性腎功能異常或急性腎盂腎炎。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "排尿疼痛或尿量減少",
+      "urgent_if": "尿量明顯減少或排尿劇烈灼熱疼痛",
+      "do_not_reassure_if": "不可忽視尿量大幅減少警訊"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

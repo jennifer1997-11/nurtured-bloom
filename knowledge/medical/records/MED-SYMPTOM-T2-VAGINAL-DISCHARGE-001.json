@@ -1,0 +1,51 @@
+{
+  "id": "MED-SYMPTOM-T2-VAGINAL-DISCHARGE-001",
+  "topic": "陰道分泌物增加",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "陰道分泌物增加",
+    "severity": "monitor",
+    "summary": "孕期賀爾蒙刺激使陰道黏膜充血，分泌物增多，一般正常為透明或蛋清狀無味。",
+    "common_presentations": [
+      "陰道分泌物量變多，呈白色半透明、蛋清狀、無異味"
+    ],
+    "self_care_or_actions": [
+      "保持外陰部清潔乾爽，穿著透氣棉質內褲",
+      "勤換內褲，避免長期使用不透氣護墊",
+      "洗澡時以溫水清洗外陰即可，切勿進行陰道內灌洗"
+    ],
+    "red_flags": [
+      "分泌物呈黃綠色、豆腐渣狀或有惡臭味",
+      "外陰部伴隨劇烈搔癢、紅腫疼痛",
+      "分泌物為清澈水樣液體且持續流出（疑似破水）"
+    ],
+    "when_to_seek_care": "若分泌物顏色異常、有臭味搔癢應就醫治療感染；若為清澈水樣液體流出，應懷疑破水並儘速就醫。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "分泌物黃綠色、豆腐渣狀或臭味搔癢",
+      "urgent_if": "流出清澈無黏性水樣液體（破水警訊）",
+      "do_not_reassure_if": "水樣液體流出（絕對不可混淆為一般分泌物）"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 23,
+      "section": "懷孕中期常見小問題",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

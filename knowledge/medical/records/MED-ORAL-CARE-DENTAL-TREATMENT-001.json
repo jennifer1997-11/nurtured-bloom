@@ -1,0 +1,51 @@
+{
+  "id": "MED-ORAL-CARE-DENTAL-TREATMENT-001",
+  "topic": "孕期牙科治療安全原則",
+  "category": "pregnancy_oral_health",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期牙科治療安全原則",
+    "summary": "懷孕期間看牙時應主動告知牙醫師懷孕週數，中期（14-28週）通常為進行必要非緊急牙科處置之較佳時機。",
+    "recommendations": [
+      "看診時主動告知牙醫師已懷孕及目前孕週",
+      "懷孕中期（約 14–28 週）為進行一般必要牙科治療較平穩時期",
+      "急重症牙痛或急性發炎應依牙醫師專業評估即時處理"
+    ],
+    "avoid_or_cautions": [
+      "避免自行判斷抗生素、麻醉藥劑或 X 光照射安全性，應交由牙醫師評估",
+      "避免因擔心妊娠而忍痛拖延急性牙髓炎或牙周感染"
+    ],
+    "stop_and_seek_help_if": [
+      "牙科治療後出現全身性發燒或劇痛應及時回診"
+    ],
+    "special_conditions": [
+      "本 KB 不硬性規定特定藥物或 X 光射線劑量判斷"
+    ],
+    "bullets": [
+      "主動告知：看診時務必先告知牙醫師懷孕事實與週數。",
+      "治療時機：懷孕中期（14–28週）為進行必要處置之相對平穩時期。",
+      "專業判斷：藥物與放射線安全應由牙醫師依據衛福部臨床規範評估。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 31,
+      "section": "牙科治療安全指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

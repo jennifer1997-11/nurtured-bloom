@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-T2-BABY-CONNECTION-001",
+  "topic": "孕中期：一起感受胎動與寶寶成長",
+  "category": "partner_support",
+  "partner_type": "pregnancy_stage_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20-24 weeks",
+  "trigger_week": "20-24",
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions",
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "孕中期：一起感受胎動與寶寶成長",
+    "summary": "約 20–24 週開始能從腹部觸摸到明顯胎動，神隊友可一起互動說話，建立親子連結。",
+    "action_items": [
+      "把手輕放在伴侶肚皮上，一起感受寶寶的第一次胎動",
+      "經常對著肚子和寶寶溫柔說話或聽輕柔音樂",
+      "與伴侶討論對寶寶未來的期待，享受胎動時光"
+    ],
+    "partner_knowledge": "國健署爸爸手冊指出，初產婦多在約 20–24 週感受到胎動，是伴侶建立父職連結關鍵期。",
+    "why_it_matters": "共同感受胎動能讓伴侶實質體會新生命的存在，建立親密家庭連結。",
+    "safety_note": "此為一般發展里程碑；若後期發生胎動明顯減少或停止，應依 Red Flag 立即就醫。",
+    "bullets": [
+      "感受胎動：靜心輕觸腹部感受寶寶胎動。",
+      "胎教互動：溫柔對肚子說話，建立父職連結。",
+      "分享喜悅：與伴侶共同分享見證胎動的喜悅。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 9,
+      "section": "感受胎動與父職連結",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-RED-FLAG-DECREASED-FETAL-MOVEMENT-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

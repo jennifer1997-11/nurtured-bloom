@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-CORE-NUTRITION-001",
+  "topic": "關心孕期營養，但不自行開補充品",
+  "category": "partner_support",
+  "partner_type": "nutrition_support",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "關心孕期營養，但不自行開補充品",
+    "summary": "關心伴侶飲食狀況與食慾變化，協助準備均衡新鮮原型食物，補充劑需經醫師評估。",
+    "action_items": [
+      "關心伴侶每日飲食均衡，協助採買新鮮蔬菜水果與優質蛋白質",
+      "若伴侶有孕吐或胃口佳狀況，協助準備清淡點心與少量多餐食物",
+      "若需購買高劑量營養補充品，應經婦產科醫師或營養師評估後購買"
+    ],
+    "partner_knowledge": "孕期營養應以原型食物為主，高劑量營養素補充劑並非越多越好，需依醫師指示評估。",
+    "why_it_matters": "貼心為伴侶準備安全健康的飲食，是日常生活最實質的照顧展現。",
+    "safety_note": "嚴禁神隊友自行決定或強迫伴侶服用高劑量維生素或不明成分大補丸。",
+    "bullets": [
+      "備餐支持：協助準備均衡原型食物與高纖蔬果。",
+      "彈性配合：配合孕吐或食慾變化準備少量多餐食物。",
+      "專業諮詢：補充劑攝取應諮詢醫師或營養師評估。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 12,
+      "section": "孕期營養重點與陪伴",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-NUTRIENT-FOLATE-001",
+    "MED-NUTRIENT-IRON-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

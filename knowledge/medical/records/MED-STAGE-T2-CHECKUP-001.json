@@ -1,0 +1,55 @@
+{
+  "id": "MED-STAGE-T2-CHECKUP-001",
+  "topic": "懷孕中期建議產檢時程與檢查項目",
+  "category": "prenatal_checkup",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "week_start": 13,
+  "week_end": 28,
+  "content": {
+    "summary": "懷孕中期建議每4週（每一個月）進行一次產檢（第16、20、24、28週共4次），項目涵蓋例行檢查、第2次超音波、早產防治衛教、妊娠糖尿病篩檢與貧血檢驗。",
+    "bullets": [
+      "產檢時程頻率：懷孕中期建議每4週（每一個月）產檢一次，分別於第16週、20週、24週、28週共進行4次產檢。",
+      "第3次產檢（建議第16週）：例行檢查（問診、身體檢查如體重血壓胎心音、尿蛋白尿糖）、早產防治衛教指導。",
+      "第4次產檢（建議第20週）：例行檢查、第2次超音波檢查（20週前後評估胎兒器官結構）、早產防治衛教指導。",
+      "第5次產檢（建議第24週）：例行檢查、第2次孕婦產前健康照護衛教指導。",
+      "第6次產檢（建議第28週）：例行檢查、妊娠糖尿病篩檢（75克口服葡萄糖耐量試驗OGTT）及貧血檢驗（於24~28週執行）、早產徵兆及孕期營養衛教指導。"
+    ],
+    "cta": "24至28週之妊娠糖尿病篩檢需禁食8小時，請遵照醫療院所指示做好篩檢前準備。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 5,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕中期 13週至未滿29週（產檢時程）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "產檢時間表懷孕3階段－懷孕中期（13 週至未滿 29 週）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 9,
+      "section": "產檢時間表懷孕3階段－懷孕中期（13 週至未滿 29 週）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "公費產檢時程與項目嚴格依據國健署孕媽咪健康手冊115年6月版時程表整理。經人工核對已核准通過。"
+}

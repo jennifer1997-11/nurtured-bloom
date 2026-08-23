@@ -1,0 +1,51 @@
+{
+  "id": "MED-PARTNER-CORE-LEARN-001",
+  "topic": "主動了解懷孕與生產資訊",
+  "category": "partner_support",
+  "partner_type": "learning_preparation",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions",
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "主動了解懷孕與生產資訊",
+    "summary": "主動閱讀官方衛教手冊，了解孕期各階段生理知識，與伴侶共同討論問題。",
+    "action_items": [
+      "主動閱讀《爸爸孕產育兒衛教手冊》與《孕媽咪衛教手冊》",
+      "學習孕期生理變化、生產方式與基本育兒照顧技能",
+      "將不確定的健康疑問記錄下來，產檢時一起向醫師諮詢"
+    ],
+    "partner_knowledge": "主動吸收正確醫療衛教資訊，能減少對未知孕期的焦慮，提供更精準的照護支援。",
+    "why_it_matters": "主動學習展現神隊友的責任感，能避免相信未經證實的網路偏方。",
+    "safety_note": "資訊來源以衛福部國健署等官方手冊為準，不隨意聽信坊間謠言。",
+    "bullets": [
+      "主動閱讀：研讀國健署爸爸手冊與衛教手冊。",
+      "紀錄問題：將疑慮記下來，產檢時共同詢問醫師。",
+      "拒絕偏方：以官方權威衛教資訊為照護依據。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 5,
+      "section": "身分轉變中爸爸可以這麼做",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

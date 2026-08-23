@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T2-VARICOSE-VEINS-001",
+  "topic": "靜脈曲張",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "靜脈曲張",
+    "severity": "self_care",
+    "summary": "孕期靜脈壓升高與黃體素影響，下肢或外陰部靜脈血管可能出現擴張、青筋浮現。",
+    "common_presentations": [
+      "小腿或大腿皮膚表面出現藍紫色蜘蛛網狀或凸起之靜脈血管"
+    ],
+    "self_care_or_actions": [
+      "避免長時間久站或久坐不動",
+      "適度散步或進行輕柔下肢活動促進循環",
+      "休息時可抬高雙腿，可諮詢醫師評估穿著彈性襪"
+    ],
+    "red_flags": [
+      "小腿局部出現劇烈疼痛、發紅、發熱或明顯腫脹",
+      "運動過程中出現靜脈疼痛加劇"
+    ],
+    "when_to_seek_care": "若小腿血管凸起處出現局部紅腫熱痛，應停止運動並就醫評估。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "靜脈曲張部位感到持續痠痛",
+      "urgent_if": "小腿單側突發劇烈疼痛、局部發紅發熱或腫脹",
+      "do_not_reassure_if": "運動中出現下肢疼痛或異常腫脹"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 21,
+      "section": "懷孕中期常見小問題與運動注意事項",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

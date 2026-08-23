@@ -1,0 +1,63 @@
+{
+  "id": "MED-NUTRIENT-CALCIUM-001",
+  "topic": "鈣",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "鈣",
+    "daily_reference_value": 1000,
+    "unit": "mg_per_day",
+    "purpose": "建構胎兒骨骼牙齒成長，並維持母體骨骼健康與肌肉正常收縮。",
+    "food_sources": [
+      "鮮乳/羊乳與乳製品",
+      "傳統豆腐/豆干",
+      "深綠色蔬菜",
+      "黑芝麻",
+      "小魚乾"
+    ],
+    "recommendations": [
+      "懷孕中後期每日建議攝取 1,000 毫克 (mg) 鈣",
+      "每日可飲用 1.5–2 杯乳品（每杯 240 ml 約含 240 mg 鈣）",
+      "多攝取傳統豆腐、豆干、黑芝麻與深綠色蔬菜"
+    ],
+    "avoid_or_limit": [
+      "避免與高植酸、高高草酸食物或高劑量鐵劑同時大量服用"
+    ],
+    "special_notes": [
+      "充足的鈣質攝取亦有助於預防孕期夜間腳抽筋。"
+    ],
+    "summary": "懷孕中後期每日建議攝取 1,000 毫克鈣質，滿足胎兒骨骼發育並維護母體健康，可從鮮奶、豆腐、黑芝麻及深綠蔬菜補充。",
+    "bullets": [
+      "每日參考值：1,000 毫克（1,000 mg/day）。",
+      "主要功能：胎兒骨骼牙齒建構、母體肌肉神經穩定。",
+      "優質來源：牛奶、起司、傳統豆腐、黑芝麻、小魚乾。",
+      "舒緩效益：補足鈣質有助預防孕期夜間小腿抽筋。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 23,
+      "section": "懷孕中期鈣質補充說明",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 38,
+      "section": "懷孕後期鈣質補充說明",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

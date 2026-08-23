@@ -1,0 +1,47 @@
+{
+  "id": "MED-PRETERM-SIGN-ROM-001",
+  "topic": "早產警訊：破水",
+  "category": "preterm_labor_warning",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20_to_less_than_37_weeks",
+  "content": {
+    "title": "早產警訊：破水",
+    "severity": "urgent",
+    "summary": "【早產警訊（滿20週至未滿37週）】陰道突然流出大量清澈水樣液體，或持續微量滲出。",
+    "common_presentations": [
+      "陰道不受控制地湧出水樣液體，或站立時液體持續流出"
+    ],
+    "self_care_or_actions": [
+      "墊上乾淨棉墊，採平躺姿勢避免臍帶脫垂，立刻前往醫院產房"
+    ],
+    "red_flags": [
+      "未滿37週早期破水"
+    ],
+    "when_to_seek_care": "請立刻前往醫院產房就診檢查。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "未滿37週疑似破水",
+      "urgent_if": "未滿37週陰道流出水樣液體",
+      "do_not_reassure_if": "不可當作一般尿失禁處理"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 24,
+      "section": "認識早產徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

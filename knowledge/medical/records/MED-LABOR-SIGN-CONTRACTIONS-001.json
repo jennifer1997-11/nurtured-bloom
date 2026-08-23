@@ -1,0 +1,55 @@
+{
+  "id": "MED-LABOR-SIGN-CONTRACTIONS-001",
+  "topic": "三大產兆：規則陣痛",
+  "category": "labor_sign",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "37-40 weeks",
+  "content": {
+    "title": "三大產兆：規則陣痛",
+    "severity": "seek_medical_advice",
+    "summary": "【足月產兆（滿37週以上）】子宮出現有規律的收縮陣痛，疼痛間隔時間越來越短、強度越來越強。",
+    "common_presentations": [
+      "第一胎：約 7–8 分鐘一次規則性陣痛與肚皮發硬",
+      "第二胎以上：出現規律收縮陣痛時產程可能較快，需提早準備"
+    ],
+    "self_care_or_actions": [
+      "開始記錄陣痛間隔時間與持續時間",
+      "準備好待產包與生產證件，若不確定時可先聯絡待產醫院產房評估"
+    ],
+    "red_flags": [
+      "陣痛極為頻繁且伴隨大出血或劇痛"
+    ],
+    "when_to_seek_care": "達到醫院指定的陣痛規則頻率時（第一胎約7-8分鐘/次，第二胎以上規律收縮），請前往待產醫院。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "出現規律陣痛宮縮",
+      "urgent_if": "第二胎經產婦規則宮縮或陣痛強度極強",
+      "do_not_reassure_if": "經產婦不可過度拖延去醫院時間"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 16,
+      "section": "三大產兆與前往醫院時機",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 35,
+      "section": "認識產兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

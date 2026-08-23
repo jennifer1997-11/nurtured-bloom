@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-T3-BIRTH-READY-001",
+  "topic": "孕後期：備好待產包與認識產兆",
+  "category": "partner_support",
+  "partner_type": "birth_preparation",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "孕後期：備好待產包與認識產兆",
+    "summary": "孕後期確認待產包打包完成放置門口，熟記產兆、醫院急診路線與聯絡電話。",
+    "action_items": [
+      "確認待產包、媽媽手冊、健保卡及雙方證件放在固定易取處",
+      "熟記落紅、規則陣痛、破水等三大產兆特徵",
+      "事先規劃並演練至產檢醫院的交通路線與夜間急診入口"
+    ],
+    "partner_knowledge": "後期隨時可能面臨臨盆，事先準備好交通路線與待產包能大幅減少緊急時刻的恐慌。",
+    "why_it_matters": "冷靜沉著的行前準備是給孕媽咪最可靠的定心丸。",
+    "safety_note": "若出現大量破水，應保持平躺姿勢並立即安排就醫，切勿直立走動。",
+    "bullets": [
+      "放置待產包：確認待產包與重要證件放在門口易取處。",
+      "熟記產兆：熟悉落紅、規則陣痛與破水之處理處置。",
+      "演練路線：事先確認前往醫院的夜間急診交通路線。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 14,
+      "section": "孕後期待產準備",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-LABOR-SIGN-CONTRACTIONS-001",
+    "MED-LABOR-SIGN-ROM-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

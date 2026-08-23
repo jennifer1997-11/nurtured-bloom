@@ -1,0 +1,46 @@
+{
+  "id": "MED-STAGE-T1-MOTHER-001",
+  "topic": "懷孕初期媽咪身體與生理變化",
+  "category": "mother_changes",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "week_start": 1,
+  "week_end": 12,
+  "content": {
+    "summary": "懷孕初期為未滿13週。此階段月經停止且驗孕呈現陽性反應，體內荷爾蒙產生變化，容易出現孕吐、頻尿、頭暈、頭痛等生理不適。",
+    "bullets": [
+      "月經該來卻沒來，驗孕棒呈現兩條線（陽性反應）。",
+      "容易出現孕吐（害喜）或噁心感等腸胃道反應。",
+      "可能出現頻尿、頭暈、頭痛等常見孕期生理不適。"
+    ],
+    "cta": "若孕期不適症狀持續加劇或有異常出血、劇烈腹痛，請尋求婦產科專業醫療協助。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 4,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕初期 未滿13週（媽咪的變化）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "產檢時間表懷孕3階段－懷孕初期（未滿 13 週）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "經人工核對國健署115年6月版衛教手冊與健康手冊，已核准通過。"
+}

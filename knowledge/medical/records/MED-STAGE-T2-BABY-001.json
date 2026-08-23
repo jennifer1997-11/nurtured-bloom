@@ -1,0 +1,47 @@
+{
+  "id": "MED-STAGE-T2-BABY-001",
+  "topic": "懷孕中期寶寶胎兒發展",
+  "category": "baby_development",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "week_start": 13,
+  "week_end": 28,
+  "content": {
+    "summary": "懷孕中期為胎兒的快速成長期，五官外形愈加清晰，呼吸練習、聽覺感知以及視覺開閉眼功能於此階段逐步成熟發展。",
+    "bullets": [
+      "第14週：五官外形約略可辨識。",
+      "第17~20週：肺部開始發育，腦部進入快速發展階段。",
+      "第21~24週：開始練習呼吸動作，也會聽聲音。",
+      "第24週至第28週：第24週眼睛已完全發育，到第28週會睜眼和閉眼。"
+    ],
+    "cta": "準爸媽可多與肚中寶寶溫柔對話互動，並配合產檢超音波關注各項發育里程碑。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 5,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕中期 13週至未滿29週（胎兒的成長）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "產檢時間表懷孕3階段－懷孕中期（13 週至未滿 29 週）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "notes": "手冊僅提供關鍵週數里程碑，未包含13-28週逐週身長體重數據；缺口已記錄於 GAP-STAGE-WEEKLY-GROWTH-001。經人工核對已核准通過。"
+}

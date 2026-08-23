@@ -1,0 +1,45 @@
+{
+  "id": "MED-PARTNER-KNOWLEDGE-PLANNING-001",
+  "topic": "中後期適合開始把生產與育兒計畫談清楚",
+  "category": "partner_support",
+  "partner_type": "birth_parenting_planning",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2_3",
+  "recommended_window": "20-36 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "中後期適合開始把生產與育兒計畫談清楚",
+    "summary": "官方爸爸手冊建議，孕中後期伴侶應提前討論生產方式、陪產流程、月子照顧與家務分工。",
+    "action_items": [],
+    "partner_knowledge": "國健署爸爸手冊建議，孕中後期是夫妻共同討論生產願景、月子安排與產後照顧分工的最佳時機。",
+    "why_it_matters": "提前建立共識能降低產後陣腳大亂與夫妻衝突溝通成本。",
+    "safety_note": "尊重伴侶的想法與醫療團隊專業評估。",
+    "bullets": [
+      "提前溝通：中後期共同討論生產、月子與育兒分工。",
+      "建立共識：降低產後照顧焦慮與夫妻溝通成本。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 15,
+      "section": "生產與育兒規劃衛教",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

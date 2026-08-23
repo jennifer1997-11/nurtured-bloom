@@ -1,0 +1,46 @@
+{
+  "id": "MED-PRENATAL-OPTIONAL-05",
+  "topic": "X染色體脆折症基因篩檢",
+  "category": "carrier_screening",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "preconception_or_pregnancy",
+  "content": {
+    "title": "X染色體脆折症基因篩檢",
+    "purpose": "評估孕婦是否具有 FMR1 基因 CGG 重複次數異常／帶因風險。",
+    "recommended_window": "preconception_or_pregnancy",
+    "screening_or_diagnostic": "screening",
+    "invasive": false,
+    "funding_type": "self_paid_or_varies",
+    "suitable_population": "備孕中、懷孕早期或有家族遺傳病史／罕病家族史之女性。",
+    "important_limitations": "為 X 聯鎖隱性遺傳帶因者篩檢（Carrier Screening），應依臨床醫師評估建議執行，不得描述為所有孕婦強制必須做。",
+    "policy_sensitive": false,
+    "summary": "X染色體脆折症基因篩檢（孕前或懷孕早期），分析 FMR1 基因 CGG 區域重複數，評估家族遺傳性智力障礙帶因風險。",
+    "bullets": [
+      "建議時間：備孕期或懷孕早期（一生一次）。",
+      "檢查性質：母體帶因者篩檢（Carrier Screening）。",
+      "適用族群：依專業醫療評估或家族遺傳諮詢建議選擇。",
+      "費用型態：自費（self_paid_or_varies）。"
+    ],
+    "disclaimer": "篩檢結果由遺傳醫學專家解讀，異常者需安排遺傳諮詢與胎兒診斷。"
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "孕期產檢項目建議指南",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

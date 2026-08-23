@@ -1,0 +1,47 @@
+{
+  "id": "MED-STAGE-T3-BABY-001",
+  "topic": "懷孕後期寶寶胎兒發展",
+  "category": "baby_development",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "week_start": 29,
+  "week_end": 40,
+  "content": {
+    "summary": "懷孕後期胎兒肌肉力量增強、手腳活動更有力，胎頭逐漸朝下固定胎位，至第34週身體構造大致完成且肺泡逐漸成熟，隨時準備誕生。",
+    "bullets": [
+      "第29~32週：胎兒手腳更有力了。",
+      "第32~34週：胎頭開始朝下，逐漸固定胎位。",
+      "第34週：胎兒的身體構造大致完成，肺泡逐漸成熟。",
+      "距離預產期越來越近，寶寶隨時可能來報到。"
+    ],
+    "cta": "懷孕後期請每日留意觀察胎動，若胎動異常減少或停止應立即就診檢查。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 6,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕後期 29週以上（胎兒的成長）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 9,
+      "section": "產檢時間表懷孕3階段－懷孕後期（29 週以上）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "notes": "手冊僅提供關鍵週數里程碑，未包含29-40週逐週身長體重數據；缺口已記錄於 GAP-STAGE-WEEKLY-GROWTH-001。經人工核對已核准通過。"
+}

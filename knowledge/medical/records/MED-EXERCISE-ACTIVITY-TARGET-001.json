@@ -1,0 +1,59 @@
+{
+  "id": "MED-EXERCISE-ACTIVITY-TARGET-001",
+  "topic": "孕期每週身體活動目標",
+  "category": "pregnancy_exercise",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期每週身體活動目標",
+    "summary": "無孕期合併症的健康孕婦進行規律身體活動是安全的，建議每週累計至少 150 分鐘中等強度活動。",
+    "recommendations": [
+      "無醫療禁忌之健康孕婦，每週累計至少 150 分鐘身體活動",
+      "運動時間可彈性分配，例如每天累計約 30 分鐘，每週進行 5 天",
+      "活動強度以「微喘但仍可正常說話對談」之中等強度為宜",
+      "運動前後做好暖身與緩和伸展"
+    ],
+    "avoid_or_cautions": [
+      "避免一次性過度暴飲暴食式猛烈運動",
+      "有高危險妊娠或孕期合併症者不得直接套用，須經醫師評估"
+    ],
+    "stop_and_seek_help_if": [
+      "運動中若出現任何不適或出血警訊應立即停止運動"
+    ],
+    "special_conditions": [
+      "無運動習慣者可從每天 10-15 分鐘輕度散步開始逐步累積"
+    ],
+    "bullets": [
+      "每週目標：每週累計至少 150 分鐘中等強度身體活動（≥150 min/week）。",
+      "每日累計：每天可累計約 30 分鐘（≈30 min/day cumulative）。",
+      "強度標準：以微喘但仍能正常交談說話為原則。",
+      "適用對象：適用身體健康且無孕期合併症之孕婦。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 16,
+      "section": "懷孕初期規律運動",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 32,
+      "section": "懷孕中期規律運動",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

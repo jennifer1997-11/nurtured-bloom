@@ -1,0 +1,19 @@
+{
+  "id": "MED-XXXX-001",
+  "topic": "",
+  "category": "other",
+  "content": {
+    "summary": "",
+    "bullets": []
+  },
+  "source_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": false
+  },
+  "review_status": "draft",
+  "conflict_note": null,
+  "source_gap": null
+}

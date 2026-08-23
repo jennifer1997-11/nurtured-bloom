@@ -1,0 +1,47 @@
+{
+  "id": "MED-STAGE-T2-MOTHER-001",
+  "topic": "懷孕中期媽咪身體與生理變化",
+  "category": "mother_changes",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "week_start": 13,
+  "week_end": 28,
+  "content": {
+    "summary": "懷孕中期為13週至未滿29週。此階段多數孕媽咪孕吐噁心感逐漸減輕消失、食慾好轉，腹部開始明顯隆起，第一胎約於16~20週可感受到胎動，並可能伴隨腰痠背痛、水腫等生理變化。",
+    "bullets": [
+      "13週後多數媽咪孕吐與噁心感逐漸消失，食慾好轉，需留意避免暴飲暴食導致體重增加過多。",
+      "腹部開始明顯隆起，身形展現孕期特徵。",
+      "可能出現腰痠背痛、陰道分泌物增加、腳抽筋、水腫、皮膚乾癢、頭痛等孕期生理不適。",
+      "第一胎大約在第16~20週可以感受到胎動，第二胎通常會更早感受到。"
+    ],
+    "cta": "若出現異常陰道出血、劇烈頭痛或下腹持續疼痛等情況，請立即至醫療院所就醫檢查。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 5,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕中期 13週至未滿29週（媽咪的變化）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "產檢時間表懷孕3階段－懷孕中期（13 週至未滿 29 週）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "經人工核對國健署115年6月版衛教手冊與健康手冊，已核准通過。"
+}

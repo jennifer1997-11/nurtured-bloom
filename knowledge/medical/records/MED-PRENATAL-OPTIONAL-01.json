@@ -1,0 +1,46 @@
+{
+  "id": "MED-PRENATAL-OPTIONAL-01",
+  "topic": "懷孕初期唐氏症篩檢",
+  "category": "prenatal_screening",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "11-14 weeks",
+  "content": {
+    "title": "懷孕初期唐氏症篩檢",
+    "purpose": "評估胎兒唐氏症等染色體異常風險。",
+    "recommended_window": "11-14 weeks",
+    "screening_or_diagnostic": "screening",
+    "invasive": false,
+    "funding_type": "varies",
+    "suitable_population": "適用於懷孕初期（11–14週）欲評估胎兒染色體異常風險之孕婦。",
+    "important_limitations": "屬於篩檢（Screening）非確診，高風險結果需諮詢醫師安排進一步診斷性檢查（如羊膜穿刺）。",
+    "policy_sensitive": false,
+    "summary": "懷孕初期唐氏症篩檢（11–14週），結合超音波測量胎兒頸部透明帶/鼻樑骨與母血血清標誌分析，評估唐氏症染色體異常風險。本項為篩檢非確診。",
+    "bullets": [
+      "建議區間：11–14週（第1孕期）。",
+      "檢查性質：非侵入性篩檢（Screening，非確診）。",
+      "檢查內容：結合超音波（頸部透明帶/鼻樑骨）與母血血清標誌分析。",
+      "結果說明：高風險者應諮詢婦產科醫師討論後續診斷性檢查（如羊膜穿刺）。"
+    ],
+    "disclaimer": "本項目為篩檢工具，非終極確診手段；臨床決策請配合婦產科醫師專業諮詢。"
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "孕期產檢項目建議指南",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

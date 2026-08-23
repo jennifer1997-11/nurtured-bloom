@@ -1,0 +1,68 @@
+{
+  "id": "MED-PRENATAL-VISIT-09",
+  "topic": "第 9 次產檢（建議 34 週）時程與檢查項目",
+  "category": "prenatal_checkup",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "visit_number": 9,
+  "recommended_gestational_week": 34,
+  "recommended_window": "29週以上（每2週1次）",
+  "week_start": 34,
+  "week_end": 34,
+  "content": {
+    "title": "第 9 次產檢（建議 34 週）",
+    "summary": "第 9 次公費產檢（建議孕週：第 34 週）。問診：宮縮頻率、水腫與胎動狀況 身體檢查：體重、血壓、胎心音、胎位檢查 例行檢查項目",
+    "routine_checkups": [
+      "問診：宮縮頻率、水腫與胎動狀況",
+      "身體檢查：體重、血壓、胎心音、胎位檢查",
+      "實驗室檢查／驗尿：尿蛋白、尿糖"
+    ],
+    "specific_tests": [
+      "例行檢查項目"
+    ],
+    "publicly_funded_items": [
+      "例行檢查（問診、身體檢查、尿蛋白、尿糖）"
+    ],
+    "health_education": [
+      "認識三大產兆（落紅、破水、規則陣痛）及待產包準備指導"
+    ],
+    "notes": [
+      "34週起加強產兆辨識與待產準備衛教。"
+    ],
+    "bullets": [
+      "建議孕週：第 34 週（檢查區間：29週以上（每2週1次））。",
+      "例行檢查：問診、身體檢查、實驗室檢查／驗尿",
+      "特定檢驗／檢查：例行檢查項目",
+      "公費項目：例行檢查（問診、身體檢查、尿蛋白、尿糖）",
+      "衛教指導：認識三大產兆（落紅、破水、規則陣痛）及待產包準備指導"
+    ],
+    "cta": "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 9,
+      "section": "產檢時間表懷孕3階段（第 9 次產檢 建議 34 週）",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 5,
+      "section": "PART 1 孕媽咪和胎兒的變化（產檢時程 第 9 次）",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4839",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據國健署孕媽咪健康手冊與衛教手冊（115年6月版）產檢時間表建立 Candidate Record，保留 needs_review / human_reviewed: false 等待人工審核。"
+}

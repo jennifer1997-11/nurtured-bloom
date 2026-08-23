@@ -1,0 +1,51 @@
+{
+  "id": "MED-ORAL-CARE-CHECKUP-001",
+  "topic": "孕期口腔檢查的重要性",
+  "category": "pregnancy_oral_health",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期口腔檢查的重要性",
+    "topic": "孕期口腔檢查的重要性",
+    "summary": "孕期賀爾蒙改變增加牙周與牙齦發炎風險，國健署鼓勵孕婦接受定期口腔檢查與洗牙。",
+    "recommendations": [
+      "孕期應定期進行口腔檢查與維護口腔衛生",
+      "運用健保提供之孕婦牙齒清潔與保健補助服務",
+      "發現牙齒痛或牙齦不適及早至牙科看診"
+    ],
+    "avoid_or_cautions": [
+      "避免因「懷孕不能看牙」之錯誤觀念拖延牙疾治療"
+    ],
+    "stop_and_seek_help_if": [
+      "若出現劇烈牙痛、牙齦嚴重腫脹化膿應至牙科就診"
+    ],
+    "special_conditions": [
+      "預防牙周病有助於維持母體與胎兒整體健康"
+    ],
+    "bullets": [
+      "檢查重要性：孕期賀爾蒙改變易引發牙齦發炎，應定期口腔檢查。",
+      "健保補助：善用政府補助之孕婦牙齒清潔洗牙服務。",
+      "觀念澄清：懷孕期間可以安全進行口腔檢查與必要保養。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 15,
+      "section": "懷孕初期口腔檢查",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

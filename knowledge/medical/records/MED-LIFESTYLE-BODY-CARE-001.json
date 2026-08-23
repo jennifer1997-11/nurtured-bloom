@@ -1,0 +1,57 @@
+{
+  "id": "MED-LIFESTYLE-BODY-CARE-001",
+  "topic": "孕期乳房／皮膚日常照護",
+  "category": "pregnancy_body_care",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期乳房／皮膚日常照護",
+    "summary": "選擇合適包覆性支撐胸罩，皮膚乾燥時以溫和乳液保濕，維持日常舒適。",
+    "recommendations": [
+      "選擇適尺寸、無鋼圈、包覆與支撐力良好的孕婦胸罩",
+      "皮膚乾癢處可塗抹成分溫和成分單純之保濕乳液",
+      "流汗後及時擦乾，保持皮膚摺疊處清潔"
+    ],
+    "avoid_or_cautions": [
+      "避免過度用力刺激或揉捏乳頭（以免引發子宮收縮）",
+      "避免使用含刺激性香精或不明成分之保養品"
+    ],
+    "stop_and_seek_help_if": [
+      "若乳房出現異常局部位紅腫劇痛、硬塊或皮膚異常潰爛應就醫"
+    ],
+    "special_conditions": [
+      "後期若有少量初乳分泌屬正常現象，保持清潔即可"
+    ],
+    "bullets": [
+      "胸罩選擇：穿著包覆支撐良好、無壓迫感之胸罩。",
+      "皮膚保濕：使用溫和保濕乳液舒緩肚皮與皮膚乾癢。",
+      "注意事項：避免過度刺激揉捏乳頭，流汗時及時擦乾。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "懷孕初期生活保健",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 26,
+      "section": "懷孕中期生活保健",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

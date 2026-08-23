@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-FEVER-CHILLS-001",
+  "topic": "突然發冷發熱",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "突然發冷發熱",
+    "severity": "urgent",
+    "summary": "【危險徵兆】孕期突發畏寒顫抖或體溫升高發燒，提示體內可能存在嚴重感染風險。",
+    "common_presentations": [
+      "突發全身寒顫、發抖、發燒體溫高於38度"
+    ],
+    "self_care_or_actions": [
+      "量測體溫，適度補充溫水並保暖，切勿自行服用退燒成藥"
+    ],
+    "red_flags": [
+      "突然發冷發熱"
+    ],
+    "when_to_seek_care": "應立即就醫檢查找出發燒與感染原因。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "體溫升高或畏寒",
+      "urgent_if": "突然發冷發熱、高燒",
+      "do_not_reassure_if": "不可自行推薦退燒特效藥"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

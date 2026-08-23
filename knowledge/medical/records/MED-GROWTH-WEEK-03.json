@@ -1,0 +1,46 @@
+{
+  "id": "MED-GROWTH-WEEK-03",
+  "topic": "懷孕第 3 週胎兒身長體重與大小比喻",
+  "category": "baby_development",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "week_start": 3,
+  "week_end": 3,
+  "content": {
+    "gestational_week": 3,
+    "length_cm": null,
+    "length_measurement_type": null,
+    "estimated_weight_g": null,
+    "estimated_weight_reference": null,
+    "size_analogy_zh": null,
+    "size_analogy_en": null,
+    "analogy_type": "editorial_visualization",
+    "medical_claim": false,
+    "summary": "懷孕第 3 週寶寶身長約 N/A；體重參考值為 N/A；大小比喻約像一顆/一根 N/A。",
+    "bullets": [
+      "身長 (cm)：N/A（來源：N/A）",
+      "體重參考值 (g)：N/A（來源：N/A）",
+      "大小比喻：N/A（來源：N/A）"
+    ],
+    "disclaimer": "身長與體重為一般孕週發育參考值，每個寶寶成長速度不同，實際生長情形請以產檢超音波及醫療人員評估為準。"
+  },
+  "source_refs": [
+    {
+      "source_id": "NHS-OFFICIAL-WEB",
+      "section": "NHS Week 3 (N/A)",
+      "url": "https://www.nhs.uk/best-start-in-life/pregnancy/week-by-week-guide-to-pregnancy/",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "approved_web_research",
+  "evidence": {
+    "source_level": 2,
+    "jurisdiction": "INTL",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": "GAP-STAGE-WEEKLY-GROWTH-001",
+  "notes": "依據 weekly-fetal-growth-reference-v1.0.md 嚴格造冊建立 Candidate Record，保留 needs_review / human_reviewed: false 等待人工審核。",
+  "last_reviewed_at": "2026-08-20"
+}

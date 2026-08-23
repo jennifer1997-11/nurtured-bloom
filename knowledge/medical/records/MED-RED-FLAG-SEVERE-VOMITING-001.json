@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-SEVERE-VOMITING-001",
+  "topic": "持續或嚴重噁心／嘔吐",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "持續或嚴重噁心／嘔吐",
+    "severity": "urgent",
+    "summary": "【危險徵兆】嚴重的劇吐導致完全無法進食飲水，易造成體內電解質不平衡與嚴重脫水。",
+    "common_presentations": [
+      "頻繁嘔吐無法吃下任何食物或喝水，伴隨明顯衰弱"
+    ],
+    "self_care_or_actions": [
+      "記錄嘔吐次數與飲水量，立即就醫尋求醫療點滴與處方"
+    ],
+    "red_flags": [
+      "持續或嚴重噁心／嘔吐"
+    ],
+    "when_to_seek_care": "應儘速就醫評估是否需要住院點滴治療。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "無法進食或喝水",
+      "urgent_if": "持續或嚴重噁心嘔吐導致脫水衰弱",
+      "do_not_reassure_if": "脫水無法喝水時不可僅建議少量多餐"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "MED-EXERCISE-AEROBIC-001",
+  "topic": "孕期有氧運動",
+  "category": "pregnancy_exercise",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期有氧運動",
+    "summary": "合適的有氧運動有助增進心肺功能、促進血液循環與體重管理，手冊示例包括快走、游泳與孕婦瑜珈。",
+    "recommendations": [
+      "手冊推薦運動示例：快走、游泳、水中健身、孕婦瑜珈、固定式健身單車",
+      "依個人孕前運動習慣與體力循序漸進進行",
+      "運動時保持呼吸順暢，穿著支撐良好的運動鞋與服飾"
+    ],
+    "avoid_or_cautions": [
+      "避免高衝擊、高跌倒風險或碰撞性運動（如籃球、騎馬、滑雪）",
+      "避免需頻繁快速跳躍或劇烈轉向之動作"
+    ],
+    "stop_and_seek_help_if": [
+      "運動時出現頭暈、氣喘、胸痛或腹痛應立即停止"
+    ],
+    "special_conditions": [
+      "游泳後應及時保暖並注意地面防滑"
+    ],
+    "bullets": [
+      "推薦項目：快走、游泳、孕婦瑜珈、固定式單車。",
+      "心肺效益：促進血液循環、維持體力與心肺功能。",
+      "避開高危：避免碰撞、高跌倒風險與高衝擊運動。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 16,
+      "section": "懷孕初期規律運動指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

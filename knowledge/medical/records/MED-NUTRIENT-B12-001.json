@@ -1,0 +1,63 @@
+{
+  "id": "MED-NUTRIENT-B12-001",
+  "topic": "維生素 B12",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "維生素 B12",
+    "daily_reference_value": 2.6,
+    "unit": "microgram_per_day",
+    "purpose": "參與造血功能與維護胎兒神經系統健康發育。",
+    "food_sources": [
+      "肉類",
+      "魚貝類海鮮",
+      "蛋類",
+      "乳製品",
+      "紫菜/強化B12食品"
+    ],
+    "recommendations": [
+      "懷孕全階段每日建議攝取 2.6 微克 (μg) 維生素 B12",
+      "均衡攝取動物性食物",
+      "全素食孕婦需特別注意補充紫菜或經醫師評估補充劑"
+    ],
+    "avoid_or_limit": [
+      "全素食者若完全不吃蛋奶易缺乏 B12，切勿忽視補充"
+    ],
+    "special_notes": [
+      "維生素 B12 主要存在於動物性食物中，純素食者應定期評估補充需求。"
+    ],
+    "summary": "孕期每日建議攝取 2.6 微克維生素 B12，促進造血與神經系統健康；全素食孕媽咪需特別透過紫菜或補充劑補充。",
+    "bullets": [
+      "每日參考值：2.6 微克（2.6 μg/day）。",
+      "主要功能：紅血球製造、胎兒神經系統發育。",
+      "優質來源：文蛤、瘦肉、魚類、雞蛋、牛奶、紫菜。",
+      "素食提醒：全素食者缺乏風險高，需諮詢醫師補充。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 9,
+      "section": "維生素B12補充說明",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 12,
+      "section": "孕期營養重點",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

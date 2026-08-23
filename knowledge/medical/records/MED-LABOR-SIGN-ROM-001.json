@@ -1,0 +1,54 @@
+{
+  "id": "MED-LABOR-SIGN-ROM-001",
+  "topic": "三大產兆：破水",
+  "category": "labor_sign",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "37-40 weeks",
+  "content": {
+    "title": "三大產兆：破水",
+    "severity": "urgent",
+    "summary": "【足月產兆（滿37週以上）】包覆胎兒的羊膜破裂，陰道不受控制湧出大量清澈水樣液體。",
+    "common_presentations": [
+      "大量接近透明無黏性的液體不自主從陰道流出"
+    ],
+    "self_care_or_actions": [
+      "墊上衛生棉墊，保持清潔，切勿進行陰道灌洗或洗澡",
+      "採平躺休息姿勢，並立刻前往待產醫院"
+    ],
+    "red_flags": [
+      "破水液體呈現綠色、混濁或惡臭（胎便污染警訊）"
+    ],
+    "when_to_seek_care": "一旦破水，不論有無陣痛，均應立刻前往待產醫院產房。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "一旦破水",
+      "urgent_if": "破水（無論有無陣痛需立刻至醫院）",
+      "do_not_reassure_if": "破水後絕對不可在家洗澡等待"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 16,
+      "section": "三大產兆與前往醫院時機",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 35,
+      "section": "認識產兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

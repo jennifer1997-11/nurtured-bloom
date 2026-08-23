@@ -1,0 +1,50 @@
+{
+  "id": "MED-SYMPTOM-T3-PUBIC-PAIN-001",
+  "topic": "恥骨痛",
+  "category": "common_pregnancy_discomfort",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29-40 weeks",
+  "content": {
+    "title": "恥骨痛",
+    "severity": "self_care",
+    "summary": "後期鬆弛素作用使骨盆韌帶鬆弛，胎頭下降壓迫骨盆，易引起恥骨聯合處痠痛。",
+    "common_presentations": [
+      "恥骨聯合處（鼠蹊部中央）痛，走路、上下樓梯、翻身或雙腿張開時加重"
+    ],
+    "self_care_or_actions": [
+      "動作宜和緩放慢，翻身時雙腿儘量併攏齊動",
+      "避免跨大步走路、站立時雙腳平均受力",
+      "適當使用托腹帶減輕骨盆壓迫負擔"
+    ],
+    "red_flags": [
+      "疼痛劇烈至無法走動立足",
+      "伴隨骨盆不正常拉傷感或合併宮縮腹痛"
+    ],
+    "when_to_seek_care": "若疼痛極為劇烈影響基本行走功能，可諮詢婦產科或物理治療評估。",
+    "ai_safety": {
+      "can_self_manage": true,
+      "seek_care_if": "恥骨疼痛嚴重影響正常走路步行",
+      "urgent_if": "伴隨規律宮縮腹痛（防範早產或產兆）",
+      "do_not_reassure_if": "恥骨痛伴隨規律腹痛宮縮"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 29,
+      "section": "懷孕後期常見小問題",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

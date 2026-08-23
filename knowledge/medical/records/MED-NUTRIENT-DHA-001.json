@@ -1,0 +1,63 @@
+{
+  "id": "MED-NUTRIENT-DHA-001",
+  "topic": "DHA",
+  "category": "pregnancy_nutrient",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "DHA",
+    "daily_reference_value": 200,
+    "unit": "mg_per_day",
+    "purpose": "構成大腦與視網膜重要成分，促進胎兒腦部神經與視覺發育。",
+    "food_sources": [
+      "鯖魚",
+      "秋刀魚",
+      "午仔魚",
+      "鮭魚",
+      "海藻類/藻油"
+    ],
+    "recommendations": [
+      "懷孕中後期每日建議平均攝取至少 200 毫克 (mg) DHA",
+      "每週食用 1–2 份富含油脂的小型海魚",
+      "魚類食用應種類多樣輪替，不固定單一魚種"
+    ],
+    "avoid_or_limit": [
+      "避免食用大型深海魚（豆腐鯊、旗魚、大型鮪魚、油魚）以防甲基汞"
+    ],
+    "special_notes": [
+      "素食孕婦可選擇海藻類或植物性 DHA 來源補充。"
+    ],
+    "summary": "懷孕中後期每日建議平均攝取至少 200 毫克 DHA，支持胎兒大腦與視網膜發育，可透過每週 1-2 份小型油脂海魚或藻油攝取。",
+    "bullets": [
+      "每日參考值：200 毫克（至少 200 mg/day）。",
+      "主要功能：胎兒腦部神經與視網膜發育關鍵成分。",
+      "優質來源：鯖魚、秋刀魚、鮭魚、午仔魚、海藻類。",
+      "食安提醒：魚類多樣輪替，避開大型深海魚減低汞暴露。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 23,
+      "section": "懷孕中期DHA補充說明",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 25,
+      "section": "魚類與DHA攝取指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "MED-NUTRITION-T3-OVERVIEW-001",
+  "topic": "懷孕後期飲食營養重點",
+  "category": "pregnancy_nutrition_stage",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "29_weeks_or_more",
+  "content": {
+    "title": "懷孕後期飲食營養重點",
+    "daily_reference_value": "Calories +300 kcal, Protein +10 g, Iron 45 mg",
+    "unit": "kcal_g_and_mg_per_day",
+    "purpose": "滿足胎兒體重衝刺、儲備分娩失血及新生兒前幾個月鐵質所需。",
+    "food_sources": [
+      "蛤蜊",
+      "豬肝/腰子",
+      "深色蔬菜",
+      "黑芝麻",
+      "高纖全穀雜糧"
+    ],
+    "recommendations": [
+      "每日熱量：維持增加 300 大卡（不需因進入後期再遞增）",
+      "蛋白質：持續增加 10 公克",
+      "鐵：大幅增加至每日 45 mg（其中 15 mg 由食物攝取，30 mg 由補充劑於醫師指導下補充）",
+      "鈣 (1000 mg) 與水分 (2000 cc) 持續補足"
+    ],
+    "avoid_or_limit": [
+      "控制高熱量、高糖、精製澱粉與加工食品",
+      "避免過鹹飲食以免加重水腫"
+    ],
+    "special_notes": [
+      "後期胃部易受子宮壓迫，若有胃脹可採少量多餐；鐵質大量增加時可餐後搭配維生素 C 水果促進吸收。"
+    ],
+    "summary": "懷孕後期（29週以上）熱量維持增加 300 大卡，蛋白質增加 10 公克，重點在於每日鐵質需求增加至 45 mg，為生產與哺乳做準備。",
+    "bullets": [
+      "每日熱量：維持增加 300 大卡（+300 kcal/day，勿過度大補）。",
+      "蛋白質：每日增加 10 公克（+10 g/day）。",
+      "核心強化：鐵質增加至每日 45 mg（15mg 食物 + 30mg 補充劑，經醫師諮詢）。",
+      "消化配合：胃脹者採少量多餐，補足膳食纖維與約 2,000 cc 水分。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 38,
+      "section": "懷孕後期飲食營養重點",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

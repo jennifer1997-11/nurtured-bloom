@@ -1,0 +1,54 @@
+{
+  "id": "MED-PARTNER-T1-WARNING-001",
+  "topic": "孕初期：認識流產警訊",
+  "category": "partner_support",
+  "partner_type": "warning_sign_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-12 weeks",
+  "trigger_week": null,
+  "priority": "critical",
+  "frontend_targets": [
+    "partner_weekly_actions",
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "孕初期：認識流產警訊",
+    "summary": "若孕初期出現陰道出血、下腹持續劇痛或頻繁收縮，神隊友應立即陪同就醫處置。",
+    "action_items": [
+      "知道陰道出血、下腹持續悶痛、強烈宮縮等不可視為一般不適",
+      "出現警訊時【立即陪伴就醫】，切勿僅告知「再躺躺看」",
+      "維護安寧，協助安撫情緒並配合醫療處置"
+    ],
+    "partner_knowledge": "孕初期陰道出血或下腹劇痛為潛在流產或外孕警訊，必須由專業婦產科醫師評估。",
+    "why_it_matters": "警覺流產警訊能及時保護母體安全，避免延誤就醫。",
+    "safety_note": "本警訊優先權最高，若與一般生活提醒同時命中，必須優先處理就醫。",
+    "bullets": [
+      "警訊辨識：陰道出血、下腹劇痛或宮縮為危險警訊。",
+      "立即就醫：出現警訊時切勿拖延，立即陪同至婦產科。",
+      "情緒安撫：陪伴過程保持冷靜，給予安撫與支持。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 7,
+      "section": "孕初期危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-RED-FLAG-VAGINAL-BLEEDING-001",
+    "MED-RED-FLAG-SEVERE-ABDOMINAL-PAIN-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

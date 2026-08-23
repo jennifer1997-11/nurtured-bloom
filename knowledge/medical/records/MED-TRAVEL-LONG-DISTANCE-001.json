@@ -1,0 +1,50 @@
+{
+  "id": "MED-TRAVEL-LONG-DISTANCE-001",
+  "topic": "長途移動與途中活動",
+  "category": "pregnancy_travel",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "長途移動與途中活動",
+    "summary": "搭乘長途交通工具時應適時活動雙腿下肢，隨時補充水分，並定時停車排尿休息。",
+    "recommendations": [
+      "長途搭車或搭機時，適時活動雙腳腳踝促進靜脈血液循環",
+      "途經服務區或停靠站時起身下車散步走動",
+      "途中小口補充水分，有尿意及時排尿不憋尿"
+    ],
+    "avoid_or_cautions": [
+      "避免長時間維持完全不動之坐姿（防下肢靜脈血栓）"
+    ],
+    "stop_and_seek_help_if": [
+      "途中出現單側小腿劇烈腫痛或發紅應儘速就醫評估"
+    ],
+    "special_conditions": [
+      "手冊建議長途移動應適時安排休息下車活動"
+    ],
+    "bullets": [
+      "循環維護：搭乘長途交通工具時適時動動腳踝、起身活動。",
+      "水分與排尿：隨時小口補水，有尿意及時排尿切勿憋尿。",
+      "預防血栓：避免長久維持靜止坐姿。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 33,
+      "section": "長途旅行注意事項",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "MED-ORAL-CARE-HYGIENE-001",
+  "topic": "孕期日常口腔清潔",
+  "category": "pregnancy_oral_health",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期日常口腔清潔",
+    "summary": "餐後與睡前正確刷牙，搭配牙線清潔牙縫，孕吐後以溫水或淡鹽水漱口保護牙齒。",
+    "recommendations": [
+      "每日餐後與睡前使用軟毛牙刷正確刷牙",
+      "搭配牙線或牙間刷清潔牙齒縫隙",
+      "孕吐嘔吐後：先以溫水漱口降低胃酸傷害，過一段時間後再刷牙"
+    ],
+    "avoid_or_cautions": [
+      "避免嘔吐後立刻用力刷牙（胃酸軟化琺瑯質易磨損）",
+      "避免用力過猛刷傷牙齦"
+    ],
+    "stop_and_seek_help_if": [
+      "刷牙時牙齦頻繁大量出血應請牙醫師檢查"
+    ],
+    "special_conditions": [
+      "本 KB 不自行推薦特定品牌牙膏或漱口水"
+    ],
+    "bullets": [
+      "清潔頻率：餐後與睡前正確刷牙，搭配牙線清潔牙縫。",
+      "孕吐應對：孕吐後先以水漱口稀釋胃酸，稍後再刷牙保護琺瑯質。",
+      "牙刷選擇：選擇軟毛刷頭，動作輕柔避免傷害牙齦。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 15,
+      "section": "日常口腔清潔指引",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

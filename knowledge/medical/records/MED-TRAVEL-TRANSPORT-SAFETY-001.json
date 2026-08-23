@@ -1,0 +1,50 @@
+{
+  "id": "MED-TRAVEL-TRANSPORT-SAFETY-001",
+  "topic": "孕期搭乘交通工具／安全帶",
+  "category": "pregnancy_travel_safety",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期搭乘交通工具／安全帶",
+    "summary": "搭乘汽車時不論前後座均應正確繫妥安全帶：肩帶橫跨胸前，腰帶繫於隆起肚圍下方腹股溝處。",
+    "recommendations": [
+      "搭乘汽車不論前座或後座均必須正確繫妥安全帶",
+      "安全帶正確繫法：肩帶通過兩乳之間橫跨胸前；腰帶低於隆起腹部，平貼於大腿根部腹股溝處",
+      "騎乘或搭乘機車應特別注意路面坑洞與車速安全"
+    ],
+    "avoid_or_cautions": [
+      "嚴禁將安全帶腰帶直接橫壓在隆起的肚子肚皮正中央"
+    ],
+    "stop_and_seek_help_if": [
+      "若發生車禍碰撞（即使無明顯外傷）均應就醫檢查胎兒狀況"
+    ],
+    "special_conditions": [
+      "正確繫安全帶能在煞車碰撞時有效保護母胎安全"
+    ],
+    "bullets": [
+      "安全帶繫法：肩帶橫跨兩乳之間胸前；腰帶繫於隆起肚子下方大腿根部。",
+      "嚴禁壓腹：切勿將安全帶直接橫壓在肚皮正中央。",
+      "車禍處置：若不幸發生交通碰撞，無論有無外傷均應就醫檢查。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 18,
+      "section": "交通安全與安全帶繫法",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "MED-PARTNER-KNOWLEDGE-SHARED-JOURNEY-001",
+  "topic": "孕育不是孕媽咪一個人的事",
+  "category": "partner_support",
+  "partner_type": "healthy_lifestyle",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "孕育不是孕媽咪一個人的事",
+    "summary": "國健署爸爸手冊強調，孕育孩子是伴侶雙方共同的旅程，主動學習與傾聽陪伴是神隊友的核心價值。",
+    "action_items": [],
+    "partner_knowledge": "孕育孩子是伴侶雙方共同的事情；主動學習、陪伴產檢與分擔家務，是神隊友角色的核心價值。",
+    "why_it_matters": "確立共同參與的認知，是開啟神隊友陪伴旅程的第一步。",
+    "safety_note": "陪伴與支持應以雙方充分溝通與尊重為基礎。",
+    "bullets": [
+      "核心觀念：孕育孩子是伴侶雙方共同的旅程。",
+      "團隊神隊友：主動陪伴與分擔是最佳的支持。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 3,
+      "section": "爸爸大事記前言",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

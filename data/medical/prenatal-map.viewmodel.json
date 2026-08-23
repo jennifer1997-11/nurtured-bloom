@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "title": "孕育之美 Prenatal Checkup Map View Model v3",
+    "version": "3.0.0",
+    "source_dataset": "data/medical/medical-kb.production.json",
+    "generated_at": "2026-08-21T13:38:17.271486+08:00",
+    "node_count": 14,
+    "seasonal_health_notices": [
+      {
+        "id": "MED-PREG-VACCINE-03",
+        "title": "孕期季節性流感疫苗",
+        "timing": "全孕期均可接種 (流感季隨到隨打)",
+        "funding_type": "公費優先對象",
+        "recommendation_status": "衛福部疾管署公費流感疫苗優先接種對象",
+        "summary": "孕婦為流感重症高風險族群。流感季開打時不分孕期皆可接種，安全保護母體與新生兒。",
+        "source_record_ids": [
+          "MED-PREG-VACCINE-03"
+        ]
+      }
+    ]
+  },
+  "timeline_nodes": [
+    {
+      "week": 8,
+      "visit_number": 1,
+      "visit_title": "第 1 次公費產檢（第 8 週）",
+      "routine_items": [
+        "出血、腹痛、噁心嘔吐、排尿不適等症狀生理問診",
+        "基本體理檢查（體重、血壓、乳房、子宮底高度測量）"
+      ],
+      "publicly_funded_items": [
+        "第 1 次產前公費超音波檢查（建議執行區間：8~16週，評估胎兒心跳、胚胎數及預產期估算）"
+      ],
+      "optional_items": [
+        {
+          "id": "MED-PRENATAL-OPTIONAL-04",
+          "title": "脊髓性肌肉萎縮症（SMA）帶因者基因篩檢",
+          "recommended_window": "建議時間：8–12週 (或孕前)",
+          "summary": "SMA 帶因者基因篩檢（孕前或懷孕早期），抽取母血檢測 SMN1 基因複製數，評估脊髓性肌肉萎縮症帶因風險。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-04"
+          ]
+        },
+        {
+          "id": "MED-PRENATAL-OPTIONAL-05",
+          "title": "X染色體脆折症基因篩檢",
+          "recommended_window": "建議時間：8–12週 (或孕前)",
+          "summary": "X染色體脆折症基因篩檢（孕前或懷孕早期），分析 FMR1 基因 CGG 區域重複數，評估家族遺傳性智力障礙帶因風險。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-05"
+          ]
+        }
+      ],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-OPTIONAL-04",
+        "MED-PRENATAL-OPTIONAL-05",
+        "MED-PRENATAL-VISIT-01"
+      ]
+    },
+    {
+      "week": 12,
+      "visit_number": 2,
+      "visit_title": "第 2 次公費產檢（第 12 週）",
+      "routine_items": [
+        "孕期生理適應與不適症狀問診",
+        "例行體重、血壓測量"
+      ],
+      "publicly_funded_items": [
+        "血液常規檢查（白血球 WBC、紅血球 RBC、血小板 Plt、血球容積比 Hct、血色素 Hb、平均紅血球體積 MCV）",
+        "ABO 血型及 Rh 因子檢驗",
+        "德國麻疹抗體檢驗 (Rubella IgG)",
+        "B 型肝炎血清標誌檢驗 (HBsAg, HBeAg)",
+        "梅毒檢查 (VDRL / RPR)",
+        "愛滋病毒篩檢 (Anti-HIV)",
+        "尿液常規檢查（尿蛋白、尿糖）"
+      ],
+      "optional_items": [
+        {
+          "id": "MED-PRENATAL-OPTIONAL-01",
+          "title": "懷孕初期唐氏症篩檢",
+          "recommended_window": "建議時間：11–13+6週",
+          "summary": "懷孕初期唐氏症篩檢（11–14週），結合超音波測量胎兒頸部透明帶/鼻樑骨與母血血清標誌分析，評估唐氏症染色體異常風險。本項為篩檢非確診。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-01"
+          ]
+        },
+        {
+          "id": "MED-PRENATAL-OPTIONAL-02",
+          "title": "非侵入性胎兒染色體檢測（NIPT）",
+          "recommended_window": "建議時間：10週以上 (最佳10-14週)",
+          "summary": "非侵入性胎兒染色體檢測（NIPT，10週以上），抽取母血分析游離胎兒 DNA 評估染色體異常風險。屬於高準確度篩檢，不能取代羊膜穿刺確診。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-02"
+          ]
+        },
+        {
+          "id": "MED-PRENATAL-OPTIONAL-03",
+          "title": "第一孕期子癲前症篩檢",
+          "recommended_window": "建議時間：11–13+6週",
+          "summary": "第一孕期子癲前症篩檢（11–14週），整合母體病史、血壓、子宮動脈血流與母血生物標記，評估子癲前症發生風險。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-03"
+          ]
+        },
+        {
+          "id": "MED-PRENATAL-OPTIONAL-04",
+          "title": "脊髓性肌肉萎縮症（SMA）帶因者基因篩檢",
+          "recommended_window": "建議時間：8–12週 (或孕前)",
+          "summary": "SMA 帶因者基因篩檢（孕前或懷孕早期），抽取母血檢測 SMN1 基因複製數，評估脊髓性肌肉萎縮症帶因風險。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-04"
+          ]
+        },
+        {
+          "id": "MED-PRENATAL-OPTIONAL-05",
+          "title": "X染色體脆折症基因篩檢",
+          "recommended_window": "建議時間：8–12週 (或孕前)",
+          "summary": "X染色體脆折症基因篩檢（孕前或懷孕早期），分析 FMR1 基因 CGG 區域重複數，評估家族遺傳性智力障礙帶因風險。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-05"
+          ]
+        }
+      ],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-OPTIONAL-01",
+        "MED-PRENATAL-OPTIONAL-02",
+        "MED-PRENATAL-OPTIONAL-03",
+        "MED-PRENATAL-OPTIONAL-04",
+        "MED-PRENATAL-OPTIONAL-05",
+        "MED-PRENATAL-VISIT-02"
+      ]
+    },
+    {
+      "week": 16,
+      "visit_number": 3,
+      "visit_title": "第 3 次公費產檢（第 16 週）",
+      "routine_items": [
+        "懷孕中期生理變化與症狀問診",
+        "例行體重、血壓、胎心音測量"
+      ],
+      "publicly_funded_items": [
+        "第 3 次公費產檢例行檢查（若16週前尚未完成第1次公費超音波，可於此時補做）"
+      ],
+      "optional_items": [
+        {
+          "id": "MED-PRENATAL-OPTIONAL-06",
+          "title": "懷孕中期唐氏症篩檢",
+          "recommended_window": "建議時間：15–20週",
+          "summary": "懷孕中期唐氏症篩檢（15–20週），抽取母血分析二項、三項或四項血清標誌，評估唐氏症與神經管缺陷風險。屬於補救性篩檢非確診。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-06"
+          ]
+        },
+        {
+          "id": "MED-PRENATAL-OPTIONAL-07",
+          "title": "羊膜穿刺／產前遺傳診斷",
+          "recommended_window": "建議時間：16–18週",
+          "summary": "羊膜穿刺（16–18週），在超音波引導下抽取羊水進行細胞染色體分析，為染色體異常之權威診斷性檢查（Diagnostic Test）。符合高齡等條件者國健署提供部分費用減免補助。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-07"
+          ]
+        }
+      ],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-OPTIONAL-06",
+        "MED-PRENATAL-OPTIONAL-07",
+        "MED-PRENATAL-VISIT-03"
+      ]
+    },
+    {
+      "week": 20,
+      "visit_number": 4,
+      "visit_title": "第 4 次公費產檢（第 20 週）",
+      "routine_items": [
+        "胎動感受與身體不適問診",
+        "例行體重、血壓、胎心音、子宮底高度測量"
+      ],
+      "publicly_funded_items": [
+        "第 2 次產前公費超音波檢查（建議區間：20週前後，詳細評估胎兒器官結構、胎位、羊水量及胎盤位置）"
+      ],
+      "optional_items": [
+        {
+          "id": "MED-PRENATAL-OPTIONAL-08",
+          "title": "高層次超音波",
+          "recommended_window": "建議時間：約 20–24週",
+          "summary": "高層次超音波（約 20–24 週），由專業醫師對胎兒各器官構造進行詳細掃描評估。屬選擇性高階影像檢查，非公費例行超音波。",
+          "cost_info": "自費選擇性項目 (高齡/特異條件有國健署補助)",
+          "source_record_ids": [
+            "MED-PRENATAL-OPTIONAL-08"
+          ]
+        }
+      ],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-OPTIONAL-08",
+        "MED-PRENATAL-VISIT-04"
+      ]
+    },
+    {
+      "week": 24,
+      "visit_number": 5,
+      "visit_title": "第 5 次公費產檢（第 24 週）",
+      "routine_items": [
+        "日常飲食、胎動與體重變化問診",
+        "例行體重、血壓、胎心音、水腫與靜脈曲張檢查"
+      ],
+      "publicly_funded_items": [
+        "妊娠糖尿病篩檢（75g 口服葡萄糖耐量試驗 OGTT，建議執行區間：24~28週，公費全額補助）",
+        "貧血檢驗（血色素 Hb、血球容積比 Hct，建議執行區間：24~28週，公費全額補助）"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-05"
+      ]
+    },
+    {
+      "week": 28,
+      "visit_number": 6,
+      "visit_title": "第 6 次公費產檢（第 28 週）",
+      "routine_items": [
+        "每日胎動自我監測紀錄與不適症狀問診",
+        "例行體重、血壓、胎心音、水腫與靜脈曲張檢查"
+      ],
+      "publicly_funded_items": [
+        "妊娠糖尿病篩檢（75g OGTT，若24週已完成無須重複施作）",
+        "貧血檢驗（Hb / Hct，若24週已完成無須重複施作）"
+      ],
+      "optional_items": [],
+      "vaccines": [
+        {
+          "id": "MED-PREG-VACCINE-01",
+          "title": "百日咳疫苗(Tdap疫苗)",
+          "recommended_window": "建議時間：27–36週 (最佳 28–32 週)",
+          "summary": "Tdap 減量破傷風白喉非細胞性百日咳混合疫苗（建議 27–36 週），每次懷孕接種 1 劑，有效保護剛出生的嬰兒預防百日咳。",
+          "funding_type": "自費 / 政策推廣建議項目",
+          "recommendation_status": "台灣婦產科醫學會與衛福部疾管署建議每次懷孕接種 1 劑",
+          "policy_sensitive": true,
+          "source_record_ids": [
+            "MED-PREG-VACCINE-01"
+          ]
+        }
+      ],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PREG-VACCINE-01",
+        "MED-PRENATAL-VISIT-06"
+      ]
+    },
+    {
+      "week": 30,
+      "visit_number": 7,
+      "visit_title": "第 7 次公費產檢（第 30 週）",
+      "routine_items": [
+        "胎動狀況與子宮收縮情形問診",
+        "例行體重、血壓、胎心音、胎位觸診檢查"
+      ],
+      "publicly_funded_items": [
+        "第 7 次公費產檢例行檢查與胎位觸診檢查"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-07"
+      ]
+    },
+    {
+      "week": 32,
+      "visit_number": 8,
+      "visit_title": "第 8 次公費產檢（第 32 週）",
+      "routine_items": [
+        "胎動、宮縮與體重增加速度問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "第 3 次產前公費超音波檢查（建議執行區間：32週後，評估胎兒生長體重、胎位、胎盤位置及羊水量）",
+        "第 2 次梅毒血清檢查 (VDRL / RPR)"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-08"
+      ]
+    },
+    {
+      "week": 34,
+      "visit_number": 9,
+      "visit_title": "第 9 次公費產檢（第 34 週）",
+      "routine_items": [
+        "宮縮頻率、水腫與胎動狀況問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "第 9 次公費產檢例行檢查與胎位檢查"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-09"
+      ]
+    },
+    {
+      "week": 36,
+      "visit_number": 10,
+      "visit_title": "第 10 次公費產檢（第 36 週）",
+      "routine_items": [
+        "產兆觀察、宮縮頻率與胎動問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "孕婦乙型鏈球菌篩檢（GBS，採陰道與肛門拭子檢體，建議執行區間：35~37週，公費全額補助）"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-10"
+      ]
+    },
+    {
+      "week": 37,
+      "visit_number": 11,
+      "visit_title": "第 11 次公費產檢（第 37 週）",
+      "routine_items": [
+        "宮縮頻率、破水、落紅等三大產兆問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "第 11 次公費產檢與足月母胎安危評估"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-11"
+      ]
+    },
+    {
+      "week": 38,
+      "visit_number": 12,
+      "visit_title": "第 12 次公費產檢（第 38 週）",
+      "routine_items": [
+        "陣痛、破水、落紅狀況與胎動問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "第 12 次公費產檢與胎心音/宮縮狀況評估"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-12"
+      ]
+    },
+    {
+      "week": 39,
+      "visit_number": 13,
+      "visit_title": "第 13 次公費產檢（第 39 週）",
+      "routine_items": [
+        "產兆發展與胎動紀錄問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "第 13 次公費產檢與胎兒安危評估"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-13"
+      ]
+    },
+    {
+      "week": 40,
+      "visit_number": 14,
+      "visit_title": "第 14 次公費產檢（第 40 週）",
+      "routine_items": [
+        "預產期當週產兆狀況與胎動問診",
+        "例行體重、血壓、胎心音、胎位檢查"
+      ],
+      "publicly_funded_items": [
+        "第 14 次公費產檢與過期妊娠胎兒安危評估（含羊水量與胎盤功能評估）"
+      ],
+      "optional_items": [],
+      "vaccines": [],
+      "notes": [
+        "請記得攜帶孕媽咪健康手冊及健保卡，按時前往醫療院所接受產檢。"
+      ],
+      "source_record_ids": [
+        "MED-PRENATAL-VISIT-14"
+      ]
+    }
+  ]
+}

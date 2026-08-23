@@ -1,0 +1,57 @@
+{
+  "id": "MED-EXERCISE-STRENGTH-001",
+  "topic": "孕期肌力訓練",
+  "category": "pregnancy_exercise",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期肌力訓練",
+    "summary": "適度肌力訓練可強化核心、背部與下肢肌群，支撐肚圍體重並減輕腰背痠痛負擔。",
+    "recommendations": [
+      "初期與中期：可安排上肢、下肢與核心肌群之安全適度訓練",
+      "後期手冊建議：每週可安排約 2 天肌力訓練",
+      "訓練原則：減輕負重重量、增加重複次數以提升肌肉耐力"
+    ],
+    "avoid_or_cautions": [
+      "避免閉氣用力（伐氏操作 Valsalva maneuver），動作中保持順暢呼吸",
+      "避免使用過重槓鈴或自由重量以防失手跌倒"
+    ],
+    "stop_and_seek_help_if": [
+      "訓練中出現腹部劇痛、宮縮發硬或關節拉傷應停止"
+    ],
+    "special_conditions": [
+      "本 KB 不自行提供重量公斤數或最大心率處方"
+    ],
+    "bullets": [
+      "頻率建議：後期手冊建議每週安排約 2 天肌力訓練。",
+      "調整原則：減輕負重重量、增加重複次數以訓練肌耐力。",
+      "呼吸安全：訓練過程保持順暢呼吸，嚴禁閉氣用力。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 17,
+      "section": "肌力運動指引",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 44,
+      "section": "後期肌力訓練建議",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

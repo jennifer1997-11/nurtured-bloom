@@ -1,0 +1,47 @@
+{
+  "id": "MED-RED-FLAG-BACKACHE-HARDENING-001",
+  "topic": "持續腰痠與腹部變硬",
+  "category": "pregnancy_red_flag",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20-40 weeks",
+  "content": {
+    "title": "持續腰痠與腹部變硬",
+    "severity": "urgent",
+    "summary": "【危險徵兆】持續腰痠伴隨腹部頻繁強烈變硬收縮，提示子宮異常收縮或早產風險。",
+    "common_presentations": [
+      "腰部劇烈痠痛伴隨整個肚皮像石頭般發硬"
+    ],
+    "self_care_or_actions": [
+      "立刻躺下休息，若休息 1 小時後仍持續未緩解，需立即就醫"
+    ],
+    "red_flags": [
+      "持續腰痠和腹部變硬"
+    ],
+    "when_to_seek_care": "應儘速前往醫院評估子宮收縮與頸長。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "腰痠伴隨腹部發硬",
+      "urgent_if": "持續腰痠與腹部變硬（宮縮危險徵兆）",
+      "do_not_reassure_if": "未滿37週有此症狀必須防範早產"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

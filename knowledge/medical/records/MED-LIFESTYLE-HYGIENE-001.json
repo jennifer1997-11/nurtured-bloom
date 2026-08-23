@@ -1,0 +1,57 @@
+{
+  "id": "MED-LIFESTYLE-HYGIENE-001",
+  "topic": "孕期沐浴與個人清潔",
+  "category": "pregnancy_hygiene",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期沐浴與個人清潔",
+    "summary": "保持皮膚與外陰部清潔乾爽，採淋浴方式，注意防滑安全與水溫適中。",
+    "recommendations": [
+      "採用淋浴方式沐浴，浴室地面應設置防滑墊",
+      "洗澡水溫宜溫和適中（不宜過熱或過冷）",
+      "保持外陰部乾爽，勤換透氣內褲"
+    ],
+    "avoid_or_cautions": [
+      "避免長時間浸泡高溫盆浴、泡溫泉或蒸氣浴",
+      "切勿進行陰道內灌洗"
+    ],
+    "stop_and_seek_help_if": [
+      "洗澡時若感到頭暈、胸悶或身體不適應立即停止並尋求協助"
+    ],
+    "special_conditions": [
+      "後期肚子變大重心不穩，出入浴室動作宜放慢"
+    ],
+    "bullets": [
+      "沐浴方式：採淋浴為宜，浴室做好防滑措施。",
+      "水溫控制：水溫溫和適中，避免高溫浸泡盆浴或泡溫泉。",
+      "衛生維護：保持外陰乾爽，切勿進行陰道內灌洗。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "懷孕初期生活保健",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 40,
+      "section": "懷孕後期生活保健",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

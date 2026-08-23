@@ -1,0 +1,52 @@
+{
+  "id": "MED-NUTRITION-MULTIFETAL-001",
+  "topic": "雙胞胎／多胞胎的營養需求",
+  "category": "special_pregnancy_nutrition",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "雙胞胎／多胞胎的營養需求",
+    "daily_reference_value": "Consult healthcare team, individualized planning",
+    "unit": "special_medical_consultation",
+    "purpose": "說明多胞胎妊娠之營養與熱量需求複雜性，引導諮詢醫療團隊評估。",
+    "food_sources": [
+      "依醫師與營養師個別化建議之均衡飲食"
+    ],
+    "recommendations": [
+      "多胞胎懷孕之熱量與各項營養素需求較單胞胎顯著增加且較複雜",
+      "具體熱量與營養素調配應與婦產科醫師及營養師專業團隊討論",
+      "定期監測體重增加速度與胎兒生長曲線"
+    ],
+    "avoid_or_limit": [
+      "切勿直接將單胞胎營養建議「簡單乘以 2 或乘以 3」"
+    ],
+    "special_notes": [
+      "本知識庫不自行提供多胞胎之個人化熱量算術公式，必須導向專業醫療團隊評估。"
+    ],
+    "summary": "雙胞胎或多胞胎妊娠之營養需求較複雜，不可簡單將單胞胎數值按倍數相乘，具體熱量與營養補充應由醫師及營養師個別化評估。",
+    "bullets": [
+      "禁忌算式：絕對不可直接將單胞胎建議「乘以2或乘以3」。",
+      "專業評估：熱量與營養補充應與婦產科醫師及營養師諮詢討論。",
+      "個別監測：配合產檢密切監測體重增加與胎兒生長狀況。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 22,
+      "section": "雙胞胎與多胞胎營養說明",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

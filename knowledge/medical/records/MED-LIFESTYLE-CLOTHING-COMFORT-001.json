@@ -1,0 +1,57 @@
+{
+  "id": "MED-LIFESTYLE-CLOTHING-COMFORT-001",
+  "topic": "孕期衣著與身體舒適",
+  "category": "pregnancy_lifestyle",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期衣著與身體舒適",
+    "summary": "孕期體溫較高且肚圍漸大，衣著宜選擇寬鬆、吸汗透氣棉質材質，並穿著舒適防滑平底鞋。",
+    "recommendations": [
+      "選擇吸汗、透氣、寬鬆彈性之棉質衣物",
+      "穿著包覆性良好、合腳防滑之低跟或平底鞋",
+      "孕中後期可以舒適度考量適時使用托腹帶減輕腰腹負擔"
+    ],
+    "avoid_or_cautions": [
+      "避免穿著過緊之衣褲，以免影響血液循環與皮膚通氣",
+      "避免穿著高跟鞋或鞋底過滑之鞋款以防跌倒"
+    ],
+    "stop_and_seek_help_if": [
+      "若因穿著過緊導致皮膚嚴重紅腫發癢或肢體麻木應及時更換"
+    ],
+    "special_conditions": [
+      "水腫明顯者鞋子宜選擇略大半號或具彈性款"
+    ],
+    "bullets": [
+      "衣著材質：選擇寬鬆、吸汗、透氣性佳之棉質衣物。",
+      "鞋款選擇：穿著合腳防滑、低跟或平底鞋，確保行走安全。",
+      "托腹輔助：中後期可依舒適度使用托腹帶減輕腰背壓力。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 11,
+      "section": "懷孕初期生活保健",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 26,
+      "section": "懷孕中期生活保健",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

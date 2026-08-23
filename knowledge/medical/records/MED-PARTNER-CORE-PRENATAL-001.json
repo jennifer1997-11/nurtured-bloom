@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-CORE-PRENATAL-001",
+  "topic": "一起參與產檢",
+  "category": "partner_support",
+  "partner_type": "prenatal_participation",
+  "audience": "partner",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "一起參與產檢",
+    "summary": "鼓勵伴侶盡可能陪同每一階段常規產檢，了解胎兒發育與母體變化，並共同向醫療團隊諮詢。",
+    "action_items": [
+      "盡可能排開時間陪同伴侶參加每一次產檢",
+      "和伴侶一起了解不同階段胎兒成長與母體生理變化",
+      "產檢與自費檢查項目應與伴侶共同了解資訊，並在醫師諮詢下共享決策"
+    ],
+    "partner_knowledge": "國健署爸爸手冊指出，伴侶共同參與產檢能顯著降低孕婦焦慮，建立父職認同感。",
+    "why_it_matters": "產檢不是孕媽咪一個人的事，陪同產檢能給予最強大的實質與心理支持。",
+    "safety_note": "所有產檢醫療決策由孕媽咪、伴侶與婦產科醫師共同討論決定，伴侶不單方面代為決斷。",
+    "bullets": [
+      "陪伴產檢：排開時間陪同參加常規產檢。",
+      "共同了解：一起了解胎兒超音波與各項檢驗意義。",
+      "共享決策：自費篩檢與處置共同諮詢醫師後決定。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 4,
+      "section": "陪伴產檢大事記",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-PRENATAL-VISIT-01",
+    "MED-PRENATAL-OPTIONAL-01"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

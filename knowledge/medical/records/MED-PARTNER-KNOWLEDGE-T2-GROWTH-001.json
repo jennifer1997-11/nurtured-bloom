@@ -1,0 +1,45 @@
+{
+  "id": "MED-PARTNER-KNOWLEDGE-T2-GROWTH-001",
+  "topic": "孕中期是胎兒快速成長期",
+  "category": "partner_support",
+  "partner_type": "pregnancy_stage_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-28 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "孕中期是胎兒快速成長期",
+    "summary": "孕中期胎兒器官結構發育迅速且體重快速增加，母體食慾改善，適合進行適度營養補充與戶外活動。",
+    "action_items": [],
+    "partner_knowledge": "孕中期（13–28週）為胎兒器官發育與體重快速成長期，母體不適減緩，是相對舒適平穩的黃金階段。",
+    "why_it_matters": "掌握平穩期特性，安排散步活動與產前準備。",
+    "safety_note": "仍應保持均衡飲食與適度運動，避免過度大補特補。",
+    "bullets": [
+      "階段特性：孕中期為器官發育與體重成長快速期。",
+      "黃金時機：母體不適減緩，適合安排產前準備與活動。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 8,
+      "section": "孕中期胎兒成長",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

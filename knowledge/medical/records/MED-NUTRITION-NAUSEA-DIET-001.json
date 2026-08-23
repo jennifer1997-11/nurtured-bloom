@@ -1,0 +1,60 @@
+{
+  "id": "MED-NUTRITION-NAUSEA-DIET-001",
+  "topic": "孕吐／胃口不佳時怎麼吃",
+  "category": "pregnancy_diet_management",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-12 weeks",
+  "content": {
+    "title": "孕吐／胃口不佳時怎麼吃",
+    "daily_reference_value": "Small frequent meals, dry-wet separation",
+    "unit": "dietary_habit",
+    "purpose": "舒緩懷孕初期噁心嘔吐不適，維持基礎營養與水分平衡。",
+    "food_sources": [
+      "蘇打餅乾",
+      "吐司",
+      "糙米/小麥",
+      "瘦肉/蛋類",
+      "豆類"
+    ],
+    "recommendations": [
+      "口味保持清淡，避免過度油膩食物",
+      "採取「少量多餐」，減少單次份量、增加用餐次數",
+      "液體與固體食物分開吃（如吃完飯後不要立刻喝大量湯水）",
+      "水分採小口少量補充，避免一口氣大口喝水反胃",
+      "可適度補充含維生素 B6 食物（糙米、小麥、瘦肉、蛋）"
+    ],
+    "avoid_or_limit": [
+      "避免油炸、油膩、難消化或調味重刺激性食物",
+      "若真的吃不下，切勿因擔心胎兒沒養分而強迫進食"
+    ],
+    "special_notes": [
+      "若孕吐已嚴重影響日常、無法喝水或持續劇吐，應就醫尋求醫療改善。"
+    ],
+    "summary": "懷孕初期孕吐時宜採清淡飲食、少量多餐與乾濕分開，小口補充水分並可補充富含維生素 B6 食物，若吃不下切勿強迫進食。",
+    "bullets": [
+      "進食原則：少量多餐、口味清淡、乾濕分開（飯湯分開）。",
+      "補水技巧：小口多次補充水分，避免大口灌水反胃。",
+      "關鍵營養：可適量攝取含維生素 B6 食物（糙米、瘦肉、蛋）。",
+      "心理建設：吃不下時不需強迫強吃，依身體舒適調整。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 10,
+      "section": "孕吐飲食調整",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

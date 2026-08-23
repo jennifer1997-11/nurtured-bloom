@@ -1,0 +1,46 @@
+{
+  "id": "MED-PRENATAL-OPTIONAL-06",
+  "topic": "懷孕中期唐氏症篩檢",
+  "category": "prenatal_screening",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "15-20 weeks",
+  "content": {
+    "title": "懷孕中期唐氏症篩檢",
+    "purpose": "評估胎兒唐氏症及神經管缺陷等染色體／構造異常風險。",
+    "recommended_window": "15-20 weeks",
+    "screening_or_diagnostic": "screening",
+    "invasive": false,
+    "funding_type": "varies",
+    "suitable_population": "未能及時於懷孕初期（未滿14週）接受初篩之孕婦。",
+    "important_limitations": "屬於篩檢（Screening）非確診，準確度約80-85%，高風險者須進一步接受羊膜穿刺等診斷性檢查。",
+    "policy_sensitive": false,
+    "summary": "懷孕中期唐氏症篩檢（15–20週），抽取母血分析二項、三項或四項血清標誌，評估唐氏症與神經管缺陷風險。屬於補救性篩檢非確診。",
+    "bullets": [
+      "建議區間：15–20週（第2孕期）。",
+      "檢查性質：母血血清標誌篩檢（Screening，非確診）。",
+      "適用對象：錯過初期唐氏症篩檢黃金期之孕婦。",
+      "結果說明：高風險者應諮詢醫師安排羊膜穿刺確診。"
+    ],
+    "disclaimer": "本檢驗僅評估估計風險，不能取代羊膜穿刺之細胞染色體確診。"
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 8,
+      "section": "孕期產檢項目建議指南",
+      "url": "https://www.hpa.gov.tw/Pages/EBook.aspx?nodeid=4842",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

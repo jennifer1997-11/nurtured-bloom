@@ -1,0 +1,57 @@
+{
+  "id": "MED-LIFESTYLE-TOBACCO-EXPOSURE-001",
+  "topic": "菸品與二手菸暴露",
+  "category": "pregnancy_exposure_safety",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "菸品與二手菸暴露",
+    "summary": "孕期吸菸或暴露於二手菸環境會增加早產、低出生體重及胎兒發育異常風險，應全面戒菸與避菸。",
+    "recommendations": [
+      "孕婦應主動戒菸並遠離所有吸菸環境",
+      "家人與伴侶應共同戒菸，營造無菸家庭環境",
+      "可善用戒菸專線與衛生機構戒菸諮詢資源"
+    ],
+    "avoid_or_cautions": [
+      "嚴禁孕期吸菸（包含一手菸、二手菸與三手菸危害）",
+      "避免進入容許吸菸之場所"
+    ],
+    "stop_and_seek_help_if": [
+      "若戒菸過程有困難可尋求醫療院所戒菸門診協助"
+    ],
+    "special_conditions": [
+      "菸草有害物質會通過胎盤影響胎兒氧氣供應與發育"
+    ],
+    "bullets": [
+      "危害風險：增加早產、胎兒發育遲緩與低出生體重風險。",
+      "無菸環境：孕婦應戒菸並拒絕二手菸、三手菸暴露。",
+      "家人支持：伴侶與家人應共同戒菸打造無菸家庭。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 12,
+      "section": "孕期菸害防制衛教",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 15,
+      "section": "健康生活與戒菸",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

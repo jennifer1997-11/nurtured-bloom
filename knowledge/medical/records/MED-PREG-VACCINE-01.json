@@ -1,0 +1,45 @@
+{
+  "id": "MED-PREG-VACCINE-01",
+  "topic": "百日咳疫苗(Tdap疫苗)",
+  "category": "pregnancy_vaccination",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "recommended_window": "27-36 weeks",
+  "content": {
+    "title": "百日咳疫苗(Tdap疫苗)",
+    "purpose": "每次懷孕接種 1 劑 Tdap 混合疫苗（百日咳、破傷風、白喉），透過母體產生抗體並經由胎盤傳遞給嬰兒，提供出生早期百日咳被動免疫保護。",
+    "recommended_window": "27-36 weeks",
+    "recommendation": "one dose during each pregnancy",
+    "funding_type": "self_paid_or_current_policy",
+    "policy_sensitive": true,
+    "suitable_population": "所有孕婦每次懷孕（建議 27–36 週接種抗體傳遞效果最佳）。",
+    "important_limitations": "每次懷孕均需重新接種 1 劑。公費或自費依疾管署當期發布政策為準。",
+    "summary": "Tdap 減量破傷風白喉非細胞性百日咳混合疫苗（建議 27–36 週），每次懷孕接種 1 劑，有效保護剛出生的嬰兒預防百日咳。",
+    "bullets": [
+      "建議時機：每次懷孕 27–36 週（抗體傳遞效率最佳）。",
+      "接種頻率：每次懷孕皆需接種 1 劑（One dose during each pregnancy）。",
+      "防護目的：母體產生抗體傳給胎兒，預防新生兒百日咳重症。",
+      "政策敏感度：政策與費用依台灣疾管署最新公告為準（policy_sensitive: true）。"
+    ],
+    "disclaimer": "若錯過 27-36 週，生產後應儘速補種 1 劑以建立保護力。"
+  },
+  "source_refs": [
+    {
+      "source_id": "CDC-OFFICIAL-WEB",
+      "page": 1,
+      "section": "孕婦百日咳疫苗 (Tdap) 接種指引",
+      "url": "https://www.cdc.gov.tw",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "MED-NUTRITION-SODIUM-PROCESSED-FOOD-001",
+  "topic": "鈉與加工食品攝取",
+  "category": "pregnancy_diet_management",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-40 weeks",
+  "content": {
+    "title": "鈉與加工食品攝取",
+    "daily_reference_value": "Moderate sodium, minimize processed foods",
+    "unit": "dietary_management",
+    "purpose": "減少體內過多水分滯留與減輕血管腎臟負擔。",
+    "food_sources": [
+      "天然新鮮食材",
+      "新鮮肉類蔬菜",
+      "低鈉天然香草調味"
+    ],
+    "recommendations": [
+      "烹調口味宜適中，避免使用過多食鹽與高鈉醬料",
+      "外食用餐時可減少沾醬、少喝高鹽湯汁",
+      "優先選擇原型新鮮食材，減少加工食品"
+    ],
+    "avoid_or_limit": [
+      "減少醃漬品、火腿、貢丸、香腸、牛肉乾、泡麵等高鈉加工食品"
+    ],
+    "special_notes": [
+      "限制鈉鹽攝取為一般健康生活與水腫舒緩建議，不得將其描述為治療妊娠高血壓之醫療處方。"
+    ],
+    "summary": "孕中後期水分易滯留，應適度控制鈉鹽攝取，減少高鈉加工食品與濃湯沾醬，優先選擇新鮮原型食材。",
+    "bullets": [
+      "控鈉原則：烹調減少過度鹽分，外食少沾醬少喝高鈉湯底。",
+      "食材選擇：減少香腸、貢丸、醃漬品、泡麵等加工食品。",
+      "正確認知：限鈉為緩解生理水腫之生活建議，非高血壓治療處方。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 39,
+      "section": "鈉與加工食品衛教",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 04 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

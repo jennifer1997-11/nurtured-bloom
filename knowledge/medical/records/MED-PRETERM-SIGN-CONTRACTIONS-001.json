@@ -1,0 +1,55 @@
+{
+  "id": "MED-PRETERM-SIGN-CONTRACTIONS-001",
+  "topic": "早產警訊：頻繁子宮收縮",
+  "category": "preterm_labor_warning",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20_to_less_than_37_weeks",
+  "content": {
+    "title": "早產警訊：頻繁子宫收縮",
+    "severity": "urgent",
+    "summary": "【早產警訊（滿20週至未滿37週）】一小時內出現 6 次以上規律子宮收縮，休息後仍無改善。",
+    "common_presentations": [
+      "一小時內有 6 次以上子宮收縮（每 10 分鐘 1 次）",
+      "感覺類似月經悶痛、下腹脹痛或腰痠且達不舒服程度"
+    ],
+    "self_care_or_actions": [
+      "立即排空膀胱並臥床休息 1 小時，放鬆心情",
+      "若休息 1 小時後收縮仍持續達到每小時 6 次以上，請立刻就醫"
+    ],
+    "red_flags": [
+      "滿20週至未滿37週，1小時內規律宮縮達6次以上"
+    ],
+    "when_to_seek_care": "休息 1 小時無改善時，請立刻前往產房或醫院急診檢查。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "未滿37週出現規律宮縮悶痛",
+      "urgent_if": "未滿37週1小時內宮縮6次以上且休息無效",
+      "do_not_reassure_if": "未滿37週時不可當成足月陣痛看待"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 24,
+      "section": "認識早產徵兆",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 14,
+      "section": "早產預防與處置",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

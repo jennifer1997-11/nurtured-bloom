@@ -1,0 +1,47 @@
+{
+  "id": "MED-PARTNER-KNOWLEDGE-FETAL-MOVEMENT-001",
+  "topic": "第一胎約20–24週可能開始感受到胎動",
+  "category": "partner_support",
+  "partner_type": "pregnancy_stage_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "20-24 weeks",
+  "trigger_week": "20-24",
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "第一胎約20–24週可能開始感受到胎動",
+    "summary": "初產婦多在 20–24 週開始感受到輕微胎動，經產婦可能更早感受，是胎兒健康活動的指標之一。",
+    "action_items": [],
+    "partner_knowledge": "爸爸手冊指出，初產婦多在約 20–24 週開始能感覺到胎動，經產婦可能在 16–18 週即能感受到。",
+    "why_it_matters": "胎動是胎兒在子宮內活潑成長的訊號，能增加伴侶的參與感。",
+    "safety_note": "此區間為一般經驗參考；若後期發生胎動突然停止或比平常少一半，為 Red Flag 需就醫。",
+    "bullets": [
+      "胎動時間：初產婦約 20–24 週開始感覺胎動，經產婦可能更早。",
+      "健康指標：胎動是胎兒在子宮內活力成長的訊號。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 9,
+      "section": "胎動感知里程碑",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-RED-FLAG-DECREASED-FETAL-MOVEMENT-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

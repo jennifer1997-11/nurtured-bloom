@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>孕育之美 — 孕期總覽 Weekly Mapping Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ========== Design Tokens ========== */
+    :root {
+      --color-primary: #E88A9B;
+      --color-primary-dark: #C95F75;
+      --color-primary-light: #F5C6D0;
+      --color-secondary: #A8BFA8;
+      --color-secondary-dark: #6E8460;
+      --color-accent: #F3D8A7;
+      --color-accent-dark: #9E7D3B;
+      --color-background: #FBF8F4;
+      --color-surface: #FFFDFB;
+      --color-surface-card: #FFFFFF;
+      --color-text: #343238;
+      --color-text-muted: #7E7A82;
+      --color-text-faint: #B5AEB0;
+      --color-border: rgba(232, 138, 155, 0.18);
+      --color-border-subtle: rgba(52, 50, 56, 0.08);
+
+      --t1-color: #E88A9B;
+      --t1-bg: linear-gradient(135deg, #FDE8EC 0%, #FCF0F2 100%);
+      --t1-tag-bg: #FDE8EC;
+      --t2-color: #A8BFA8;
+      --t2-bg: linear-gradient(135deg, #E8F3E8 0%, #F0F7F0 100%);
+      --t2-tag-bg: #E8F3E8;
+      --t3-color: #C4A0D0;
+      --t3-bg: linear-gradient(135deg, #F0E4F5 0%, #F6EFF9 100%);
+      --t3-tag-bg: #F0E4F5;
+
+      --font-cjk: "Noto Sans TC", sans-serif;
+      --font-serif-cjk: "Noto Serif TC", serif;
+      --font-latin: "Inter", sans-serif;
+
+      --shadow-sm: 0 1px 3px rgba(52, 50, 56, 0.06);
+      --shadow-md: 0 4px 16px rgba(52, 50, 56, 0.08);
+      --shadow-lg: 0 8px 32px rgba(52, 50, 56, 0.1);
+      --shadow-glow: 0 0 20px rgba(232, 138, 155, 0.15);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-cjk);
+      background: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ========== Header ========== */
+    .header {
+      background: linear-gradient(135deg, #FFF5F7 0%, #FEFAF5 50%, #F5FAF5 100%);
+      border-bottom: 1px solid var(--color-border);
+      padding: 24px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-brand .logo {
+      font-size: 28px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: var(--font-serif-cjk);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .header-brand .subtitle {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      font-weight: 400;
+      border-left: 2px solid var(--color-primary-light);
+      padding-left: 12px;
+      line-height: 1.4;
+    }
+    .header-stats {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-muted);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-chip .num {
+      font-family: var(--font-latin);
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      font-size: 14px;
+    }
+
+    /* ========== Timeline ========== */
+    .timeline-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 32px 16px;
+    }
+    .timeline-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .timeline-label h2 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      letter-spacing: 0.02em;
+    }
+    .trimester-legends {
+      display: flex;
+      gap: 16px;
+    }
+    .trimester-legend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+    .trimester-legend .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .timeline-track {
+      display: flex;
+      gap: 3px;
+      padding: 8px 0;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .week-btn {
+      flex-shrink: 0;
+      width: 32px;
+      height: 44px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: var(--font-latin);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .week-btn.t1 {
+      background: var(--t1-tag-bg);
+      color: var(--color-primary-dark);
+    }
+    .week-btn.t2 {
+      background: var(--t2-tag-bg);
+      color: var(--color-secondary-dark);
+    }
+    .week-btn.t3 {
+      background: var(--t3-tag-bg);
+      color: #7B5A8B;
+    }
+    .week-btn:hover {
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: var(--shadow-md);
+    }
+    .week-btn.active {
+      transform: translateY(-4px) scale(1.12);
+      box-shadow: var(--shadow-glow), var(--shadow-lg);
+      z-index: 2;
+    }
+    .week-btn.active.t1 {
+      background: var(--t1-color);
+      color: #fff;
+    }
+    .week-btn.active.t2 {
+      background: var(--t2-color);
+      color: #fff;
+    }
+    .week-btn.active.t3 {
+      background: #C4A0D0;
+      color: #fff;
+    }
+    .week-btn.has-checkup::after {
+      content: "";
+      position: absolute;
+      bottom: 3px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-accent-dark);
+    }
+
+    /* ========== Week Info Bar ========== */
+    .week-info-bar {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px 20px;
+    }
+    .week-info-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      border-radius: var(--radius-lg);
+      transition: all 0.4s ease;
+    }
+    .week-info-inner.t1 { background: var(--t1-bg); }
+    .week-info-inner.t2 { background: var(--t2-bg); }
+    .week-info-inner.t3 { background: var(--t3-bg); }
+
+    .week-number {
+      font-family: var(--font-latin);
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1;
+      opacity: 0.8;
+    }
+    .week-info-inner.t1 .week-number { color: var(--t1-color); }
+    .week-info-inner.t2 .week-number { color: var(--t2-color); }
+    .week-info-inner.t3 .week-number { color: #C4A0D0; }
+
+    .week-detail {
+      flex: 1;
+    }
+    .week-detail .stage-label {
+      font-size: 18px;
+      font-weight: 600;
+      font-family: var(--font-serif-cjk);
+    }
+    .week-detail .stage-sub {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+    .week-nav {
+      display: flex;
+      gap: 8px;
+    }
+    .week-nav button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-card);
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      color: var(--color-text-muted);
+    }
+    .week-nav button:hover {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      border-color: var(--color-primary);
+    }
+
+    /* ========== Content Grid ========== */
+    .content-area {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px 48px;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== Content Cards ========== */
+    .content-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .column-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+    .column-header .col-icon {
+      font-size: 22px;
+    }
+    .column-header .col-count {
+      margin-left: auto;
+      font-family: var(--font-latin);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 2px 10px;
+      border-radius: 12px;
+      opacity: 0.8;
+    }
+
+    .col-mom-changes .column-header {
+      background: linear-gradient(135deg, #FDEEF0 0%, #FBE0E4 100%);
+      color: var(--color-primary-dark);
+    }
+    .col-mom-changes .col-count {
+      background: rgba(232, 138, 155, 0.2);
+      color: var(--color-primary-dark);
+    }
+    .col-mom-reminders .column-header {
+      background: linear-gradient(135deg, #FFF5E6 0%, #FFEFD5 100%);
+      color: #B8860B;
+    }
+    .col-mom-reminders .col-count {
+      background: rgba(243, 216, 167, 0.4);
+      color: #8B6914;
+    }
+    .col-partner-tasks .column-header {
+      background: linear-gradient(135deg, #E8F3E8 0%, #DCF0DC 100%);
+      color: var(--color-secondary-dark);
+    }
+    .col-partner-tasks .col-count {
+      background: rgba(168, 191, 168, 0.3);
+      color: var(--color-secondary-dark);
+    }
+
+    .column-body {
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border-subtle);
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      padding: 0;
+      box-shadow: var(--shadow-sm);
+      min-height: 200px;
+    }
+
+    /* ========== Item Cards ========== */
+    .item-card {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      transition: background 0.2s ease;
+      animation: fadeSlideIn 0.35s ease forwards;
+      opacity: 0;
+    }
+    .item-card:last-child {
+      border-bottom: none;
+    }
+    .item-card:hover {
+      background: rgba(232, 138, 155, 0.03);
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .item-card:nth-child(1) { animation-delay: 0.05s; }
+    .item-card:nth-child(2) { animation-delay: 0.12s; }
+    .item-card:nth-child(3) { animation-delay: 0.19s; }
+    .item-card:nth-child(4) { animation-delay: 0.26s; }
+
+    .item-title-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .item-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .item-title {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.5;
+      flex: 1;
+    }
+    .item-theme-tag {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .theme-nutrition { background: #FFF3E0; color: #E65100; }
+    .theme-exercise { background: #E3F2FD; color: #1565C0; }
+    .theme-lifestyle { background: #F3E5F5; color: #6A1B9A; }
+    .theme-safety { background: #FBE9E7; color: #BF360C; }
+    .theme-checkup { background: #E8F5E9; color: #2E7D32; }
+    .theme-oral { background: #FFF8E1; color: #F57F17; }
+    .theme-vaccine { background: #E8EAF6; color: #283593; }
+    .theme-travel { background: #E0F7FA; color: #00695C; }
+
+    .item-summary {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+
+    .item-bullets {
+      list-style: none;
+      padding: 0;
+    }
+    .item-bullets li {
+      font-size: 12.5px;
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 3px 0 3px 18px;
+      position: relative;
+    }
+    .item-bullets li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 11px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .col-mom-changes .item-bullets li::before { background: var(--color-primary); }
+    .col-mom-reminders .item-bullets li::before { background: var(--color-accent-dark); }
+    .col-partner-tasks .item-bullets li::before { background: var(--color-secondary); }
+
+    .item-source {
+      margin-top: 8px;
+      font-size: 10.5px;
+      font-family: var(--font-latin);
+      color: var(--color-text-faint);
+      letter-spacing: 0.01em;
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      border-top: 1px solid var(--color-border-subtle);
+      text-align: center;
+      color: var(--color-text-faint);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .footer strong {
+      color: var(--color-text-muted);
+    }
+
+    /* ========== Scrollbar ========== */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-primary-light); }
+
+    /* ========== Keyboard Hint ========== */
+    .keyboard-hint {
+      font-size: 11px;
+      color: var(--color-text-faint);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .keyboard-hint kbd {
+      display: inline-block;
+      padding: 1px 6px;
+      font-family: var(--font-latin);
+      font-size: 10px;
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="logo">孕育之美</span>
+        <span class="subtitle">Pregnancy Weekly Mapping Dashboard<br>孕期總覽 · Week 1–40</span>
+      </div>
+      <div class="header-stats" id="headerStats"></div>
+    </div>
+  </header>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <div class="timeline-label">
+      <h2>📅 孕期時間軸</h2>
+      <div class="trimester-legends">
+        <span class="trimester-legend"><span class="dot" style="background:var(--t1-color)"></span>初期 W1–12</span>
+        <span class="trimester-legend"><span class="dot" style="background:var(--t2-color)"></span>中期 W13–28</span>
+        <span class="trimester-legend"><span class="dot" style="background:#C4A0D0"></span>後期 W29–40</span>
+        <span class="keyboard-hint"><kbd>←</kbd><kbd>→</kbd> 切換週數</span>
+      </div>
+    </div>
+    <div class="timeline-track" id="timelineTrack"></div>
+  </section>
+
+  <!-- Week Info Bar -->
+  <section class="week-info-bar">
+    <div class="week-info-inner" id="weekInfoBar">
+      <div class="week-number" id="weekNumber">1</div>
+      <div class="week-detail">
+        <div class="stage-label" id="stageLabel">懷孕初期</div>
+        <div class="stage-sub" id="stageSub">Trimester 1 · 第 1 ~ 12 週</div>
+      </div>
+      <div class="week-nav">
+        <button onclick="navigateWeek(-1)" title="上一週">◀</button>
+        <button onclick="navigateWeek(1)" title="下一週">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="content-area">
+    <div class="content-grid">
+      <!-- Mom Changes -->
+      <div class="content-column col-mom-changes">
+        <div class="column-header">
+          <span class="col-icon">🤰</span>
+          <span>媽咪本週身體變化</span>
+          <span class="col-count" id="mcCount">0</span>
+        </div>
+        <div class="column-body" id="momChangesBody"></div>
+      </div>
+
+      <!-- Mom Reminders -->
+      <div class="content-column col-mom-reminders">
+        <div class="column-header">
+          <span class="col-icon">📋</span>
+          <span>媽咪本週提醒</span>
+          <span class="col-count" id="mrCount">0</span>
+        </div>
+        <div class="column-body" id="momRemindersBody"></div>
+      </div>
+
+      <!-- Partner Tasks -->
+      <div class="content-column col-partner-tasks">
+        <div class="column-header">
+          <span class="col-icon">💪</span>
+          <span>神隊友本週任務</span>
+          <span class="col-count" id="ptCount">0</span>
+        </div>
+        <div class="column-body" id="partnerTasksBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <strong>孕育之美 Pregnancy Weekly Mapping Dashboard</strong><br>
+    資料來源：Production Medical KB (approved + human_reviewed) · 僅供開發審核用途<br>
+    「本週」代表該孕週適合呈現的官方衛教內容，不代表該身體變化一定會在該週發生。
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    // ============================================================
+    // State
+    // ============================================================
+    let currentWeek = 1;
+    const weeks = WEEKLY_DATA.weeks;
+
+    // Checkup weeks (prenatal visits)
+    const checkupWeeks = new Set();
+    weeks.forEach(w => {
+      w.mom_reminders.forEach(r => {
+        if (r.theme === 'checkup' && r.source_record_id.startsWith('MED-PRENATAL-VISIT')) {
+          checkupWeeks.add(w.week);
+        }
+      });
+    });
+
+    // ============================================================
+    // Init
+    // ============================================================
+    function init() {
+      renderHeaderStats();
+      renderTimeline();
+      renderWeek(1);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') navigateWeek(-1);
+        if (e.key === 'ArrowRight') navigateWeek(1);
+      });
+    }
+
+    function renderHeaderStats() {
+      const totalItems = weeks.reduce((s, w) =>
+        s + w.mom_changes.length + w.mom_reminders.length + w.partner_tasks.length, 0);
+      const uniqueIds = new Set();
+      weeks.forEach(w => {
+        w.mom_changes.forEach(r => uniqueIds.add(r.source_record_id));
+        w.mom_reminders.forEach(r => uniqueIds.add(r.source_record_id));
+        w.partner_tasks.forEach(r => uniqueIds.add(r.source_record_id));
+      });
+
+      document.getElementById('headerStats').innerHTML = `
+        <span class="stat-chip">📅 <span class="num">40</span> 週</span>
+        <span class="stat-chip">📝 <span class="num">${totalItems}</span> 筆內容</span>
+        <span class="stat-chip">🔗 <span class="num">${uniqueIds.size}</span> Records</span>
+      `;
+    }
+
+    // ============================================================
+    // Timeline
+    // ============================================================
+    function renderTimeline() {
+      const track = document.getElementById('timelineTrack');
+      track.innerHTML = '';
+      for (let w = 1; w <= 40; w++) {
+        const btn = document.createElement('button');
+        btn.className = `week-btn ${getStageClass(w)}`;
+        btn.textContent = w;
+        btn.onclick = () => renderWeek(w);
+        btn.id = `weekBtn${w}`;
+        if (checkupWeeks.has(w)) btn.classList.add('has-checkup');
+        track.appendChild(btn);
+      }
+    }
+
+    function getStageClass(week) {
+      if (week <= 12) return 't1';
+      if (week <= 28) return 't2';
+      return 't3';
+    }
+
+    function getStageInfo(week) {
+      if (week <= 12) return { label: '懷孕初期', sub: 'Trimester 1 · 第 1 ~ 12 週', cls: 't1' };
+      if (week <= 28) return { label: '懷孕中期', sub: 'Trimester 2 · 第 13 ~ 28 週', cls: 't2' };
+      return { label: '懷孕後期', sub: 'Trimester 3 · 第 29 ~ 40 週', cls: 't3' };
+    }
+
+    // ============================================================
+    // Navigate
+    // ============================================================
+    function navigateWeek(delta) {
+      const next = currentWeek + delta;
+      if (next >= 1 && next <= 40) renderWeek(next);
+    }
+
+    // ============================================================
+    // Render Week
+    // ============================================================
+    function renderWeek(week) {
+      currentWeek = week;
+      const data = weeks[week - 1];
+      const stage = getStageInfo(week);
+
+      // Update active button
+      document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`weekBtn${week}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+
+      // Update info bar
+      const bar = document.getElementById('weekInfoBar');
+      bar.className = `week-info-inner ${stage.cls}`;
+      document.getElementById('weekNumber').textContent = week;
+      document.getElementById('stageLabel').textContent = `第 ${week} 週 — ${stage.label}`;
+      document.getElementById('stageSub').textContent = stage.sub;
+
+      // Update counts
+      document.getElementById('mcCount').textContent = `${data.mom_changes.length} 項`;
+      document.getElementById('mrCount').textContent = `${data.mom_reminders.length} 項`;
+      document.getElementById('ptCount').textContent = `${data.partner_tasks.length} 項`;
+
+      // Render cards
+      renderItems('momChangesBody', data.mom_changes, 'mom_changes');
+      renderItems('momRemindersBody', data.mom_reminders, 'mom_reminders');
+      renderItems('partnerTasksBody', data.partner_tasks, 'partner_tasks');
+    }
+
+    function renderItems(containerId, items, type) {
+      const container = document.getElementById(containerId);
+
+      if (!items || items.length === 0) {
+        container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--color-text-faint);font-size:13px">本週無資料</div>';
+        return;
+      }
+
+      const themeEmoji = {
+        nutrition: '🥗', exercise: '🏃‍♀️', lifestyle: '🏠',
+        safety: '⚠️', checkup: '🏥', oral: '🦷',
+        vaccine: '💉', travel: '✈️'
+      };
+
+      const typeEmoji = {
+        mom_changes: '💗',
+        mom_reminders: '📌',
+        partner_tasks: '🤝'
+      };
+
+      container.innerHTML = items.map((item, idx) => {
+        const icon = type === 'mom_reminders'
+          ? (themeEmoji[item.theme] || '📌')
+          : typeEmoji[type];
+
+        const themeTag = type === 'mom_reminders' && item.theme
+          ? `<span class="item-theme-tag theme-${item.theme}">${getThemeLabel(item.theme)}</span>`
+          : '';
+
+        const bulletHtml = item.items && item.items.length > 0
+          ? `<ul class="item-bullets">${item.items.map(b => `<li>${escapeHtml(b)}</li>`).join('')}</ul>`
+          : '';
+
+        return `
+          <div class="item-card" style="animation-delay:${0.05 + idx * 0.07}s">
+            <div class="item-title-row">
+              <span class="item-icon">${icon}</span>
+              <span class="item-title">${escapeHtml(item.title)}</span>
+              ${themeTag}
+            </div>
+            <div class="item-summary">${escapeHtml(item.summary)}</div>
+            ${bulletHtml}
+            <div class="item-source">📎 ${escapeHtml(item.source_record_id)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function getThemeLabel(theme) {
+      const map = {
+        nutrition: '營養', exercise: '運動', lifestyle: '生活',
+        safety: '安全', checkup: '產檢', oral: '口腔',
+        vaccine: '疫苗', travel: '旅行'
+      };
+      return map[theme] || theme;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+
+    // ============================================================
+    // Start
+    // ============================================================
+    init();
+  </script>
+</body>
+</html>

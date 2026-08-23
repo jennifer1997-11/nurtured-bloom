@@ -1,0 +1,49 @@
+{
+  "id": "MED-STAGE-T3-CHECKUP-001",
+  "topic": "懷孕後期建議產檢時程與檢查項目",
+  "category": "prenatal_checkup",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_3",
+  "week_start": 29,
+  "week_end": 40,
+  "content": {
+    "summary": "懷孕後期產檢頻率提升，第28至36週每2週產檢一次，第36週起每週產檢一次，重點項目包含例行檢查、第3次超音波、第2次梅毒檢查及乙型鏈球菌（GBS）篩檢。",
+    "bullets": [
+      "產檢時程頻率：建議於第30、32、34、36週每兩週產檢一次；第36週（或第37週起）開始每週進行產檢至生產（含第37、38、39、40週）。",
+      "第7次產檢（建議第30週）：例行檢查（問診、身體檢查如體重血壓胎心音胎位、尿蛋白尿糖）。",
+      "第8次產檢（建議第32週）：例行檢查、第2次梅毒檢查、第3次超音波檢查（32週後執行評估胎位與生長）。",
+      "第9次產檢（建議第34週）：例行檢查。",
+      "第10次產檢（建議第36週）：例行檢查、孕婦乙型鏈球菌（GBS）篩檢（35~37週執行）。",
+      "第11~14次產檢（建議第37、38、39、40週）：例行檢查，密集評估母胎狀況並準備生產。"
+    ],
+    "cta": "懷孕後期請配合每週或隔週產檢時程，並隨時留意身體產兆與胎動變化。",
+    "urgent": false
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 6,
+      "section": "PART 1 孕媽咪和胎兒的變化－懷孕後期 29週以上（產檢時程）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    },
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 9,
+      "section": "產檢時間表懷孕3階段－懷孕後期（29 週以上）",
+      "url": null,
+      "accessed_at": "2026-08-19"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "last_reviewed_at": "2026-08-19",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "公費產檢時程與項目嚴格依據國健署孕媽咪健康手冊115年6月版時程表整理。經人工核對已核准通過。"
+}

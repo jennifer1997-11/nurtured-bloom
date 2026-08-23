@@ -1,0 +1,50 @@
+{
+  "id": "MED-ORAL-CARE-PREGNANCY-CHANGES-001",
+  "topic": "孕期常見口腔變化與處理",
+  "category": "pregnancy_oral_health",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期常見口腔變化與處理",
+    "summary": "孕期黃體素增加使牙齦易充血腫脹、出血（孕婦牙齦炎），應加強清潔並定期牙科檢查。",
+    "recommendations": [
+      "充血出血時仍應保持輕柔正確刷牙清潔",
+      "補充足量維生素 C 與均衡營養",
+      "定期至牙科清潔牙結石"
+    ],
+    "avoid_or_cautions": [
+      "切勿因牙齦出血而不敢刷牙，以免積聚牙菌斑加重發炎"
+    ],
+    "stop_and_seek_help_if": [
+      "牙齦持續顯著腫脹、疼痛或出現牙周膿包時應就醫"
+    ],
+    "special_conditions": [
+      "產後賀爾蒙恢復後牙齦充血狀況通常會逐漸改善"
+    ],
+    "bullets": [
+      "常見變化：黃體素增加易導致牙齦充血、腫脹或刷牙出血。",
+      "處置原則：不可因出血而不敢刷牙，仍應輕柔維持牙齒清潔。",
+      "醫療評估：若牙齦腫痛加劇或有牙周問題應尋求牙醫師治療。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 31,
+      "section": "懷孕中期口腔保健",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 05 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

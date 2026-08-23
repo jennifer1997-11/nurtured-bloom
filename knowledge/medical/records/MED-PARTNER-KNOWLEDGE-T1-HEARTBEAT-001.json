@@ -1,0 +1,45 @@
+{
+  "id": "MED-PARTNER-KNOWLEDGE-T1-HEARTBEAT-001",
+  "topic": "孕初期寶寶約6–8週可出現心跳",
+  "category": "partner_support",
+  "partner_type": "pregnancy_stage_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "6-8 weeks",
+  "trigger_week": "6-8",
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_knowledge"
+  ],
+  "content": {
+    "title": "孕初期寶寶約6–8週可出現心跳",
+    "summary": "國健署爸爸手冊記載，胚胎約在 6–8 週可透過超音波觀察到心跳，是初期重要的發展里程碑。",
+    "action_items": [],
+    "partner_knowledge": "國健署爸爸手冊記載，胚胎約在懷孕 6–8 週時可透過超音波看到或聽到強有力的小小生命心跳。",
+    "why_it_matters": "第一次聽到心跳常給伴侶帶來震撼與感動，實質體會新生命發育。",
+    "safety_note": "此為手冊發展里程碑參考；具體超音波心跳確認時間仍應以婦產科醫師臨床檢查為準。",
+    "bullets": [
+      "發展里程碑：胚胎約在 6–8 週可透過超音波觀察到心跳。",
+      "親密見證：陪同產檢共同見證生命的開端。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 6,
+      "section": "6-8週心跳里程碑",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "MED-PARTNER-T1-COMFORT-001",
+  "topic": "孕初期：理解孕吐、頻尿與疲憊",
+  "category": "partner_support",
+  "partner_type": "maternal_comfort_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "1-12 weeks",
+  "trigger_week": null,
+  "priority": "high",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "孕初期：理解孕吐、頻尿與疲憊",
+    "summary": "理解懷孕初期賀爾蒙遽變易造成噁心嘔吐、嗜睡疲倦與頻尿，給予體諒並主動分擔家務。",
+    "action_items": [
+      "理解伴侶初期的嗜睡疲倦是正常生理現象，主動分擔家事與採買",
+      "配合伴侶的飲食口味變化，協助準備清淡、少量多餐食物",
+      "避免在室內放置油煙、重口味或刺激性氣味食物造成嘔吐"
+    ],
+    "partner_knowledge": "孕初期賀爾蒙（如 hCG、黃體素）急速上升，易導致腸胃蠕動變慢與體力不支。",
+    "why_it_matters": "體諒初期的各種不適，能給予孕媽咪最及時的情緒撫慰。",
+    "safety_note": "若孕吐嚴重至完全無法喝水進食或劇吐，應協助就醫。",
+    "bullets": [
+      "體諒不適：理解嗜睡與孕吐為生理現象，主動承擔家務。",
+      "飲食配合：準備清淡少量多餐食物，遠離刺激異味。",
+      "充份休息：給予伴侶安靜舒適的睡眠休息環境。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 6,
+      "section": "孕初期母體變化與陪伴",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [
+    "MED-NUTRITION-NAUSEA-DIET-001",
+    "MED-SYMPTOM-T1-NAUSEA-001"
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

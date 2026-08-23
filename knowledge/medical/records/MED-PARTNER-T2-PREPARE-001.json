@@ -1,0 +1,50 @@
+{
+  "id": "MED-PARTNER-T2-PREPARE-001",
+  "topic": "孕中期：開始準備寶寶用品與生產規劃",
+  "category": "partner_support",
+  "partner_type": "pregnancy_stage_support",
+  "audience": "partner",
+  "pregnancy_stage": "trimester_2",
+  "recommended_window": "13-28 weeks",
+  "trigger_week": null,
+  "priority": "normal",
+  "frontend_targets": [
+    "partner_weekly_actions"
+  ],
+  "content": {
+    "title": "孕中期：開始準備寶寶用品與生產規劃",
+    "summary": "孕中期母體狀況相對穩定，適合伴侶一起規劃產後照顧、月子資源與用品盤點。",
+    "action_items": [
+      "與伴侶一起逛婦幼展或店家，討論嬰兒床、汽座與用品清單",
+      "討論產後坐月子地點（月子中心、月嫂或家長協助）",
+      "安排時間共同參加爸媽教室，實作照顧技巧"
+    ],
+    "partner_knowledge": "孕中期（13-28週）為孕期黃金平穩期，孕媽咪體力較佳，適合溝通大型決定。",
+    "why_it_matters": "利用平穩期完成大架構規劃，能避免後期負擔過重。",
+    "safety_note": "規劃應充分溝通尊重伴侶意願，不單方面代做決定。",
+    "bullets": [
+      "規劃月子：確認月子照顧資源與安排。",
+      "盤點用品：開始編列寶寶必備用品清單。",
+      "參加課程：報名參加實體爸媽教室演練。"
+    ]
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-FATHER-2025-09",
+      "page": 8,
+      "section": "孕中期陪伴大事記",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "cross_refs": [],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 06 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

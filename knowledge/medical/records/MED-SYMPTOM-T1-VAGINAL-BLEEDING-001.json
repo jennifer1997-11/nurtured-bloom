@@ -1,0 +1,56 @@
+{
+  "id": "MED-SYMPTOM-T1-VAGINAL-BLEEDING-001",
+  "topic": "孕期陰道出血",
+  "category": "pregnancy_symptom_requires_assessment",
+  "audience": "mother",
+  "pregnancy_stage": "all_trimesters",
+  "recommended_window": "1-40 weeks",
+  "content": {
+    "title": "孕期陰道出血",
+    "severity": "urgent",
+    "summary": "孕期出血原因多樣（不一定是流產），但國健署列為必須由專業醫師評估之警訊徵兆。",
+    "common_presentations": [
+      "陰道出現褐色分泌物、粉紅色血絲或鮮紅色出血"
+    ],
+    "self_care_or_actions": [
+      "請靜臥休息並記錄出血時間、顏色、血液型態與血量",
+      "保留衛生棉墊供醫師就醫診斷評估參考",
+      "禁止自行灌洗陰道或使用栓劑"
+    ],
+    "red_flags": [
+      "陰道出血（不管血量多少均屬需醫療評估之警訊）",
+      "出血量大如月經、鮮紅色血塊或合併劇烈下腹痛"
+    ],
+    "when_to_seek_care": "只要出現陰道出血，不論出血量多少，均應儘速就醫由醫師診察。",
+    "ai_safety": {
+      "can_self_manage": false,
+      "seek_care_if": "出現任何陰道出血或血絲",
+      "urgent_if": "鮮血出血、出血量多或合併下腹劇痛",
+      "do_not_reassure_if": "絕對不可將孕期陰道出血標記為「正常現象」"
+    }
+  },
+  "source_refs": [
+    {
+      "source_id": "HPA-MOTHER-HEALTH-2026-06",
+      "page": 13,
+      "section": "亮黃燈！注意危險徵兆",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "source_id": "HPA-MOTHER-EDU-2026-06",
+      "page": 12,
+      "section": "懷孕初期注意事項",
+      "accessed_at": "2026-08-21"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 03 Antigravity Direct Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}

@@ -1,0 +1,2875 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Tool — Medical KB Review Dashboard | 孕育之美</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============================================================
+   Design Tokens — 孕育之美 UI/UX Design System v1.0
+   ============================================================ */
+    :root {
+      --color-primary: #E88A9B;
+      --color-primary-dark: #C95F75;
+      --color-secondary: #A8BFA8;
+      --color-secondary-dark: #6E8460;
+      --color-accent: #F3D8A7;
+      --color-accent-dark: #9E7D3B;
+      --color-background: #FBF8F4;
+      --color-surface: #FFFDFB;
+      --color-surface-card: #FFFFFF;
+      --color-text: #343238;
+      --color-text-muted: #7E7A82;
+      --color-text-faint: #B5AEB0;
+      --color-border: rgba(232, 138, 155, 0.18);
+      --color-border-subtle: rgba(52, 50, 56, 0.08);
+
+      /* Status Colors */
+      --status-approved-bg: #E8F5E9;
+      --status-approved-text: #2E7D32;
+      --status-approved-border: #A5D6A7;
+      --status-draft-bg: #E3F2FD;
+      --status-draft-text: #1565C0;
+      --status-draft-border: #90CAF9;
+      --status-needs-review-bg: #FFF8E1;
+      --status-needs-review-text: #E65100;
+      --status-needs-review-border: #FFE082;
+      --status-candidate-bg: #F3E5F5;
+      --status-candidate-text: #6A1B9A;
+      --status-candidate-border: #CE93D8;
+      --status-gap-bg: #FFF3E0;
+      --status-gap-text: #D84315;
+      --status-gap-border: #FFCC80;
+
+      --font-cjk: "Noto Sans TC", sans-serif;
+      --font-serif-cjk: "Noto Serif TC", serif;
+      --font-latin: "Inter", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+
+      --shadow-soft: 0 10px 30px -12px rgba(198, 127, 136, 0.18), 0 2px 8px -2px rgba(198, 127, 136, 0.10);
+      --shadow-card: 0 14px 36px -16px rgba(154, 110, 100, 0.14), 0 2px 6px -2px rgba(154, 110, 100, 0.06);
+      --shadow-hover: 0 20px 40px -16px rgba(201, 95, 117, 0.22), 0 4px 12px -2px rgba(201, 95, 117, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--color-background);
+      color: var(--color-text);
+      font-family: var(--font-cjk);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* Header & Banner */
+    .dev-banner {
+      background: linear-gradient(90deg, #343238, #4A4650);
+      color: #FFFDFB;
+      padding: 10px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .dev-banner .tag-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-dev {
+      background: rgba(232, 138, 155, 0.25);
+      color: #F8B4C0;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-family: var(--font-latin);
+      font-size: 11px;
+      border: 1px solid rgba(232, 138, 155, 0.4);
+    }
+
+    .badge-lock {
+      background: rgba(168, 191, 168, 0.25);
+      color: #C8E6C9;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    .header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 24px 36px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 8px 16px -4px rgba(201, 95, 117, 0.4);
+      font-size: 22px;
+    }
+
+    .brand-title h1 {
+      font-family: var(--font-serif-cjk);
+      font-size: 22px;
+      margin: 0;
+      color: var(--color-text);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-title p {
+      margin: 2px 0 0;
+      font-size: 12.5px;
+      color: var(--color-text-muted);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--color-background);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      background: var(--color-surface);
+      color: var(--color-primary-dark);
+      box-shadow: 0 4px 12px rgba(201, 95, 117, 0.15);
+    }
+
+    /* App Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 32px 80px;
+    }
+
+    /* KPI Summary Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--color-surface-card);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 700;
+      font-family: var(--font-latin);
+      margin-top: 4px;
+      color: var(--color-text);
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+
+    /* Filters Bar */
+    .filter-bar {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-group label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+
+    .filter-select,
+    .search-input {
+      background: var(--color-background);
+      border: 1px solid rgba(52, 50, 56, 0.12);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      font-size: 13px;
+      font-family: var(--font-cjk);
+      color: var(--color-text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .filter-select:focus,
+    .search-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(232, 138, 155, 0.2);
+    }
+
+    .search-input {
+      min-width: 260px;
+    }
+
+    .btn-reset {
+      background: transparent;
+      border: 1px dashed var(--color-text-faint);
+      color: var(--color-text-muted);
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover {
+      border-color: var(--color-primary-dark);
+      color: var(--color-primary-dark);
+    }
+
+    .filter-stats {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    /* Record Card View */
+    .records-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 24px;
+    }
+
+    .record-card {
+      background: var(--color-surface-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .record-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: var(--color-border);
+    }
+
+    .record-header {
+      padding: 18px 22px 14px;
+      background: linear-gradient(180deg, rgba(251, 248, 244, 0.6), #FFFFFF);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .record-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .record-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background: var(--color-background);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(52, 50, 56, 0.08);
+    }
+
+    .record-topic {
+      font-family: var(--font-serif-cjk);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 4px 0 8px;
+      line-height: 1.35;
+    }
+
+    .badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* Badges */
+    .badge {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-stage {
+      background: #F6EFE6;
+      color: #735D43;
+      border: 1px solid #E6D8C8;
+    }
+
+    .badge-week {
+      background: rgba(168, 191, 168, 0.2);
+      color: #4B634B;
+      border: 1px solid #C5D8C5;
+      font-family: var(--font-latin);
+    }
+
+    .badge-category {
+      background: rgba(232, 138, 155, 0.15);
+      color: var(--color-primary-dark);
+      border: 1px solid rgba(232, 138, 155, 0.3);
+    }
+
+    .badge-approved {
+      background: var(--status-approved-bg);
+      color: var(--status-approved-text);
+      border: 1px solid var(--status-approved-border);
+    }
+
+    .badge-draft {
+      background: var(--status-draft-bg);
+      color: var(--status-draft-text);
+      border: 1px solid var(--status-draft-border);
+    }
+
+    .badge-needs-review {
+      background: var(--status-needs-review-bg);
+      color: var(--status-needs-review-text);
+      border: 1px solid var(--status-needs-review-border);
+    }
+
+    .badge-candidate {
+      background: var(--status-candidate-bg);
+      color: var(--status-candidate-text);
+      border: 1px solid var(--status-candidate-border);
+    }
+
+    .badge-gap {
+      background: var(--status-gap-bg);
+      color: var(--status-gap-text);
+      border: 1px solid var(--status-gap-border);
+    }
+
+    /* Card Body */
+    .record-body {
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .content-summary {
+      font-size: 13.5px;
+      color: var(--color-text);
+      line-height: 1.65;
+      background: #FCFAF8;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    .bullets-list {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bullets-list li {
+      font-size: 13px;
+      line-height: 1.55;
+      position: relative;
+      padding-left: 18px;
+      color: var(--color-text);
+    }
+
+    .bullets-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: -1px;
+      color: var(--color-primary-dark);
+      font-size: 16px;
+    }
+
+    .cta-box {
+      background: rgba(168, 191, 168, 0.15);
+      border: 1px solid rgba(168, 191, 168, 0.4);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: #385038;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .cta-box .icon {
+      font-size: 14px;
+    }
+
+    /* Citation Section */
+    .citation-box {
+      background: #F9F7F5;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .citation-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .citation-item {
+      background: var(--color-surface);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(52, 50, 56, 0.06);
+    }
+
+    .citation-item b {
+      color: var(--color-text);
+    }
+
+    /* Evidence Info */
+    .evidence-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--color-text-muted);
+      padding-top: 8px;
+      border-top: 1px dashed var(--color-border-subtle);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Collapsible JSON */
+    .json-details {
+      margin-top: 10px;
+      border-top: 1px solid var(--color-border-subtle);
+      padding-top: 10px;
+    }
+
+    .json-details summary {
+      font-size: 11.5px;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+    }
+
+    .json-details summary:hover {
+      color: var(--color-primary-dark);
+    }
+
+    .json-pre {
+      background: #2D2B30;
+      color: #F8F6F2;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin-top: 8px;
+      max-height: 240px;
+    }
+
+    /* Pregnancy Stage Journey View */
+    .stage-flow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .stage-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stage-block-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .stage-block-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stage-block-title h2 {
+      font-size: 22px;
+      color: var(--color-text);
+      font-family: var(--font-serif-cjk);
+    }
+
+    .journey-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .journey-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: 50px;
+      bottom: -20px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--color-primary), rgba(232, 138, 155, 0.2));
+    }
+
+    .step-icon-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .step-icon-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFFDFB, #F6DEE0);
+      border: 2px solid var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: var(--shadow-soft);
+      z-index: 2;
+    }
+
+    .step-content-card {
+      background: var(--color-surface-card);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .step-content-card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Source Gap Alert Card */
+    .gap-card {
+      background: #FFF9F2;
+      border: 1.5px solid #F5BA7A;
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 18px;
+    }
+
+    .gap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .gap-id {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #D84315;
+      font-size: 12px;
+    }
+
+    .gap-field-tag {
+      background: #FFE0B2;
+      color: #E65100;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      margin-right: 6px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    /* Sources Registry Table */
+    .sources-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--color-surface-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      font-size: 13px;
+    }
+
+    .sources-table th,
+    .sources-table td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .sources-table th {
+      background: #F6EFE6;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .sources-table tr:hover {
+      background: #FCFAF8;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--color-text-muted);
+    }
+
+    .empty-state .icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    /* Prenatal Map Review Dashboard Styling */
+    .map-timeline-wrapper {
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    .map-timeline-track {
+      display: flex;
+      gap: 12px;
+      min-width: max-content;
+      align-items: center;
+    }
+
+    .map-timeline-node {
+      background: var(--color-surface-card);
+      border: 1.5px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      min-width: 96px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .map-timeline-node:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-primary);
+    }
+
+    .map-timeline-node.active {
+      background: linear-gradient(135deg, #FFFDFB, #FCE8EC);
+      border-color: var(--color-primary-dark);
+      box-shadow: 0 4px 14px rgba(201, 95, 117, 0.25);
+    }
+
+    .node-visit-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .node-week-badge {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 2px 0;
+    }
+
+    .node-status-dot {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    .node-approved {
+      border-top: 3px solid var(--status-approved-text);
+    }
+
+    .node-needs-review {
+      border-top: 3px solid var(--status-needs-review-text);
+    }
+
+    .node-gap {
+      border-top: 3px solid var(--status-gap-text);
+    }
+
+    .map-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .map-nav-btn {
+      background: var(--color-surface-card);
+      border: 1.5px solid var(--color-border);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-primary-dark);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .map-nav-btn:hover:not(:disabled) {
+      background: var(--color-primary-dark);
+      color: white;
+    }
+
+    .map-nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .map-current-title {
+      font-size: 16px;
+      color: var(--color-text);
+    }
+
+    .map-detail-card {
+      background: var(--color-surface-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .detail-card-head {
+      padding: 20px 24px;
+      background: linear-gradient(180deg, rgba(251, 248, 244, 0.8), #FFFFFF);
+      border-bottom: 1px solid var(--color-border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .detail-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 16px;
+      font-size: 12.5px;
+      background: var(--color-background);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(52, 50, 56, 0.06);
+    }
+
+    .meta-lbl {
+      color: var(--color-text-muted);
+    }
+
+    .detail-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .review-section-box {
+      background: #FCFAF8;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+    }
+
+    .section-box-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .review-detail-list {
+      margin: 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13.5px;
+    }
+
+    .review-detail-text {
+      font-size: 13.5px;
+      color: var(--color-text);
+    }
+
+    .empty-data-text {
+      color: var(--color-text-muted);
+      font-style: italic;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+
+    .box-routine {
+      border-left: 4px solid #4CAF50;
+    }
+
+    .box-specific {
+      border-left: 4px solid #2196F3;
+    }
+
+    .box-funded {
+      border-left: 4px solid #9C27B0;
+    }
+
+    .box-edu {
+      border-left: 4px solid #FF9800;
+    }
+
+    .box-notes {
+      border-left: 4px solid #607D8B;
+    }
+
+    .box-evidence {
+      border-left: 4px solid #795548;
+      background: #F9F7F5;
+    }
+
+    .review-governance-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--color-border-subtle);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Developer Tool Banner -->
+  <div class="dev-banner">
+    <div class="tag-group">
+      <span class="badge-dev">DEVELOPER TOOL</span>
+      <span class="badge-lock">🔒 READ ONLY</span>
+      <span>孕育之美 醫療知識庫 人工審核儀表板 (Medical KB Review)</span>
+    </div>
+    <div class="tag-group">
+      <span>資料源：<code>knowledge/medical/</code></span>
+      <span id="syncTimestamp">載入中...</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <div class="brand-area">
+        <div class="brand-icon">🩺</div>
+        <div class="brand-title">
+          <h1>Medical KB Review Dashboard</h1>
+          <p>提供產品負責人與醫學審核者視覺化檢閱 Medical Records、逐句手冊引用與 Source Gaps</p>
+        </div>
+      </div>
+
+      <!-- View Mode Switcher -->
+      <div class="nav-tabs">
+        <button class="tab-btn active" data-tab="cards" onclick="switchView('cards', this)">🗂 Records 卡片模式</button>
+        <button class="tab-btn" data-tab="prenatal-map"
+          style="border: 1.5px solid var(--color-primary); background: rgba(232, 138, 155, 0.08);"
+          onclick="switchView('prenatal-map', this)">🗺️ 產檢地圖審核 <span
+            style="background:var(--color-primary-dark); color:white; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:2px;">02A</span></button>
+        <button class="tab-btn" data-tab="optional-vaccine"
+          style="border: 1.5px solid var(--color-secondary-dark); background: rgba(110, 132, 96, 0.08);"
+          onclick="switchView('optional-vaccine', this)">🧬 篩檢・診斷與疫苗 <span
+            style="background:var(--color-secondary-dark); color:white; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:2px;">02B/02C</span></button>
+        <button class="tab-btn" data-tab="symptoms-redflags"
+          style="border: 1.5px solid #E65100; background: rgba(230, 81, 0, 0.08);"
+          onclick="switchView('symptoms-redflags', this)">🚨 孕期不適・危險警訊 <span
+            style="background:#E65100; color:white; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:2px;">03</span></button>
+        <button class="tab-btn" data-tab="nutrition-safety"
+          style="border: 1.5px solid #2E7D32; background: rgba(46, 125, 50, 0.08);"
+          onclick="switchView('nutrition-safety', this)">🥗 孕期營養・飲食安全 <span
+            style="background:#2E7D32; color:white; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:2px;">04</span></button>
+        <button class="tab-btn" data-tab="lifestyle-exercise-travel"
+          style="border: 1.5px solid #00838F; background: rgba(0, 131, 143, 0.08);"
+          onclick="switchView('lifestyle-exercise-travel', this)">🏃 孕期生活・運動・外出安全 <span
+            style="background:#00838F; color:white; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:2px;">05</span></button>
+        <button class="tab-btn" data-tab="partner-view"
+          style="border: 1.5px solid #C2185B; background: rgba(194, 24, 91, 0.08);"
+          onclick="switchView('partner-view', this)">💕 神隊友陪伴知識庫 <span
+            style="background:#C2185B; color:white; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:2px;">06</span></button>
+        <button class="tab-btn" data-tab="stages" onclick="switchView('stages', this)">📖 孕期階段導覽</button>
+        <button class="tab-btn" data-tab="gaps" onclick="switchView('gaps', this)">⚠️ Source Gaps 缺口</button>
+        <button class="tab-btn" data-tab="sources" onclick="switchView('sources', this)">📚 核准來源目錄</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- KPI Summaries -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">📋 知識庫 Records 總數</div>
+        <div class="kpi-value" id="kpiTotal">-</div>
+        <div class="kpi-sub">直接讀取自 records/*.json</div>
+      </div>
+      <div class="kpi-card" style="border-left: 4px solid var(--status-approved-text);">
+        <div class="kpi-label">✅ Approved 已核准</div>
+        <div class="kpi-value" style="color: var(--status-approved-text);" id="kpiApproved">-</div>
+        <div class="kpi-sub">人工核對完成，供前台使用</div>
+      </div>
+      <div class="kpi-card" style="border-left: 4px solid var(--status-draft-text);">
+        <div class="kpi-label">📝 Draft 草稿</div>
+        <div class="kpi-value" style="color: var(--status-draft-text);" id="kpiDraft">-</div>
+        <div class="kpi-sub">待人工審查與確認</div>
+      </div>
+      <div class="kpi-card" style="border-left: 4px solid var(--status-needs-review-text);">
+        <div class="kpi-label">🔍 Needs Review 待複審</div>
+        <div class="kpi-value" style="color: var(--status-needs-review-text);" id="kpiNeedsReview">-</div>
+        <div class="kpi-sub">標記待確認或衝突項目</div>
+      </div>
+      <div class="kpi-card" style="border-left: 4px solid var(--status-gap-text);">
+        <div class="kpi-label">⚠️ Source Gaps 來源缺口</div>
+        <div class="kpi-value" style="color: var(--status-gap-text);" id="kpiGaps">-</div>
+        <div class="kpi-sub">受控紀錄，嚴禁模型補答</div>
+      </div>
+    </section>
+
+    <!-- View 1: Card Grid View -->
+    <section id="view-cards">
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label>🔍 關鍵字搜尋：</label>
+            <input type="text" id="searchInput" class="search-input" placeholder="搜尋主題、摘要、檢查項目、來源頁碼..."
+              oninput="applyFilters()">
+          </div>
+          <div class="filter-group">
+            <label>孕期階段：</label>
+            <select id="stageFilter" class="filter-select" onchange="applyFilters()">
+              <option value="all">全部階段 (All)</option>
+              <option value="trimester_1">懷孕初期 (Trimester 1)</option>
+              <option value="trimester_2">懷孕中期 (Trimester 2)</option>
+              <option value="trimester_3">懷孕後期 (Trimester 3)</option>
+              <option value="postpartum">產後照護 (Postpartum)</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>主題類別：</label>
+            <select id="categoryFilter" class="filter-select" onchange="applyFilters()">
+              <option value="all">全部類別 (All Categories)</option>
+              <option value="mother_changes">媽咪生理變化 (Mother Changes)</option>
+              <option value="baby_development">寶寶胎兒發展 (Baby Development)</option>
+              <option value="prenatal_checkup">建議產檢時程 (Prenatal Checkup)</option>
+              <option value="nutrition">飲食與營養 (Nutrition)</option>
+              <option value="exercise">運動與生活 (Exercise)</option>
+              <option value="warning_signs">危險警訊 (Warning Signs)</option>
+              <option value="partner_support">神隊友支持 (Partner Support)</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>審核狀態：</label>
+            <select id="statusFilter" class="filter-select" onchange="applyFilters()">
+              <option value="all">全部狀態 (All)</option>
+              <option value="approved">Approved 已核准</option>
+              <option value="draft">Draft 草稿</option>
+              <option value="needs_review">Needs Review 待複審</option>
+              <option value="candidate">Candidate 候選</option>
+            </select>
+          </div>
+          <button class="btn-reset" onclick="resetFilters()">重置篩選</button>
+          <div class="filter-stats" id="filterStats">顯示 0 / 0 筆</div>
+        </div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="records-grid" id="recordsGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- View 1.5: Prenatal Map Review View -->
+    <section id="view-prenatal-map" style="display: none;">
+      <!-- Injected via JavaScript renderPrenatalMapReview() -->
+    </section>
+
+    <!-- View 1.6: Optional Screening & Vaccine Review View (Batch 02B/02C) -->
+    <section id="view-optional-vaccine" style="display: none;">
+      <!-- Injected via JavaScript renderOptionalVaccineReview() -->
+    </section>
+
+    <!-- View 1.7: Symptoms & Red Flags Review View (Batch 03) -->
+    <section id="view-symptoms-redflags" style="display: none;">
+      <!-- Injected via JavaScript renderSymptomsRedFlagsReview() -->
+    </section>
+
+    <!-- View 1.8: Nutrition & Food Safety Review View (Batch 04) -->
+    <section id="view-nutrition-safety" style="display: none;">
+      <!-- Injected via JavaScript renderNutritionSafetyReview() -->
+    </section>
+
+    <!-- View 1.9: Lifestyle, Exercise, Travel Review View (Batch 05) -->
+    <section id="view-lifestyle-exercise-travel" style="display: none;">
+      <!-- Injected via JavaScript renderLifestyleExerciseTravelReview() -->
+    </section>
+
+    <!-- View 2.0: Partner View Review (Batch 06) -->
+    <section id="view-partner-view" style="display: none;">
+      <!-- Injected via JavaScript renderPartnerViewReview() -->
+    </section>
+
+    <!-- View 2: Pregnancy Stage Journey View -->
+    <section id="view-stages" style="display: none;">
+      <div class="stage-flow-container" id="stageFlowContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- View 3: Source Gaps View -->
+    <section id="view-gaps" style="display: none;">
+      <div class="stage-block">
+        <div class="stage-block-head">
+          <div class="stage-block-title">
+            <h2>⚠️ 醫療知識庫受控來源缺口 (SOURCE GAP Registry)</h2>
+          </div>
+          <span class="badge badge-gap">SOURCE_GAP_LOCAL 控管中</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 20px;">
+          依據專案規範（<a href="#"
+            style="color:var(--color-primary-dark); font-weight:600;">30-source-gap-web-research.md</a>），當本地手冊無法支持特定產品欄位時，必須先記錄為
+          SOURCE_GAP，嚴禁由 AI 模型自行猜測數值。
+        </p>
+        <div id="gapsContainer">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- View 4: Approved Sources View -->
+    <section id="view-sources" style="display: none;">
+      <div class="stage-block">
+        <div class="stage-block-head">
+          <div class="stage-block-title">
+            <h2>📚 專案核准資料來源名錄 (sources.json)</h2>
+          </div>
+          <span class="badge badge-approved">Registry v2.0</span>
+        </div>
+        <p style="font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 20px;">
+          本專案只允許引用在 <code>knowledge/medical/sources.json</code> 中 <code>approved: true</code> 的官方手冊與核准網域。
+        </p>
+        <table class="sources-table" id="sourcesTable">
+          <thead>
+            <tr>
+              <th>來源代號 (Source ID)</th>
+              <th>等級</th>
+              <th>發行機關</th>
+              <th>文件 / 網站名稱</th>
+              <th>版本／網域</th>
+              <th>型態</th>
+              <th>核准狀態</th>
+            </tr>
+          </thead>
+          <tbody id="sourcesTableBody">
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>孕育之美 內部開發與醫療審核專用儀表板 · 唯讀安全模式 · 資料直接綁定 <code>knowledge/medical/</code></p>
+    </footer>
+  </main>
+
+  <!-- Load Data Registry (Direct JS Embed for file:/// compatibility) -->
+  <script src="data.js"></script>
+
+  <script>
+    // State
+    let allRecords = [];
+    let allGaps = [];
+    let allSources = [];
+    let currentTab = 'cards';
+    let selectedPrenatalIndex = 0;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
+    });
+
+    function loadData() {
+      if (window.MEDICAL_KB_DATA) {
+        const data = window.MEDICAL_KB_DATA;
+        allRecords = data.records || [];
+        allGaps = data.source_gaps || [];
+        allSources = (data.sources_registry && data.sources_registry.sources) || [];
+
+        document.getElementById('syncTimestamp').textContent = `同步時間：${data.sync_timestamp || '最新'}`;
+        renderKPIs();
+        applyFilters();
+        renderStageJourney();
+        renderGaps();
+        renderSources();
+      } else {
+        document.getElementById('recordsGrid').innerHTML = `
+      <div class="empty-state">
+        <div class="icon">⚠️</div>
+        <h3>尚未偵測到 data.js 資料檔</h3>
+        <p>請確認 <code>tools/medical-kb-review/data.js</code> 是否已建立，或執行 <code>python tools/medical-kb-review/sync-data.py</code> 重新同步。</p>
+      </div>
+    `;
+      }
+    }
+
+    // Switch Tabs
+    function switchView(tabName, btnElement) {
+      currentTab = tabName;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-tab') === tabName || btn === btnElement) {
+          btn.classList.add('active');
+        }
+      });
+
+      ['cards', 'prenatal-map', 'optional-vaccine', 'symptoms-redflags', 'nutrition-safety', 'lifestyle-exercise-travel', 'partner-view', 'stages', 'gaps', 'sources'].forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.style.display = (v === tabName) ? 'block' : 'none';
+      });
+
+      if (tabName === 'prenatal-map') {
+        renderPrenatalMapReview();
+      }
+      if (tabName === 'optional-vaccine') {
+        renderOptionalVaccineReview();
+      }
+      if (tabName === 'symptoms-redflags') {
+        renderSymptomsRedFlagsReview();
+      }
+      if (tabName === 'nutrition-safety') {
+        renderNutritionSafetyReview();
+      }
+      if (tabName === 'lifestyle-exercise-travel') {
+        renderLifestyleExerciseTravelReview();
+      }
+      if (tabName === 'partner-view') {
+        renderPartnerViewReview();
+      }
+    }
+
+        // Render Prenatal Map Visual Review (Batch 02A + 02B + 02C Merged)
+    function renderPrenatalMapReview() {
+      const container = document.getElementById('view-prenatal-map');
+
+      // Filter prenatal visit records (Batch 02A)
+      const visitRecords = allRecords.filter(r =>
+        r.id && r.id.startsWith('MED-PRENATAL-VISIT-')
+      ).sort((a, b) => (a.visit_number || 0) - (b.visit_number || 0));
+
+      if (visitRecords.length === 0) {
+        container.innerHTML = `
+      <div class="stage-block">
+        <div class="empty-state">
+          <div class="icon">🩺</div>
+          <h3>尚未找到產檢紀錄 (MED-PRENATAL-VISIT-*)</h3>
+          <p>請確認是否已建置 Batch 02 產檢 Record 檔案。</p>
+        </div>
+      </div>
+    `;
+        return;
+      }
+
+      if (selectedPrenatalIndex < 0) selectedPrenatalIndex = 0;
+      if (selectedPrenatalIndex >= visitRecords.length) selectedPrenatalIndex = visitRecords.length - 1;
+
+      const currentRec = visitRecords[selectedPrenatalIndex];
+      const currentWeek = currentRec.recommended_gestational_week || 8;
+
+      // Matching helpers for Batch 02B & 02C (Earliest Visit Week Deduplication Rule)
+      const getOptionalTestsForWeek = (w) => {
+        return allRecords.filter(r => {
+          if (!r.id || !r.id.startsWith('MED-PRENATAL-OPTIONAL-')) return false;
+          const id = r.id;
+          if (id === 'MED-PRENATAL-OPTIONAL-04') return w === 8;  // SMA 帶因者 (僅出現在8週/第1次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-05') return w === 8;  // Fragile X 帶因者 (僅出現在8週/第1次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-01') return w === 12; // 初唐 (僅出現在12週/第2次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-02') return w === 12; // NIPT 10週以上 (僅出現在12週/第2次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-03') return w === 12; // 第一孕期子癲前症 (僅出現在12週/第2次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-06') return w === 16; // 中唐 (僅出現在16週/第3次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-07') return w === 16; // 羊膜穿刺 (僅出現在16週/第3次產檢)
+          if (id === 'MED-PRENATAL-OPTIONAL-08') return w === 20; // 高層次超音波 (僅出現在20週/第4次產檢)
+          return false;
+        });
+      };
+
+      const getVaccinesForWeek = (w) => {
+        return allRecords.filter(r => {
+          if (!r.id || !r.id.startsWith('MED-PREG-VACCINE-')) return false;
+          const id = r.id;
+          if (id === 'MED-PREG-VACCINE-03') return w === 8;  // 季節性流感疫苗 (最早出現在8週/第1次產檢提醒)
+          if (id === 'MED-PREG-VACCINE-01') return w === 28; // 百日咳疫苗(Tdap疫苗) 建議27-36週 (僅出現在28週/第6次產檢)
+          return false;
+        });
+      };
+
+      // Timeline Nodes HTML with Badges for 02A + 02B + 02C
+      const nodesHtml = visitRecords.map((r, idx) => {
+        const isSelected = (idx === selectedPrenatalIndex);
+        const w = r.recommended_gestational_week || 8;
+        const optCount = getOptionalTestsForWeek(w).length;
+        const vacCount = getVaccinesForWeek(w).length;
+
+        const statusClass = r.review_status === 'approved' ? 'node-approved' :
+          r.review_status === 'needs_review' ? 'node-needs-review' : 'node-gap';
+        const statusDot = r.review_status === 'approved' ? '🟢' :
+          r.review_status === 'needs_review' ? '🟠' : '🔴';
+
+        return `
+      <div class="map-timeline-node ${isSelected ? 'active' : ''} ${statusClass}" onclick="selectPrenatalVisit(${idx})">
+        <div class="node-visit-num">Visit ${String(r.visit_number || idx + 1).padStart(2, '0')}</div>
+        <div class="node-week-badge">${w} 週</div>
+        <div style="margin-top:4px; display:flex; flex-direction:column; gap:2px; align-items:center;">
+          ${optCount > 0 ? `<span style="font-size:10px; background:#E3F2FD; color:#1565C0; padding:1px 5px; border-radius:8px; font-weight:600;">🧪 篩檢 x${optCount}</span>` : ''}
+          ${vacCount > 0 ? `<span style="font-size:10px; background:#E8F5E9; color:#2E7D32; padding:1px 5px; border-radius:8px; font-weight:600;">💉 疫苗 x${vacCount}</span>` : ''}
+        </div>
+        <div class="node-status-dot" title="${r.review_status}" style="margin-top:4px;">${statusDot} ${r.review_status}</div>
+      </div>
+    `;
+      }).join('');
+
+      // Helper for displaying list or "無資料"
+      const renderListSection = (items, icon, title, colorClass = '') => {
+        let contentHtml = '';
+        if (!items || (Array.isArray(items) && items.length === 0)) {
+          contentHtml = `<div class="empty-data-text">無資料</div>`;
+        } else if (Array.isArray(items)) {
+          contentHtml = `<ul class="review-detail-list">${items.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`;
+        } else {
+          contentHtml = `<div class="review-detail-text">${escapeHtml(String(items))}</div>`;
+        }
+
+        return `
+      <div class="review-section-box ${colorClass}">
+        <div class="section-box-title">${icon} ${title}</div>
+        ${contentHtml}
+      </div>
+    `;
+      };
+
+      // Current Visit's Optional Tests & Vaccines
+      const currentOptionalTests = getOptionalTestsForWeek(currentWeek);
+      const currentVaccines = getVaccinesForWeek(currentWeek);
+
+      // Render Optional Tests Cards (Batch 02B)
+      const optionalCardsHtml = currentOptionalTests.length > 0
+        ? currentOptionalTests.map(r => {
+          const c = r.content || {};
+          const invStr = c.invasive !== undefined ? (c.invasive ? '侵入性 (Invasive)' : '非侵入性 (Non-invasive)') : '無資料';
+          const typeStr = c.screening_or_diagnostic === 'screening' ? '篩檢 (Screening)' :
+                          c.screening_or_diagnostic === 'diagnostic' ? '確診診斷 (Diagnostic)' : (c.screening_or_diagnostic || '無資料');
+          return `
+            <div style="background:#F0F7FF; border:1px solid #BBDEFB; border-radius:8px; padding:14px; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="record-id" style="font-size:11px;">${r.id}</span>
+                  <span style="font-weight:700; color:#1565C0; font-size:15px;">${escapeHtml(c.title || r.topic)}</span>
+                </div>
+                <span class="badge" style="background:#E3F2FD; color:#0D47A1; border:1px solid #90CAF9;">${c.recommended_window || r.recommended_window}</span>
+              </div>
+              <div style="font-size:13px; color:var(--color-text); margin-bottom:8px;">${escapeHtml(c.summary || '')}</div>
+              
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:6px; font-size:12px; background:white; padding:8px 12px; border-radius:6px; margin-bottom:8px;">
+                <div>性質：<b>${escapeHtml(typeStr)}</b></div>
+                <div>侵入性：<b>${escapeHtml(invStr)}</b></div>
+                <div>費用型態：<b>${escapeHtml(c.funding_type || '無資料')}</b></div>
+              </div>
+
+              <div style="font-size:12px; color:#1565C0; margin-bottom:4px;"><b>🎯 適用對象：</b>${escapeHtml(c.suitable_population || '無資料')}</div>
+              <div style="font-size:12px; color:#C62828;"><b>⚠️ 重要限制：</b>${escapeHtml(c.important_limitations || '無資料')}</div>
+            </div>
+          `;
+        }).join('')
+        : `<div class="empty-data-text">本週無特定建議之自費／選擇性產前篩檢（可依孕婦個人需求與醫師諮詢評估）</div>`;
+
+      // Render Vaccine Cards (Batch 02C)
+      const vaccineCardsHtml = currentVaccines.length > 0
+        ? currentVaccines.map(r => {
+          const c = r.content || {};
+          const isContra = r.category === 'pregnancy_vaccine_contraindication';
+          const bgColor = isContra ? '#FFEBEE' : '#E8F5E9';
+          const borderColor = isContra ? '#FFCDD2' : '#C8E6C9';
+          const titleColor = isContra ? '#C62828' : '#2E7D32';
+
+          return `
+            <div style="background:${bgColor}; border:1px solid ${borderColor}; border-radius:8px; padding:14px; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="record-id" style="font-size:11px;">${r.id}</span>
+                  <span style="font-weight:700; color:${titleColor}; font-size:15px;">${escapeHtml(c.title || r.topic)}</span>
+                  ${c.policy_sensitive ? '<span class="badge" style="background:#FFF3E0; color:#E65100; font-size:10px;">📌 政策敏感</span>' : ''}
+                </div>
+                <span class="badge" style="background:white; color:${titleColor}; border:1px solid ${borderColor};">${c.recommended_window || c.timing || '無資料'}</span>
+              </div>
+              <div style="font-size:13px; color:var(--color-text); margin-bottom:8px;">${escapeHtml(c.summary || '')}</div>
+              
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:6px; font-size:12px; background:white; padding:8px 12px; border-radius:6px; margin-bottom:8px;">
+                <div>建議時機：<b>${escapeHtml(c.recommended_window || c.timing || '無資料')}</b></div>
+                <div>接種建議：<b>${escapeHtml(c.recommendation || c.during_pregnancy || '無資料')}</b></div>
+                <div>費用型態：<b>${escapeHtml(c.funding_type || '無資料')}</b></div>
+              </div>
+
+              <div style="font-size:12px; color:${titleColor}; margin-bottom:4px;"><b>🎯 適用對象：</b>${escapeHtml(c.suitable_population || '無資料')}</div>
+              <div style="font-size:12px; color:#C62828;"><b>⚠️ 注意事項與禁忌：</b>${escapeHtml(c.important_limitations || '無資料')}</div>
+            </div>
+          `;
+        }).join('')
+        : `<div class="empty-data-text">本週無特定限制疫苗（流感與 COVID-19 疫苗符合當期政策於任何孕期皆可施打）</div>`;
+
+      // Source refs HTML for current visit (02A) + matching 02B + 02C
+      const allCurrentSourceRefs = [
+        ...(currentRec.source_refs || []),
+        ...currentOptionalTests.flatMap(r => r.source_refs || []),
+        ...currentVaccines.flatMap(r => r.source_refs || [])
+      ];
+
+      const sourceRefsHtml = (allCurrentSourceRefs.length > 0)
+        ? allCurrentSourceRefs.map(s => {
+          const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+          return `
+          <div class="citation-item" style="margin-top:6px;">
+            <b>${srcMeta.title || s.source_id}</b> (${srcMeta.publisher || '衛生福利部'})
+            <div style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">
+              ${s.page ? `頁碼：<b>第 ${s.page} 頁</b> · ` : ''}章節：${escapeHtml(s.section || '官方衛教資訊')}
+            </div>
+          </div>
+        `;
+        }).join('')
+        : '<div class="empty-data-text">無資料</div>';
+
+      // Status badge
+      const statusText = currentRec.review_status === 'approved' ? '🟢 approved (已核准)' :
+        currentRec.review_status === 'needs_review' ? '🟠 needs_review (待審核)' :
+          `🔴 ${currentRec.review_status}`;
+
+      container.innerHTML = `
+    <div class="stage-block" style="padding: 24px;">
+      <!-- Header -->
+      <div class="stage-block-head" style="margin-bottom: 20px;">
+        <div class="stage-block-title">
+          <span style="font-size:28px;">🗺️</span>
+          <div>
+            <h2>我的孕期 — 產檢地圖整合視覺化審核 (Batch 02A + 02B + 02C)</h2>
+            <div style="font-size:12.5px; color:var(--color-text-muted);">
+              整合衛生福利部國民健康署 14 次公費例行產檢、自費/選擇性產前篩檢診斷與孕期疫苗免疫指引 · 全方位週數對照
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span class="badge badge-candidate">02A 14次產檢</span>
+          <span class="badge badge-candidate">02B 8項篩檢診斷</span>
+          <span class="badge badge-candidate">02C 5項疫苗建議</span>
+          <span class="badge badge-lock">🔒 Read Only</span>
+        </div>
+      </div>
+
+      <!-- Timeline Bar -->
+      <div class="map-timeline-wrapper">
+        <div class="map-timeline-track">
+          ${nodesHtml}
+        </div>
+      </div>
+
+      <!-- Quick Nav Buttons & Title -->
+      <div class="map-nav-bar">
+        <button class="map-nav-btn" onclick="navigatePrenatalVisit(-1)" ${selectedPrenatalIndex === 0 ? 'disabled' : ''}>
+          ← 上一次產檢
+        </button>
+        <div class="map-current-title">
+          <b>第 ${currentRec.visit_number} 次產檢</b>（建議孕週：<b style="color:var(--color-primary-dark);">${currentWeek} 週</b>）
+          <span style="font-size:12px; color:var(--color-text-muted); font-weight:normal; margin-left:8px;">
+            (${selectedPrenatalIndex + 1} / ${visitRecords.length})
+          </span>
+        </div>
+        <button class="map-nav-btn" onclick="navigatePrenatalVisit(1)" ${selectedPrenatalIndex === visitRecords.length - 1 ? 'disabled' : ''}>
+          下一次產檢 →
+        </button>
+      </div>
+
+      <!-- Detail Review Card -->
+      <div class="map-detail-card">
+        <!-- Top Meta Bar -->
+        <div class="detail-card-head">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span class="record-id">${currentRec.id}</span>
+              <span class="badge ${currentRec.review_status === 'approved' ? 'badge-approved' : 'badge-needs-review'}">${statusText}</span>
+            </div>
+            <h3 style="font-family:var(--font-serif-cjk); font-size:20px; margin:0; color:var(--color-text);">
+              ${escapeHtml(currentRec.content?.title || currentRec.topic)}
+            </h3>
+          </div>
+          <div class="detail-meta-grid">
+            <div class="meta-item"><span class="meta-lbl">第幾次產檢：</span><b>第 ${currentRec.visit_number || '無資料'} 次</b></div>
+            <div class="meta-item"><span class="meta-lbl">建議孕週：</span><b>${currentRec.recommended_gestational_week ? currentRec.recommended_gestational_week + ' 週' : '無資料'}</b></div>
+            <div class="meta-item"><span class="meta-lbl">Pregnancy Stage：</span><b>${STAGE_MAP[currentRec.pregnancy_stage] || currentRec.pregnancy_stage || '無資料'}</b></div>
+            <div class="meta-item"><span class="meta-lbl">Recommended Window：</span><b>${escapeHtml(currentRec.recommended_window || '無資料')}</b></div>
+          </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="detail-card-body">
+          
+          <!-- SECTION 1: 14 次例行公費產檢 (Batch 02A) -->
+          <div style="border:1.5px solid var(--color-border); border-radius:10px; padding:16px; background:white; margin-bottom:8px;">
+            <h4 style="font-size:16px; color:var(--color-primary-dark); margin-top:0; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <span>🏥</span> 國健署指定公費例行產檢與特定檢查 (Batch 02A)
+            </h4>
+            ${renderListSection(currentRec.content?.routine_checkups, '🩺', '例行產檢 (Routine Checkups)', 'box-routine')}
+            ${renderListSection(currentRec.content?.specific_tests, '🔬', '特定檢查 (Specific Tests)', 'box-specific')}
+            ${renderListSection(currentRec.content?.publicly_funded_items, '💳', '公費項目 (Publicly Funded Items)', 'box-funded')}
+            ${renderListSection(currentRec.content?.health_education, '📖', '衛教提醒 (Health Education)', 'box-edu')}
+            ${renderListSection(currentRec.content?.notes, '📝', '備註說明 (Notes)', 'box-notes')}
+          </div>
+
+          <!-- SECTION 2: 該週對應之自費與選擇性產前檢查 (Batch 02B) -->
+          <div style="border:1.5px solid #BBDEFB; border-radius:10px; padding:16px; background:#F8FAFC; margin-bottom:8px;">
+            <h4 style="font-size:16px; color:#1565C0; margin-top:0; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <span>🧪</span> 該孕週建議／可考慮之自費與選擇性產前檢查 (Batch 02B)
+            </h4>
+            ${optionalCardsHtml}
+          </div>
+
+          <!-- SECTION 3: 該週適用／建議之疫苗與免疫提醒 (Batch 02C) -->
+          <div style="border:1.5px solid #C8E6C9; border-radius:10px; padding:16px; background:#F9FBF9; margin-bottom:8px;">
+            <h4 style="font-size:16px; color:#2E7D32; margin-top:0; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <span>💉</span> 該孕週適用／建議之疫苗與免疫提醒 (Batch 02C)
+            </h4>
+            ${vaccineCardsHtml}
+          </div>
+
+          <!-- Evidence Box -->
+          <div class="review-section-box box-evidence">
+            <div class="section-box-title">📚 官方 Evidence 與引用追溯 (Source References)</div>
+            ${sourceRefsHtml}
+          </div>
+
+          <!-- Governance Row -->
+          <div class="review-governance-bar">
+            <div>審核狀態 (review_status)：<b style="color:var(--color-primary-dark);">${currentRec.review_status}</b></div>
+            <div>人工核對 (human_reviewed)：<b>${currentRec.evidence?.human_reviewed ? '✅ true' : '❌ false'}</b></div>
+            <div>來源型態 (origin)：<b>${currentRec.origin || 'local_pdf'}</b></div>
+            <div style="color:var(--color-text-muted); font-size:11.5px;">🔒 Read Only Review 模式（未提供變更按鈕）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    function selectPrenatalVisit(index) {
+      selectedPrenatalIndex = index;
+      renderPrenatalMapReview();
+    }
+
+    function navigatePrenatalVisit(delta) {
+      selectedPrenatalIndex += delta;
+      renderPrenatalMapReview();
+    }
+
+    // Render Optional Screening & Vaccine Review (Batch 02B + 02C)
+    function renderOptionalVaccineReview() {
+      const container = document.getElementById('view-optional-vaccine');
+
+      // Filter 02B and 02C records
+      const targetRecords = allRecords.filter(r =>
+        r.id && (r.id.startsWith('MED-PRENATAL-OPTIONAL-') || r.id.startsWith('MED-PREG-VACCINE-'))
+      );
+
+      if (targetRecords.length === 0) {
+        container.innerHTML = `
+      <div class="stage-block">
+        <div class="empty-state">
+          <div class="icon">🧬</div>
+          <h3>尚未找到 Batch 02B/02C 紀錄</h3>
+          <p>請確認是否已建立 <code>MED-PRENATAL-OPTIONAL-*</code> 與 <code>MED-PREG-VACCINE-*</code> 檔案。</p>
+        </div>
+      </div>
+    `;
+        return;
+      }
+
+      // Categories definition
+      const groups = [
+        {
+          title: '🧬 產前篩檢／遺傳檢查',
+          color: '#2196F3',
+          filter: r => ['prenatal_screening', 'genetic_screening', 'carrier_screening', 'genetic_diagnostic'].includes(r.category)
+        },
+        {
+          title: '🔎 選擇性影像／其他檢查',
+          color: '#9C27B0',
+          filter: r => ['optional_imaging', 'maternal_risk_screening'].includes(r.category)
+        },
+        {
+          title: '💉 疫苗／免疫建議',
+          color: '#4CAF50',
+          filter: r => r.category === 'pregnancy_vaccination'
+        },
+        {
+          title: '⚠️ 孕期禁忌／重要提醒',
+          color: '#E53935',
+          filter: r => r.category === 'pregnancy_vaccine_contraindication'
+        }
+      ];
+
+      const groupHtml = groups.map(grp => {
+        const recs = targetRecords.filter(grp.filter);
+        if (recs.length === 0) return '';
+
+        const cardsHtml = recs.map(r => {
+          const c = r.content || {};
+          const statusText = r.review_status === 'approved' ? '🟢 approved' : '🟠 needs_review';
+
+          const invStr = c.invasive !== undefined ? (c.invasive ? '是 (Invasive)' : '否 (Non-invasive)') : '無資料／待確認';
+          const typeStr = c.screening_or_diagnostic ? (c.screening_or_diagnostic === 'screening' ? '篩檢 (Screening)' : (c.screening_or_diagnostic === 'diagnostic' ? '確診診斷 (Diagnostic)' : c.screening_or_diagnostic)) : (c.during_pregnancy ? `孕期禁忌: ${c.during_pregnancy}` : '無資料／待確認');
+
+          const sourceRefsHtml = (r.source_refs && r.source_refs.length > 0)
+            ? r.source_refs.map(s => {
+              const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+              return `<div style="font-size:11.5px; color:var(--color-text-muted); margin-top:2px;"><b>${srcMeta.title || s.source_id}</b> (${srcMeta.publisher || ''}) · ${s.section || ''}</div>`;
+            }).join('')
+            : '<div style="font-size:11.5px; color:var(--color-text-muted);">無資料／待確認</div>';
+
+          return `
+        <div class="map-detail-card" style="margin-bottom: 16px;">
+          <div class="detail-card-head" style="padding: 14px 18px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span class="record-id">${r.id}</span>
+                <span class="badge ${r.review_status === 'approved' ? 'badge-approved' : 'badge-needs-review'}">${statusText}</span>
+                ${c.policy_sensitive ? '<span class="badge" style="background:#FFF3E0; color:#E65100; border:1px solid #FFE082;">📌 Policy Sensitive 政策敏感</span>' : ''}
+              </div>
+              <h3 style="font-family:var(--font-serif-cjk); font-size:17px; margin:0; color:var(--color-text);">${escapeHtml(c.title || r.topic)}</h3>
+            </div>
+            <span class="badge badge-stage">${c.recommended_window || c.timing || r.recommended_window || '無資料／待確認'}</span>
+          </div>
+          <div class="detail-card-body" style="padding: 16px 18px; gap: 12px;">
+            <div style="font-size:13.5px; line-height:1.5; color:var(--color-text);">${escapeHtml(c.summary || '無資料／待確認')}</div>
+            
+            <div class="detail-meta-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+              <div><span class="meta-lbl">Category：</span><b>${escapeHtml(r.category || '無資料／待確認')}</b></div>
+              <div><span class="meta-lbl">Window/Timing：</span><b>${escapeHtml(c.recommended_window || c.timing || '無資料／待確認')}</b></div>
+              <div><span class="meta-lbl">Screening/Diagnostic：</span><b>${escapeHtml(typeStr)}</b></div>
+              <div><span class="meta-lbl">Invasive：</span><b>${escapeHtml(invStr)}</b></div>
+              <div><span class="meta-lbl">Funding Type：</span><b>${escapeHtml(c.funding_type || '無資料／待確認')}</b></div>
+              <div><span class="meta-lbl">Recommendation：</span><b>${escapeHtml(c.recommendation || c.during_pregnancy || '無資料／待確認')}</b></div>
+            </div>
+
+            <div class="review-section-box" style="padding:10px 14px; background:#FBF8F4;">
+              <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">🎯 適用對象 (Suitable Population)</div>
+              <div style="font-size:13px; color:var(--color-text);">${escapeHtml(c.suitable_population || '無資料／待確認')}</div>
+            </div>
+
+            <div class="review-section-box" style="padding:10px 14px; background:#FFF9F2; border-color:#FFE0B2;">
+              <div style="font-size:12px; font-weight:700; color:#D84315; margin-bottom:4px;">⚠️ 重要限制與注意事項 (Important Limitations)</div>
+              <div style="font-size:13px; color:#5D4037;">${escapeHtml(c.important_limitations || '無資料／待確認')}</div>
+            </div>
+
+            <div class="review-section-box box-evidence" style="padding:10px 14px;">
+              <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">📚 官方 Evidence / Source</div>
+              ${sourceRefsHtml}
+            </div>
+
+            <div class="review-governance-bar" style="padding-top:8px;">
+              <div>review_status: <b>${r.review_status}</b></div>
+              <div>human_reviewed: <b>${r.evidence?.human_reviewed ? '✅ true' : '❌ false'}</b></div>
+              <div style="color:var(--color-text-muted);">🔒 Read Only Mode</div>
+            </div>
+          </div>
+        </div>
+      `;
+        }).join('');
+
+        return `
+      <div class="stage-block" style="margin-bottom: 24px; padding: 20px;">
+        <div class="stage-block-head" style="margin-bottom: 16px; border-bottom: 2px solid ${grp.color};">
+          <h2 style="font-size: 18px; color: var(--color-text);">${grp.title} (${recs.length} 筆)</h2>
+        </div>
+        ${cardsHtml}
+      </div>
+    `;
+      }).join('');
+
+      container.innerHTML = `
+    <div style="margin-bottom: 20px;">
+      <div class="stage-block-head" style="margin-bottom: 16px;">
+        <div>
+          <h2 style="font-family:var(--font-serif-cjk); font-size:22px;">🧬 產前篩檢、選擇性檢查與孕期疫苗審核 (Batch 02B + 02C)</h2>
+          <p style="font-size:12.5px; color:var(--color-text-muted); margin-top:4px;">
+            收錄 8 筆自費/選擇性產前檢查與 5 筆孕期疫苗與免疫建議 · 獨立於 14 次例行產檢 · 唯讀審核模式
+          </p>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <span class="badge badge-candidate">Batch 02B (8 Records)</span>
+          <span class="badge badge-candidate">Batch 02C (5 Records)</span>
+        </div>
+      </div>
+      ${groupHtml}
+    </div>
+  `;
+    }
+
+    // Render KPI Cards
+    function renderKPIs() {
+      const total = allRecords.length;
+      const approved = allRecords.filter(r => r.review_status === 'approved').length;
+      const draft = allRecords.filter(r => r.review_status === 'draft').length;
+      const needsReview = allRecords.filter(r => r.review_status === 'needs_review').length;
+      const gaps = allGaps.length;
+
+      document.getElementById('kpiTotal').textContent = total;
+      document.getElementById('kpiApproved').textContent = approved;
+      document.getElementById('kpiDraft').textContent = draft;
+      document.getElementById('kpiNeedsReview').textContent = needsReview;
+      document.getElementById('kpiGaps').textContent = gaps;
+    }
+
+    // Category helper labels
+    const CATEGORY_MAP = {
+      'mother_changes': { label: '媽咪生理變化', icon: '🤰' },
+      'baby_development': { label: '寶寶胎兒發展', icon: '👶' },
+      'prenatal_checkup': { label: '建議產檢時程', icon: '🩺' },
+      'nutrition': { label: '飲食與營養', icon: '🥗' },
+      'exercise': { label: '運動與生活', icon: '🧘' },
+      'warning_signs': { label: '危險警訊', icon: '🚨' },
+      'partner_support': { label: '神隊友支持', icon: '🤝' },
+      'other': { label: '其他主題', icon: '📌' }
+    };
+
+    const STAGE_MAP = {
+      'trimester_1': '懷孕初期 (T1)',
+      'trimester_2': '懷孕中期 (T2)',
+      'trimester_3': '懷孕後期 (T3)',
+      'postpartum': '產後照護 (Postpartum)'
+    };
+
+    // Filter records
+    function applyFilters() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const stage = document.getElementById('stageFilter').value;
+      const category = document.getElementById('categoryFilter').value;
+      const status = document.getElementById('statusFilter').value;
+
+      const filtered = allRecords.filter(r => {
+        // Stage
+        if (stage !== 'all' && r.pregnancy_stage !== stage) return false;
+        // Category
+        if (category !== 'all' && r.category !== category) return false;
+        // Status
+        if (status !== 'all' && r.review_status !== status) return false;
+        // Query
+        if (query) {
+          const fullText = [
+            r.id,
+            r.topic,
+            r.content?.summary,
+            ...(r.content?.bullets || []),
+            r.content?.cta,
+            ...(r.source_refs || []).map(s => `${s.source_id} ${s.section} p.${s.page}`)
+          ].join(' ').toLowerCase();
+          if (!fullText.includes(query)) return false;
+        }
+        return true;
+      });
+
+      document.getElementById('filterStats').textContent = `顯示 ${filtered.length} / ${allRecords.length} 筆`;
+      renderRecordCards(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('stageFilter').value = 'all';
+      document.getElementById('categoryFilter').value = 'all';
+      document.getElementById('statusFilter').value = 'all';
+      applyFilters();
+    }
+
+    // Render Card Grid View
+    function renderRecordCards(records) {
+      const container = document.getElementById('recordsGrid');
+      if (records.length === 0) {
+        container.innerHTML = `
+      <div class="empty-state" style="grid-column: 1 / -1;">
+        <div class="icon">🔍</div>
+        <h3>沒有符合條件的 Medical Record</h3>
+        <p>請嘗試放寬篩選條件或重置搜尋。</p>
+      </div>
+    `;
+        return;
+      }
+
+      container.innerHTML = records.map(r => {
+        const cat = CATEGORY_MAP[r.category] || { label: r.category || '未分類', icon: '📄' };
+        const stageLabel = STAGE_MAP[r.pregnancy_stage] || r.pregnancy_stage || '未指定階段';
+        const statusClass = `badge-${r.review_status || 'draft'}`;
+        const statusText = r.review_status === 'approved' ? '✅ Approved 已核准' :
+          r.review_status === 'draft' ? '📝 Draft 草稿' :
+            r.review_status === 'needs_review' ? '🔍 Needs Review 待複審' : r.review_status;
+
+        const bulletsHtml = (r.content?.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join('');
+
+        const citationsHtml = (r.source_refs || []).map(s => {
+          const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+          return `
+        <div class="citation-item">
+          <b>${srcMeta.title || s.source_id}</b> (${srcMeta.edition || ''}) · <b>第 ${s.page} 頁</b>
+          <div style="color:var(--color-text-muted); font-size:11.5px; margin-top:2px;">
+            章節：${escapeHtml(s.section || '未標示章節')}
+          </div>
+        </div>
+      `;
+        }).join('');
+
+        return `
+      <article class="record-card">
+        <div class="record-header">
+          <div class="record-meta-top">
+            <span class="record-id">${r.id}</span>
+            <span class="badge ${statusClass}">${statusText}</span>
+          </div>
+          <h2 class="record-topic">${escapeHtml(r.topic || '無標題')}</h2>
+          <div class="badges-row">
+            <span class="badge badge-stage">${stageLabel}</span>
+            <span class="badge badge-week">W${r.week_start || '?'}-W${r.week_end || '?'}</span>
+            <span class="badge badge-category">${cat.icon} ${cat.label}</span>
+            ${r.content?.urgent ? '<span class="badge" style="background:#FFEBEE; color:#C62828; border:1px solid #EF9A9A;">🚨 緊急醫療警訊</span>' : ''}
+          </div>
+        </div>
+
+        <div class="record-body">
+          <!-- Summary -->
+          <div class="content-summary">
+            ${escapeHtml(r.content?.summary || '')}
+          </div>
+
+          <!-- Bullets -->
+          ${bulletsHtml ? `<ul class="bullets-list">${bulletsHtml}</ul>` : ''}
+
+          <!-- CTA -->
+          ${r.content?.cta ? `
+            <div class="cta-box">
+              <span class="icon">💡</span>
+              <div><b>建議指引：</b>${escapeHtml(r.content.cta)}</div>
+            </div>
+          ` : ''}
+
+          <!-- Citations -->
+          <div class="citation-box">
+            <div class="citation-title">📖 官方手冊引用溯源 (Source Citation)</div>
+            ${citationsHtml || '<span style="color:red">無引用資料</span>'}
+          </div>
+
+          <!-- Evidence & Governance -->
+          <div class="evidence-row">
+            <span>等級：<b>Level ${r.evidence?.source_level || 1}</b> (${r.evidence?.jurisdiction || 'TW'})</span>
+            <span>人工核對：<b>${r.evidence?.human_reviewed ? '✅ 已核對' : '❌ 未核對'}</b></span>
+            <span>來源：<b>${r.origin || 'local_pdf'}</b></span>
+          </div>
+
+          <!-- JSON Collapsible -->
+          <details class="json-details">
+            <summary>檢視原始 JSON Record (${r._filename || r.id})</summary>
+            <pre class="json-pre">${escapeHtml(JSON.stringify(r, null, 2))}</pre>
+          </details>
+        </div>
+      </article>
+    `;
+      }).join('');
+    }
+
+    // Render Pregnancy Stage Flow View
+    function renderStageJourney() {
+      const container = document.getElementById('stageFlowContainer');
+      const stages = [
+        { id: 'trimester_1', name: '懷孕初期 (Trimester 1)', weeks: '第 1 ~ 12 週（未滿 13 週）', icon: '🌸' },
+        { id: 'trimester_2', name: '懷孕中期 (Trimester 2)', weeks: '第 13 ~ 28 週（13 週至未滿 29 週）', icon: '🌿' },
+        { id: 'trimester_3', name: '懷孕後期 (Trimester 3)', weeks: '第 29 ~ 40+ 週（29 週以上）', icon: '🌷' }
+      ];
+
+      container.innerHTML = stages.map(st => {
+        const stageRecords = allRecords.filter(r => r.pregnancy_stage === st.id);
+        const motherRec = stageRecords.find(r => r.category === 'mother_changes');
+        const babyRec = stageRecords.find(r => r.category === 'baby_development');
+        const checkupRec = stageRecords.find(r => r.category === 'prenatal_checkup');
+
+        return `
+      <div class="stage-block">
+        <div class="stage-block-head">
+          <div class="stage-block-title">
+            <span style="font-size:28px;">${st.icon}</span>
+            <div>
+              <h2>${st.name}</h2>
+              <div style="font-size:12.5px; color:var(--color-text-muted);">${st.weeks} · 包含 ${stageRecords.length} 筆已建置資料</div>
+            </div>
+          </div>
+          <span class="badge badge-stage">${st.weeks}</span>
+        </div>
+
+        <!-- Step 1: Mother Changes -->
+        <div class="journey-step">
+          <div class="step-icon-col">
+            <div class="step-icon-badge">🤰</div>
+          </div>
+          <div class="step-content-card">
+            <h3>
+              <span>A. 媽咪身體與生理變化</span>
+              ${motherRec ? `<span class="badge badge-${motherRec.review_status}">${motherRec.review_status}</span>` : '<span class="badge" style="color:red">無資料</span>'}
+            </h3>
+            ${motherRec ? `
+              <p style="margin:4px 0 10px; font-size:13.5px; color:var(--color-text);">${escapeHtml(motherRec.content?.summary || '')}</p>
+              <ul class="bullets-list">
+                ${(motherRec.content?.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+              </ul>
+              <div style="margin-top:12px; font-size:11.5px; color:var(--color-text-muted);">
+                來源：${(motherRec.source_refs || []).map(s => `${s.source_id} p.${s.page}`).join(', ')}
+              </div>
+            ` : '<p style="color:var(--color-text-muted);">此階段尚未建置媽咪生理變化 Record</p>'}
+          </div>
+        </div>
+
+        <!-- Step 2: Baby Development -->
+        <div class="journey-step">
+          <div class="step-icon-col">
+            <div class="step-icon-badge">👶</div>
+          </div>
+          <div class="step-content-card">
+            <h3>
+              <span>B. 寶寶胎兒發展里程碑</span>
+              ${babyRec ? `<span class="badge badge-${babyRec.review_status}">${babyRec.review_status}</span>` : '<span class="badge" style="color:red">無資料</span>'}
+            </h3>
+            ${babyRec ? `
+              <p style="margin:4px 0 10px; font-size:13.5px; color:var(--color-text);">${escapeHtml(babyRec.content?.summary || '')}</p>
+              <ul class="bullets-list">
+                ${(babyRec.content?.bullets || []).map(b => `<li><b>${escapeHtml(b)}</b></li>`).join('')}
+              </ul>
+              <div style="margin-top:12px; font-size:11.5px; color:var(--color-text-muted);">
+                來源：${(babyRec.source_refs || []).map(s => `${s.source_id} p.${s.page}`).join(', ')}
+              </div>
+            ` : '<p style="color:var(--color-text-muted);">此階段尚未建置寶寶發展 Record</p>'}
+          </div>
+        </div>
+
+        <!-- Step 3: Checkup Schedule -->
+        <div class="journey-step">
+          <div class="step-icon-col">
+            <div class="step-icon-badge">🩺</div>
+          </div>
+          <div class="step-content-card">
+            <h3>
+              <span>C. 建議產檢時程與公費給付檢查</span>
+              ${checkupRec ? `<span class="badge badge-${checkupRec.review_status}">${checkupRec.review_status}</span>` : '<span class="badge" style="color:red">無資料</span>'}
+            </h3>
+            ${checkupRec ? `
+              <p style="margin:4px 0 10px; font-size:13.5px; color:var(--color-text);">${escapeHtml(checkupRec.content?.summary || '')}</p>
+              <ul class="bullets-list">
+                ${(checkupRec.content?.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+              </ul>
+              <div style="margin-top:12px; font-size:11.5px; color:var(--color-text-muted);">
+                來源：${(checkupRec.source_refs || []).map(s => `${s.source_id} p.${s.page}`).join(', ')}
+              </div>
+            ` : '<p style="color:var(--color-text-muted);">此階段尚未建置產檢時程 Record</p>'}
+          </div>
+        </div>
+
+        <!-- Step 4: Source Gaps for this stage -->
+        <div class="journey-step">
+          <div class="step-icon-col">
+            <div class="step-icon-badge" style="border-color:#F5BA7A; background:#FFF3E0;">⚠️</div>
+          </div>
+          <div class="step-content-card" style="background:#FFFDF9; border-color:#FFE0B2;">
+            <h3 style="color:#D84315;">
+              <span>D. 階段受控來源缺口 (SOURCE GAPs)</span>
+              <span class="badge badge-gap">SOURCE_GAP_LOCAL</span>
+            </h3>
+            <p style="font-size:13px; color:#5D4037; margin:4px 0 8px;">
+              <b>GAP-STAGE-WEEKLY-GROWTH-001</b>：官方手冊僅提供里程碑週數，無逐週胎兒身長（CRL）、體重估算值及蔬果比喻。
+            </p>
+            <div style="font-size:11.5px; color:var(--color-text-muted);">
+              狀態：<code>SOURCE_GAP_LOCAL</code> · 嚴禁模型自行捏造數值
+            </div>
+          </div>
+        </div>
+
+      </div>
+    `;
+      }).join('');
+    }
+
+    // Render Source Gaps View
+    function renderGaps() {
+      const container = document.getElementById('gapsContainer');
+      if (allGaps.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="icon">✅</div><h3>目前無任何未解決的 Source Gap</h3></div>';
+        return;
+      }
+
+      container.innerHTML = allGaps.map(g => {
+        const fieldsHtml = (g.requested_fields || []).map(f => `<span class="gap-field-tag">${f}</span>`).join('');
+        const searchedHtml = (g.searched_sources || []).map(s => `<code>${s}</code>`).join(', ');
+
+        return `
+      <div class="gap-card">
+        <div class="gap-header">
+          <div>
+            <span class="gap-id">${g.gap_id}</span>
+            <h3 style="font-size:16px; margin:4px 0 6px; color:#3E2723;">${escapeHtml(g.topic)}</h3>
+          </div>
+          <span class="badge badge-gap">${g.gap_status || 'SOURCE_GAP_LOCAL'}</span>
+        </div>
+        <p style="font-size:13px; color:#5D4037; margin:0 0 10px; line-height:1.6;">
+          ${escapeHtml(g.notes || '')}
+        </p>
+        <div style="margin-bottom:8px;">
+          <span style="font-size:12px; font-weight:600; color:#5D4037;">缺少欄位：</span>
+          ${fieldsHtml}
+        </div>
+        <div style="font-size:12px; color:var(--color-text-muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <span>已搜尋本機來源：${searchedHtml}</span>
+          <span>建立日期：${g.created_at || '2026-08-19'} · 解決狀態：<b>${g.resolution || 'pending'}</b></span>
+        </div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    // Render Sources Table View
+    function renderSources() {
+      const tbody = document.getElementById('sourcesTableBody');
+      tbody.innerHTML = allSources.map(s => {
+        return `
+      <tr>
+        <td><code style="font-weight:700; color:var(--color-text);">${s.source_id}</code></td>
+        <td><span class="badge ${s.priority === 1 ? 'badge-approved' : 'badge-candidate'}">Priority ${s.priority}</span></td>
+        <td><b>${escapeHtml(s.publisher || '')}</b></td>
+        <td>
+          <b>${escapeHtml(s.title || '')}</b>
+          ${s.official_url ? `<br><a href="${s.official_url}" target="_blank" style="font-size:11px; color:var(--color-primary-dark); text-decoration:underline;">官方連結 ↗</a>` : ''}
+        </td>
+        <td>${escapeHtml(s.edition || (s.approved_domains ? s.approved_domains.join(', ') : ''))}</td>
+        <td><span class="badge" style="background:#ECEFF1; color:#455A64;">${s.type || 'pdf'}</span></td>
+        <td><span class="badge badge-approved">Approved ✅</span></td>
+      </tr>
+    `;
+      }).join('');
+    }
+
+    // Utility: HTML Escape
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  
+    // Render Symptoms & Red Flags Review (Batch 03)
+    function renderSymptomsRedFlagsReview() {
+      const container = document.getElementById('view-symptoms-redflags');
+
+      const batch03Records = allRecords.filter(r =>
+        r.id && (r.id.startsWith('MED-SYMPTOM-') || r.id.startsWith('MED-RED-FLAG-') || r.id.startsWith('MED-PRETERM-') || r.id.startsWith('MED-LABOR-'))
+      );
+
+      if (batch03Records.length === 0) {
+        container.innerHTML = `
+          <div class="stage-block">
+            <div class="empty-state">
+              <div class="icon">🚨</div>
+              <h3>尚未找到 Batch 03 紀錄</h3>
+              <p>請確認是否已建置 Batch 03 Record 檔案。</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const groups = [
+        {
+          id: 'discomforts',
+          title: '🌿 一般孕期常見不適 (15 筆)',
+          subtitle: '收錄懷孕初、中、後期常見生理不適與自我照護建議',
+          color: '#2E7D32',
+          bgColor: '#F1F8E9',
+          filter: r => r.id.startsWith('MED-SYMPTOM-')
+        },
+        {
+          id: 'red_flags',
+          title: '⚠️ 亮黃燈！孕期危險徵兆 (11 筆)',
+          subtitle: '依衛福部國健署手冊列管之 11 大危險徵兆，出現時應儘速醫療評估',
+          color: '#C62828',
+          bgColor: '#FFEBEE',
+          filter: r => r.id.startsWith('MED-RED-FLAG-')
+        },
+        {
+          id: 'preterm',
+          title: '🚨 早產警訊（滿 20 週、未滿 37 週）(3 筆)',
+          subtitle: '適用未滿 37 週，出現宮縮、出血、破水時應立刻前往醫院急診/產房',
+          color: '#E65100',
+          bgColor: '#FFF3E0',
+          filter: r => r.id.startsWith('MED-PRETERM-')
+        },
+        {
+          id: 'labor',
+          title: '🏥 足月附近三大產兆（滿 37 週以上）(3 筆)',
+          subtitle: '適用滿 37 週以上，規則陣痛、破水與落紅之處置指引',
+          color: '#1565C0',
+          bgColor: '#E3F2FD',
+          filter: r => r.id.startsWith('MED-LABOR-')
+        }
+      ];
+
+      const renderCard = (r) => {
+        const c = r.content || {};
+        const sev = c.severity || 'self_care';
+        const sevColor = sev === 'urgent' ? '#C62828' : (sev === 'seek_medical_advice' ? '#E65100' : '#2E7D32');
+        const sevBadge = `<span class="badge" style="background:${sevColor}; color:white; font-size:11px;">Severity: ${sev}</span>`;
+        const statusBadge = `<span class="badge ${r.review_status === 'approved' ? 'badge-approved' : 'badge-needs-review'}">${r.review_status}</span>`;
+
+        const commonPresentationsHtml = (c.common_presentations && c.common_presentations.length > 0)
+          ? `<ul class="review-detail-list">${c.common_presentations.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const selfCareHtml = (c.self_care_or_actions && c.self_care_or_actions.length > 0)
+          ? `<ul class="review-detail-list">${c.self_care_or_actions.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const redFlagsHtml = (c.red_flags && c.red_flags.length > 0)
+          ? `<ul class="review-detail-list" style="color:#C62828;">${c.red_flags.map(it => `<li><b>${escapeHtml(it)}</b></li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const sourceRefsHtml = (r.source_refs && r.source_refs.length > 0)
+          ? r.source_refs.map(s => {
+              const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+              return `<div style="font-size:11.5px; color:var(--color-text-muted); margin-top:2px;"><b>${srcMeta.title || s.source_id}</b> (${srcMeta.publisher || '衛生福利部'}) · 頁碼：第 ${s.page || '未標'} 頁 · ${s.section || ''}</div>`;
+            }).join('')
+          : '<div style="font-size:11.5px; color:var(--color-text-muted);">無資料</div>';
+
+        return `
+          <div class="map-detail-card" style="margin-bottom: 16px;">
+            <div class="detail-card-head" style="padding: 14px 18px;">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                  <span class="record-id">${r.id}</span>
+                  ${statusBadge}
+                  ${sevBadge}
+                </div>
+                <h3 style="font-family:var(--font-serif-cjk); font-size:18px; margin:0; color:var(--color-text);">${escapeHtml(c.title || r.topic)}</h3>
+              </div>
+              <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'} (${r.recommended_window || '1-40w'})</span>
+            </div>
+
+            <div class="detail-card-body" style="padding: 16px 18px; gap: 12px;">
+              <div style="font-size:13.5px; line-height:1.5; color:var(--color-text); font-weight:500;">${escapeHtml(c.summary || '')}</div>
+              
+              <div class="review-section-box" style="padding:10px 14px; background:#FBF8F4;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">💬 常見症狀表現 (Common Presentations)</div>
+                ${commonPresentationsHtml}
+              </div>
+
+              <div class="review-section-box box-routine" style="padding:10px 14px;">
+                <div style="font-size:12px; font-weight:700; color:#2E7D32; margin-bottom:4px;">🌿 建議照護與改善行動 (Self-care / Actions)</div>
+                ${selfCareHtml}
+              </div>
+
+              <div class="review-section-box" style="padding:10px 14px; background:#FFF5F5; border-color:#FFCDD2;">
+                <div style="font-size:12px; font-weight:700; color:#C62828; margin-bottom:4px;">⚠️ 紅旗與危險警訊 (Red Flags)</div>
+                ${redFlagsHtml}
+              </div>
+
+              <div class="review-section-box" style="padding:10px 14px; background:#FFF9F2; border-color:#FFE0B2;">
+                <div style="font-size:12px; font-weight:700; color:#E65100; margin-bottom:4px;">🏥 就醫評估時機 (When to seek care)</div>
+                <div style="font-size:13px; color:#5D4037;">${escapeHtml(c.when_to_seek_care || '無資料')}</div>
+              </div>
+
+              <!-- Evidence Box -->
+              <div class="review-section-box box-evidence" style="padding:10px 14px;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">📚 官方 Evidence 引用</div>
+                ${sourceRefsHtml}
+              </div>
+
+              <div class="review-governance-bar" style="padding-top:8px;">
+                <div>review_status: <b>${r.review_status}</b></div>
+                <div>human_reviewed: <b>${r.evidence?.human_reviewed ? '✅ true' : '❌ false'}</b></div>
+                <div style="color:var(--color-text-muted);">🔒 Read Only Review 模式</div>
+              </div>
+            </div>
+          </div>
+        `;
+      };
+
+      const groupSectionsHtml = groups.map(grp => {
+        const recs = batch03Records.filter(grp.filter);
+        if (recs.length === 0) return '';
+
+        return `
+          <div class="stage-block" style="margin-bottom: 24px; padding: 20px;">
+            <div class="stage-block-head" style="margin-bottom: 16px; border-bottom: 2px solid ${grp.color}; padding-bottom:8px;">
+              <div>
+                <h2 style="font-size: 19px; color: ${grp.color}; margin:0;">${grp.title}</h2>
+                <div style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">${grp.subtitle}</div>
+              </div>
+              <span class="badge" style="background:${grp.bgColor}; color:${grp.color}; font-weight:700;">${recs.length} 筆 Records</span>
+            </div>
+            ${recs.map(renderCard).join('')}
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div style="margin-bottom: 20px;">
+          <div class="stage-block-head" style="margin-bottom: 16px;">
+            <div>
+              <h2 style="font-family:var(--font-serif-cjk); font-size:22px;">🚨 孕期不適與危險警訊審核 (Batch 03)</h2>
+              <p style="font-size:12.5px; color:var(--color-text-muted); margin-top:4px;">
+                收錄 15 筆常見不適、11 筆危險徵兆、3 筆早產警訊與 3 筆足月產兆 · 衛衛福部國健署官方手冊數據依據 · 唯讀審核模式
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <span class="badge badge-candidate">Batch 03 Total (32 Records)</span>
+              <span class="badge badge-lock">🔒 Read Only Review</span>
+            </div>
+          </div>
+          ${groupSectionsHtml}
+        </div>
+      `;
+    }
+
+  
+    // Render Nutrition & Food Safety Review (Batch 04)
+    function renderNutritionSafetyReview() {
+      const container = document.getElementById('view-nutrition-safety');
+
+      const batch04Records = allRecords.filter(r =>
+        r.id && (r.id.startsWith('MED-NUTRITION-') || r.id.startsWith('MED-NUTRIENT-'))
+      );
+
+      if (batch04Records.length === 0) {
+        container.innerHTML = `
+          <div class="stage-block">
+            <div class="empty-state">
+              <div class="icon">🥗</div>
+              <h3>尚未找到 Batch 04 紀錄</h3>
+              <p>請確認是否已建置 Batch 04 Record 檔案。</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const groups = [
+        {
+          id: 'stage_overview',
+          title: '🍚 三階段營養總覽 (3 筆)',
+          subtitle: '懷孕初、中、後期熱量、蛋白質與關鍵營養方向',
+          color: '#1565C0',
+          bgColor: '#E3F2FD',
+          filter: r => r.category === 'pregnancy_nutrition_stage'
+        },
+        {
+          id: 'core_nutrients',
+          title: '🧬 關鍵營養素與膳食 (9 筆)',
+          subtitle: '蛋白質、葉酸、鐵、碘、維生素 B12、鈣、DHA、維生素 D、膳食纖維與水分',
+          color: '#2E7D32',
+          bgColor: '#E8F5E9',
+          filter: r => r.category === 'pregnancy_nutrient' || r.id === 'MED-NUTRITION-FIBER-WATER-001'
+        },
+        {
+          id: 'diet_behaviour',
+          title: '☕ 飲食行為與生活管理 (4 筆)',
+          subtitle: '孕吐飲食、咖啡因上限、避免酒精與鈉及加工食品控管',
+          color: '#E65100',
+          bgColor: '#FFF3E0',
+          filter: r => ['MED-NUTRITION-NAUSEA-DIET-001', 'MED-NUTRITION-CAFFEINE-001', 'MED-NUTRITION-ALCOHOL-001', 'MED-NUTRITION-SODIUM-PROCESSED-FOOD-001'].includes(r.id)
+        },
+        {
+          id: 'food_safety',
+          title: '🐟 食品安全與感染預防 (2 筆)',
+          subtitle: '魚類與甲基汞重金屬防範、生飲食安全與李斯特菌/弓形蟲預防',
+          color: '#00838F',
+          bgColor: '#E0F7FA',
+          filter: r => ['MED-NUTRITION-FISH-MERCURY-001', 'MED-NUTRITION-FOODBORNE-INFECTION-001'].includes(r.id)
+        },
+        {
+          id: 'special_nutrition',
+          title: '👶 特殊情境營養 (1 筆)',
+          subtitle: '雙胞胎與多胞胎之個別化營養指導原則',
+          color: '#6A1B9A',
+          bgColor: '#F3E5F5',
+          filter: r => r.id === 'MED-NUTRITION-MULTIFETAL-001'
+        }
+      ];
+
+      const renderCard = (r) => {
+        const c = r.content || {};
+        const statusBadge = `<span class="badge ${r.review_status === 'approved' ? 'badge-approved' : 'badge-needs-review'}">${r.review_status}</span>`;
+        const refValueStr = c.daily_reference_value ? `${c.daily_reference_value}` : '無特定參考值';
+
+        const foodSourcesHtml = (c.food_sources && c.food_sources.length > 0)
+          ? `<div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:4px;">${c.food_sources.map(src => `<span style="background:#E8F5E9; color:#2E7D32; font-size:12px; padding:2px 8px; border-radius:12px; border:1px solid #C8E6C9;">🥗 ${escapeHtml(src)}</span>`).join('')}</div>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const recommendationsHtml = (c.recommendations && c.recommendations.length > 0)
+          ? `<ul class="review-detail-list">${c.recommendations.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const avoidLimitHtml = (c.avoid_or_limit && c.avoid_or_limit.length > 0)
+          ? `<ul class="review-detail-list" style="color:#C62828;">${c.avoid_or_limit.map(it => `<li><b>${escapeHtml(it)}</b></li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無特別限制</div>';
+
+        const specialNotesHtml = (c.special_notes && c.special_notes.length > 0)
+          ? `<ul class="review-detail-list" style="color:#5D4037;">${c.special_notes.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const sourceRefsHtml = (r.source_refs && r.source_refs.length > 0)
+          ? r.source_refs.map(s => {
+              const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+              return `<div style="font-size:11.5px; color:var(--color-text-muted); margin-top:2px;"><b>${srcMeta.title || s.source_id}</b> (${srcMeta.publisher || '衛生福利部'}) · 頁碼：第 ${s.page || '未標'} 頁 · ${s.section || ''}</div>`;
+            }).join('')
+          : '<div style="font-size:11.5px; color:var(--color-text-muted);">無資料</div>';
+
+        return `
+          <div class="map-detail-card" style="margin-bottom: 16px;">
+            <div class="detail-card-head" style="padding: 14px 18px;">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                  <span class="record-id">${r.id}</span>
+                  ${statusBadge}
+                </div>
+                <h3 style="font-family:var(--font-serif-cjk); font-size:18px; margin:0; color:var(--color-text);">${escapeHtml(c.title || r.topic)}</h3>
+              </div>
+              <div style="text-align:right;">
+                <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'}</span>
+                <div style="font-size:12px; color:var(--color-primary-dark); font-weight:700; margin-top:4px;">🎯 參考值: ${escapeHtml(refValueStr)}</div>
+              </div>
+            </div>
+
+            <div class="detail-card-body" style="padding: 16px 18px; gap: 12px;">
+              <div style="font-size:13.5px; line-height:1.5; color:var(--color-text); font-weight:500;">${escapeHtml(c.summary || '')}</div>
+
+              <div class="review-section-box" style="padding:10px 14px; background:#FBF8F4;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">💡 核心目的 (Purpose)</div>
+                <div style="font-size:13px; color:var(--color-text);">${escapeHtml(c.purpose || '無資料')}</div>
+              </div>
+
+              <div class="review-section-box" style="padding:10px 14px; background:#F9FBF9; border-color:#C8E6C9;">
+                <div style="font-size:12px; font-weight:700; color:#2E7D32; margin-bottom:4px;">🥑 推薦食物來源 (Food Sources)</div>
+                ${foodSourcesHtml}
+              </div>
+
+              <div class="review-section-box box-routine" style="padding:10px 14px;">
+                <div style="font-size:12px; font-weight:700; color:#1565C0; margin-bottom:4px;">📋 攝取建議 (Recommendations)</div>
+                ${recommendationsHtml}
+              </div>
+
+              <div class="review-section-box" style="padding:10px 14px; background:#FFF5F5; border-color:#FFCDD2;">
+                <div style="font-size:12px; font-weight:700; color:#C62828; margin-bottom:4px;">⛔ 避免與限制 (Avoid / Limit)</div>
+                ${avoidLimitHtml}
+              </div>
+
+              <div class="review-section-box" style="padding:10px 14px; background:#FFF9F2; border-color:#FFE0B2;">
+                <div style="font-size:12px; font-weight:700; color:#E65100; margin-bottom:4px;">📝 特別注意事項 (Special Notes)</div>
+                ${specialNotesHtml}
+              </div>
+
+              <!-- Evidence Box -->
+              <div class="review-section-box box-evidence" style="padding:10px 14px;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">📚 官方 Evidence 引用</div>
+                ${sourceRefsHtml}
+              </div>
+
+              <div class="review-governance-bar" style="padding-top:8px;">
+                <div>review_status: <b>${r.review_status}</b></div>
+                <div>human_reviewed: <b>${r.evidence?.human_reviewed ? '✅ true' : '❌ false'}</b></div>
+                <div style="color:var(--color-text-muted);">🔒 Read Only Review 模式</div>
+              </div>
+            </div>
+          </div>
+        `;
+      };
+
+      const groupSectionsHtml = groups.map(grp => {
+        const recs = batch04Records.filter(grp.filter);
+        if (recs.length === 0) return '';
+
+        return `
+          <div class="stage-block" style="margin-bottom: 24px; padding: 20px;">
+            <div class="stage-block-head" style="margin-bottom: 16px; border-bottom: 2px solid ${grp.color}; padding-bottom:8px;">
+              <div>
+                <h2 style="font-size: 19px; color: ${grp.color}; margin:0;">${grp.title}</h2>
+                <div style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">${grp.subtitle}</div>
+              </div>
+              <span class="badge" style="background:${grp.bgColor}; color:${grp.color}; font-weight:700;">${recs.length} 筆 Records</span>
+            </div>
+            ${recs.map(renderCard).join('')}
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div style="margin-bottom: 20px;">
+          <div class="stage-block-head" style="margin-bottom: 16px;">
+            <div>
+              <h2 style="font-family:var(--font-serif-cjk); font-size:22px;">🥗 孕期營養與飲食安全審核 (Batch 04)</h2>
+              <p style="font-size:12.5px; color:var(--color-text-muted); margin-top:4px;">
+                收錄 3 筆階段總覽、9 筆關鍵營養素、4 筆飲食生活管理、2 筆食品安全與 1 筆特殊情境 · 衛福部國健署官方手冊數據依據 · 唯讀審核模式
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <span class="badge badge-candidate">Batch 04 Total (19 Records)</span>
+              <span class="badge badge-lock">🔒 Read Only Review</span>
+            </div>
+          </div>
+          ${groupSectionsHtml}
+        </div>
+      `;
+    }
+
+  
+    // Render Lifestyle, Exercise & Travel Review (Batch 05)
+    function renderLifestyleExerciseTravelReview() {
+      const container = document.getElementById('view-lifestyle-exercise-travel');
+
+      const batch05Records = allRecords.filter(r =>
+        r.id && (r.id.startsWith('MED-LIFESTYLE-') || r.id.startsWith('MED-EXERCISE-') || r.id.startsWith('MED-ORAL-CARE-') || r.id.startsWith('MED-TRAVEL-'))
+      );
+
+      if (batch05Records.length === 0) {
+        container.innerHTML = `
+          <div class="stage-block">
+            <div class="empty-state">
+              <div class="icon">🏃</div>
+              <h3>尚未找到 Batch 05 紀錄</h3>
+              <p>請確認是否已建置 Batch 05 Record 檔案。</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const groups = [
+        {
+          id: 'lifestyle',
+          title: '🌿 孕期生活保健與心理支持 (6 筆)',
+          subtitle: '休息節奏、衣著舒適、沐浴衛生、身體照護、戒菸避菸與心理陪伴',
+          color: '#2E7D32',
+          bgColor: '#E8F5E9',
+          filter: r => r.id.startsWith('MED-LIFESTYLE-')
+        },
+        {
+          id: 'exercise',
+          title: '🏃 規律運動與身體活動 (8 筆)',
+          subtitle: '每週150分鐘活動目標、有氧與肌力、骨盆底肌、姿勢調整與高溫/停止警訊',
+          color: '#00838F',
+          bgColor: '#E0F7FA',
+          filter: r => r.id.startsWith('MED-EXERCISE-')
+        },
+        {
+          id: 'oral_care',
+          title: '🦷 口腔照護與健保補助 (4 筆)',
+          subtitle: '孕期口腔檢查重要性、日常清潔漱口技巧、孕婦牙齦炎與牙科處置安全',
+          color: '#1565C0',
+          bgColor: '#E3F2FD',
+          filter: r => r.id.startsWith('MED-ORAL-CARE-')
+        },
+        {
+          id: 'travel',
+          title: '✈️ 外出旅行與交通安全 (4 筆)',
+          subtitle: '出遊一般原則、長途移動與下肢活動、安全帶正確繫法與搭機海外原則',
+          color: '#E65100',
+          bgColor: '#FFF3E0',
+          filter: r => r.id.startsWith('MED-TRAVEL-')
+        }
+      ];
+
+      const renderCard = (r) => {
+        const c = r.content || {};
+        const statusBadge = `<span class="badge ${r.review_status === 'approved' ? 'badge-approved' : 'badge-needs-review'}">${r.review_status}</span>`;
+
+        const recommendationsHtml = (c.recommendations && c.recommendations.length > 0)
+          ? `<ul class="review-detail-list" style="color:#1B5E20;">${c.recommendations.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const avoidCautionsHtml = (c.avoid_or_cautions && c.avoid_or_cautions.length > 0)
+          ? `<ul class="review-detail-list" style="color:#E65100;">${c.avoid_or_cautions.map(it => `<li><b>${escapeHtml(it)}</b></li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無特別注意事項</div>';
+
+        const stopHelpHtml = (c.stop_and_seek_help_if && c.stop_and_seek_help_if.length > 0)
+          ? `<ul class="review-detail-list" style="color:#B71C1C; font-weight:700;">${c.stop_and_seek_help_if.map(it => `<li>🚨 ${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無特別停止警訊</div>';
+
+        const specialConditionsHtml = (c.special_conditions && c.special_conditions.length > 0)
+          ? `<ul class="review-detail-list" style="color:#4E342E;">${c.special_conditions.map(it => `<li>${escapeHtml(it)}</li>`).join('')}</ul>`
+          : '<div class="empty-data-text">無特別條件</div>';
+
+        const sourceRefsHtml = (r.source_refs && r.source_refs.length > 0)
+          ? r.source_refs.map(s => {
+              const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+              return `<div style="font-size:11.5px; color:var(--color-text-muted); margin-top:2px;"><b>${srcMeta.title || s.source_id}</b> (${srcMeta.publisher || '衛生福利部'}) · 頁碼：第 ${s.page || '未標'} 頁 · ${s.section || ''}</div>`;
+            }).join('')
+          : '<div style="font-size:11.5px; color:var(--color-text-muted);">無資料</div>';
+
+        const crossRefsHtml = (r.cross_refs && r.cross_refs.length > 0)
+          ? `<div style="font-size:11.5px; color:#C62828; margin-top:4px;"><b>🔗 Batch 03 Cross-Refs:</b> ${r.cross_refs.join(', ')}</div>`
+          : '';
+
+        return `
+          <div class="map-detail-card" style="margin-bottom: 16px;">
+            <div class="detail-card-head" style="padding: 14px 18px;">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                  <span class="record-id">${r.id}</span>
+                  ${statusBadge}
+                </div>
+                <h3 style="font-family:var(--font-serif-cjk); font-size:18px; margin:0; color:var(--color-text);">${escapeHtml(c.title || r.topic)}</h3>
+              </div>
+              <div style="text-align:right;">
+                <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'}</span>
+                <div style="font-size:11.5px; color:var(--color-text-muted); margin-top:4px;">視窗: ${escapeHtml(r.recommended_window || '1-40 weeks')}</div>
+              </div>
+            </div>
+
+            <div class="detail-card-body" style="padding: 16px 18px; gap: 12px;">
+              <div style="font-size:13.5px; line-height:1.5; color:var(--color-text); font-weight:500;">${escapeHtml(c.summary || '')}</div>
+
+              <!-- Recommendations (Green) -->
+              <div class="review-section-box" style="padding:10px 14px; background:#F1F8E9; border-color:#C8E6C9;">
+                <div style="font-size:12px; font-weight:700; color:#2E7D32; margin-bottom:4px;">🟢 一般衛教建議 (Recommendations)</div>
+                ${recommendationsHtml}
+              </div>
+
+              <!-- Avoid / Cautions (Orange) -->
+              <div class="review-section-box" style="padding:10px 14px; background:#FFF3E0; border-color:#FFE0B2;">
+                <div style="font-size:12px; font-weight:700; color:#E65100; margin-bottom:4px;">🟠 注意事項與禁忌 (Avoid / Cautions)</div>
+                ${avoidCautionsHtml}
+              </div>
+
+              <!-- Stop & Seek Help (Red) -->
+              <div class="review-section-box" style="padding:10px 14px; background:#FFEBEE; border-color:#FFCDD2;">
+                <div style="font-size:12px; font-weight:700; color:#C62828; margin-bottom:4px;">🔴 立即停止警訊與就醫條件 (Stop & Seek Help If)</div>
+                ${stopHelpHtml}
+              </div>
+
+              <!-- Special Conditions (Brown) -->
+              <div class="review-section-box" style="padding:10px 14px; background:#EFEBE9; border-color:#D7CCC8;">
+                <div style="font-size:12px; font-weight:700; color:#4E342E; margin-bottom:4px;">🟤 特殊狀況與適用條件 (Special Conditions)</div>
+                ${specialConditionsHtml}
+              </div>
+
+              <!-- Evidence Box -->
+              <div class="review-section-box box-evidence" style="padding:10px 14px;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">📚 官方 Evidence 引用</div>
+                ${sourceRefsHtml}
+                ${crossRefsHtml}
+              </div>
+
+              <div class="review-governance-bar" style="padding-top:8px;">
+                <div>review_status: <b>${r.review_status}</b></div>
+                <div>human_reviewed: <b>${r.evidence?.human_reviewed ? '✅ true' : '❌ false'}</b></div>
+                <div style="color:var(--color-text-muted);">🔒 Read Only Review 模式</div>
+              </div>
+            </div>
+          </div>
+        `;
+      };
+
+      const groupSectionsHtml = groups.map(grp => {
+        const recs = batch05Records.filter(grp.filter);
+        if (recs.length === 0) return '';
+
+        return `
+          <div class="stage-block" style="margin-bottom: 24px; padding: 20px;">
+            <div class="stage-block-head" style="margin-bottom: 16px; border-bottom: 2px solid ${grp.color}; padding-bottom:8px;">
+              <div>
+                <h2 style="font-size: 19px; color: ${grp.color}; margin:0;">${grp.title}</h2>
+                <div style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">${grp.subtitle}</div>
+              </div>
+              <span class="badge" style="background:${grp.bgColor}; color:${grp.color}; font-weight:700;">${recs.length} 筆 Records</span>
+            </div>
+            ${recs.map(renderCard).join('')}
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div style="margin-bottom: 20px;">
+          <div class="stage-block-head" style="margin-bottom: 16px;">
+            <div>
+              <h2 style="font-family:var(--font-serif-cjk); font-size:22px;">🏃 孕期生活・運動・外出安全審核 (Batch 05)</h2>
+              <p style="font-size:12.5px; color:var(--color-text-muted); margin-top:4px;">
+                收錄 6 筆生活保健、8 筆規律運動、4 筆口腔照護與 4 筆外出旅行 · 衛福部國健署官方手冊數據依據 · 唯讀審核模式
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <span class="badge badge-candidate">Batch 05 Total (22 Records)</span>
+              <span class="badge badge-lock">🔒 Read Only Review</span>
+            </div>
+          </div>
+          ${groupSectionsHtml}
+        </div>
+      `;
+    }
+
+  
+    // Render Partner View Review (Batch 06)
+    function renderPartnerViewReview() {
+      const container = document.getElementById('view-partner-view');
+
+      const batch06Records = allRecords.filter(r =>
+        r.id && r.id.startsWith('MED-PARTNER-')
+      );
+
+      if (batch06Records.length === 0) {
+        container.innerHTML = `
+          <div class="stage-block">
+            <div class="empty-state">
+              <div class="icon">💕</div>
+              <h3>尚未找到 Batch 06 紀錄</h3>
+              <p>請確認是否已建置 Batch 06 Partner Record 檔案。</p>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const groups = [
+        {
+          id: 'core_role',
+          title: '💕 核心神隊友陪伴角色 (7 筆)',
+          subtitle: '產檢陪同、主動學習、營養關心、健康作息、爸媽教室與用品/生產計畫討論',
+          color: '#C2185B',
+          bgColor: '#FCE4EC',
+          filter: r => r.id.startsWith('MED-PARTNER-CORE-')
+        },
+        {
+          id: 'stage_map',
+          title: '🗓️ 三階段陪伴地圖 (9 筆)',
+          subtitle: 'T1 孕吐照顧/產檢/流產警訊、T2 物品準備/體態維護/感受胎動、T3 待產包/胎位/產兆辨識',
+          color: '#7B1FA2',
+          bgColor: '#F3E5F5',
+          filter: r => r.id.startsWith('MED-PARTNER-T1-') || r.id.startsWith('MED-PARTNER-T2-') || r.id.startsWith('MED-PARTNER-T3-')
+        },
+        {
+          id: 'support_comm',
+          title: '🤝 陪伴與情緒支持 (4 筆)',
+          subtitle: '分擔家務、適度關心、待產陪伴與神隊友自我身心照護',
+          color: '#00838F',
+          bgColor: '#E0F7FA',
+          filter: r => r.id.startsWith('MED-PARTNER-SUPPORT-')
+        },
+        {
+          id: 'weekly_knowledge',
+          title: '💡 本週神隊友小知識 (6 筆)',
+          subtitle: '孕育共同責任、心態轉變、心跳里程碑、胎動感受、生產準備與陪產觀念',
+          color: '#E65100',
+          bgColor: '#FFF3E0',
+          filter: r => r.id.startsWith('MED-PARTNER-KNOWLEDGE-')
+        }
+      ];
+
+      const renderCard = (r) => {
+        const c = r.content || {};
+        const statusBadge = `<span class="badge ${r.review_status === 'approved' ? 'badge-approved' : 'badge-needs-review'}">${r.review_status}</span>`;
+
+        let priorityBadge = '<span class="badge badge-stage">Normal</span>';
+        if (r.priority === 'critical') {
+          priorityBadge = '<span class="badge" style="background:#B71C1C; color:white; font-weight:700;">🚨 Critical</span>';
+        } else if (r.priority === 'high') {
+          priorityBadge = '<span class="badge" style="background:#E65100; color:white; font-weight:700;">🔥 High</span>';
+        }
+
+        let actionsHtml = '<div class="empty-data-text">無特定 Action 項目</div>';
+        if (c.action_items && c.action_items.length > 0) {
+          actionsHtml = `<ul class="review-detail-list" style="color:#C2185B; font-weight:600;">${c.action_items.map(it => `<li>💕 ${escapeHtml(it)}</li>`).join('')}</ul>`;
+        } else if (r.frontend_targets && r.frontend_targets.length === 1 && r.frontend_targets[0] === 'partner_weekly_knowledge') {
+          actionsHtml = '<div class="empty-data-text" style="color:var(--color-text-muted);">ℹ️ 此 Record 為 Knowledge-only，不需 Action</div>';
+        } else if (r.frontend_targets && r.frontend_targets.includes('partner_weekly_actions')) {
+          actionsHtml = '<div style="color:#B71C1C; font-weight:700; background:#FFEBEE; padding:6px 10px; border-radius:4px;">⚠ FRONTEND_MAPPING_ERROR: Action Required</div>';
+        }
+
+        const knowledgeHtml = c.partner_knowledge
+          ? `<div style="font-size:13px; color:#E65100; background:#FFF3E0; padding:8px 12px; border-radius:6px; border-left:3px solid #E65100; margin-top:4px;">💡 <b>知識精華:</b> ${escapeHtml(c.partner_knowledge)}</div>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const whyMattersHtml = c.why_it_matters
+          ? `<div style="font-size:12.5px; color:#2E7D32; background:#E8F5E9; padding:8px 12px; border-radius:6px; border-left:3px solid #2E7D32; margin-top:4px;">🌟 <b>陪伴價值:</b> ${escapeHtml(c.why_it_matters)}</div>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const safetyNoteHtml = c.safety_note
+          ? `<div style="font-size:12.5px; color:#4E342E; background:#EFEBE9; padding:8px 12px; border-radius:6px; border-left:3px solid #8D6E63; margin-top:4px;">⚠️ <b>安全守則:</b> ${escapeHtml(c.safety_note)}</div>`
+          : '<div class="empty-data-text">無資料</div>';
+
+        const targetsHtml = (r.frontend_targets && r.frontend_targets.length > 0)
+          ? `<div style="display:flex; gap:6px; margin-top:4px;">${r.frontend_targets.map(t => `<span style="background:#E1F5FE; color:#0288D1; font-size:11px; padding:2px 8px; border-radius:10px; font-weight:700;">🎯 ${t}</span>`).join('')}</div>`
+          : '<div style="font-size:11px; color:var(--color-text-muted);">無 Target</div>';
+
+        const sourceRefsHtml = (r.source_refs && r.source_refs.length > 0)
+          ? r.source_refs.map(s => {
+              const srcMeta = allSources.find(item => item.source_id === s.source_id) || {};
+              return `<div style="font-size:11.5px; color:var(--color-text-muted); margin-top:2px;"><b>${srcMeta.title || s.source_id}</b> (${srcMeta.publisher || '國民健康署'}) · 頁碼：第 ${s.page || '未標'} 頁 · ${s.section || ''}</div>`;
+            }).join('')
+          : '<div style="font-size:11.5px; color:var(--color-text-muted);">無資料</div>';
+
+        const crossRefsHtml = (r.cross_refs && r.cross_refs.length > 0)
+          ? `<div style="font-size:11.5px; color:#C2185B; margin-top:4px;"><b>🔗 Safety / Medical Cross-Refs:</b> ${r.cross_refs.join(', ')}</div>`
+          : '';
+
+        return `
+          <div class="map-detail-card" style="margin-bottom: 16px; border-left: 4px solid #C2185B;">
+            <div class="detail-card-head" style="padding: 14px 18px; background: rgba(194, 24, 91, 0.03);">
+              <div>
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                  <span class="record-id">${r.id}</span>
+                  ${statusBadge}
+                  ${priorityBadge}
+                </div>
+                <h3 style="font-family:var(--font-serif-cjk); font-size:18px; margin:0; color:var(--color-text);">${escapeHtml(c.title || r.topic)}</h3>
+              </div>
+              <div style="text-align:right;">
+                <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'}</span>
+                <div style="font-size:11.5px; color:var(--color-text-muted); margin-top:4px;">視窗: ${escapeHtml(r.recommended_window || '1-40 weeks')} ${r.trigger_week ? `(W${r.trigger_week})` : ''}</div>
+              </div>
+            </div>
+
+            <div class="detail-card-body" style="padding: 16px 18px; gap: 12px;">
+              <div style="font-size:13.5px; line-height:1.5; color:var(--color-text); font-weight:500;">${escapeHtml(c.summary || '')}</div>
+
+              <!-- Partner Action Items -->
+              <div class="review-section-box" style="padding:10px 14px; background:#FCE4EC; border-color:#F8BBD0;">
+                <div style="font-size:12px; font-weight:700; color:#C2185B; margin-bottom:4px;">💕 這週，妳可以這樣陪著她 (Action Items)</div>
+                ${actionsHtml}
+              </div>
+
+              <!-- Knowledge & Why It Matters -->
+              ${knowledgeHtml}
+              ${whyMattersHtml}
+              ${safetyNoteHtml}
+
+              <!-- Frontend Consumer Targets -->
+              <div class="review-section-box" style="padding:8px 12px; background:#FAFAFA;">
+                <div style="font-size:11.5px; font-weight:700; color:var(--color-text-muted); margin-bottom:2px;">🔗 Frontend Consumer Targets</div>
+                ${targetsHtml}
+              </div>
+
+              <!-- Evidence & Cross-refs -->
+              <div class="review-section-box box-evidence" style="padding:10px 14px;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-text-muted); margin-bottom:4px;">📚 官方 Evidence 引用</div>
+                ${sourceRefsHtml}
+                ${crossRefsHtml}
+              </div>
+
+              <div class="review-governance-bar" style="padding-top:8px;">
+                <div>review_status: <b>${r.review_status}</b></div>
+                <div>human_reviewed: <b>${r.evidence?.human_reviewed ? '✅ true' : '❌ false'}</b></div>
+                <div style="color:var(--color-text-muted);">🔒 Read Only Review 模式</div>
+              </div>
+            </div>
+          </div>
+        `;
+      };
+
+      const groupSectionsHtml = groups.map(grp => {
+        const recs = batch06Records.filter(grp.filter);
+        if (recs.length === 0) return '';
+
+        return `
+          <div class="stage-block" style="margin-bottom: 24px; padding: 20px;">
+            <div class="stage-block-head" style="margin-bottom: 16px; border-bottom: 2px solid ${grp.color}; padding-bottom:8px;">
+              <div>
+                <h2 style="font-size: 19px; color: ${grp.color}; margin:0;">${grp.title}</h2>
+                <div style="font-size:12px; color:var(--color-text-muted); margin-top:2px;">${grp.subtitle}</div>
+              </div>
+              <span class="badge" style="background:${grp.bgColor}; color:${grp.color}; font-weight:700;">${recs.length} 筆 Records</span>
+            </div>
+            ${recs.map(renderCard).join('')}
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div style="margin-bottom: 20px;">
+          <div class="stage-block-head" style="margin-bottom: 16px;">
+            <div>
+              <h2 style="font-family:var(--font-serif-cjk); font-size:22px;">💕 神隊友陪伴知識庫審核 (Batch 06)</h2>
+              <p style="font-size:12.5px; color:var(--color-text-muted); margin-top:4px;">
+                收錄 7 筆核心陪伴角色、9 筆三階段地圖、4 筆陪伴支持與 6 筆神隊友小知識 · 《爸爸孕產育兒衛教手冊》為主要依據 · 唯讀審核模式
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <span class="badge badge-candidate">Batch 06 Total (26 Records)</span>
+              <span class="badge badge-lock">🔒 Read Only Review</span>
+            </div>
+          </div>
+          ${groupSectionsHtml}
+        </div>
+      `;
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+{
+  "title": "Medical Record v2",
+  "type": "object",
+  "required": [
+    "id",
+    "topic",
+    "category",
+    "content",
+    "source_refs",
+    "origin",
+    "evidence",
+    "review_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "content": {
+      "type": "object"
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1
+    },
+    "origin": {
+      "enum": [
+        "local_pdf",
+        "approved_web_research",
+        "manual"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "source_level": {
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "jurisdiction": {
+          "type": "string"
+        },
+        "human_reviewed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "review_status": {
+      "enum": [
+        "draft",
+        "candidate",
+        "needs_review",
+        "approved",
+        "deprecated"
+      ]
+    },
+    "conflict_note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_gap": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

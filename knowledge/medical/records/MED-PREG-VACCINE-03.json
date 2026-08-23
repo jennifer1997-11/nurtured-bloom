@@ -1,0 +1,45 @@
+{
+  "id": "MED-PREG-VACCINE-03",
+  "topic": "孕期季節性流感疫苗",
+  "category": "pregnancy_vaccination",
+  "audience": "mother",
+  "pregnancy_stage": "trimester_1",
+  "recommended_window": "seasonal_and_current_policy",
+  "content": {
+    "title": "孕期季節性流感疫苗",
+    "purpose": "保護孕婦免於流感併發重症，並同時將抗體傳遞給 6 個月以內尚無法接種流感疫苗的新生兒。",
+    "recommended_window": "seasonal_and_current_policy",
+    "timing": "seasonal_and_current_policy",
+    "funding_type": "current_policy",
+    "policy_sensitive": true,
+    "suitable_population": "所有懷孕婦女（任何孕期皆可，於流感季開打時儘速接種）。",
+    "important_limitations": "不綁定固定孕週，應依當年度疾管署流感疫苗開打政策與流行季節安排接種。孕婦列為優先公費對象。",
+    "summary": "孕期季節性流感疫苗（任何孕期），孕婦為流感重症高風險族群且屬公費優先對象。流感季開打時不分孕期皆可接種。",
+    "bullets": [
+      "建議時機：流感季節，任何孕期皆可接種（不限固定孕週）。",
+      "公費資格：台灣疾管署列為流感疫苗公費優先對象。",
+      "母胎效益：同時保護孕婦減少重症與 6 個月內新生兒。",
+      "政策敏感度：依當年度疾管署公告之疫苗株與政策執行（policy_sensitive: true）。"
+    ],
+    "disclaimer": "對蛋白或疫苗成分曾有嚴重過敏史者應經專業評估。"
+  },
+  "source_refs": [
+    {
+      "source_id": "CDC-OFFICIAL-WEB",
+      "page": 1,
+      "section": "季節性流感疫苗孕婦接種計畫",
+      "url": "https://www.cdc.gov.tw",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+  "origin": "local_pdf",
+  "evidence": {
+    "source_level": 1,
+    "jurisdiction": "TW",
+    "human_reviewed": true
+  },
+  "review_status": "approved",
+  "conflict_note": null,
+  "source_gap": null,
+  "notes": "依據 Batch 02B/02CAntigravity Import 指南建立 Candidate Record，維持 needs_review 與 human_reviewed: false 等待人工審核。"
+}
