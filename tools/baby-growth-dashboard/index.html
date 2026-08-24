@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>孕育之美 🌸 寶寶成長 Medical KB 視覺化審核儀表板</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #C95F75;
+      --color-primary-dark: #8E354A;
+      --color-primary-light: #FBEFF1;
+      --color-primary-soft: #F6DEE0;
+      --color-secondary: #5B8C68;
+      --color-secondary-light: #EBF4EE;
+      --color-accent: #C78B43;
+      --color-accent-light: #FBF4E8;
+      --color-background: #FAF7F2;
+      --color-surface: #FFFFFF;
+      --color-text: #3D3133;
+      --color-text-muted: #7A6F71;
+      --color-text-faint: #B8ADB0;
+      --color-border: rgba(232, 138, 155, 0.22);
+      --color-border-subtle: rgba(61, 49, 51, 0.08);
+
+      --t1-color: #C95F75;
+      --t1-bg: #FBEFF1;
+      --t1-border: rgba(201, 95, 117, 0.3);
+      --t2-color: #5B8C68;
+      --t2-bg: #EBF4EE;
+      --t2-border: rgba(91, 140, 104, 0.3);
+      --t3-color: #7E6299;
+      --t3-bg: #F3EEF8;
+      --t3-border: rgba(126, 98, 153, 0.3);
+
+      --font-cjk: 'Noto Sans TC', sans-serif;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-latin: 'Inter', sans-serif;
+
+      --shadow-sm: 0 2px 8px rgba(142, 53, 74, 0.04);
+      --shadow-md: 0 6px 20px rgba(142, 53, 74, 0.07);
+      --shadow-lg: 0 12px 36px rgba(142, 53, 74, 0.10);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-pill: 999px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-cjk);
+      background: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Banner */
+    .top-header {
+      background: linear-gradient(135deg, #FFF9FA 0%, #FAF7F2 50%, #F5F9F6 100%);
+      border-bottom: 1.5px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 20px rgba(142, 53, 74, 0.05);
+    }
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-icon {
+      font-size: 32px;
+      line-height: 1;
+    }
+    .header-title {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      letter-spacing: 0.02em;
+    }
+    .header-sub {
+      font-size: 12.5px;
+      color: var(--color-text-muted);
+    }
+    .header-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-approved {
+      background: #EAF5ED;
+      color: #2E7D32;
+      border: 1px solid rgba(46, 125, 50, 0.25);
+    }
+    .badge-scope {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      border: 1px solid rgba(201, 95, 117, 0.25);
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 28px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Stat Cards Row */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+    .stat-card .value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin: 4px 0;
+      font-family: var(--font-serif);
+    }
+    .stat-card .desc {
+      font-size: 11.5px;
+      color: var(--color-text-faint);
+    }
+
+    /* Tabs Navigation */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid rgba(232, 138, 155, 0.18);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .nav-tab-btn {
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s ease;
+      font-family: var(--font-cjk);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-tab-btn:hover {
+      color: var(--color-primary);
+    }
+    .nav-tab-btn.active {
+      color: var(--color-primary-dark);
+      border-bottom-color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    /* Views */
+    .tab-view { display: none; }
+    .tab-view.active { display: block; animation: fadeIn 0.25s ease; }
+
+    /* ========================================================
+       View 1: Interactive Inspector (逐週檢視器)
+       ======================================================== */
+    .inspector-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .inspector-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Week Selector Sidebar */
+    .week-sidebar {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 96px;
+      max-height: calc(100vh - 120px);
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-head {
+      margin-bottom: 14px;
+    }
+    .sidebar-head h3 {
+      font-size: 15px;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+    }
+    .stage-pill-filter {
+      display: flex;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    .pill-filter-btn {
+      padding: 4px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border);
+      background: var(--color-background);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .pill-filter-btn.active {
+      background: var(--color-primary-dark);
+      color: #fff;
+      border-color: var(--color-primary-dark);
+    }
+    .week-pill-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      overflow-y: auto;
+      padding-right: 4px;
+      flex: 1;
+    }
+    .week-pill-btn {
+      padding: 8px 4px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(61, 49, 51, 0.08);
+      background: var(--color-background);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .week-pill-btn:hover {
+      background: var(--color-primary-light);
+      border-color: var(--color-primary);
+      transform: translateY(-1px);
+    }
+    .week-pill-btn.active {
+      background: var(--color-primary);
+      color: #fff !important;
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(201, 95, 117, 0.35);
+      transform: scale(1.04);
+    }
+    .week-pill-btn .emoji-icon { font-size: 14px; }
+    .week-pill-btn.t1 { border-left: 3px solid var(--t1-color); }
+    .week-pill-btn.t2 { border-left: 3px solid var(--t2-color); }
+    .week-pill-btn.t3 { border-left: 3px solid var(--t3-color); }
+
+    /* Inspector Main Detail */
+    .inspector-main {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* Live Preview Simulated App Card */
+    .live-preview-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      padding: 30px 34px;
+      border: 1.5px solid var(--color-border);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .preview-watermark {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      background: var(--color-primary-light);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.05em;
+    }
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .preview-week-badge {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      font-family: var(--font-serif);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .preview-stage-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+    .preview-stage-tag.t1 { background: var(--t1-bg); color: var(--t1-color); border: 1px solid var(--t1-border); }
+    .preview-stage-tag.t2 { background: var(--t2-bg); color: var(--t2-color); border: 1px solid var(--t2-border); }
+    .preview-stage-tag.t3 { background: var(--t3-bg); color: var(--t3-color); border: 1px solid var(--t3-border); }
+
+    .preview-hero-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      background: linear-gradient(135deg, #FFFDFB 0%, #FDF7F8 100%);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      border: 1px solid rgba(232, 138, 155, 0.18);
+      margin-bottom: 24px;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      .preview-hero-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+    .preview-emoji-avatar {
+      width: 110px;
+      height: 110px;
+      background: radial-gradient(circle at 35% 30%, #FFFFFF, #FCEBED);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 54px;
+      box-shadow: 0 8px 24px rgba(201, 95, 117, 0.15);
+      border: 2px solid #FFFFFF;
+      margin: 0 auto;
+    }
+    .preview-hero-info h3 {
+      font-size: 18px;
+      color: var(--color-primary-dark);
+      font-family: var(--font-serif);
+      margin-bottom: 6px;
+    }
+    .preview-metric-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .preview-metric-box {
+      background: var(--color-surface);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      border: 1px solid rgba(232, 138, 155, 0.18);
+    }
+    .preview-metric-box b {
+      font-size: 15px;
+      color: var(--color-primary-dark);
+      display: block;
+    }
+    .preview-metric-box span {
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    /* 01 & 02 Presentation Sections */
+    .preview-sections-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 768px) {
+      .preview-sections-grid { grid-template-columns: 1fr; }
+    }
+    .section-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border: 1.5px solid var(--color-border);
+    }
+    .section-card.body-growth { border-left: 4px solid var(--color-primary); }
+    .section-card.sensory { border-left: 4px solid var(--color-secondary); }
+
+    .section-card-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .section-card-head .sec-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--color-primary);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+    }
+    .section-card.sensory .sec-num { background: var(--color-secondary); }
+    .section-card-head h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .section-card p {
+      font-size: 13.5px;
+      color: var(--color-text);
+      line-height: 1.75;
+    }
+
+    /* Medical Audit Details Box */
+    .audit-meta-card {
+      background: #FAF8F5;
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      border: 1px dashed rgba(61, 49, 51, 0.18);
+    }
+    .audit-meta-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .audit-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      font-size: 12.5px;
+    }
+    .audit-meta-item b {
+      color: var(--color-primary-dark);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .audit-meta-item span {
+      color: var(--color-text-muted);
+      word-break: break-all;
+    }
+
+    /* ========================================================
+       View 2: Coverage Matrix Table (全覆蓋總表)
+       ======================================================== */
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      padding: 9px 16px;
+      font-size: 13px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--color-border);
+      background: var(--color-surface);
+      outline: none;
+      width: 280px;
+      font-family: var(--font-cjk);
+    }
+    .search-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(201, 95, 117, 0.12);
+    }
+    .table-container {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+    }
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+    .audit-table th {
+      background: #FDF9FA;
+      padding: 14px 16px;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      border-bottom: 2px solid var(--color-border);
+      white-space: nowrap;
+    }
+    .audit-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(232, 138, 155, 0.12);
+      vertical-align: middle;
+    }
+    .audit-table tr:hover td {
+      background: #FFFDFB;
+    }
+    .tag-length {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: #F1F5F9;
+      color: #334155;
+      display: inline-block;
+    }
+    .tag-analogy {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background: #FEF3C7;
+      color: #92400E;
+      display: inline-block;
+    }
+
+    /* ========================================================
+       View 3: Milestones Timeline (6 大成長里程碑)
+       ======================================================== */
+    .milestone-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .milestone-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 80px 180px 1fr 220px;
+      gap: 20px;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    @media (max-width: 900px) {
+      .milestone-card { grid-template-columns: 1fr; }
+    }
+    .milestone-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--color-primary);
+    }
+    .ms-icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .ms-range-col b {
+      font-size: 16px;
+      color: var(--color-primary-dark);
+      display: block;
+      font-family: var(--font-serif);
+    }
+    .ms-range-col span {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+    .ms-content-col h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: var(--color-text);
+    }
+    .ms-content-col p {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    .ms-source-col {
+      background: #FAF8F5;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 11.5px;
+      color: var(--color-text-muted);
+    }
+    .ms-source-col b {
+      color: var(--color-primary-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ========================================================
+       View 4: Governance & Sources (治理審查與證據規範)
+       ======================================================== */
+    .governance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .gov-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .gov-card h3 {
+      font-size: 16px;
+      color: var(--color-primary-dark);
+      margin-bottom: 14px;
+      font-family: var(--font-serif);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gov-card ul {
+      padding-left: 20px;
+      font-size: 13px;
+      color: var(--color-text);
+      line-height: 1.8;
+    }
+    .gov-card li { margin-bottom: 8px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="header-title-wrap">
+        <span class="header-icon">🌸</span>
+        <div>
+          <h1 class="header-title">孕育之美 · 寶寶成長 Medical KB 視覺化審核儀表板</h1>
+          <div class="header-sub">Phase 1 Baby Growth Medical Records Coverage &amp; Presentation Layer Audit</div>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-approved">✓ 40/40 Records Approved (100%)</span>
+        <span class="badge badge-scope">🍼 Baby Growth MVP Read-only Review</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Stat Highlights Row -->
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="label">逐週紀錄核准率</div>
+        <div class="value">40 / 40 週</div>
+        <div class="desc">100% Approved · 零未核准缺口</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">身長參考覆蓋度</div>
+        <div class="value">4～40 週</div>
+        <div class="desc">1～3 週為 Early Stage 奠定</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">大小比喻覆蓋度</div>
+        <div class="value">37 個比喻</div>
+        <div class="desc">Non-Medical Visualization 標記</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">01 身體成長 / 02 感官動作</div>
+        <div class="value">100% 覆蓋</div>
+        <div class="desc">台灣國健署 + NHS 雙權威支持</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">重要成長里程碑</div>
+        <div class="value">6 大里程碑</div>
+        <div class="desc">保留醫學 Range 週數區間</div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+      <button class="nav-tab-btn active" data-target="view-inspector">🔍 逐週互動檢視器 (Weekly Inspector)</button>
+      <button class="nav-tab-btn" data-target="view-matrix">📊 Week 1–40 全覆蓋總表 (Full Matrix)</button>
+      <button class="nav-tab-btn" data-target="view-milestones">🏆 6 大成長里程碑 (Milestones)</button>
+      <button class="nav-tab-btn" data-target="view-governance">🔬 醫療來源與治理規範 (Governance)</button>
+    </div>
+
+    <!-- ========================================================
+         VIEW 1: Interactive Weekly Inspector
+         ======================================================== -->
+    <div class="tab-view active" id="view-inspector">
+      <div class="inspector-layout">
+        
+        <!-- Left Sidebar: Week Pill Grid -->
+        <aside class="week-sidebar">
+          <div class="sidebar-head">
+            <h3>選擇檢視週數 (Week 1–40)</h3>
+            <div class="stage-pill-filter">
+              <button class="pill-filter-btn active" data-filter="all">全部 (1-40)</button>
+              <button class="pill-filter-btn" data-filter="t1">初期 (1-12)</button>
+              <button class="pill-filter-btn" data-filter="t2">中期 (13-28)</button>
+              <button class="pill-filter-btn" data-filter="t3">後期 (29-40)</button>
+            </div>
+          </div>
+          <div class="week-pill-grid" id="weekPillGrid"></div>
+        </aside>
+
+        <!-- Right Main: Live Preview Card & Audit Inspector -->
+        <div class="inspector-main" id="inspectorMainContent">
+          <!-- Dynamic Content Rendered by JS -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================
+         VIEW 2: Full Matrix Table
+         ======================================================== -->
+    <div class="tab-view" id="view-matrix">
+      <div class="table-controls">
+        <div class="stage-pill-filter">
+          <button class="pill-filter-btn active" data-tbl-filter="all">全部週數 (40)</button>
+          <button class="pill-filter-btn" data-tbl-filter="t1">第一孕期 (12)</button>
+          <button class="pill-filter-btn" data-tbl-filter="t2">第二孕期 (16)</button>
+          <button class="pill-filter-btn" data-tbl-filter="t3">第三孕期 (12)</button>
+        </div>
+        <input type="text" class="search-input" id="tableSearchInput" placeholder="🔍 搜尋週數、比喻、器官或感官...">
+      </div>
+
+      <div class="table-container">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>孕週</th>
+              <th>階段</th>
+              <th>Record ID</th>
+              <th>身長參考 (Length)</th>
+              <th>大小比喻 (Analogy)</th>
+              <th>01 身體成長 (Body Growth)</th>
+              <th>02 感官與動作 (Sensory)</th>
+              <th>審核狀態</th>
+            </tr>
+          </thead>
+          <tbody id="auditTableBody">
+            <!-- Dynamic Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         VIEW 3: Milestones
+         ======================================================== -->
+    <div class="tab-view" id="view-milestones">
+      <div class="milestone-timeline" id="milestonesContainer">
+        <!-- Dynamic Milestones -->
+      </div>
+    </div>
+
+    <!-- ========================================================
+         VIEW 4: Governance & Sources
+         ======================================================== -->
+    <div class="tab-view" id="view-governance">
+      <div class="governance-grid">
+        <div class="gov-card">
+          <h3>🏛️ 4 大權威醫學來源與證據層級</h3>
+          <ul>
+            <li><b>SRC-HPA-001 (台灣衛福部國健署)</b>：提供孕初期/中期/後期關鍵胎兒發育里程碑、胎動感知、器官成形與公費產檢超音波評估指引。</li>
+            <li><b>SRC-NHS-001 (英國 NHS Best Start in Life)</b>：提供 Week 4–40 逐週胚胎/胎兒身長與蔬果大小比喻。</li>
+            <li><b>SRC-WHO-001 (世界衛生組織 WHO Fetal Growth Charts)</b>：多國縱向胎兒發育參考標準，確立群體發育分位概念。</li>
+            <li><b>SRC-ACOG-001 (美國婦產科醫學會)</b>：提供早期胚胎長度與頂臀長 (CRL) 測量醫學定義。</li>
+          </ul>
+        </div>
+
+        <div class="gov-card">
+          <h3>🛡️ 前端呈現三大防護機制 (Guardrails)</h3>
+          <ul>
+            <li><b>Week 1–3 標記為 NOT_APPLICABLE_EARLY_STAGE</b>：醫學上孕週自最後月經起算，前 3 週為排卵受精著床期，前端以「受精卵與胚胎奠定階段」溫柔呈現，不顯示 N/A、null、0 cm 或 --。</li>
+            <li><b>大小比喻標記為 NON_MEDICAL_VISUALIZATION</b>：水果/蔬菜比喻純屬視覺化輔助，前端註明「一般發育參考值」，不寫成精準醫療診斷。</li>
+            <li><b>體重欄位已取消</b>：避免因胎兒體重估算產生焦慮，前台依定案規格完全移除體重欄位。</li>
+          </ul>
+        </div>
+
+        <div class="gov-card">
+          <h3>💬 溫柔轉譯原則 (Consumer Translation)</h3>
+          <ul>
+            <li><b>允許</b>：降低術語密度、將解剖學發育轉為媽咪易讀的溫暖語句（如「眼皮發育完成，在肚子裡練習眨眨眼」）。</li>
+            <li><b>禁止</b>：禁止虛構寶寶心理感知、禁止宣稱未經證實的胎教功效、禁止將群體範圍寫成絕對單日。</li>
+            <li><b>審核判定</b>：全庫 40 週資料結構完整，可 100% 無縫接入前端「寶寶成長」頁面。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var DATA = window.BABY_GROWTH_DASHBOARD_DATA;
+      if(!DATA) {
+        console.error('BABY_GROWTH_DASHBOARD_DATA not found!');
+        return;
+      }
+
+      var currentSelectedWeek = 24; // Default to week 24
+      var currentFilter = 'all';
+      var currentTblFilter = 'all';
+
+      // ==========================================
+      // 1. Tab Navigation
+      // ==========================================
+      var tabBtns = document.querySelectorAll('.nav-tab-btn');
+      var tabViews = document.querySelectorAll('.tab-view');
+      tabBtns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          tabBtns.forEach(function(b){ b.classList.remove('active'); });
+          tabViews.forEach(function(v){ v.classList.remove('active'); });
+          btn.classList.add('active');
+          var targetId = btn.dataset.target;
+          var targetView = document.getElementById(targetId);
+          if(targetView) targetView.classList.add('active');
+        });
+      });
+
+      // ==========================================
+      // 2. Render Week Sidebar Pills
+      // ==========================================
+      function renderSidebarPills(){
+        var grid = document.getElementById('weekPillGrid');
+        if(!grid) return;
+        grid.innerHTML = '';
+
+        DATA.weeks.forEach(function(wObj){
+          var w = wObj.week;
+          var inFilter = false;
+          if(currentFilter === 'all') inFilter = true;
+          else if(currentFilter === 't1' && w <= 12) inFilter = true;
+          else if(currentFilter === 't2' && w >= 13 && w <= 28) inFilter = true;
+          else if(currentFilter === 't3' && w >= 29) inFilter = true;
+
+          if(!inFilter) return;
+
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'week-pill-btn ' + wObj.stage_class + (w === currentSelectedWeek ? ' active' : '');
+          btn.innerHTML = '<span class="emoji-icon">' + wObj.emoji + '</span>' +
+                          '<span>' + w + '週</span>';
+          btn.addEventListener('click', function(){
+            currentSelectedWeek = w;
+            renderSidebarPills();
+            renderInspectorMain();
+          });
+          grid.appendChild(btn);
+        });
+      }
+
+      // Filter buttons in sidebar
+      var filterBtns = document.querySelectorAll('.pill-filter-btn[data-filter]');
+      filterBtns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          filterBtns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          renderSidebarPills();
+        });
+      });
+
+      // ==========================================
+      // 3. Render Inspector Main
+      // ==========================================
+      function renderInspectorMain(){
+        var wrap = document.getElementById('inspectorMainContent');
+        if(!wrap) return;
+
+        var wObj = DATA.weeks.find(function(item){ return item.week === currentSelectedWeek; });
+        if(!wObj) return;
+
+        var analogyText = wObj.size_analogy_zh ? (wObj.emoji + ' 約一顆／一根 ' + wObj.size_analogy_zh + ' 大小 (' + wObj.size_analogy_en + ')') : '🌱 受精卵與胚胎奠定階段';
+        var lengthText = wObj.length_cm != null ? ('約 ' + wObj.length_cm + ' cm (' + wObj.length_measurement_type + ')') : 'Early Stage (胚胎奠定期)';
+
+        var html = '<div class="live-preview-card">' +
+          '<div class="preview-watermark">PREVIEW SIMULATION</div>' +
+          '<div class="preview-header">' +
+          '  <div class="preview-week-badge">🌸 妊娠第 ' + wObj.week + ' 週</div>' +
+          '  <span class="preview-stage-tag ' + wObj.stage_class + '">' + wObj.stage_name + ' · ' + wObj.stage_sub + '</span>' +
+          '</div>' +
+
+          '<div class="preview-hero-grid">' +
+          '  <div class="preview-emoji-avatar">' + wObj.emoji + '</div>' +
+          '  <div class="preview-hero-info">' +
+          '    <h3>本週寶寶：' + analogyText + '</h3>' +
+          '    <div class="preview-metric-row">' +
+          '      <div class="preview-metric-box">' +
+          '        <b>' + lengthText + '</b>' +
+          '        <span>身長參考</span>' +
+          '      </div>' +
+          '      <div class="preview-metric-box">' +
+          '        <b>' + wObj.stage_name + '</b>' +
+          '        <span>孕期階段</span>' +
+          '      </div>' +
+          '    </div>' +
+          '  </div>' +
+          '</div>' +
+
+          '<div class="preview-sections-grid">' +
+          '  <div class="section-card body-growth">' +
+          '    <div class="section-card-head">' +
+          '      <span class="sec-num">01</span>' +
+          '      <h4>身體成長 (Body Growth)</h4>' +
+          '    </div>' +
+          '    <p>' + wObj.consumer_body + '</p>' +
+          '  </div>' +
+          '  <div class="section-card sensory">' +
+          '    <div class="section-card-head">' +
+          '      <span class="sec-num">02</span>' +
+          '      <h4>感官與動作 (Sensory &amp; Movement)</h4>' +
+          '    </div>' +
+          '    <p>' + wObj.consumer_sensory + '</p>' +
+          '  </div>' +
+          '</div>' +
+          '</div>';
+
+        // Audit Meta Card (Side-by-side verification)
+        html += '<div class="audit-meta-card">' +
+          '<div class="audit-meta-title">🔬 醫學資料庫審查細節 (Medical KB Production Record)</div>' +
+          '<div class="audit-meta-grid">' +
+          '  <div class="audit-meta-item"><b>Record ID &amp; Status:</b><span>' + wObj.id + ' (' + wObj.review_status + ')</span></div>' +
+          '  <div class="audit-meta-item"><b>Length Reference Type:</b><span>' + (wObj.length_measurement_type || 'NOT_APPLICABLE_EARLY_STAGE') + '</span></div>' +
+          '  <div class="audit-meta-item"><b>Analogy Governance:</b><span>' + (wObj.analogy_type || 'NOT_APPLICABLE_EARLY_STAGE') + '</span></div>' +
+          '  <div class="audit-meta-item"><b>Source Citations:</b><span>' + (wObj.source_refs && wObj.source_refs[0] ? wObj.source_refs[0].source_id : 'NHS / WHO / HPA') + '</span></div>' +
+          '</div>' +
+          '</div>';
+
+        wrap.innerHTML = html;
+      }
+
+      // ==========================================
+      // 4. Render Full Matrix Table
+      // ==========================================
+      function renderMatrixTable(){
+        var tbody = document.getElementById('auditTableBody');
+        var searchVal = (document.getElementById('tableSearchInput').value || '').toLowerCase().trim();
+        if(!tbody) return;
+        tbody.innerHTML = '';
+
+        DATA.weeks.forEach(function(wObj){
+          var w = wObj.week;
+          var inFilter = false;
+          if(currentTblFilter === 'all') inFilter = true;
+          else if(currentTblFilter === 't1' && w <= 12) inFilter = true;
+          else if(currentTblFilter === 't2' && w >= 13 && w <= 28) inFilter = true;
+          else if(currentTblFilter === 't3' && w >= 29) inFilter = true;
+
+          if(!inFilter) return;
+
+          // Search filtering
+          var textStr = (w + '週 ' + wObj.stage_name + ' ' + (wObj.size_analogy_zh||'') + ' ' + (wObj.size_analogy_en||'') + ' ' + wObj.consumer_body + ' ' + wObj.consumer_sensory).toLowerCase();
+          if(searchVal && !textStr.includes(searchVal)) return;
+
+          var tr = document.createElement('tr');
+          var lenBadge = wObj.length_cm != null ? ('<span class="tag-length">' + wObj.length_cm + ' cm (' + wObj.length_measurement_type + ')</span>') : '<span class="badge" style="background:#F1F5F9;font-size:11px;">Early Stage</span>';
+          var analogyBadge = wObj.size_analogy_zh ? ('<span class="tag-analogy">' + wObj.emoji + ' ' + wObj.size_analogy_zh + ' (' + wObj.size_analogy_en + ')</span>') : '<span class="badge" style="background:#F1F5F9;font-size:11px;">Early Stage</span>';
+
+          tr.innerHTML = '<td><b>第 ' + w + ' 週</b></td>' +
+                         '<td><span class="preview-stage-tag ' + wObj.stage_class + '" style="font-size:11px;padding:2px 8px;">' + wObj.stage_name + '</span></td>' +
+                         '<td><code>' + wObj.id + '</code></td>' +
+                         '<td>' + lenBadge + '</td>' +
+                         '<td>' + analogyBadge + '</td>' +
+                         '<td>' + wObj.consumer_body + '</td>' +
+                         '<td>' + wObj.consumer_sensory + '</td>' +
+                         '<td><span class="badge badge-approved" style="font-size:11px;">✓ Approved</span></td>';
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Table filter buttons
+      var tblFilterBtns = document.querySelectorAll('.pill-filter-btn[data-tbl-filter]');
+      tblFilterBtns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          tblFilterBtns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentTblFilter = btn.dataset.tblFilter;
+          renderMatrixTable();
+        });
+      });
+
+      var searchInput = document.getElementById('tableSearchInput');
+      if(searchInput) searchInput.addEventListener('input', renderMatrixTable);
+
+      // ==========================================
+      // 5. Render Milestones Timeline
+      // ==========================================
+      function renderMilestones(){
+        var wrap = document.getElementById('milestonesContainer');
+        if(!wrap) return;
+        wrap.innerHTML = '';
+
+        DATA.milestones.forEach(function(ms){
+          var card = document.createElement('div');
+          card.className = 'milestone-card';
+          card.innerHTML = '<div class="ms-icon-wrap">' + ms.icon + '</div>' +
+                           '<div class="ms-range-col">' +
+                           '  <b>' + ms.week_range + '</b>' +
+                           '  <span>' + ms.id + '</span>' +
+                           '</div>' +
+                           '<div class="ms-content-col">' +
+                           '  <h4>' + ms.title + '</h4>' +
+                           '  <p>' + ms.consumer_desc + '</p>' +
+                           '</div>' +
+                           '<div class="ms-source-col">' +
+                           '  <b>Approved Source:</b>' +
+                           '  <span>' + ms.source_record + '<br>(' + ms.evidence_source + ')</span>' +
+                           '</div>';
+          wrap.appendChild(card);
+        });
+      }
+
+      // Initial Render
+      renderSidebarPills();
+      renderInspectorMain();
+      renderMatrixTable();
+      renderMilestones();
+    });
+  </script>
+</body>
+</html>
