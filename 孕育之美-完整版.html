@@ -4146,6 +4146,10 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
     <div class="mini-avatar">依</div>
     <div><b>依婷媽咪</b><span>0912-***-345</span></div>
   </div>
+  <div class="item" id="menuSharePartnerBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.6-9.5-9.2C.7 8.2 2.6 5 6 5c2 0 3.6 1.2 4.5 2.6C11.4 6.2 13 5 15 5c3.4 0 5.3 3.2 3.5 6.8C15 16.4 12 21 12 21Z"/></svg>
+    ♡ 分享給神隊友
+  </div>
   <div class="item" data-settings="profile">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>
     個人設定
@@ -4322,6 +4326,35 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <button class="btn btn-primary" id="welcomeSubmitBtn" type="button" style="width:100%; padding:14px; font-size:14.5px; border-radius:var(--radius-pill);">開始我的孕期旅程</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- ================= Partner Share Modal ================= -->
+<div class="modal-overlay" id="partnerShareModalOverlay">
+  <div class="modal-box" style="width:460px; max-width:100%;">
+    <div class="modal-close" id="closePartnerShareModal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+    <div class="modal-inner">
+      <span class="eyebrow">PARTNER INVITATION</span>
+      <h2 style="font-size:20px; margin-bottom:8px;">邀請神隊友一起加入 ♡</h2>
+      <p class="desc" style="margin-bottom:16px;">分享這個連結給你的神隊友，之後他可以直接查看目前的孕期進度與陪伴提醒。</p>
+
+      <div style="background:var(--color-background); border:1px solid rgba(232,138,155,0.2); border-radius:16px; padding:14px 16px; margin-bottom:18px;">
+        <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+          <span style="color:var(--color-text-muted);">寶寶暱稱</span>
+          <b id="shareModalBabyName" style="color:var(--color-primary-dark);">小茉莉</b>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:13px;">
+          <span style="color:var(--color-text-muted);">目前孕週</span>
+          <b id="shareModalWeekText" style="color:var(--color-primary-dark);">第 24 週 3 天</b>
+        </div>
+      </div>
+
+      <div class="modal-foot">
+        <button class="btn btn-primary" id="copyPartnerShareLinkBtn" type="button" style="width:100%; padding:13px; font-size:14px; border-radius:var(--radius-pill);">
+          <span id="copyLinkBtnText">複製分享連結</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -4616,6 +4649,55 @@ function closeSettingsModal(){
   if(overlay) overlay.classList.remove('open');
 }
 
+function encodePartnerPayload(payload){
+  try {
+    var jsonStr = JSON.stringify(payload);
+    var base64 = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+      return String.fromCharCode('0x' + p1);
+    }));
+    return encodeURIComponent(base64);
+  } catch(e){
+    return '';
+  }
+}
+
+function openPartnerShareModal(){
+  var overlay = document.getElementById('partnerShareModalOverlay');
+  if(!overlay) return;
+
+  var babyNameEl = document.getElementById('shareModalBabyName');
+  var weekTextEl = document.getElementById('shareModalWeekText');
+  var babyName = USER_PROFILE.babyNickname || APP.babyNickname || '小茉莉';
+  if(babyNameEl) babyNameEl.textContent = babyName;
+
+  var weekInfo = (typeof calcWeekInfo === 'function' && APP.edd) ? calcWeekInfo(APP.edd) : { weeks: APP.currentWeek || 24, days: APP.currentDay || 0 };
+  if(weekTextEl) {
+    weekTextEl.textContent = '第 ' + weekInfo.weeks + ' 週 ' + (weekInfo.days !== undefined ? weekInfo.days + ' 天' : '');
+  }
+
+  var btnText = document.getElementById('copyLinkBtnText');
+  if(btnText) btnText.textContent = '複製分享連結';
+
+  overlay.classList.add('open');
+}
+
+function closePartnerShareModal(){
+  var overlay = document.getElementById('partnerShareModalOverlay');
+  if(overlay) overlay.classList.remove('open');
+}
+
+function generatePartnerShareUrl(){
+  var payload = {
+    v: 1,
+    momNickname: USER_PROFILE.momNickname || APP.nickname || '媽咪',
+    babyNickname: USER_PROFILE.babyNickname || APP.babyNickname || '小茉莉',
+    babyGender: USER_PROFILE.babyGender || '女寶寶 👧',
+    dueDate: USER_PROFILE.dueDate || (APP.edd ? APP.edd.toISOString().split('T')[0] : '2026-11-20')
+  };
+  var encoded = encodePartnerPayload(payload);
+  return window.location.origin + window.location.pathname + '?partner=' + encoded;
+}
+
 function updateAuthStateUI(){
   var avatars = document.querySelectorAll('.avatar');
   avatars.forEach(function(av){
@@ -4731,6 +4813,47 @@ function initAccountAndLoginUI(){
       }
     }
   });
+
+  var sharePartnerBtn = document.getElementById('menuSharePartnerBtn');
+  if(sharePartnerBtn){
+    sharePartnerBtn.addEventListener('click', function(){
+      var accountMenu = document.getElementById('accountMenu');
+      if(accountMenu) accountMenu.classList.remove('open');
+      openPartnerShareModal();
+    });
+  }
+
+  var copyShareBtn = document.getElementById('copyPartnerShareLinkBtn');
+  if(copyShareBtn){
+    copyShareBtn.addEventListener('click', function(){
+      var url = generatePartnerShareUrl();
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(function(){
+          var btnText = document.getElementById('copyLinkBtnText');
+          if(btnText) btnText.textContent = '✓ 已複製分享連結！';
+          setTimeout(function(){
+            if(btnText) btnText.textContent = '複製分享連結';
+          }, 2500);
+        }).catch(function(){
+          prompt('請複製以下神隊友專屬連結：', url);
+        });
+      } else {
+        prompt('請複製以下神隊友專屬連結：', url);
+      }
+    });
+  }
+
+  var closeShareBtn = document.getElementById('closePartnerShareModal');
+  if(closeShareBtn){
+    closeShareBtn.addEventListener('click', closePartnerShareModal);
+  }
+
+  var shareOverlay = document.getElementById('partnerShareModalOverlay');
+  if(shareOverlay){
+    shareOverlay.addEventListener('click', function(e){
+      if(e.target === shareOverlay) closePartnerShareModal();
+    });
+  }
 
   var accountItems = document.querySelectorAll('#accountMenu .item[data-settings]');
   accountItems.forEach(function(item){
