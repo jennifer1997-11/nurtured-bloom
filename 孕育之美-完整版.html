@@ -827,6 +827,13 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .settings-step{ display:none; }
 .settings-step.on{ display:block; }
 
+/* Welcome / Initial Profile Modal */
+.welcome-modal-box{ width:660px; max-width:100%; max-height:85vh; overflow-y:auto; border-radius:28px; }
+.welcome-form-section{ margin-bottom:14px; background:var(--color-background); border:1px solid rgba(232,138,155,0.14); border-radius:18px; padding:14px 16px; }
+.welcome-sec-head{ font-size:12.5px; font-weight:700; color:var(--color-primary-dark); margin-bottom:10px; letter-spacing:0.04em; }
+.welcome-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width: 640px){ .welcome-grid-2{ grid-template-columns:1fr; } }
+
 /* ============ EDD / 倒數 ============ */
 .edd-countdown{ display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg,rgba(232,138,155,0.12),rgba(232,138,155,0.06)); border:1px solid rgba(232,138,155,0.2); border-radius:var(--radius-pill); padding:6px 14px; font-size:11.5px; color:var(--color-primary-dark); font-weight:600; margin-top:0; }
 .edd-countdown svg{ width:13px; height:13px; }
@@ -4252,6 +4259,73 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   </div>
 </div>
 
+<!-- ================= Welcome / Initial Profile Modal ================= -->
+<div class="modal-overlay" id="welcomeModalOverlay">
+  <div class="modal-box welcome-modal-box">
+    <div class="modal-inner">
+      <span class="eyebrow">WELCOME TO PREGNANCY BEAUTY</span>
+      <h2 style="font-size:21px; margin-bottom:6px;">歡迎來到孕育之美 🌷</h2>
+      <p class="desc" style="margin-bottom:20px;">先建立你的孕期資料，我們會依照目前孕週提供適合你的內容。</p>
+
+      <form id="welcomeForm" onsubmit="return false;">
+        <div class="welcome-form-section">
+          <div class="welcome-sec-head">🌸 個人資料</div>
+          <div class="welcome-grid-2">
+            <div class="field">
+              <label for="welcomeMomName">我的稱呼 <span style="color:var(--color-primary); font-weight:700;">*</span></label>
+              <input type="text" id="welcomeMomName" placeholder="例如：Jennifer、依婷媽咪" maxlength="20" required>
+            </div>
+            <div class="field">
+              <label for="welcomeEmail">Email <span style="color:var(--color-primary); font-weight:700;">*</span></label>
+              <input type="email" id="welcomeEmail" placeholder="例如：name@example.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-form-section">
+          <div class="welcome-sec-head">🗓️ 孕期資料</div>
+          <div class="welcome-grid-2">
+            <div class="field">
+              <label for="welcomeDueDate">預產期 (EDD) <span style="color:var(--color-primary); font-weight:700;">*</span></label>
+              <input type="date" id="welcomeDueDate" min="2024-01-01" max="2028-12-31" required>
+            </div>
+            <div class="field">
+              <label for="welcomePregnancyNumber">懷孕胎數</label>
+              <select id="welcomePregnancyNumber">
+                <option value="第一胎" selected>第一胎</option>
+                <option value="第二胎">第二胎</option>
+                <option value="第三胎以上">第三胎以上</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-form-section">
+          <div class="welcome-sec-head">👶 寶寶資料</div>
+          <div class="welcome-grid-2">
+            <div class="field">
+              <label for="welcomeBabyName">寶寶暱稱 <span style="color:var(--color-primary); font-weight:700;">*</span></label>
+              <input type="text" id="welcomeBabyName" placeholder="例如：小茉莉、小湯圓" maxlength="20" required>
+            </div>
+            <div class="field">
+              <label for="welcomeBabyGender">寶寶性別</label>
+              <select id="welcomeBabyGender">
+                <option value="尚未揭曉 🤍">尚未揭曉 🤍</option>
+                <option value="女寶寶 👧" selected>女寶寶 👧</option>
+                <option value="男寶寶 👦">男寶寶 👦</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-foot" style="margin-top:20px;">
+          <button class="btn btn-primary" id="welcomeSubmitBtn" type="button" style="width:100%; padding:14px; font-size:14.5px; border-radius:var(--radius-pill);">開始我的孕期旅程</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 
 <script>
@@ -4321,11 +4395,79 @@ document.addEventListener('click', function(e){
 });
 
 /* ============================================================
-   Account Menu, Login Modal & Settings Modal Interactions
+   User Profile, Welcome Modal & Settings Modal Interactions
    ============================================================ */
-var AUTH_STATE = {
-  isLoggedIn: true
+var USER_STORAGE_KEY = 'pregnancyAppUser';
+
+var USER_PROFILE = {
+  initialized: false,
+  momNickname: '',
+  email: '',
+  dueDate: '',
+  pregnancyNumber: '第一胎',
+  babyNickname: '',
+  babyGender: '女寶寶 👧',
+  createdAt: '',
+  updatedAt: ''
 };
+
+function loadUserProfile(){
+  try {
+    var raw = localStorage.getItem(USER_STORAGE_KEY);
+    if(raw){
+      var p = JSON.parse(raw);
+      if(p && typeof p === 'object' && p.initialized && p.dueDate){
+        return p;
+      }
+    }
+  } catch(e){}
+  return null;
+}
+
+function saveUserProfile(profile){
+  try {
+    profile.updatedAt = new Date().toISOString();
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile));
+  } catch(e){}
+}
+
+var AUTH_STATE = {
+  isLoggedIn: false
+};
+
+var APP = {
+  edd: new Date('2026-11-20'),
+  nickname: '依婷媽咪',
+  babyNickname: '小茉莉',
+  currentWeek: 24,
+  currentDay: 3
+};
+
+function openWelcomeModal(){
+  var overlay = document.getElementById('welcomeModalOverlay');
+  if(!overlay) return;
+
+  var momInput = document.getElementById('welcomeMomName');
+  var emailInput = document.getElementById('welcomeEmail');
+  var dateInput = document.getElementById('welcomeDueDate');
+  var pregInput = document.getElementById('welcomePregnancyNumber');
+  var babyInput = document.getElementById('welcomeBabyName');
+  var genderInput = document.getElementById('welcomeBabyGender');
+
+  if(momInput) momInput.value = USER_PROFILE.momNickname || '';
+  if(emailInput) emailInput.value = USER_PROFILE.email || '';
+  if(dateInput) dateInput.value = USER_PROFILE.dueDate || '';
+  if(pregInput) pregInput.value = USER_PROFILE.pregnancyNumber || '第一胎';
+  if(babyInput) babyInput.value = USER_PROFILE.babyNickname || '';
+  if(genderInput) genderInput.value = USER_PROFILE.babyGender || '女寶寶 👧';
+
+  overlay.classList.add('open');
+}
+
+function closeWelcomeModal(){
+  var overlay = document.getElementById('welcomeModalOverlay');
+  if(overlay) overlay.classList.remove('open');
+}
 
 function openLoginModal(step){
   var overlay = document.getElementById('loginOverlay');
@@ -4358,50 +4500,57 @@ function openSettingsModal(type){
   if(type === 'pregnancy'){
     title = '孕期設定';
     desc = '更新預產期或孕期進度。';
+    var curPreg = USER_PROFILE.pregnancyNumber || '第一胎';
     content = 
       '<div class="field">' +
-      '  <label>預產期 (EDD)</label>' +
-      '  <input type="date" id="settingsEddInput" value="2026-11-20">' +
+      '  <label for="settingsEddInput">預產期 (EDD)</label>' +
+      '  <input type="date" id="settingsEddInput" value="' + (USER_PROFILE.dueDate || '2026-11-20') + '">' +
       '</div>' +
       '<div class="field">' +
-      '  <label>懷孕胎數</label>' +
-      '  <select><option selected>單胞胎</option><option>雙胞胎</option><option>多胞胎</option></select>' +
+      '  <label for="settingsPregnancyNumberInput">懷孕胎數</label>' +
+      '  <select id="settingsPregnancyNumberInput">' +
+      '    <option value="第一胎"' + (curPreg === '第一胎' ? ' selected' : '') + '>第一胎</option>' +
+      '    <option value="第二胎"' + (curPreg === '第二胎' ? ' selected' : '') + '>第二胎</option>' +
+      '    <option value="第三胎以上"' + (curPreg === '第三胎以上' ? ' selected' : '') + '>第三胎以上</option>' +
+      '  </select>' +
       '</div>';
   } else if(type === 'baby'){
     title = '寶寶設定';
     desc = '管理寶寶暱稱與成長記錄設定。';
+    var curGen = USER_PROFILE.babyGender || '女寶寶 👧';
     content = 
       '<div class="field">' +
-      '  <label>寶寶暱稱</label>' +
-      '  <input type="text" id="settingsBabyNameInput" value="小茉莉" placeholder="例如：小茉莉">' +
+      '  <label for="settingsBabyNameInput">寶寶暱稱</label>' +
+      '  <input type="text" id="settingsBabyNameInput" value="' + (USER_PROFILE.babyNickname || APP.babyNickname || '小茉莉') + '" placeholder="例如：小茉莉">' +
       '</div>' +
       '<div class="field">' +
-      '  <label>寶寶性別</label>' +
-      '  <select><option>尚未揭曉 🤍</option><option selected>女寶寶 👧</option><option>男寶寶 👦</option></select>' +
+      '  <label for="settingsBabyGenderInput">寶寶性別</label>' +
+      '  <select id="settingsBabyGenderInput">' +
+      '    <option value="尚未揭曉 🤍"' + (curGen === '尚未揭曉 🤍' ? ' selected' : '') + '>尚未揭曉 🤍</option>' +
+      '    <option value="女寶寶 👧"' + (curGen === '女寶寶 👧' ? ' selected' : '') + '>女寶寶 👧</option>' +
+      '    <option value="男寶寶 👦"' + (curGen === '男寶寶 👦' ? ' selected' : '') + '>男寶寶 👦</option>' +
+      '  </select>' +
       '</div>';
   } else if(type === 'privacy'){
-    title = '隱私與安全設定';
+    title = '隱私設定';
     desc = '我們重視妳的隱私，所有資料均受到嚴格保護。';
     content = 
       '<div class="toggle-row">' +
       '  <div class="txt"><b>匿名社群分享</b><span>在社群發文時隱藏詳細孕期與個人資料</span></div>' +
-      '  <div class="switch on" onclick="this.classList.toggle(\'on\')"></div>' +
-      '</div>' +
-      '<div class="toggle-row">' +
-      '  <div class="txt"><b>產檢資料端點加密</b><span>產檢備忘錄與數值僅保存在本地瀏覽器</span></div>' +
-      '  <div class="switch on" onclick="this.classList.toggle(\'on\')"></div>' +
+      '  <div class="switch on" id="settingsAnonShare" onclick="this.classList.toggle(\'on\')"></div>' +
       '</div>';
   } else {
+    // profile (個人設定)
     title = '個人設定';
-    desc = '管理妳的稱呼與帳號基本資訊。';
+    desc = '管理妳的稱呼與 Email 基本資訊。';
     content = 
       '<div class="field">' +
-      '  <label>我的稱呼</label>' +
-      '  <input type="text" id="settingsNicknameInput" value="' + (APP.nickname || '依婷媽咪') + '">' +
+      '  <label for="settingsNicknameInput">我的稱呼</label>' +
+      '  <input type="text" id="settingsNicknameInput" value="' + (USER_PROFILE.momNickname || APP.nickname || 'Jennifer') + '">' +
       '</div>' +
       '<div class="field">' +
-      '  <label>聯絡電話</label>' +
-      '  <input type="text" value="0912-***-345" disabled>' +
+      '  <label for="settingsEmailInput">Email</label>' +
+      '  <input type="email" id="settingsEmailInput" value="' + (USER_PROFILE.email || 'name@example.com') + '">' +
       '</div>';
   }
 
@@ -4410,7 +4559,7 @@ function openSettingsModal(type){
     '<h2>' + title + '</h2>' +
     '<p class="desc">' + desc + '</p>' +
     content +
-    '<div class="modal-foot">' +
+    '<div class="modal-foot" style="margin-top:16px;">' +
     '  <button class="btn btn-primary" id="saveSettingsBtn">儲存變更</button>' +
     '</div>';
 
@@ -4418,16 +4567,43 @@ function openSettingsModal(type){
   if(saveBtn){
     saveBtn.addEventListener('click', function(){
       var nickInput = document.getElementById('settingsNicknameInput');
-      if(nickInput && nickInput.value.trim()){
-        APP.nickname = nickInput.value.trim();
-        updateAuthStateUI();
-        updateWeekUI();
+      if(nickInput){
+        var nVal = nickInput.value.trim();
+        if(nVal) {
+          USER_PROFILE.momNickname = nVal;
+          APP.nickname = nVal;
+        }
+      }
+      var emailInput = document.getElementById('settingsEmailInput');
+      if(emailInput){
+        var eVal = emailInput.value.trim();
+        if(eVal) USER_PROFILE.email = eVal;
       }
       var eddInput = document.getElementById('settingsEddInput');
       if(eddInput && eddInput.value){
+        USER_PROFILE.dueDate = eddInput.value;
         APP.edd = new Date(eddInput.value);
-        updateWeekUI();
       }
+      var pregInput = document.getElementById('settingsPregnancyNumberInput');
+      if(pregInput && pregInput.value){
+        USER_PROFILE.pregnancyNumber = pregInput.value;
+      }
+      var babyNameInput = document.getElementById('settingsBabyNameInput');
+      if(babyNameInput){
+        var bVal = babyNameInput.value.trim();
+        if(bVal){
+          USER_PROFILE.babyNickname = bVal;
+          APP.babyNickname = bVal;
+        }
+      }
+      var babyGenInput = document.getElementById('settingsBabyGenderInput');
+      if(babyGenInput && babyGenInput.value){
+        USER_PROFILE.babyGender = babyGenInput.value;
+      }
+
+      saveUserProfile(USER_PROFILE);
+      updateAuthStateUI();
+      updateWeekUI();
       closeSettingsModal();
     });
   }
@@ -4445,7 +4621,7 @@ function updateAuthStateUI(){
   avatars.forEach(function(av){
     if(AUTH_STATE.isLoggedIn){
       av.classList.remove('login-btn');
-      av.textContent = (APP.nickname || '依婷媽咪').charAt(0);
+      av.textContent = (APP.nickname || '媽咪').charAt(0);
       av.title = '帳號設定';
     } else {
       av.classList.add('login-btn');
@@ -4456,11 +4632,82 @@ function updateAuthStateUI(){
 
   var whoName = document.querySelector('#accountMenu .who b');
   if(whoName){
-    whoName.textContent = APP.nickname || '依婷媽咪';
+    whoName.textContent = APP.nickname || '媽咪';
   }
 }
 
 function initAccountAndLoginUI(){
+  var savedUser = loadUserProfile();
+  if(savedUser){
+    USER_PROFILE = savedUser;
+    APP.nickname = savedUser.momNickname || 'Jennifer';
+    APP.babyNickname = savedUser.babyNickname || '小茉莉';
+    APP.edd = new Date(savedUser.dueDate || '2026-11-20');
+    AUTH_STATE.isLoggedIn = true;
+    updateAuthStateUI();
+    closeWelcomeModal();
+  } else {
+    AUTH_STATE.isLoggedIn = false;
+    updateAuthStateUI();
+    openWelcomeModal();
+  }
+
+  var welcomeBtn = document.getElementById('welcomeSubmitBtn');
+  if(welcomeBtn){
+    welcomeBtn.addEventListener('click', function(){
+      var momName = (document.getElementById('welcomeMomName').value || '').trim();
+      var email = (document.getElementById('welcomeEmail').value || '').trim();
+      var dueDate = (document.getElementById('welcomeDueDate').value || '').trim();
+      var pregNum = (document.getElementById('welcomePregnancyNumber').value || '第一胎');
+      var babyName = (document.getElementById('welcomeBabyName').value || '').trim();
+      var babyGender = (document.getElementById('welcomeBabyGender').value || '女寶寶 👧');
+
+      if(!momName){
+        alert('請填寫「我的稱呼」 ♡');
+        document.getElementById('welcomeMomName').focus();
+        return;
+      }
+      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        alert('請輸入有效的 Email 地址 ♡');
+        document.getElementById('welcomeEmail').focus();
+        return;
+      }
+      if(!dueDate){
+        alert('請選擇「預產期 (EDD)」 ♡');
+        document.getElementById('welcomeDueDate').focus();
+        return;
+      }
+      if(!babyName){
+        alert('請填寫「寶寶暱稱」 ♡');
+        document.getElementById('welcomeBabyName').focus();
+        return;
+      }
+
+      USER_PROFILE = {
+        initialized: true,
+        momNickname: momName,
+        email: email,
+        dueDate: dueDate,
+        pregnancyNumber: pregNum,
+        babyNickname: babyName,
+        babyGender: babyGender,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      saveUserProfile(USER_PROFILE);
+
+      APP.nickname = USER_PROFILE.momNickname;
+      APP.babyNickname = USER_PROFILE.babyNickname;
+      APP.edd = new Date(USER_PROFILE.dueDate);
+      AUTH_STATE.isLoggedIn = true;
+
+      updateAuthStateUI();
+      updateWeekUI();
+      closeWelcomeModal();
+    });
+  }
+
   document.addEventListener('click', function(e){
     var avatarBtn = e.target.closest('.avatar, [data-action="login"], [data-action="account"], [data-action="settings"]');
     var accountMenu = document.getElementById('accountMenu');
@@ -4469,7 +4716,7 @@ function initAccountAndLoginUI(){
       e.stopPropagation();
       if(avatarBtn.classList.contains('login-btn') || avatarBtn.textContent.trim() === '登入' || !AUTH_STATE.isLoggedIn){
         if(accountMenu) accountMenu.classList.remove('open');
-        openLoginModal(1);
+        openWelcomeModal();
       } else {
         if(accountMenu){
           accountMenu.classList.toggle('open');
@@ -4500,9 +4747,13 @@ function initAccountAndLoginUI(){
     logoutBtn.addEventListener('click', function(e){
       var accountMenu = document.getElementById('accountMenu');
       if(accountMenu) accountMenu.classList.remove('open');
-      AUTH_STATE.isLoggedIn = false;
-      updateAuthStateUI();
-      openLoginModal(1);
+      if(confirm('確定要清除孕期檔案並登出嗎？')){
+        localStorage.removeItem(USER_STORAGE_KEY);
+        USER_PROFILE = { initialized: false };
+        AUTH_STATE.isLoggedIn = false;
+        updateAuthStateUI();
+        openWelcomeModal();
+      }
     });
   }
 
@@ -4527,79 +4778,7 @@ function initAccountAndLoginUI(){
       if(e.target === settingsOverlay) closeSettingsModal();
     });
   }
-
-  var sendOtpBtn = document.getElementById('sendOtpBtn');
-  if(sendOtpBtn){
-    sendOtpBtn.addEventListener('click', function(){
-      var input = document.getElementById('loginFieldInput');
-      var val = input ? input.value.trim() : '0912-345-678';
-      var desc = document.getElementById('otpSentDesc');
-      if(desc && val) desc.textContent = '已發送 6 碼驗證碼至 ' + val + '，請於 5 分鐘內輸入。';
-      openLoginModal(2);
-    });
-  }
-
-  var backToStep1 = document.getElementById('backToStep1');
-  if(backToStep1){
-    backToStep1.addEventListener('click', function(){
-      openLoginModal(1);
-    });
-  }
-
-  var verifyOtpBtn = document.getElementById('verifyOtpBtn');
-  if(verifyOtpBtn){
-    verifyOtpBtn.addEventListener('click', function(){
-      openLoginModal(3);
-    });
-  }
-
-  var finishOnboardBtn = document.getElementById('finishOnboardBtn');
-  if(finishOnboardBtn){
-    finishOnboardBtn.addEventListener('click', function(){
-      var nickInput = document.getElementById('onbNickname');
-      if(nickInput && nickInput.value.trim()){
-        APP.nickname = nickInput.value.trim();
-        updateWeekUI();
-      }
-      AUTH_STATE.isLoggedIn = true;
-      updateAuthStateUI();
-      closeLoginModal();
-    });
-  }
-
-  var methodBtns = document.querySelectorAll('.method-switch button');
-  methodBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      methodBtns.forEach(function(b){ b.classList.remove('on'); });
-      btn.classList.add('on');
-      var isEmail = btn.dataset.method === 'email';
-      var label = document.getElementById('loginFieldLabel');
-      var input = document.getElementById('loginFieldInput');
-      var hint = document.getElementById('loginFieldHint');
-      if(label) label.textContent = isEmail ? 'Email 電子信箱' : '手機號碼';
-      if(input) input.placeholder = isEmail ? 'mommy@example.com' : '0912-345-678';
-      if(hint) hint.textContent = isEmail ? '我們會發送驗證連結或 6 碼驗證碼至此信箱。' : '我們會發送 6 碼驗證碼到這個號碼。';
-    });
-  });
-
-  var roleOpts = document.querySelectorAll('.pill-select .opt');
-  roleOpts.forEach(function(opt){
-    opt.addEventListener('click', function(){
-      roleOpts.forEach(function(o){ o.classList.remove('sel'); });
-      opt.classList.add('sel');
-    });
-  });
 }
-
-/* ============================================================
-   Phase 1｜EDD 計算 & 孕週驅動
-   ============================================================ */
-var APP = {
-  edd: new Date('2026-11-20'),
-  nickname: '依婷媽咪',
-  currentWeek: 24,
-  currentDay: 3
-};
 
 function calcWeekInfo(edd){
   var today = new Date();
