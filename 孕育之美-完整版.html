@@ -4476,7 +4476,66 @@ var APP = {
   currentDay: 3
 };
 
+var PARTNER_GUEST = {
+  active: false,
+  momNickname: '',
+  babyNickname: '',
+  babyGender: '',
+  dueDate: ''
+};
+
+function isPartnerGuestMode(){
+  return PARTNER_GUEST && PARTNER_GUEST.active === true;
+}
+
+function decodePartnerPayload(encodedStr){
+  try {
+    var decodedBase64 = decodeURIComponent(encodedStr);
+    var jsonStr = decodeURIComponent(Array.prototype.map.call(atob(decodedBase64), function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    var obj = JSON.parse(jsonStr);
+    if(obj && obj.dueDate){
+      return obj;
+    }
+  } catch(e){}
+  return null;
+}
+
+function checkAndInitPartnerGuestMode(){
+  try {
+    var urlParams = new URLSearchParams(window.location.search);
+    var partnerParam = urlParams.get('partner');
+    if(partnerParam !== null){
+      var payload = decodePartnerPayload(partnerParam);
+      if(payload && payload.dueDate){
+        PARTNER_GUEST = {
+          active: true,
+          momNickname: payload.momNickname || '媽咪',
+          babyNickname: payload.babyNickname || '寶寶',
+          babyGender: payload.babyGender || '女寶寶 👧',
+          dueDate: payload.dueDate
+        };
+        try {
+          sessionStorage.setItem('pregnancyPartnerGuest', JSON.stringify(PARTNER_GUEST));
+        } catch(e){}
+        return true;
+      }
+    }
+    var sessionRaw = sessionStorage.getItem('pregnancyPartnerGuest');
+    if(sessionRaw){
+      var parsed = JSON.parse(sessionRaw);
+      if(parsed && parsed.active && parsed.dueDate){
+        PARTNER_GUEST = parsed;
+        return true;
+      }
+    }
+  } catch(e){}
+  return false;
+}
+
 function openWelcomeModal(){
+  if(isPartnerGuestMode()) return;
   var overlay = document.getElementById('welcomeModalOverlay');
   if(!overlay) return;
 
@@ -4719,19 +4778,44 @@ function updateAuthStateUI(){
 }
 
 function initAccountAndLoginUI(){
-  var savedUser = loadUserProfile();
-  if(savedUser){
-    USER_PROFILE = savedUser;
-    APP.nickname = savedUser.momNickname || 'Jennifer';
-    APP.babyNickname = savedUser.babyNickname || '小茉莉';
-    APP.edd = new Date(savedUser.dueDate || '2026-11-20');
+  var isPartner = checkAndInitPartnerGuestMode();
+  if(isPartner){
+    APP.nickname = PARTNER_GUEST.momNickname || '媽咪';
+    APP.babyNickname = PARTNER_GUEST.babyNickname || '寶寶';
+    APP.edd = new Date(PARTNER_GUEST.dueDate || '2026-11-20');
     AUTH_STATE.isLoggedIn = true;
-    updateAuthStateUI();
     closeWelcomeModal();
-  } else {
-    AUTH_STATE.isLoggedIn = false;
     updateAuthStateUI();
-    openWelcomeModal();
+
+    var momEl = document.getElementById('momViewHome');
+    var partnerEl = document.getElementById('partnerViewHome');
+    if(momEl) momEl.style.display = 'none';
+    if(partnerEl) partnerEl.style.display = 'block';
+
+    var switchBtns = document.querySelectorAll('.view-switch button');
+    if(switchBtns.length >= 2){
+      switchBtns[0].classList.remove('active', 'on');
+      switchBtns[1].classList.add('active', 'on');
+    }
+
+    if(typeof renderPartnerViewHome === 'function'){
+      renderPartnerViewHome();
+    }
+  } else {
+    var savedUser = loadUserProfile();
+    if(savedUser){
+      USER_PROFILE = savedUser;
+      APP.nickname = savedUser.momNickname || 'Jennifer';
+      APP.babyNickname = savedUser.babyNickname || '小茉莉';
+      APP.edd = new Date(savedUser.dueDate || '2026-11-20');
+      AUTH_STATE.isLoggedIn = true;
+      updateAuthStateUI();
+      closeWelcomeModal();
+    } else {
+      AUTH_STATE.isLoggedIn = false;
+      updateAuthStateUI();
+      openWelcomeModal();
+    }
   }
 
   var welcomeBtn = document.getElementById('welcomeSubmitBtn');
