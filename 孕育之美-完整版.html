@@ -83,54 +83,93 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .week-bloom .txt b{ font-family:var(--font-serif-cjk); font-size:14px; color:var(--color-primary-dark); display:block; }
 .week-bloom .txt span{ font-size:10.5px; color:var(--color-text-muted); }
 
-/* ============ Hero (首頁 Baby + Check-in) ============ */
-.hero{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:20px; margin-bottom:20px; }
-.baby-card{ padding:28px 32px 24px; display:flex; flex-direction:column; justify-content:space-between; min-height:360px; background:radial-gradient(ellipse 460px 250px at 78% 10%, rgba(246,222,224,0.6), transparent 60%), linear-gradient(175deg, #FFFDFB 0%, #FBF3EF 100%); }
-.baby-card .top-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-.baby-card .top-row .label h2{ font-size:19px; }
-.size-chip{ font-size:11px; color:#6E8460; background:rgba(168,191,168,0.22); padding:6px 12px; border-radius:var(--radius-pill); white-space:nowrap; font-weight:500; }
-.baby-stage{ position:relative; flex:1; display:flex; align-items:center; justify-content:center; min-height:210px; }
-.petal-glow{ position:absolute; width:270px; height:270px; border-radius:50%; background:radial-gradient(circle, rgba(232,138,155,0.32), rgba(232,138,155,0) 68%); filter:blur(2px); animation:breathe 6s ease-in-out infinite; }
+/* ============ Home Mom Dashboard 2x2 Grid ============ */
+.home-dashboard-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
+
+.home-baby-card, .home-checkin-card, .home-this-week-card, .home-next-checkup-card{
+  padding:24px 26px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:360px;
+  background:var(--color-surface);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+  position:relative;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.home-baby-card{
+  background:radial-gradient(ellipse 360px 220px at 85% 15%, rgba(246,222,224,0.45), transparent 60%), linear-gradient(175deg, #FFFDFB 0%, #FAF5F2 100%);
+}
+
+.home-checkin-card{
+  background:radial-gradient(ellipse 340px 200px at 90% 10%, rgba(243,216,167,0.3), transparent 60%), linear-gradient(175deg, #FFFDFB 0%, #FAF6F4 100%);
+}
+
+.home-this-week-card{
+  background:radial-gradient(ellipse 340px 200px at 85% 15%, rgba(232,138,155,0.22), transparent 60%), linear-gradient(175deg, #FFFDFB 0%, #FAF5F3 100%);
+}
+
+.home-next-checkup-card{
+  background:radial-gradient(ellipse 340px 200px at 85% 15%, rgba(168,191,168,0.25), transparent 60%), linear-gradient(175deg, #FFFDFB 0%, #F5F8F5 100%);
+}
+
+.home-card-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; gap:10px; }
+.home-card-head h2{ font-size:17px; margin:4px 0 0; color:var(--color-text); font-weight:700; }
+
+.home-card-foot{ margin-top:14px; padding-top:10px; border-top:1px solid rgba(232,138,155,0.12); display:flex; justify-content:flex-end; }
+.home-card-link{ font-size:12px; font-weight:600; color:var(--color-primary-dark); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:4px; transition:color .2s, transform .2s; }
+.home-card-link:hover{ color:var(--color-primary); transform:translateX(3px); }
+
+/* Baby Card Details */
+.size-chip{ font-size:11px; color:#6E8460; background:rgba(168,191,168,0.22); padding:6px 12px; border-radius:var(--radius-pill); white-space:nowrap; font-weight:600; }
+.home-baby-stage{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 0 10px; }
+.home-baby-glow{ position:absolute; width:160px; height:160px; border-radius:50%; background:radial-gradient(circle, rgba(232,138,155,0.28), rgba(232,138,155,0) 70%); filter:blur(4px); animation:breathe 6s ease-in-out infinite; }
 @keyframes breathe{ 0%,100%{transform:scale(1);opacity:.85;} 50%{transform:scale(1.08);opacity:1;} }
-.baby-float{ animation:float 5.5s ease-in-out infinite; position:relative; z-index:2; }
-@keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-.baby-caption{ text-align:center; margin-top:4px; }
-.baby-caption p{ margin:0; font-size:12px; color:var(--color-text-muted); }
-.baby-caption b{ color:var(--color-text); font-weight:600; }
+.home-baby-img{ width:118px; height:118px; object-fit:contain; position:relative; z-index:2; filter:drop-shadow(0 8px 16px rgba(201,95,117,0.18)); animation:float 5.5s ease-in-out infinite; }
+@keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+.home-baby-length-badge{ position:relative; z-index:3; margin-top:6px; font-size:11px; color:var(--color-primary-dark); background:rgba(255,255,255,0.85); padding:3px 10px; border-radius:var(--radius-pill); border:1px solid rgba(232,138,155,0.22); font-weight:600; }
+.home-baby-summary-wrap{ margin-top:6px; flex:1; display:flex; align-items:center; }
+.home-baby-summary-text{ font-size:12px; color:var(--color-text-muted); line-height:1.65; margin:0; text-align:center; width:100%; }
 
-.checkin-card{ padding:26px 26px 22px; display:flex; flex-direction:column; gap:16px; }
-.checkin-card h2{ font-size:17px; }
-.mood-row{ display:flex; gap:8px; }
-.mood{ flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; padding:11px 3px 10px; border-radius:16px; background:var(--color-background); cursor:pointer; transition:.2s; border:1.5px solid transparent; }
-.mood:hover{ transform:translateY(-2px); }
-.mood.sel{ background:#F6DEE0; border-color:var(--color-primary); }
-.mood .dot{ width:26px; height:26px; border-radius:50%; }
-.mood span{ font-size:10px; color:var(--color-text-muted); }
-.mood.sel span{ color:var(--color-primary-dark); font-weight:600; }
-.checkin-note{ background:var(--color-background); border-radius:16px; padding:12px 14px; font-size:12px; color:var(--color-text-faint); flex:1; display:flex; align-items:center; gap:8px; }
-.checkin-note svg{ width:15px; height:15px; flex-shrink:0; color:var(--color-secondary); }
+/* Check-in Details */
+.home-mood-row{ display:flex; gap:8px; justify-content:space-between; margin-bottom:12px; }
+.home-mood-btn{ flex:1; height:42px; border-radius:12px; background:var(--color-background); border:1.5px solid transparent; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform .2s, border-color .2s, background .2s; }
+.home-mood-btn:hover{ transform:translateY(-2px); background:#FFF4F6; }
+.home-mood-btn.selected{ background:#F6DEE0; border-color:var(--color-primary); box-shadow:0 4px 12px -2px rgba(201,95,117,0.3); transform:scale(1.08); }
+.home-checkin-input-wrap{ display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
+.home-checkin-input{ background:var(--color-background); border:1px solid rgba(232,138,155,0.18); border-radius:12px; padding:9px 12px; font-size:12.5px; color:var(--color-text); font-family:var(--font-cjk); outline:none; transition:border-color .2s; }
+.home-checkin-input:focus{ border-color:var(--color-primary); background:#fff; }
+.home-checkin-submit-btn{ width:100%; font-size:12px; padding:8px 14px; border-radius:12px; }
+.home-checkin-feedback{ font-size:11.5px; text-align:center; margin-bottom:8px; color:#5F7A55; font-weight:600; }
+.home-recent-diary-box{ background:rgba(255,255,255,0.7); border:1px dashed rgba(232,138,155,0.3); border-radius:12px; padding:10px 12px; flex:1; display:flex; flex-direction:column; justify-content:center; }
+.home-recent-diary-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; }
+.home-recent-diary-label{ font-size:11px; font-weight:700; color:var(--color-primary-dark); }
+.home-recent-diary-date{ font-size:10.5px; color:var(--color-text-faint); }
+.home-recent-diary-text{ font-size:12px; color:var(--color-text-muted); margin:0; line-height:1.5; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
 
-/* ============ Bottom Row (首頁 花園 + 神隊友) ============ */
-.bottom-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-.garden-card, .partner-card{ padding:24px 26px 22px; }
-.card-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:10px; }
-.card-head h2{ font-size:16px; }
-.more{ font-size:11px; color:var(--color-primary-dark); border-bottom:1px solid var(--color-primary); padding-bottom:1px; white-space:nowrap; cursor:pointer; }
-.garden-path{ position:relative; padding:4px 2px 0; }
-.garden-path .line{ position:absolute; left:12px; right:12px; top:21px; height:2px; background:repeating-linear-gradient(90deg, var(--color-text-faint) 0 6px, transparent 6px 12px); opacity:.5; }
-.garden-stages{ display:flex; justify-content:space-between; position:relative; z-index:1; }
-.g-stage{ display:flex; flex-direction:column; align-items:center; gap:7px; width:60px; }
-.g-stage .bud{ width:38px; height:38px; }
-.g-stage span{ font-size:10px; color:var(--color-text-faint); text-align:center; line-height:1.3; }
-.g-stage.now span{ color:var(--color-primary-dark); font-weight:600; }
-.garden-msg{ margin-top:18px; background:var(--color-background); border-radius:16px; padding:13px 15px; font-size:12px; color:var(--color-text-muted); line-height:1.7; }
-.garden-msg b{ color:var(--color-primary-dark); }
-.partner-card{ background:radial-gradient(ellipse 250px 170px at 85% 0%, rgba(168,191,168,0.2), transparent 60%), var(--color-surface); }
-.partner-tip{ display:flex; gap:14px; align-items:center; }
-.partner-tip .ic{ width:52px; height:52px; flex-shrink:0; }
-.partner-tip .txt p{ margin:0 0 4px; font-size:13px; color:var(--color-text); line-height:1.6; }
-.partner-tip .txt span{ font-size:11px; color:var(--color-text-faint); }
-.partner-actions{ display:flex; gap:9px; margin-top:18px; }
+/* This Week Details */
+.home-changes-list{ display:flex; flex-direction:column; gap:10px; flex:1; justify-content:center; }
+.home-change-item{ background:rgba(255,255,255,0.75); border:1px solid rgba(232,138,155,0.16); border-radius:14px; padding:10px 13px; }
+.home-change-head{ display:flex; align-items:center; gap:8px; margin-bottom:3px; }
+.home-change-num{ font-size:10px; font-weight:800; color:var(--color-primary); background:rgba(232,138,155,0.15); padding:1px 6px; border-radius:var(--radius-pill); }
+.home-change-title{ font-size:13px; font-weight:700; color:var(--color-text); }
+.home-change-desc{ font-size:12px; color:var(--color-text-muted); line-height:1.5; margin:0; }
+
+/* Next Checkup Details */
+.home-checkup-badge{ font-size:11px; font-weight:700; color:#386641; background:#E2EED9; padding:4px 10px; border-radius:var(--radius-pill); border:1px solid #C5E1A5; }
+.home-checkup-body{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:8px; }
+.home-checkup-title{ font-size:13.5px; font-weight:700; color:var(--color-text); margin-bottom:2px; }
+.home-checkup-detail-list{ display:flex; flex-direction:column; gap:8px; }
+.home-checkup-row{ background:rgba(255,255,255,0.8); border:1px solid rgba(168,191,168,0.3); border-radius:12px; padding:8px 12px; display:flex; align-items:flex-start; gap:8px; }
+.home-checkup-tag{ font-size:10px; font-weight:700; color:#2E7D32; background:#E8F5E9; padding:2px 6px; border-radius:4px; white-space:nowrap; flex-shrink:0; margin-top:1px; }
+.home-checkup-tag.focus{ color:#C95F75; background:rgba(232,138,155,0.16); }
+.home-checkup-row-text{ font-size:12px; color:var(--color-text); line-height:1.5; margin:0; }
+
+@media (max-width: 900px){
+  .home-dashboard-grid{ grid-template-columns:1fr; }
+}
 
 /* ============ Tabs (我的孕期) ============ */
 .tabs{ display:flex; gap:6px; background:var(--color-surface); padding:5px; border-radius:var(--radius-pill); box-shadow:inset 0 0 0 1px rgba(232,138,155,0.14); width:max-content; margin-bottom:26px; max-width:100%; overflow-x:auto; }
@@ -3165,6 +3204,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
         </div>
       </div>
 
+      <!-- 1. TOP GREETING -->
       <div class="greeting">
         <div>
           <h1 id="greetingTitle">早安，依婷媽咪 🌸 今天也是溫柔的一天</h1>
@@ -3187,86 +3227,113 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
         </div>
       </div>
 
-      <div class="hero">
-        <div class="card baby-card">
-          <div class="top-row">
-            <div class="label"><span class="eyebrow">Baby of the day</span><h2>寶寶現在的模樣</h2></div>
-            <div class="size-chip">🌱 約一顆玉米筍大小</div>
-          </div>
-          <div class="baby-stage">
-            <div class="petal-glow"></div>
-            <svg class="baby-float" width="188" height="188" viewBox="0 0 200 200" fill="none">
-              <defs>
-                <radialGradient id="petalCup" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#FFF9F5"/><stop offset="55%" stop-color="#F6DEE0"/><stop offset="100%" stop-color="#E88A9B"/></radialGradient>
-                <radialGradient id="skinGrad" cx="38%" cy="30%" r="70%"><stop offset="0%" stop-color="#FFFBF7"/><stop offset="60%" stop-color="#FBE9DD"/><stop offset="100%" stop-color="#F0D2BE"/></radialGradient>
-                <linearGradient id="cheekGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F3AFAF"/><stop offset="100%" stop-color="#EDC3C3"/></linearGradient>
-              </defs>
-              <path d="M100 190c-46-6-70-34-70-64 0-16 10-26 24-26 10 0 17 6 20 13 3-24 16-40 26-40s23 16 26 40c3-7 10-13 20-13 14 0 24 10 24 26 0 30-24 58-70 64Z" fill="url(#petalCup)"/>
-              <ellipse cx="100" cy="150" rx="46" ry="30" fill="url(#skinGrad)"/>
-              <ellipse cx="100" cy="104" rx="52" ry="48" fill="url(#skinGrad)"/>
-              <ellipse cx="52" cy="106" rx="7" ry="10" fill="#F6DFCB"/>
-              <ellipse cx="148" cy="106" rx="7" ry="10" fill="#F6DFCB"/>
-              <path d="M76 100q8 6 16 0" stroke="#B98776" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <path d="M108 100q8 6 16 0" stroke="#B98776" stroke-width="3" stroke-linecap="round" fill="none"/>
-              <ellipse cx="70" cy="118" rx="10" ry="6.5" fill="url(#cheekGrad)" opacity="0.55"/>
-              <ellipse cx="130" cy="118" rx="10" ry="6.5" fill="url(#cheekGrad)" opacity="0.55"/>
-              <path d="M94 122q6 5 12 0" stroke="#C98D82" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-              <path d="M92 58c2-8 10-12 16-8" stroke="#E7C9B4" stroke-width="4" stroke-linecap="round" fill="none"/>
-              <ellipse cx="76" cy="80" rx="16" ry="11" fill="#FFFFFF" opacity="0.5"/>
-            </svg>
-          </div>
-          <div class="baby-caption"><p>寶寶的眼皮已能輕輕閉合，開始練習<b>睡與醒</b>的節奏了。</p></div>
-        </div>
-
-        <div class="card checkin-card">
-          <div><span class="eyebrow">Today's check-in</span><h2>今天，妳感覺如何？</h2></div>
-          <div id="checkinForm">
-            <div class="mood-row" role="group" aria-label="今日心情選擇" id="checkinMoods">
-              <div class="mood" data-mood="很好" data-hint="很棒！妳今天狀態很好，繼續保持這份能量 🌟"><div class="dot" style="background:radial-gradient(circle at 35% 30%, #fff, #F3D8A7);"></div><span>很好</span></div>
-              <div class="mood" data-mood="不錯" data-hint="不錯喔 🌿 繼續保持，今天也好好照顧自己。"><div class="dot" style="background:radial-gradient(circle at 35% 30%, #fff, #A8BFA8);"></div><span>不錯</span></div>
-              <div class="mood sel" data-mood="普通" data-hint="普通的一天也是好的一天 💗 適度休息、補充水分。"><div class="dot" style="background:radial-gradient(circle at 35% 30%, #fff, #E88A9B);"></div><span>普通</span></div>
-              <div class="mood" data-mood="有點累" data-hint="有點累也沒關係 😮‍💨 給自己一個短暫的休息時光。"><div class="dot" style="background:radial-gradient(circle at 35% 30%, #fff, #D9B7BE);"></div><span>有點累</span></div>
-              <div class="mood" data-mood="不舒服" data-hint="身體不舒服要好好照顧自己 😣 如果持續，記得告訴醫師。"><div class="dot" style="background:radial-gradient(circle at 35% 30%, #fff, #C9A3AC);"></div><span>不舒服</span></div>
-            </div>
-            <div class="checkin-note" id="checkinHint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-3 4-6 7-6 11a6 6 0 0 0 12 0c0-4-3-7-6-11Z"/></svg>普通的一天也是好的一天 💗 適度休息、補充水分。</div>
-            <textarea class="checkin-textarea" id="checkinNote" placeholder="今天有什麼想補充的嗎？（選填）"></textarea>
-            <button class="btn btn-primary" id="checkinDoneBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>完成今日紀錄</button>
-          </div>
-          <div class="checkin-done-msg" id="checkinDoneMsg">✅ 已完成今日紀錄！感謝妳好好照顧自己 🌸<br><small style="color:#8C8990; font-size:11px; display:block; margin-top:4px;">今天的心情：<b id="checkinSavedMood"></b></small></div>
-        </div>
-      </div>
-
-      <!-- 孕媽咪視角主要內容 -->
+      <!-- 孕媽咪視角主要內容 (2x2 Dashboard) -->
       <div class="mom-view-home" id="momViewHome">
-        <div class="bottom-row">
-          <div class="card garden-card">
-            <div class="card-head"><div><span class="eyebrow">Your garden</span><h2>孕期花園</h2></div><span class="more" data-view="journey">查看完整花園</span></div>
-            <div class="garden-path">
-              <div class="line"></div>
-              <div class="garden-stages">
-                <div class="g-stage"><svg class="bud" viewBox="0 0 42 42"><circle cx="21" cy="21" r="20" fill="#F3E7DA"/><path d="M21 12c1 1.6 3 2.4 3 5 0 2-1.3 3.6-3 3.6s-3-1.6-3-3.6c0-2.6 2-3.4 3-5Z" fill="#A8BFA8"/></svg><span>第一孕期<br/>播種</span></div>
-                <div class="g-stage now"><svg class="bud" viewBox="0 0 42 42"><circle cx="21" cy="21" r="20" fill="#F6DEE0"/><path d="M21 10c1.4 2 4 3 4 6 0 2.4-1.8 4.4-4 4.4s-4-2-4-4.4c0-3 2.6-4 4-6Z" fill="#E88A9B"/><circle cx="21" cy="26" r="2.6" fill="#C95F75"/></svg><span><b>第二孕期</b><br/>花苞初綻</span></div>
-                <div class="g-stage"><svg class="bud" viewBox="0 0 42 42"><circle cx="21" cy="21" r="20" fill="#F3E7DA"/><path d="M21 9c2 2.4 6 3.6 6 8 0 3.4-2.6 6-6 6s-6-2.6-6-6c0-4.4 4-5.6 6-8Z" fill="#E9C7CB"/></svg><span>第三孕期<br/>盛放</span></div>
-                <div class="g-stage"><svg class="bud" viewBox="0 0 42 42"><circle cx="21" cy="21" r="20" fill="#F3E7DA"/><path d="M14 26c4-10 10-14 14-16-2 6-2 12 2 18-6 2-13 2-16-2Z" fill="#F3D8A7"/></svg><span>迎接<br/>綻放時刻</span></div>
+        <div class="home-dashboard-grid">
+          
+          <!-- 2. BABY OF THE WEEK -->
+          <div class="card home-baby-card" id="homeBabyCard">
+            <div class="home-card-head">
+              <div>
+                <span class="eyebrow">BABY OF THE WEEK</span>
+                <h2 id="homeBabyTitle">寶寶這週的模樣</h2>
+              </div>
+              <div class="size-chip" id="homeBabySizeChip">🌱 約一顆玉米大小</div>
+            </div>
+            
+            <div class="home-baby-stage" id="homeBabyStage">
+              <div class="home-baby-glow"></div>
+              <img class="home-baby-img" id="homeBabyImg" src="assets/images/baby-week/baby-week-24.png" alt="本週寶寶發育示意圖" draggable="false" />
+              <div class="home-baby-length-badge" id="homeBabyLengthBadge">約 30 cm · 身長參考</div>
+            </div>
+
+            <div class="home-baby-summary-wrap">
+              <p class="home-baby-summary-text" id="homeBabySummaryText">寶寶的聽覺與神經傳導日漸成熟，能開始辨識媽咪溫柔的說話聲與心跳節奏。</p>
+            </div>
+
+            <div class="home-card-foot">
+              <a class="home-card-link" data-view="baby" id="homeBabyMoreLink">查看寶寶成長 →</a>
+            </div>
+          </div>
+
+          <!-- 3. TODAY'S CHECK-IN -->
+          <div class="card home-checkin-card" id="homeCheckinCard">
+            <div class="home-card-head">
+              <div>
+                <span class="eyebrow">TODAY'S CHECK-IN</span>
+                <h2>今天想留下什麼心情？</h2>
               </div>
             </div>
-            <div class="garden-msg">妳的花園本週新開了 <b>2 朵小花</b>——來自妳持續記錄的體重與心情。持續澆灌，寶寶也在慢慢長大 🌷</div>
-          </div>
 
-          <div class="card partner-card">
-            <div class="card-head"><div><span class="eyebrow">For your partner</span><h2>神隊友本週任務</h2></div><span class="more">給隊友的完整指南</span></div>
-            <div class="partner-tip">
-              <svg class="ic" viewBox="0 0 58 58" fill="none"><circle cx="29" cy="29" r="28" fill="#EEF1E6"/><path d="M29 16c8 0 13 6 13 13 0 9-8 15-13 19-5-4-13-10-13-19 0-7 5-13 13-13Z" fill="#A8BFA8"/><circle cx="29" cy="27" r="5" fill="#fff"/></svg>
-              <div class="txt"><p id="partnerTipTxt">今天她可能特別容易累，晚餐後陪她散步 10 分鐘，比任何建議都有用。</p><span id="partnerTipLabel">本週隊友任務・第 24 週</span></div>
+            <div class="home-mood-row" role="group" aria-label="今日心情選擇" id="homeCheckinMoods">
+              <button type="button" class="home-mood-btn" data-mood="😊" aria-label="開心">😊</button>
+              <button type="button" class="home-mood-btn" data-mood="🥰" aria-label="幸福">🥰</button>
+              <button type="button" class="home-mood-btn" data-mood="😴" aria-label="疲倦">😴</button>
+              <button type="button" class="home-mood-btn" data-mood="😐" aria-label="平靜">😐</button>
+              <button type="button" class="home-mood-btn" data-mood="😢" aria-label="低落">😢</button>
             </div>
-            <div class="partner-actions"><button class="btn btn-primary" style="flex:1;">今日已完成</button><button class="btn btn-ghost" style="flex:1;" data-view="community">和其他準爸爸聊聊</button></div>
-          </div>
-        </div>
 
-        <!-- 本週提醒 -->
-        <div class="card weekly-reminder" id="weeklyReminderCard">
-          <div class="card-head"><div><span class="eyebrow">This week</span><h2>本週提醒</h2></div></div>
-          <div class="reminder-list" id="reminderList"></div>
+            <div class="home-checkin-input-wrap">
+              <input type="text" class="home-checkin-input" id="homeCheckinInput" placeholder="寫下一句今天的心情……" maxlength="100" />
+              <button type="button" class="btn btn-primary home-checkin-submit-btn" id="homeCheckinSubmitBtn">留下今天的心情 ♡</button>
+            </div>
+            <div class="home-checkin-feedback" id="homeCheckinFeedback" style="display:none;"></div>
+
+            <!-- 最近一筆日記預覽 -->
+            <div class="home-recent-diary-box" id="homeRecentDiaryBox">
+              <div class="home-recent-diary-head">
+                <span class="home-recent-diary-label">最近日記</span>
+                <span class="home-recent-diary-date" id="homeRecentDiaryDate">--</span>
+              </div>
+              <p class="home-recent-diary-text" id="homeRecentDiaryText">今天還沒有留下紀錄 ♡</p>
+            </div>
+
+            <div class="home-card-foot">
+              <a class="home-card-link" data-view="journey" data-tab="diary" id="homeDiaryMoreLink">查看日記 →</a>
+            </div>
+          </div>
+
+          <!-- 4. THIS WEEK -->
+          <div class="card home-this-week-card" id="homeThisWeekCard">
+            <div class="home-card-head">
+              <div>
+                <span class="eyebrow">THIS WEEK</span>
+                <h2>媽咪本週身體變化</h2>
+              </div>
+            </div>
+
+            <div class="home-changes-list" id="homeMomChangesList">
+              <!-- JS 動態填入前 2 項 -->
+            </div>
+
+            <div class="home-card-foot">
+              <a class="home-card-link" data-view="journey" data-tab="overview" id="homeOverviewMoreLink">查看孕期總覽 →</a>
+            </div>
+          </div>
+
+          <!-- 5. NEXT CHECKUP -->
+          <div class="card home-next-checkup-card" id="homeNextCheckupCard">
+            <div class="home-card-head">
+              <div>
+                <span class="eyebrow">NEXT CHECKUP</span>
+                <h2>下一次產檢</h2>
+              </div>
+              <span class="home-checkup-badge" id="homeCheckupBadge">第 28 週</span>
+            </div>
+
+            <div class="home-checkup-body" id="homeCheckupBody">
+              <div class="home-checkup-title" id="homeCheckupTitle">第 6 次公費產檢</div>
+              
+              <div class="home-checkup-detail-list" id="homeCheckupDetailList">
+                <!-- JS 動態填入例行檢查與重點摘要 -->
+              </div>
+            </div>
+
+            <div class="home-card-foot">
+              <a class="home-card-link" data-view="journey" data-tab="map" id="homeMapMoreLink">查看產檢項目 →</a>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -3945,16 +4012,58 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
 
 <script>
-/* ============ View Router（首頁 / 我的孕期 / 寶寶成長 / AI / 社群）============ */
-function goToView(name){
+/* ============ View Router & Deep Linking（首頁 / 我的孕期 / 寶寶成長 / AI / 社群）============ */
+function switchJourneyTab(targetTab){
+  var tabBtns = document.querySelectorAll('#view-journey .tab-btn');
+  var tabPanels = document.querySelectorAll('#view-journey .tab-panel');
+  if(!tabBtns.length) return;
+  tabBtns.forEach(function(b){
+    var isTarget = (b.dataset.tab === targetTab);
+    b.classList.toggle('active', isTarget);
+    b.classList.toggle('on', isTarget);
+  });
+  tabPanels.forEach(function(p){
+    p.classList.toggle('on', p.id === 'tab-' + targetTab);
+  });
+  if(targetTab === 'notes' && typeof renderConsultationMemosHome === 'function'){
+    renderConsultationMemosHome();
+  }
+  if(targetTab === 'diary' && typeof renderDiaryHome === 'function'){
+    renderDiaryHome();
+  }
+  if(targetTab === 'map' && typeof renderMapNodes === 'function'){
+    renderMapNodes();
+  }
+  if(targetTab === 'overview' && typeof initActualHeaderUI === 'function'){
+    initActualHeaderUI();
+    if(typeof renderBrowsingWeek === 'function' && typeof OVERVIEW_STATE_V4 !== 'undefined'){
+      renderBrowsingWeek(OVERVIEW_STATE_V4.actualWeek);
+    }
+  }
+}
+
+function goToView(name, subTab){
   var vs = document.querySelectorAll('.view');
   var sns = document.querySelectorAll('.sidebar .nav-item');
   var bns = document.querySelectorAll('.bottom-nav .bn-item');
   vs.forEach(function(v){ v.classList.toggle('on', v.id === 'view-' + name); });
   sns.forEach(function(n){ n.classList.toggle('active', n.dataset.view === name); });
   bns.forEach(function(n){ n.classList.toggle('active', n.dataset.view === name); });
+
+  if(name === 'home' && typeof renderHomeDashboard === 'function'){
+    renderHomeDashboard();
+  }
   if(name === 'baby' && typeof renderBabyGrowthView === 'function'){
     renderBabyGrowthView();
+  }
+  if(name === 'journey'){
+    if(subTab){
+      switchJourneyTab(subTab);
+    } else {
+      var activeTabBtn = document.querySelector('#view-journey .tab-btn.active') || document.querySelector('#view-journey .tab-btn.on');
+      var currTab = activeTabBtn ? activeTabBtn.dataset.tab : 'overview';
+      switchJourneyTab(currTab);
+    }
   }
   window.scrollTo({ top:0, behavior:'smooth' });
 }
@@ -3962,7 +4071,9 @@ function goToView(name){
 document.addEventListener('click', function(e){
   var target = e.target.closest('[data-view]');
   if(target && target.dataset.view){
-    goToView(target.dataset.view);
+    var view = target.dataset.view;
+    var tab = target.dataset.tab || null;
+    goToView(view, tab);
   }
 });
 
@@ -3998,6 +4109,13 @@ function updateWeekUI(){
   var info = calcWeekInfo(APP.edd);
   APP.currentWeek = info.weeks;
   APP.currentDay = info.days;
+  var nickname = APP.nickname || '媽咪';
+
+  var greetingTitleEl = document.getElementById('greetingTitle');
+  if(greetingTitleEl){
+    greetingTitleEl.textContent = '早安，' + nickname + ' 🌸 今天也是溫柔的一天';
+  }
+
   var weekEl = document.getElementById('weekText');
   var trimEl = document.getElementById('trimesterText');
   var eddEl = document.getElementById('eddDays');
@@ -4017,37 +4135,340 @@ function updateWeekUI(){
     var d = String(now.getDate()).padStart(2, '0');
     dtag2.textContent = '🌸 第 ' + info.weeks + ' 週 ' + info.days + ' 天 · ' + y + ' / ' + m + ' / ' + d;
   }
+
+  if(typeof renderHomeDashboard === 'function'){
+    renderHomeDashboard();
+  }
 }
-updateWeekUI();
 
 /* ============================================================
-   Phase 1｜Today Check-in 心情選擇
+   Homepage Mom Dashboard Adapter & Helpers
    ============================================================ */
-var checkinMoods = document.getElementById('checkinMoods');
-var checkinHint = document.getElementById('checkinHint');
-var checkinDoneBtn = document.getElementById('checkinDoneBtn');
-var checkinForm = document.getElementById('checkinForm');
-var checkinDoneMsg = document.getElementById('checkinDoneMsg');
-var checkinSavedMood = document.getElementById('checkinSavedMood');
+var HOME_CHECKIN_STATE = {
+  selectedMood: ''
+};
 
-if(checkinMoods){
-  checkinMoods.querySelectorAll('.mood').forEach(function(m){
-    m.addEventListener('click', function(){
-      checkinMoods.querySelectorAll('.mood').forEach(function(x){ x.classList.remove('sel'); });
-      m.classList.add('sel');
-      if(checkinHint) checkinHint.textContent = m.dataset.hint || '';
-    });
-  });
+function getNextPrenatalVisit(currentWeek){
+  if(typeof PRENATAL_MAP_NODES === 'undefined' || !Array.isArray(PRENATAL_MAP_NODES) || PRENATAL_MAP_NODES.length === 0){
+    return null;
+  }
+  var w = Number(currentWeek) || 24;
+
+  // 1. Check if user has personal records saved
+  var hasAnyRecord = false;
+  if(typeof loadPersonalRecord === 'function'){
+    for(var k = 0; k < PRENATAL_MAP_NODES.length; k++){
+      var r = loadPersonalRecord(PRENATAL_MAP_NODES[k].visit_number);
+      if(r && (r.date || r.weight || r.bpSys || r.fhr)){
+        hasAnyRecord = true;
+        break;
+      }
+    }
+  }
+
+  if(hasAnyRecord){
+    for(var i = 0; i < PRENATAL_MAP_NODES.length; i++){
+      var node = PRENATAL_MAP_NODES[i];
+      var rec = loadPersonalRecord(node.visit_number);
+      var isDone = !!(rec && (rec.date || rec.weight || rec.bpSys || rec.fhr));
+      if(!isDone && node.week >= w){
+        return node;
+      }
+    }
+  }
+
+  // 2. Default / Fallback: Find the next upcoming visit (node.week > currentWeek)
+  for(var j = 0; j < PRENATAL_MAP_NODES.length; j++){
+    if(PRENATAL_MAP_NODES[j].week > w){
+      return PRENATAL_MAP_NODES[j];
+    }
+  }
+
+  // 3. Fallback: Return the last available node (e.g. week 40)
+  return PRENATAL_MAP_NODES[PRENATAL_MAP_NODES.length - 1];
 }
 
-if(checkinDoneBtn){
-  checkinDoneBtn.addEventListener('click', function(){
-    var selMood = checkinMoods ? checkinMoods.querySelector('.mood.sel') : null;
-    var moodText = selMood ? selMood.querySelector('span').textContent : '未記錄';
-    if(checkinForm) checkinForm.style.display = 'none';
-    if(checkinDoneMsg) checkinDoneMsg.style.display = 'block';
-    if(checkinSavedMood) checkinSavedMood.textContent = '（已記錄：' + moodText + '）';
+function saveDiaryEntryFromHome(payload){
+  if(!payload) return false;
+  var mood = payload.mood || '';
+  var content = (payload.content || '').trim();
+
+  if(!mood && !content){
+    return false;
+  }
+
+  var week = (APP && typeof APP.currentWeek === 'number') ? APP.currentWeek : 24;
+  var day = (APP && typeof APP.currentDay === 'number') ? APP.currentDay : 3;
+  if(typeof calcWeekInfo === 'function' && APP && APP.edd){
+    var info = calcWeekInfo(APP.edd);
+    week = info.weeks;
+    day = info.days;
+  }
+
+  var nowIso = new Date().toISOString();
+  var newEntry = {
+    id: 'diary_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+    date: (typeof getDiaryTodayISO === 'function') ? getDiaryTodayISO() : (function(){
+      var d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    })(),
+    pregnancyWeek: week,
+    pregnancyDay: day,
+    mood: mood,
+    content: content || (mood ? ('今天心情：' + mood) : '留下今日孕期心情 ♡'),
+    createdAt: nowIso,
+    updatedAt: nowIso
+  };
+
+  var entries = (typeof getDiaryEntriesFromStorage === 'function') ? getDiaryEntriesFromStorage() : [];
+  entries.unshift(newEntry);
+  if(typeof saveDiaryEntriesToStorage === 'function'){
+    saveDiaryEntriesToStorage(entries);
+  }
+
+  // Update homepage recent diary preview
+  renderHomeRecentDiary();
+
+  // If diary list view is initialized, refresh it
+  if(typeof renderDiaryList === 'function'){
+    renderDiaryList();
+  }
+
+  return true;
+}
+
+function getHomeDashboardData(){
+  var weekInfo = (typeof calcWeekInfo === 'function' && APP && APP.edd) ? calcWeekInfo(APP.edd) : { weeks: 24, days: 3, daysToEdd: 93 };
+  var currentWeek = weekInfo.weeks;
+  var currentDay = weekInfo.days;
+  var nickname = (APP && APP.nickname) ? APP.nickname : '媽咪';
+
+  // 1. Baby Growth Data
+  var babyData = (typeof getBabyGrowthData === 'function') ? getBabyGrowthData(currentWeek) : null;
+  var babyImg = (typeof getBabyGrowthImage === 'function') ? getBabyGrowthImage(currentWeek) : 'assets/images/baby-week/baby-week-24.png';
+  var analogy = '🌱 成長中';
+  if(babyData && babyData.size_analogy_zh){
+    var particle = ['胡蘿蔔','地瓜','玉米','櫛瓜','黃瓜','韭蔥','大黃莖'].indexOf(babyData.size_analogy_zh) !== -1 ? '／一根 ' : ' ';
+    analogy = '🌱 約一顆' + particle + babyData.size_analogy_zh + '大小';
+  }
+  var lengthText = (babyData && babyData.length_cm != null) ? ('約 ' + babyData.length_cm + ' cm · 身長參考') : '';
+  var babySummary = (babyData && babyData.consumer_body) ? babyData.consumer_body : (babyData && babyData.consumer_summary ? babyData.consumer_summary : '寶寶正在溫柔健康的節奏中慢慢長大 ♡');
+
+  // 2. Diary Data
+  var diaryEntries = (typeof getDiaryEntriesFromStorage === 'function') ? getDiaryEntriesFromStorage() : [];
+  diaryEntries.sort(function(a, b){
+    if(b.date !== a.date) return (b.date || '').localeCompare(a.date || '');
+    return (b.createdAt || '').localeCompare(a.createdAt || '');
   });
+  var latestDiary = diaryEntries.length > 0 ? diaryEntries[0] : null;
+
+  // 3. Mom Changes (2 items)
+  var weeksList = (typeof PREGNANCY_WEEKLY_MAPPING_DATA !== 'undefined' && PREGNANCY_WEEKLY_MAPPING_DATA.weeks) ? PREGNANCY_WEEKLY_MAPPING_DATA.weeks : [];
+  var weekData = null;
+  for(var i = 0; i < weeksList.length; i++){
+    if(weeksList[i].week === currentWeek){ weekData = weeksList[i]; break; }
+  }
+  var momChanges = (weekData && Array.isArray(weekData.mom_changes)) ? weekData.mom_changes.slice(0, 2) : [];
+
+  // 4. Next Checkup Visit
+  var nextVisit = getNextPrenatalVisit(currentWeek);
+
+  return {
+    greeting: {
+      nickname: nickname,
+      week: currentWeek,
+      day: currentDay,
+      trimester: (typeof getTrimester === 'function') ? getTrimester(currentWeek) : '第二孕期',
+      daysToEdd: weekInfo.daysToEdd
+    },
+    babySummary: {
+      image: babyImg,
+      analogy: analogy,
+      length: lengthText,
+      summary: babySummary
+    },
+    latestDiary: latestDiary,
+    momChanges: momChanges,
+    nextCheckup: nextVisit
+  };
+}
+
+function renderHomeRecentDiary(){
+  var entries = (typeof getDiaryEntriesFromStorage === 'function') ? getDiaryEntriesFromStorage() : [];
+  entries.sort(function(a, b){
+    if(b.date !== a.date) return (b.date || '').localeCompare(a.date || '');
+    return (b.createdAt || '').localeCompare(a.createdAt || '');
+  });
+  var latest = entries.length > 0 ? entries[0] : null;
+
+  var dateEl = document.getElementById('homeRecentDiaryDate');
+  var textEl = document.getElementById('homeRecentDiaryText');
+  if(!textEl) return;
+
+  if(latest){
+    var dStr = (typeof formatDiaryDateDisplay === 'function') ? formatDiaryDateDisplay(latest.date) : latest.date;
+    if(dateEl) dateEl.textContent = dStr;
+    var moodPrefix = latest.mood ? (latest.mood + ' ') : '';
+    textEl.textContent = moodPrefix + (latest.content || '留下今日孕期心情 ♡');
+  } else {
+    if(dateEl) dateEl.textContent = '今日';
+    textEl.textContent = '今天還沒有留下紀錄 ♡';
+  }
+}
+
+function renderHomeDashboard(){
+  var data = getHomeDashboardData();
+  if(!data) return;
+
+  // 1. Greeting
+  var greetingTitleEl = document.getElementById('greetingTitle');
+  var eddDaysEl = document.getElementById('eddDays');
+  var weekTextEl = document.getElementById('weekText');
+  var trimesterTextEl = document.getElementById('trimesterText');
+
+  if(greetingTitleEl) greetingTitleEl.textContent = '早安，' + data.greeting.nickname + ' 🌸 今天也是溫柔的一天';
+  if(eddDaysEl) eddDaysEl.textContent = data.greeting.daysToEdd;
+  if(weekTextEl) weekTextEl.textContent = '妊娠 ' + data.greeting.week + ' 週 ' + data.greeting.day + ' 天';
+  if(trimesterTextEl) trimesterTextEl.textContent = data.greeting.trimester;
+
+  // 2. Baby of the Week
+  var babyImgEl = document.getElementById('homeBabyImg');
+  var babySizeEl = document.getElementById('homeBabySizeChip');
+  var babyLengthEl = document.getElementById('homeBabyLengthBadge');
+  var babySummaryEl = document.getElementById('homeBabySummaryText');
+
+  if(babyImgEl && data.babySummary.image) babyImgEl.src = data.babySummary.image;
+  if(babySizeEl) babySizeEl.textContent = data.babySummary.analogy;
+  if(babyLengthEl){
+    if(data.babySummary.length){
+      babyLengthEl.textContent = data.babySummary.length;
+      babyLengthEl.style.display = 'inline-block';
+    } else {
+      babyLengthEl.style.display = 'none';
+    }
+  }
+  if(babySummaryEl) babySummaryEl.textContent = data.babySummary.summary;
+
+  // 3. Today's Check-in
+  renderHomeRecentDiary();
+
+  // 4. This Week Mom Changes
+  var momListEl = document.getElementById('homeMomChangesList');
+  if(momListEl){
+    if(data.momChanges && data.momChanges.length > 0){
+      var changesHtml = '';
+      data.momChanges.forEach(function(item, idx){
+        var numPad = '0' + (idx + 1);
+        changesHtml += '<div class="home-change-item">' +
+          '<div class="home-change-head">' +
+          '  <span class="home-change-num">' + numPad + '</span>' +
+          '  <span class="home-change-title">' + (item.title || '') + '</span>' +
+          '</div>' +
+          '<p class="home-change-desc">' + (item.summary || '') + '</p>' +
+          '</div>';
+      });
+      momListEl.innerHTML = changesHtml;
+    } else {
+      momListEl.innerHTML = '<div class="home-change-item"><p class="home-change-desc">維持充足休息與均衡飲食，溫柔感受身體的微小變化 ♡</p></div>';
+    }
+  }
+
+  // 5. Next Checkup
+  var checkupBadgeEl = document.getElementById('homeCheckupBadge');
+  var checkupTitleEl = document.getElementById('homeCheckupTitle');
+  var checkupDetailEl = document.getElementById('homeCheckupDetailList');
+
+  if(data.nextCheckup){
+    var v = data.nextCheckup;
+    if(checkupBadgeEl) checkupBadgeEl.textContent = '第 ' + v.week + ' 週';
+    if(checkupTitleEl) checkupTitleEl.textContent = v.visit_title || ('第 ' + v.visit_number + ' 次公費產檢');
+
+    var routineSum = (v.routine_items && v.routine_items.length > 0) ? v.routine_items.slice(0, 2).join('、') : '例行生理問診與基本體理檢查';
+    var publicSum = (v.publicly_funded_items && v.publicly_funded_items.length > 0) ? v.publicly_funded_items[0] : '依醫囑進行產前常規檢查項目';
+
+    var detailHtml = 
+      '<div class="home-checkup-row">' +
+      '  <span class="home-checkup-tag">例行</span>' +
+      '  <p class="home-checkup-row-text">' + routineSum + '</p>' +
+      '</div>' +
+      '<div class="home-checkup-row">' +
+      '  <span class="home-checkup-tag focus">重點</span>' +
+      '  <p class="home-checkup-row-text">' + publicSum + '</p>' +
+      '</div>';
+    if(checkupDetailEl) checkupDetailEl.innerHTML = detailHtml;
+  } else {
+    if(checkupBadgeEl) checkupBadgeEl.textContent = '產檢完成';
+    if(checkupTitleEl) checkupTitleEl.textContent = '目前沒有新的產檢節點';
+    if(checkupDetailEl) checkupDetailEl.innerHTML = '<p class="home-checkup-row-text" style="color:var(--color-text-muted);">已完成主要產檢階段，請依照醫師指示定期追蹤 ♡</p>';
+  }
+}
+
+function initHomeCheckin(){
+  var moodBtns = document.querySelectorAll('#homeCheckinMoods .home-mood-btn');
+  var textInput = document.getElementById('homeCheckinInput');
+  var submitBtn = document.getElementById('homeCheckinSubmitBtn');
+  var feedbackEl = document.getElementById('homeCheckinFeedback');
+
+  moodBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var mood = btn.dataset.mood;
+      if(HOME_CHECKIN_STATE.selectedMood === mood){
+        HOME_CHECKIN_STATE.selectedMood = '';
+        btn.classList.remove('selected');
+      } else {
+        HOME_CHECKIN_STATE.selectedMood = mood;
+        moodBtns.forEach(function(b){ b.classList.remove('selected'); });
+        btn.classList.add('selected');
+      }
+    });
+  });
+
+  function handleSubmit(){
+    var content = textInput ? textInput.value.trim() : '';
+    var mood = HOME_CHECKIN_STATE.selectedMood;
+
+    if(!mood && !content){
+      if(feedbackEl){
+        feedbackEl.textContent = '請先選擇心情或寫下一句話再儲存 ♡';
+        feedbackEl.style.color = '#C95F75';
+        feedbackEl.style.display = 'block';
+        setTimeout(function(){ if(feedbackEl) feedbackEl.style.display = 'none'; }, 2200);
+      }
+      return;
+    }
+
+    var success = saveDiaryEntryFromHome({ mood: mood, content: content });
+    if(success){
+      if(textInput) textInput.value = '';
+      HOME_CHECKIN_STATE.selectedMood = '';
+      moodBtns.forEach(function(b){ b.classList.remove('selected'); });
+
+      if(feedbackEl){
+        feedbackEl.textContent = '✓ 已同步儲存至孕期日記 🌸';
+        feedbackEl.style.color = '#5F7A55';
+        feedbackEl.style.display = 'block';
+        setTimeout(function(){ if(feedbackEl) feedbackEl.style.display = 'none'; }, 2400);
+      }
+
+      if(submitBtn){
+        var origText = submitBtn.textContent;
+        submitBtn.textContent = '✓ 已記錄';
+        setTimeout(function(){ if(submitBtn) submitBtn.textContent = origText; }, 1800);
+      }
+    }
+  }
+
+  if(submitBtn){
+    submitBtn.addEventListener('click', handleSubmit);
+  }
+  if(textInput){
+    textInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        handleSubmit();
+      }
+    });
+  }
 }
 
 /* ============================================================
@@ -4056,14 +4477,7 @@ if(checkinDoneBtn){
 document.querySelectorAll('#view-journey .tab-btn').forEach(function(btn){
   btn.addEventListener('click', function(){
     var target = btn.dataset.tab;
-    document.querySelectorAll('#view-journey .tab-btn').forEach(function(b){ b.classList.toggle('active', b === btn); });
-    document.querySelectorAll('#view-journey .tab-panel').forEach(function(p){ p.classList.toggle('on', p.id === 'tab-' + target); });
-    if(target === 'notes' && typeof renderConsultationMemosHome === 'function'){
-      renderConsultationMemosHome();
-    }
-    if(target === 'diary' && typeof renderDiaryHome === 'function'){
-      renderDiaryHome();
-    }
+    switchJourneyTab(target);
   });
 });
 
@@ -4073,8 +4487,9 @@ document.querySelectorAll('#view-journey .tab-btn').forEach(function(btn){
 document.querySelectorAll('.view-switch button').forEach(function(btn){
   btn.addEventListener('click', function(){
     var group = btn.closest('.view-switch');
-    group.querySelectorAll('button').forEach(function(b){ b.classList.remove('active'); });
+    group.querySelectorAll('button').forEach(function(b){ b.classList.remove('active'); b.classList.remove('on'); });
     btn.classList.add('active');
+    btn.classList.add('on');
     var isPartner = group.querySelectorAll('button')[1] === btn;
     var momEl = document.getElementById('momViewHome');
     var partnerEl = document.getElementById('partnerViewHome');
@@ -9706,6 +10121,8 @@ function initDiary(){
 
 document.addEventListener('DOMContentLoaded', function(){
   updateWeekUI();
+  renderHomeDashboard();
+  initHomeCheckin();
   initActualHeaderUI();
   renderMapNodes();
   initConsultationMemos();
