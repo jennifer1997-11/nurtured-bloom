@@ -4321,6 +4321,277 @@ document.addEventListener('click', function(e){
 });
 
 /* ============================================================
+   Account Menu, Login Modal & Settings Modal Interactions
+   ============================================================ */
+var AUTH_STATE = {
+  isLoggedIn: true
+};
+
+function openLoginModal(step){
+  var overlay = document.getElementById('loginOverlay');
+  if(!overlay) return;
+  
+  var s1 = document.getElementById('loginStep1');
+  var s2 = document.getElementById('loginStep2');
+  var s3 = document.getElementById('loginStep3');
+  if(s1) s1.classList.toggle('on', step === 1 || !step);
+  if(s2) s2.classList.toggle('on', step === 2);
+  if(s3) s3.classList.toggle('on', step === 3);
+
+  overlay.classList.add('open');
+}
+
+function closeLoginModal(){
+  var overlay = document.getElementById('loginOverlay');
+  if(overlay) overlay.classList.remove('open');
+}
+
+function openSettingsModal(type){
+  var overlay = document.getElementById('settingsOverlay');
+  var body = document.getElementById('settingsBody');
+  if(!overlay || !body) return;
+
+  var title = '個人設定';
+  var desc = '管理妳的個人資料與偏好設定。';
+  var content = '';
+
+  if(type === 'pregnancy'){
+    title = '孕期設定';
+    desc = '更新預產期或孕期進度。';
+    content = 
+      '<div class="field">' +
+      '  <label>預產期 (EDD)</label>' +
+      '  <input type="date" id="settingsEddInput" value="2026-11-20">' +
+      '</div>' +
+      '<div class="field">' +
+      '  <label>懷孕胎數</label>' +
+      '  <select><option selected>單胞胎</option><option>雙胞胎</option><option>多胞胎</option></select>' +
+      '</div>';
+  } else if(type === 'baby'){
+    title = '寶寶設定';
+    desc = '管理寶寶暱稱與成長記錄設定。';
+    content = 
+      '<div class="field">' +
+      '  <label>寶寶暱稱</label>' +
+      '  <input type="text" id="settingsBabyNameInput" value="小茉莉" placeholder="例如：小茉莉">' +
+      '</div>' +
+      '<div class="field">' +
+      '  <label>寶寶性別</label>' +
+      '  <select><option>尚未揭曉 🤍</option><option selected>女寶寶 👧</option><option>男寶寶 👦</option></select>' +
+      '</div>';
+  } else if(type === 'privacy'){
+    title = '隱私與安全設定';
+    desc = '我們重視妳的隱私，所有資料均受到嚴格保護。';
+    content = 
+      '<div class="toggle-row">' +
+      '  <div class="txt"><b>匿名社群分享</b><span>在社群發文時隱藏詳細孕期與個人資料</span></div>' +
+      '  <div class="switch on" onclick="this.classList.toggle(\'on\')"></div>' +
+      '</div>' +
+      '<div class="toggle-row">' +
+      '  <div class="txt"><b>產檢資料端點加密</b><span>產檢備忘錄與數值僅保存在本地瀏覽器</span></div>' +
+      '  <div class="switch on" onclick="this.classList.toggle(\'on\')"></div>' +
+      '</div>';
+  } else {
+    title = '個人設定';
+    desc = '管理妳的稱呼與帳號基本資訊。';
+    content = 
+      '<div class="field">' +
+      '  <label>我的稱呼</label>' +
+      '  <input type="text" id="settingsNicknameInput" value="' + (APP.nickname || '依婷媽咪') + '">' +
+      '</div>' +
+      '<div class="field">' +
+      '  <label>聯絡電話</label>' +
+      '  <input type="text" value="0912-***-345" disabled>' +
+      '</div>';
+  }
+
+  body.innerHTML = 
+    '<span class="eyebrow">Settings</span>' +
+    '<h2>' + title + '</h2>' +
+    '<p class="desc">' + desc + '</p>' +
+    content +
+    '<div class="modal-foot">' +
+    '  <button class="btn btn-primary" id="saveSettingsBtn">儲存變更</button>' +
+    '</div>';
+
+  var saveBtn = document.getElementById('saveSettingsBtn');
+  if(saveBtn){
+    saveBtn.addEventListener('click', function(){
+      var nickInput = document.getElementById('settingsNicknameInput');
+      if(nickInput && nickInput.value.trim()){
+        APP.nickname = nickInput.value.trim();
+        updateAuthStateUI();
+        updateWeekUI();
+      }
+      var eddInput = document.getElementById('settingsEddInput');
+      if(eddInput && eddInput.value){
+        APP.edd = new Date(eddInput.value);
+        updateWeekUI();
+      }
+      closeSettingsModal();
+    });
+  }
+
+  overlay.classList.add('open');
+}
+
+function closeSettingsModal(){
+  var overlay = document.getElementById('settingsOverlay');
+  if(overlay) overlay.classList.remove('open');
+}
+
+function updateAuthStateUI(){
+  var avatars = document.querySelectorAll('.avatar');
+  avatars.forEach(function(av){
+    if(AUTH_STATE.isLoggedIn){
+      av.classList.remove('login-btn');
+      av.textContent = (APP.nickname || '依婷媽咪').charAt(0);
+      av.title = '帳號設定';
+    } else {
+      av.classList.add('login-btn');
+      av.textContent = '登入';
+      av.title = '點擊登入';
+    }
+  });
+
+  var whoName = document.querySelector('#accountMenu .who b');
+  if(whoName){
+    whoName.textContent = APP.nickname || '依婷媽咪';
+  }
+}
+
+function initAccountAndLoginUI(){
+  document.addEventListener('click', function(e){
+    var avatarBtn = e.target.closest('.avatar, [data-action="login"], [data-action="account"], [data-action="settings"]');
+    var accountMenu = document.getElementById('accountMenu');
+
+    if(avatarBtn){
+      e.stopPropagation();
+      if(avatarBtn.classList.contains('login-btn') || avatarBtn.textContent.trim() === '登入' || !AUTH_STATE.isLoggedIn){
+        if(accountMenu) accountMenu.classList.remove('open');
+        openLoginModal(1);
+      } else {
+        if(accountMenu){
+          accountMenu.classList.toggle('open');
+        }
+      }
+      return;
+    }
+
+    if(accountMenu && accountMenu.classList.contains('open')){
+      if(!e.target.closest('#accountMenu')){
+        accountMenu.classList.remove('open');
+      }
+    }
+  });
+
+  var accountItems = document.querySelectorAll('#accountMenu .item[data-settings]');
+  accountItems.forEach(function(item){
+    item.addEventListener('click', function(e){
+      var type = item.dataset.settings || 'profile';
+      var accountMenu = document.getElementById('accountMenu');
+      if(accountMenu) accountMenu.classList.remove('open');
+      openSettingsModal(type);
+    });
+  });
+
+  var logoutBtn = document.getElementById('logoutBtn');
+  if(logoutBtn){
+    logoutBtn.addEventListener('click', function(e){
+      var accountMenu = document.getElementById('accountMenu');
+      if(accountMenu) accountMenu.classList.remove('open');
+      AUTH_STATE.isLoggedIn = false;
+      updateAuthStateUI();
+      openLoginModal(1);
+    });
+  }
+
+  var loginClose = document.querySelector('[data-close="login"]');
+  if(loginClose){
+    loginClose.addEventListener('click', closeLoginModal);
+  }
+  var settingsClose = document.querySelector('[data-close="settings"]');
+  if(settingsClose){
+    settingsClose.addEventListener('click', closeSettingsModal);
+  }
+
+  var loginOverlay = document.getElementById('loginOverlay');
+  if(loginOverlay){
+    loginOverlay.addEventListener('click', function(e){
+      if(e.target === loginOverlay) closeLoginModal();
+    });
+  }
+  var settingsOverlay = document.getElementById('settingsOverlay');
+  if(settingsOverlay){
+    settingsOverlay.addEventListener('click', function(e){
+      if(e.target === settingsOverlay) closeSettingsModal();
+    });
+  }
+
+  var sendOtpBtn = document.getElementById('sendOtpBtn');
+  if(sendOtpBtn){
+    sendOtpBtn.addEventListener('click', function(){
+      var input = document.getElementById('loginFieldInput');
+      var val = input ? input.value.trim() : '0912-345-678';
+      var desc = document.getElementById('otpSentDesc');
+      if(desc && val) desc.textContent = '已發送 6 碼驗證碼至 ' + val + '，請於 5 分鐘內輸入。';
+      openLoginModal(2);
+    });
+  }
+
+  var backToStep1 = document.getElementById('backToStep1');
+  if(backToStep1){
+    backToStep1.addEventListener('click', function(){
+      openLoginModal(1);
+    });
+  }
+
+  var verifyOtpBtn = document.getElementById('verifyOtpBtn');
+  if(verifyOtpBtn){
+    verifyOtpBtn.addEventListener('click', function(){
+      openLoginModal(3);
+    });
+  }
+
+  var finishOnboardBtn = document.getElementById('finishOnboardBtn');
+  if(finishOnboardBtn){
+    finishOnboardBtn.addEventListener('click', function(){
+      var nickInput = document.getElementById('onbNickname');
+      if(nickInput && nickInput.value.trim()){
+        APP.nickname = nickInput.value.trim();
+        updateWeekUI();
+      }
+      AUTH_STATE.isLoggedIn = true;
+      updateAuthStateUI();
+      closeLoginModal();
+    });
+  }
+
+  var methodBtns = document.querySelectorAll('.method-switch button');
+  methodBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      methodBtns.forEach(function(b){ b.classList.remove('on'); });
+      btn.classList.add('on');
+      var isEmail = btn.dataset.method === 'email';
+      var label = document.getElementById('loginFieldLabel');
+      var input = document.getElementById('loginFieldInput');
+      var hint = document.getElementById('loginFieldHint');
+      if(label) label.textContent = isEmail ? 'Email 電子信箱' : '手機號碼';
+      if(input) input.placeholder = isEmail ? 'mommy@example.com' : '0912-345-678';
+      if(hint) hint.textContent = isEmail ? '我們會發送驗證連結或 6 碼驗證碼至此信箱。' : '我們會發送 6 碼驗證碼到這個號碼。';
+    });
+  });
+
+  var roleOpts = document.querySelectorAll('.pill-select .opt');
+  roleOpts.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      roleOpts.forEach(function(o){ o.classList.remove('sel'); });
+      opt.classList.add('sel');
+    });
+  });
+}
+
+/* ============================================================
    Phase 1｜EDD 計算 & 孕週驅動
    ============================================================ */
 var APP = {
@@ -10605,6 +10876,7 @@ function initDiary(){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
+  initAccountAndLoginUI();
   updateWeekUI();
   renderHomeDashboard();
   renderPartnerViewHome();
