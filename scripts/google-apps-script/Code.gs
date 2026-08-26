@@ -28,6 +28,8 @@ var HEADERS = [
   'updated_at'
 ];
 
+var DEFAULT_LLM_MODEL = 'gemini-3.6-flash';
+
 /**
  * HTTP GET 進入點
  * 支援瀏覽器網址直接測試 Ping 與 getProfile
@@ -202,13 +204,8 @@ function buildLLMPrompt(query, answerContext) {
 function callGeminiAPI(systemPrompt, userPrompt) {
   var props = PropertiesService.getScriptProperties();
   var apiKey = props.getProperty('LLM_API_KEY') || props.getProperty('GEMINI_API_KEY');
-  var model = props.getProperty('LLM_MODEL') || 'gemini-3.6-flash';
-  var modelName = (model || 'gemini-3.6-flash').replace(/^models\//, '').trim();
-
-  // Auto-upgrade any legacy/deprecated model names to the active gemini-3.6-flash
-  if (modelName.indexOf('gemini-1.') !== -1 || modelName.indexOf('gemini-2.') !== -1 || modelName === 'gemini-flash') {
-    modelName = 'gemini-3.6-flash';
-  }
+  var model = props.getProperty('LLM_MODEL') || DEFAULT_LLM_MODEL;
+  var modelName = (model || DEFAULT_LLM_MODEL).replace(/^models\//, '').trim();
 
   if (!apiKey) {
     return {
@@ -231,7 +228,7 @@ function callGeminiAPI(systemPrompt, userPrompt) {
     ],
     generationConfig: {
       temperature: 0.2,
-      maxOutputTokens: 800
+      maxOutputTokens: 2048
     }
   };
 
@@ -249,13 +246,80 @@ function callGeminiAPI(systemPrompt, userPrompt) {
 
     if (statusCode === 200) {
       var data = JSON.parse(responseText);
-      if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
-        var generatedText = data.candidates[0].content.parts[0].text;
+      if (data.candidates && data.candidates[0]) {
+        var candidate = data.candidates[0];
+        var finishReason = candidate.finishReason;
+
+        if (finishReason === 'MAX_TOKENS') {
+          return {
+            success: false,
+            error: 'LLM_OUTPUT_TRUNCATED',
+            finishReason: 'MAX_TOKENS'
+          };
+        }
+
+        var parts = (candidate.content && candidate.content.parts) || [];
+        var generatedText = parts
+          .filter(function(part) {
+            return part && typeof part.text === 'string';
+          })
+          .map(function(part) {
+            return part.text;
+          })
+          .join('');
+
+        if (!generatedText || !generatedText.trim()) {
+          return {
+            success: false,
+            error: 'EMPTY_LLM_RESPONSE'
+          };
+        }
+
         return {
           success: true,
-          text: generatedText.trim()
+          text: generatedText.trim(),
+          finishReason: finishReason || 'STOP'
         };
       }
+
+      return {
+        success: false,
+        error: 'EMPTY_LLM_RESPONSE'
+      };
+    }
+
+    if (statusCode === 429) {
+      var quotaMetric = null;
+      var quotaId = null;
+      var quotaValue = null;
+      var retryDelay = null;
+      try {
+        var errObj = JSON.parse(responseText);
+        if (errObj.error && errObj.error.details) {
+          for (var i = 0; i < errObj.error.details.length; i++) {
+            var d = errObj.error.details[i];
+            if (d.violations && d.violations[0]) {
+              quotaMetric = d.violations[0].quotaMetric || null;
+              quotaId = d.violations[0].quotaId || null;
+              quotaValue = d.violations[0].quotaValue || null;
+            }
+            if (d.retryDelay) {
+              retryDelay = d.retryDelay;
+            }
+          }
+        }
+      } catch(parseErr){}
+
+      return {
+        success: false,
+        error: 'LLM_QUOTA_EXCEEDED',
+        statusCode: 429,
+        quotaMetric: quotaMetric,
+        quotaId: quotaId,
+        quotaValue: quotaValue,
+        retryDelay: retryDelay,
+        detail: responseText.replace(/key=[^&]+/g, 'key=REDACTED')
+      };
     }
 
     return {
@@ -297,8 +361,13 @@ function handleGenerateMedicalAnswer(query, answerContext) {
     return {
       success: false,
       error: llmResult.error || 'LLM_UNAVAILABLE',
-      detail: llmResult.detail || llmResult.fetchError || null,
-      statusCode: llmResult.statusCode || null
+      finishReason: llmResult.finishReason || null,
+      statusCode: llmResult.statusCode || null,
+      quotaMetric: llmResult.quotaMetric || null,
+      quotaId: llmResult.quotaId || null,
+      quotaValue: llmResult.quotaValue || null,
+      retryDelay: llmResult.retryDelay || null,
+      detail: llmResult.detail || llmResult.fetchError || null
     };
   }
 
@@ -310,6 +379,7 @@ function handleGenerateMedicalAnswer(query, answerContext) {
     answer: llmResult.text,
     safetyLevel: safetyLevel,
     recordIds: recordIds,
+    finishReason: llmResult.finishReason || 'STOP',
     disclaimer: '本內容依孕育之美已審核衛教資料整理，僅供孕期健康資訊參考，不能取代醫師診斷與個別醫療建議。'
   };
 }
@@ -445,10 +515,12 @@ function authorizeUrlFetchApp() {
 function testLiveGeminiConnection() {
   var props = PropertiesService.getScriptProperties();
   var apiKey = props.getProperty('LLM_API_KEY') || props.getProperty('GEMINI_API_KEY');
-  var model = props.getProperty('LLM_MODEL') || 'gemini-1.5-flash';
+  var model = props.getProperty('LLM_MODEL') || DEFAULT_LLM_MODEL;
+  var modelName = (model || DEFAULT_LLM_MODEL).replace(/^models\//, '').trim();
   
   Logger.log('API Key configured: ' + (apiKey ? 'YES (Length: ' + apiKey.length + ')' : 'NO'));
-  Logger.log('Model: ' + model);
+  Logger.log('Configured Model: ' + model);
+  Logger.log('Resolved Model: ' + modelName);
 
   if (apiKey) {
     try {

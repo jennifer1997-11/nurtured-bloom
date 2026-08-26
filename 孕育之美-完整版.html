@@ -4367,8 +4367,21 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 <script src="js/medical-answer-context.js"></script>
 <script>
 /* ============================================================
+   Unified Google Apps Script Backend URL
+   ============================================================ */
+var GOOGLE_SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
+
+/* ============================================================
    AI Assistant Chat Pipeline (Step 03B-3: UI -> Retrieval -> Safety -> Answer Context -> Gemini Backend)
    ============================================================ */
+
+function normalizeLLMPlainText(text){
+  if(!text || typeof text !== 'string') return '';
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    .trim();
+}
 
 async function handleUserChatMessage(userQuery){
   if(!userQuery || typeof userQuery !== 'string') return;
@@ -4442,10 +4455,6 @@ async function handleUserChatMessage(userQuery){
           loadingMsgEl.textContent = '正在整理適合妳的衛教資訊⋯';
         }
 
-        var backendUrl = (typeof GOOGLE_SHEET_API_URL !== 'undefined' && GOOGLE_SHEET_API_URL) 
-          ? GOOGLE_SHEET_API_URL 
-          : 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
-
         var backendPayload = {
           action: 'generateMedicalAnswer',
           query: q,
@@ -4454,16 +4463,27 @@ async function handleUserChatMessage(userQuery){
 
         var backendSuccess = false;
         try {
-          var res = await fetch(backendUrl, {
+          var res = await fetch(GOOGLE_SHEET_API_URL, {
             method: 'POST',
             body: JSON.stringify(backendPayload),
             headers: { 'Content-Type': 'text/plain;charset=utf-8' }
           });
+          var httpStatus = res.status;
           var data = await res.json();
+          backendSuccess = (data && data.success === true);
+
+          // Safe developer debugging log (No email, No profile, No API key)
+          console.log('[AI Backend Debug] HTTP Status: ' + httpStatus + ', Success: ' + data.success + ', Error: ' + (data.error || 'NONE'));
+
           if(data && data.success && data.answer){
-            backendSuccess = true;
-            responseText = data.answer;
+            responseText = normalizeLLMPlainText(data.answer);
             disclaimerText = data.disclaimer || '本內容依孕育之美已審核衛教資料整理，僅供孕期健康資訊參考，不能取代醫師診斷與個別醫療建議。';
+          } else if(data && data.error === 'LLM_OUTPUT_TRUNCATED'){
+            responseText = '這次回答沒有完整產生，請再試一次。';
+          } else if(data && data.error === 'LLM_QUOTA_EXCEEDED'){
+            responseText = '目前 AI 孕期助理使用量較高，暫時無法完成回答，請稍後再試。';
+          } else if(data && data.error === 'EMPTY_LLM_RESPONSE'){
+            responseText = '目前沒有成功產生回答，請再試一次。';
           } else if(data && data.error === 'INVALID_MEDICAL_CONTEXT'){
             responseText = '目前無法安全整理這筆孕期衛教資訊，請稍後再試。';
           } else if(data && data.error === 'NO_APPROVED_EVIDENCE'){
