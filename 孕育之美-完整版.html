@@ -4433,6 +4433,7 @@ document.addEventListener('click', function(e){
 var USER_STORAGE_KEY = 'pregnancyAppUser';
 
 var USER_PROFILE = {
+  profileId: '',
   initialized: false,
   momNickname: '',
   email: '',
@@ -4444,12 +4445,32 @@ var USER_PROFILE = {
   updatedAt: ''
 };
 
+function generateProfileId(){
+  try {
+    if(typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'){
+      return 'PRF-' + crypto.randomUUID().replace(/-/g, '').substring(0, 12).toUpperCase();
+    }
+    if(typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function'){
+      var bytes = new Uint8Array(6);
+      crypto.getRandomValues(bytes);
+      var hex = Array.prototype.map.call(bytes, function(b){ return ('0' + b.toString(16)).slice(-2); }).join('');
+      return 'PRF-' + hex.toUpperCase();
+    }
+  } catch(e){}
+  return 'PRF-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
 function loadUserProfile(){
   try {
     var raw = localStorage.getItem(USER_STORAGE_KEY);
     if(raw){
       var p = JSON.parse(raw);
       if(p && typeof p === 'object' && p.initialized && p.dueDate){
+        // Migration: If profile exists in storage but profileId is missing, generate and persist it
+        if(!p.profileId){
+          p.profileId = generateProfileId();
+          saveUserProfile(p);
+        }
         return p;
       }
     }
@@ -4462,6 +4483,52 @@ function saveUserProfile(profile){
     profile.updatedAt = new Date().toISOString();
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(profile));
   } catch(e){}
+}
+
+/* ============================================================
+   Google Sheet Cloud Sync (Step 01C-1: localStorage -> Cloud)
+   ============================================================ */
+var GOOGLE_SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbzLv_YuTvKLrulo9ns1dRJyU9gbg1FkLs9km9rYFMa2FgymeBwo-rzoFAdhHppKnr0nrw/exec';
+
+function buildCloudProfilePayload(profile){
+  return {
+    action: 'upsertProfile',
+    profile: {
+      profileId: profile.profileId,
+      momNickname: profile.momNickname,
+      email: profile.email,
+      dueDate: profile.dueDate,
+      pregnancyNumber: profile.pregnancyNumber,
+      babyNickname: profile.babyNickname,
+      babyGender: profile.babyGender,
+      createdAt: profile.createdAt,
+      updatedAt: profile.updatedAt
+    }
+  };
+}
+
+async function syncProfileToCloud(profile){
+  if(typeof isPartnerGuestMode === 'function' && isPartnerGuestMode()){
+    return;
+  }
+  if(!profile || !profile.profileId || !GOOGLE_SHEET_API_URL){
+    return;
+  }
+  try {
+    var payload = buildCloudProfilePayload(profile);
+    var res = await fetch(GOOGLE_SHEET_API_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    var data = await res.json();
+    if(data && data.success){
+      console.log('[CloudSync] Profile synced: ' + profile.profileId);
+    } else {
+      console.warn('[CloudSync] Profile sync failed');
+    }
+  } catch(err){
+    console.warn('[CloudSync] Profile sync failed');
+  }
 }
 
 var AUTH_STATE = {
@@ -4697,6 +4764,8 @@ function openSettingsModal(type){
       updateAuthStateUI();
       updateWeekUI();
       closeSettingsModal();
+
+      syncProfileToCloud(USER_PROFILE);
     });
   }
 
@@ -4850,6 +4919,7 @@ function initAccountAndLoginUI(){
       }
 
       USER_PROFILE = {
+        profileId: (USER_PROFILE && USER_PROFILE.profileId) ? USER_PROFILE.profileId : generateProfileId(),
         initialized: true,
         momNickname: momName,
         email: email,
@@ -4871,6 +4941,8 @@ function initAccountAndLoginUI(){
       updateAuthStateUI();
       updateWeekUI();
       closeWelcomeModal();
+
+      syncProfileToCloud(USER_PROFILE);
     });
   }
 
@@ -4956,7 +5028,7 @@ function initAccountAndLoginUI(){
       if(accountMenu) accountMenu.classList.remove('open');
       if(confirm('確定要清除孕期檔案並登出嗎？')){
         localStorage.removeItem(USER_STORAGE_KEY);
-        USER_PROFILE = { initialized: false };
+        USER_PROFILE = { profileId: '', initialized: false };
         AUTH_STATE.isLoggedIn = false;
         updateAuthStateUI();
         openWelcomeModal();
