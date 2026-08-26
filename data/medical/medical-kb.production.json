@@ -2,7 +2,7 @@
   "metadata": {
     "dataset": "孕育之美 Medical KB Production Dataset",
     "environment": "production",
-    "generated_at": "2026-08-21T13:38:17.271486+08:00",
+    "generated_at": "2026-08-26T15:17:54.598238+08:00",
     "record_count": 172,
     "filter": {
       "review_status": "approved",

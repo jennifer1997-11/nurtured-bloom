@@ -86,6 +86,12 @@ function doPost(e) {
       });
     }
 
+    if (action === 'generateMedicalAnswer') {
+      var query = requestData.query;
+      var answerContext = requestData.answerContext;
+      return jsonResponse(handleGenerateMedicalAnswer(query, answerContext));
+    }
+
     if (action === 'upsertProfile') {
       var profile = requestData.profile;
       if (!profile || !profile.profileId) {
@@ -106,6 +112,206 @@ function doPost(e) {
   } catch (err) {
     return jsonResponse({ success: false, error: err.toString() });
   }
+}
+
+/**
+ * ============================================================
+ * AI Medical Answer Generation (Step 03B-1: Grounded LLM Backend)
+ * ============================================================
+ */
+
+/**
+ * 驗證 Answer Context 是否符合已審核醫學資料規範
+ */
+function validateAnswerContext(ctx) {
+  if (!ctx || typeof ctx !== 'object') return false;
+  if (!ctx.policy || ctx.policy.useApprovedEvidenceOnly !== true) return false;
+  if (!ctx.evidence || typeof ctx.evidence !== 'object') return false;
+
+  var records = ctx.evidence.records;
+  if (!Array.isArray(records)) return false;
+  if (records.length > 5) return false;
+
+  for (var i = 0; i < records.length; i++) {
+    var r = records[i];
+    if (!r || typeof r !== 'object') return false;
+    if (r.review_status !== 'approved') return false;
+    if (!r.evidence || r.evidence.human_reviewed !== true) return false;
+  }
+  return true;
+}
+
+/**
+ * 組裝受控 System Prompt 與 User Prompt
+ */
+function buildLLMPrompt(query, answerContext) {
+  var safety = answerContext.safety || {};
+  var safetyLevel = safety.level || 'ROUTINE';
+  var coverage = (answerContext.evidence && answerContext.evidence.coverage) || 'FULL';
+  var medicationQuery = safety.medicationQueryDetected === true;
+  var records = (answerContext.evidence && answerContext.evidence.records) || [];
+
+  var systemPrompt = [
+    '你是「孕育之美 AI 孕期助理」。回答語言必須使用繁體中文（台灣）。',
+    '【基本語氣】溫柔、有陪伴感、清楚、簡潔、不製造不必要焦慮、不過度保證，優先使用一般人聽得懂的詞語。長度約 120–300 字。',
+    '',
+    '【醫療 Grounding 絕對規則】',
+    '1. 你的所有醫療與衛教事實「只能」來自下方提供的【Approved Evidence】。',
+    '2. 嚴禁使用你自身的記憶或外部常識補充任何未在 Evidence 中提到的醫療知識。',
+    '3. 不得診斷（嚴禁使用「你是...」、「這一定是...」、「這就是...」等確定診斷語氣）。',
+    '4. 不得自行推測症狀原因或自行加入疾病名稱。例如對於下腹痛，若 Evidence 沒有提到圓韌帶痛或 round ligament pain，嚴禁提及圓韌帶或拉扯痛。',
+    '5. 不得自行增加未提及的危險徵兆。',
+    '6. 不得在自然回答中提及技術名詞（如 ROUTINE、CAUTION、URGENT、Record ID、Score、Matched Fields 等）。',
+    '7. 必須直接回答使用者的問題本身，將 Evidence 中的週數、體重、身長、大小比喻或照護方式自然整理成流暢溫暖的回答，不要只念標題。',
+    '',
+    '【安全分級指示】',
+    '目前安全分級為：' + safetyLevel,
+    safetyLevel === 'URGENT' ? '⚠️ URGENT 模式：必須將就醫安全提醒放在回答最前面！先說明此狀況屬於需要優先就醫評估的警訊，再簡短引用 Evidence，不要先寫長篇衛教。' : '',
+    safetyLevel === 'CAUTION' ? '⚠️ CAUTION 模式：開頭需使用柔和但明確的提醒（如「這個情況需要多留意一下」），根據 Evidence 整理可觀察狀況與就醫時機，不得猜測原因。' : '',
+    safetyLevel === 'ROUTINE' ? 'ROUTINE 模式：第一段直接回答問題核心，第二段自然補充 1-3 個重要資訊或提醒。' : '',
+    coverage === 'PARTIAL' ? '⚠️ PARTIAL 模式：必須主動說明目前孕育之美資料庫所能提供的資訊範圍（例如提供危險徵兆與觀察方式），並明確承認資料不足以判斷確切原因，不得自行腦補。' : '',
+    medicationQuery ? '⚠️ 用藥諮詢限制：此問題涉及用藥。請說明目前資料庫不提供特定藥物安全性與劑量，強烈建議諮詢醫師或藥師。嚴禁推薦藥品、判定安全/不安全、或提供劑量與頻率！' : ''
+  ].filter(Boolean).join('\n');
+
+  var evidenceText = JSON.stringify(records, null, 2);
+
+  var userPrompt = [
+    '【使用者問題】',
+    query,
+    '',
+    '【安全分級與條件】',
+    'Safety Level: ' + safetyLevel,
+    'Evidence Coverage: ' + coverage,
+    'Medication Query: ' + medicationQuery,
+    '',
+    '【Approved Evidence (唯一事實來源)】',
+    evidenceText,
+    '',
+    '請依據上述規則與 Evidence 回答使用者的問題：'
+  ].join('\n');
+
+  return {
+    systemPrompt: systemPrompt,
+    userPrompt: userPrompt
+  };
+}
+
+/**
+ * 呼叫 Google Gemini API
+ */
+function callGeminiAPI(systemPrompt, userPrompt) {
+  var props = PropertiesService.getScriptProperties();
+  var apiKey = props.getProperty('LLM_API_KEY') || props.getProperty('GEMINI_API_KEY');
+  var model = props.getProperty('LLM_MODEL') || 'gemini-3.6-flash';
+  var modelName = (model || 'gemini-3.6-flash').replace(/^models\//, '').trim();
+
+  // Auto-upgrade any legacy/deprecated model names to the active gemini-3.6-flash
+  if (modelName.indexOf('gemini-1.') !== -1 || modelName.indexOf('gemini-2.') !== -1 || modelName === 'gemini-flash') {
+    modelName = 'gemini-3.6-flash';
+  }
+
+  if (!apiKey) {
+    return {
+      success: false,
+      error: 'MISSING_API_KEY'
+    };
+  }
+
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(modelName) + ':generateContent?key=' + encodeURIComponent(apiKey);
+
+  var payload = {
+    systemInstruction: {
+      parts: [{ text: systemPrompt }]
+    },
+    contents: [
+      {
+        role: 'user',
+        parts: [{ text: userPrompt }]
+      }
+    ],
+    generationConfig: {
+      temperature: 0.2,
+      maxOutputTokens: 800
+    }
+  };
+
+  var options = {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  };
+
+  try {
+    var response = UrlFetchApp.fetch(url, options);
+    var statusCode = response.getResponseCode();
+    var responseText = response.getContentText();
+
+    if (statusCode === 200) {
+      var data = JSON.parse(responseText);
+      if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
+        var generatedText = data.candidates[0].content.parts[0].text;
+        return {
+          success: true,
+          text: generatedText.trim()
+        };
+      }
+    }
+
+    return {
+      success: false,
+      error: 'LLM_UNAVAILABLE',
+      statusCode: statusCode,
+      detail: responseText.replace(/key=[^&]+/g, 'key=REDACTED')
+    };
+  } catch (fetchErr) {
+    console.warn('[Gemini API Fetch Exception]', fetchErr.toString());
+    return {
+      success: false,
+      error: 'LLM_UNAVAILABLE',
+      fetchError: fetchErr.toString()
+    };
+  }
+}
+
+/**
+ * 處理 generateMedicalAnswer
+ */
+function handleGenerateMedicalAnswer(query, answerContext) {
+  if (!query || typeof query !== 'string' || !query.trim()) {
+    return { success: false, error: 'MISSING_QUERY' };
+  }
+
+  if (!validateAnswerContext(answerContext)) {
+    return { success: false, error: 'INVALID_MEDICAL_CONTEXT' };
+  }
+
+  if (!answerContext.evidence || answerContext.evidence.hasEvidence === false || !answerContext.evidence.records || answerContext.evidence.records.length === 0) {
+    return { success: false, error: 'NO_APPROVED_EVIDENCE' };
+  }
+
+  var prompts = buildLLMPrompt(query, answerContext);
+  var llmResult = callGeminiAPI(prompts.systemPrompt, prompts.userPrompt);
+
+  if (!llmResult.success) {
+    return {
+      success: false,
+      error: llmResult.error || 'LLM_UNAVAILABLE',
+      detail: llmResult.detail || llmResult.fetchError || null,
+      statusCode: llmResult.statusCode || null
+    };
+  }
+
+  var recordIds = (answerContext.evidence.records || []).map(function(r) { return r.id; });
+  var safetyLevel = (answerContext.safety && answerContext.safety.level) || 'ROUTINE';
+
+  return {
+    success: true,
+    answer: llmResult.text,
+    safetyLevel: safetyLevel,
+    recordIds: recordIds,
+    disclaimer: '本內容依孕育之美已審核衛教資料整理，僅供孕期健康資訊參考，不能取代醫師診斷與個別醫療建議。'
+  };
 }
 
 /**
@@ -222,4 +428,39 @@ function jsonResponse(obj) {
   return ContentService
     .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * 裸呼叫 UrlFetchApp（無 try-catch）以強制觸發 Google OAuth 授權彈窗
+ */
+function authorizeUrlFetchApp() {
+  var testUrl = 'https://generativelanguage.googleapis.com';
+  var response = UrlFetchApp.fetch(testUrl, { muteHttpExceptions: true });
+  Logger.log('Auth test response status: ' + response.getResponseCode());
+}
+
+/**
+ * 方便在 Apps Script 編輯器內直接點擊「執行」完成快速驗證
+ */
+function testLiveGeminiConnection() {
+  var props = PropertiesService.getScriptProperties();
+  var apiKey = props.getProperty('LLM_API_KEY') || props.getProperty('GEMINI_API_KEY');
+  var model = props.getProperty('LLM_MODEL') || 'gemini-1.5-flash';
+  
+  Logger.log('API Key configured: ' + (apiKey ? 'YES (Length: ' + apiKey.length + ')' : 'NO'));
+  Logger.log('Model: ' + model);
+
+  if (apiKey) {
+    try {
+      var listUrl = 'https://generativelanguage.googleapis.com/v1beta/models?key=' + encodeURIComponent(apiKey);
+      var listRes = UrlFetchApp.fetch(listUrl, { muteHttpExceptions: true });
+      Logger.log('Available Models Response (' + listRes.getResponseCode() + '): ' + listRes.getContentText().slice(0, 500));
+    } catch(e) {
+      Logger.log('List models error: ' + e.toString());
+    }
+  }
+  
+  var res = callGeminiAPI('你是孕育之美助理，請簡短用一句繁體中文打招呼。', '你好！');
+  Logger.log('Gemini Live Result: ' + JSON.stringify(res, null, 2));
+  return res;
 }

@@ -4361,7 +4361,199 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
 
 
+<script src="data/medical/medical-kb.production.js"></script>
+<script src="js/medical-kb-retrieval.js"></script>
+<script src="js/medical-safety-router.js"></script>
+<script src="js/medical-answer-context.js"></script>
 <script>
+/* ============================================================
+   AI Assistant Chat Pipeline (Step 03B-3: UI -> Retrieval -> Safety -> Answer Context -> Gemini Backend)
+   ============================================================ */
+
+async function handleUserChatMessage(userQuery){
+  if(!userQuery || typeof userQuery !== 'string') return;
+  var q = userQuery.trim();
+  if(!q) return;
+
+  var chatBody = document.getElementById('chatBody');
+  var chatInput = document.getElementById('chatInput');
+  if(!chatBody) return;
+
+  // 1. Render user message bubble
+  var userMsgEl = document.createElement('div');
+  userMsgEl.className = 'msg user';
+  userMsgEl.textContent = q;
+  chatBody.appendChild(userMsgEl);
+
+  // Clear input
+  if(chatInput){
+    chatInput.value = '';
+  }
+
+  // 2. Render Loading Bubble
+  var loadingMsgEl = document.createElement('div');
+  loadingMsgEl.className = 'msg ai';
+  loadingMsgEl.id = 'chatLoadingMsg';
+  loadingMsgEl.textContent = '正在查詢孕育之美醫療知識庫⋯';
+  chatBody.appendChild(loadingMsgEl);
+  chatBody.scrollTop = chatBody.scrollHeight;
+
+  // 3. Ensure KB is loaded asynchronously
+  try {
+    if(typeof MedicalKBRetrieval !== 'undefined' && typeof MedicalKBRetrieval.loadMedicalKBAsync === 'function'){
+      await MedicalKBRetrieval.loadMedicalKBAsync();
+    }
+  } catch(err){
+    console.warn('[AIChat] KB load warning:', err);
+  }
+
+  // Small delay for UI smoothness
+  await new Promise(function(r){ setTimeout(r, 150); });
+
+  // 4. Run Retrieval, Safety & Grounded Backend Call
+  var responseText = '';
+  var disclaimerText = '';
+  try {
+    if(typeof searchMedicalKB !== 'function' || typeof routeMedicalSafety !== 'function'){
+      throw new Error('Retrieval or Safety module not loaded');
+    }
+
+    var weekContext = (typeof APP !== 'undefined' && typeof APP.currentWeek === 'number') ? APP.currentWeek : null;
+    var retrievalResult = searchMedicalKB(q, weekContext);
+    var safetyResult = routeMedicalSafety(q, retrievalResult);
+
+    if(retrievalResult && retrievalResult.retrievalStatus === 'KB_LOAD_ERROR'){
+      responseText = '目前醫療知識庫暫時無法載入，請稍後再試。';
+    } else {
+      var answerContext = (typeof buildMedicalAnswerContext === 'function')
+        ? buildMedicalAnswerContext(q, retrievalResult, safetyResult)
+        : null;
+
+      if(!answerContext || !answerContext.evidence || answerContext.evidence.hasEvidence === false || !answerContext.evidence.records || answerContext.evidence.records.length === 0){
+        // NO_APPROVED_EVIDENCE / NO_RELEVANT_KB_RECORD
+        if(safetyResult && safetyResult.medicationQueryDetected){
+          responseText = '此問題涉及孕期用藥安全。\n\n目前孕育之美尚未建立完整藥品成分資料庫，本階段不提供特定藥物安全性或劑量判斷。';
+        } else {
+          responseText = '目前孕育之美醫療知識庫中，沒有找到足以回答這個問題的資料。';
+        }
+      } else {
+        // Has approved evidence -> Update loading text and call Backend
+        if(loadingMsgEl){
+          loadingMsgEl.textContent = '正在整理適合妳的衛教資訊⋯';
+        }
+
+        var backendUrl = (typeof GOOGLE_SHEET_API_URL !== 'undefined' && GOOGLE_SHEET_API_URL) 
+          ? GOOGLE_SHEET_API_URL 
+          : 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
+
+        var backendPayload = {
+          action: 'generateMedicalAnswer',
+          query: q,
+          answerContext: answerContext
+        };
+
+        var backendSuccess = false;
+        try {
+          var res = await fetch(backendUrl, {
+            method: 'POST',
+            body: JSON.stringify(backendPayload),
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+          });
+          var data = await res.json();
+          if(data && data.success && data.answer){
+            backendSuccess = true;
+            responseText = data.answer;
+            disclaimerText = data.disclaimer || '本內容依孕育之美已審核衛教資料整理，僅供孕期健康資訊參考，不能取代醫師診斷與個別醫療建議。';
+          } else if(data && data.error === 'INVALID_MEDICAL_CONTEXT'){
+            responseText = '目前無法安全整理這筆孕期衛教資訊，請稍後再試。';
+          } else if(data && data.error === 'NO_APPROVED_EVIDENCE'){
+            responseText = '目前孕育之美醫療知識庫中，沒有找到足以回答這個問題的資料。';
+          } else if(data && data.error === 'LLM_UNAVAILABLE'){
+            responseText = '目前 AI 孕期助理暫時無法完成回答，請稍後再試。';
+          } else {
+            responseText = '目前 AI 孕期助理暫時無法完成回答，請稍後再試。';
+          }
+        } catch(netErr){
+          console.warn('[AIChat] Backend fetch error:', netErr);
+          responseText = '目前 AI 孕期助理暫時無法完成回答，請稍後再試。';
+        }
+
+        // Developer Trace (Privacy compliant: NO email, NO profile, NO API key)
+        try {
+          var recIds = (answerContext && answerContext.evidence && answerContext.evidence.records || []).map(function(r){ return r.id; });
+          console.log('[AI Assistant]\nQuery: ' + q + '\nSafety Level: ' + ((answerContext && answerContext.safety && answerContext.safety.level) || 'ROUTINE') + '\nRecord IDs: ' + JSON.stringify(recIds) + '\nCoverage: ' + ((answerContext && answerContext.evidence && answerContext.evidence.coverage) || 'FULL') + '\nBackend Success: ' + backendSuccess);
+        } catch(e){}
+      }
+    }
+  } catch(err){
+    console.error('[AIChat] Processing error:', err);
+    responseText = '目前 AI 孕期助理暫時無法完成回答，請稍後再試。';
+  }
+
+  // Remove loading bubble
+  var currentLoading = document.getElementById('chatLoadingMsg');
+  if(currentLoading && currentLoading.parentNode){
+    currentLoading.parentNode.removeChild(currentLoading);
+  }
+
+  // 5. Render AI Response Bubble
+  var aiMsgEl = document.createElement('div');
+  aiMsgEl.className = 'msg ai';
+  
+  var textDiv = document.createElement('div');
+  textDiv.style.whiteSpace = 'pre-wrap';
+  textDiv.textContent = responseText;
+  aiMsgEl.appendChild(textDiv);
+
+  if(disclaimerText){
+    var discEl = document.createElement('div');
+    discEl.style.fontSize = '11px';
+    discEl.style.opacity = '0.75';
+    discEl.style.marginTop = '8px';
+    discEl.style.paddingTop = '6px';
+    discEl.style.borderTop = '1px solid rgba(0,0,0,0.08)';
+    discEl.style.lineHeight = '1.4';
+    discEl.textContent = disclaimerText;
+    aiMsgEl.appendChild(discEl);
+  }
+
+  chatBody.appendChild(aiMsgEl);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function initAIChatPipeline(){
+  var chatInput = document.getElementById('chatInput');
+  var chatSend = document.getElementById('chatSend');
+  var quickBtns = document.querySelectorAll('.chat-quick button');
+
+  if(chatSend){
+    chatSend.addEventListener('click', function(){
+      if(chatInput){
+        handleUserChatMessage(chatInput.value);
+      }
+    });
+  }
+
+  if(chatInput){
+    chatInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' && !e.shiftKey){
+        e.preventDefault();
+        handleUserChatMessage(chatInput.value);
+      }
+    });
+  }
+
+  if(quickBtns && quickBtns.length){
+    quickBtns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var msg = btn.dataset.msg || btn.textContent.trim();
+        if(msg){
+          handleUserChatMessage(msg);
+        }
+      });
+    });
+  }
+}
 /* ============ View Router & Deep Linking（首頁 / 我的孕期 / 寶寶成長 / AI / 社群）============ */
 function switchJourneyTab(targetTab){
   var tabBtns = document.querySelectorAll('#view-journey .tab-btn');
@@ -11343,6 +11535,7 @@ document.addEventListener('DOMContentLoaded', function(){
   renderMapNodes();
   initConsultationMemos();
   initDiary();
+  initAIChatPipeline();
   if(typeof renderBabyGrowthView === 'function'){
     renderBabyGrowthView();
   }
