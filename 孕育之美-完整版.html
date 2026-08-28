@@ -4383,6 +4383,26 @@ function normalizeLLMPlainText(text){
     .trim();
 }
 
+// Minimal One-turn Intent Follow-up in-memory state
+var AI_CHAT_CONTEXT = {
+  lastIntent: null
+};
+
+function getAIWeekContext(){
+  if(typeof calcWeekInfo === 'function' && typeof APP !== 'undefined' && APP && APP.edd){
+    try {
+      var info = calcWeekInfo(APP.edd);
+      if(info && typeof info.weeks === 'number' && info.weeks >= 1 && info.weeks <= 42){
+        return info.weeks;
+      }
+    } catch(e){}
+  }
+  if(typeof APP !== 'undefined' && APP && typeof APP.currentWeek === 'number' && APP.currentWeek >= 1 && APP.currentWeek <= 42){
+    return APP.currentWeek;
+  }
+  return null;
+}
+
 async function handleUserChatMessage(userQuery){
   if(!userQuery || typeof userQuery !== 'string') return;
   var q = userQuery.trim();
@@ -4392,7 +4412,7 @@ async function handleUserChatMessage(userQuery){
   var chatInput = document.getElementById('chatInput');
   if(!chatBody) return;
 
-  // 1. Render user message bubble
+  // 1. Render user message bubble (always displays original user input)
   var userMsgEl = document.createElement('div');
   userMsgEl.className = 'msg user';
   userMsgEl.textContent = q;
@@ -4423,7 +4443,34 @@ async function handleUserChatMessage(userQuery){
   // Small delay for UI smoothness
   await new Promise(function(r){ setTimeout(r, 150); });
 
-  // 4. Run Retrieval, Safety & Grounded Backend Call
+  // 4. Resolve Context & Minimal One-turn Follow-up
+  var weekContext = getAIWeekContext();
+  var resolvedQuery = q;
+
+  // Check if current query is purely a gestational week follow-up (e.g. "20週", "第20週", "我20週", "目前20週", "現在20週", "20周", "第20周")
+  var pureWeekMatch = q.match(/^(?:我(?:目前|現在)?|目前|現在|剛好|剛滿|大概|約)?\s*(?:第)?\s*(\d{1,2})\s*(?:週|周|w|W)(?:了|呢|喔|阿|啊|啦)?$/i);
+  var followUpWeek = null;
+  if(pureWeekMatch){
+    var parsedW = parseInt(pureWeekMatch[1], 10);
+    if(parsedW >= 1 && parsedW <= 42){
+      followUpWeek = parsedW;
+    }
+  }
+
+  if(followUpWeek !== null && AI_CHAT_CONTEXT.lastIntent === 'BABY_GROWTH'){
+    resolvedQuery = followUpWeek + '週寶寶有什麼變化？';
+    weekContext = followUpWeek;
+  }
+
+  // Update AI_CHAT_CONTEXT.lastIntent for subsequent turn
+  var isBabyGrowth = /(?:寶寶|胎兒|發育|變化|成長|多大|長大|生長|長怎樣|身長|體重)/.test(resolvedQuery);
+  if(isBabyGrowth){
+    AI_CHAT_CONTEXT.lastIntent = 'BABY_GROWTH';
+  } else {
+    AI_CHAT_CONTEXT.lastIntent = null;
+  }
+
+  // 5. Run Retrieval, Safety & Grounded Backend Call
   var responseText = '';
   var disclaimerText = '';
   try {
@@ -4431,15 +4478,14 @@ async function handleUserChatMessage(userQuery){
       throw new Error('Retrieval or Safety module not loaded');
     }
 
-    var weekContext = (typeof APP !== 'undefined' && typeof APP.currentWeek === 'number') ? APP.currentWeek : null;
-    var retrievalResult = searchMedicalKB(q, weekContext);
-    var safetyResult = routeMedicalSafety(q, retrievalResult);
+    var retrievalResult = searchMedicalKB(resolvedQuery, weekContext);
+    var safetyResult = routeMedicalSafety(resolvedQuery, retrievalResult);
 
     if(retrievalResult && retrievalResult.retrievalStatus === 'KB_LOAD_ERROR'){
       responseText = '目前醫療知識庫暫時無法載入，請稍後再試。';
     } else {
       var answerContext = (typeof buildMedicalAnswerContext === 'function')
-        ? buildMedicalAnswerContext(q, retrievalResult, safetyResult)
+        ? buildMedicalAnswerContext(resolvedQuery, retrievalResult, safetyResult)
         : null;
 
       if(!answerContext || !answerContext.evidence || answerContext.evidence.hasEvidence === false || !answerContext.evidence.records || answerContext.evidence.records.length === 0){
@@ -4457,7 +4503,7 @@ async function handleUserChatMessage(userQuery){
 
         var backendPayload = {
           action: 'generateMedicalAnswer',
-          query: q,
+          query: resolvedQuery,
           answerContext: answerContext
         };
 
@@ -4501,7 +4547,7 @@ async function handleUserChatMessage(userQuery){
         // Developer Trace (Privacy compliant: NO email, NO profile, NO API key)
         try {
           var recIds = (answerContext && answerContext.evidence && answerContext.evidence.records || []).map(function(r){ return r.id; });
-          console.log('[AI Assistant]\nQuery: ' + q + '\nSafety Level: ' + ((answerContext && answerContext.safety && answerContext.safety.level) || 'ROUTINE') + '\nRecord IDs: ' + JSON.stringify(recIds) + '\nCoverage: ' + ((answerContext && answerContext.evidence && answerContext.evidence.coverage) || 'FULL') + '\nBackend Success: ' + backendSuccess);
+          console.log('[AI Assistant]\nQuery: ' + q + (resolvedQuery !== q ? ' (Resolved: ' + resolvedQuery + ')' : '') + '\nSafety Level: ' + ((answerContext && answerContext.safety && answerContext.safety.level) || 'ROUTINE') + '\nRecord IDs: ' + JSON.stringify(recIds) + '\nCoverage: ' + ((answerContext && answerContext.evidence && answerContext.evidence.coverage) || 'FULL') + '\nBackend Success: ' + backendSuccess);
         } catch(e){}
       }
     }

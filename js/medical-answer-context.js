@@ -206,11 +206,42 @@
         records: []
       };
     } else {
-      const topResults = retrievalResult.results.slice(0, maxRecords);
+      let candidateResults = retrievalResult.results;
+
+      // Week-specific Baby Growth Narrowing:
+      // When detectedWeek is known, exclude baby growth records from other weeks to prevent multi-week contamination.
+      if (detectedWeek !== null && Array.isArray(candidateResults) && candidateResults.length > 0) {
+        const isBabyGrowthQuery = /(?:寶寶|胎兒|發育|變化|成長|多大|長大|生長|長怎樣|身長|體重)/.test(rawQuery) ||
+          candidateResults.some(r => {
+            const rec = r.record || r;
+            return rec.category === 'baby_development' || (typeof r.id === 'string' && r.id.startsWith('MED-GROWTH-WEEK-'));
+          });
+
+        if (isBabyGrowthQuery) {
+          const targetWeekId = `MED-GROWTH-WEEK-${String(detectedWeek).padStart(2, '0')}`;
+          const filtered = candidateResults.filter(r => {
+            const rec = r.record || r;
+            const isGrowth = rec.category === 'baby_development' || (typeof r.id === 'string' && r.id.startsWith('MED-GROWTH-WEEK-'));
+            if (!isGrowth) return true;
+            // Target week growth record
+            if (r.id === targetWeekId) return true;
+            if (rec.content && rec.content.gestational_week === detectedWeek) return true;
+            // General developmental guides not tied to a different single week
+            if (rec.category === 'baby_development' && !r.id.startsWith('MED-GROWTH-WEEK-')) return true;
+            return false;
+          });
+
+          if (filtered.length > 0) {
+            candidateResults = filtered;
+          }
+        }
+      }
+
+      const topResults = candidateResults.slice(0, maxRecords);
       const sanitizedRecords = topResults.map(r => sanitizeRecord(r)).filter(Boolean);
 
       evidenceMeta = {
-        hasEvidence: true,
+        hasEvidence: sanitizedRecords.length > 0,
         coverage: coverageInfo.coverage,
         gapReason: coverageInfo.gapReason,
         recordCount: sanitizedRecords.length,
