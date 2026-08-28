@@ -76,6 +76,8 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 /* ============ Greeting (首頁) ============ */
 .greeting{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:26px; flex-wrap:wrap; }
 .greeting h1{ font-size:24px; line-height:1.4; }
+.greeting-title{ visibility:hidden; }
+.greeting-title.is-ready{ visibility:visible; }
 .greeting .sub{ margin-top:5px; font-size:13px; color:var(--color-text-muted); }
 .pregnancy-status-group{ display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
 .week-bloom{ display:flex; align-items:center; gap:11px; background:var(--color-surface); padding:9px 18px 9px 10px; border-radius:var(--radius-pill); box-shadow:var(--shadow-soft); }
@@ -3486,14 +3488,14 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
         </div>
         <div class="top-right">
           <div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div>
-          <div class="avatar">依</div>
+          <div class="avatar">🌸</div>
         </div>
       </div>
 
       <!-- 1. TOP GREETING -->
       <div class="greeting">
         <div class="greeting-left">
-          <h1 id="greetingTitle">早安，依婷媽咪 🌸 今天也是溫柔的一天</h1>
+          <h1 id="greetingTitle" class="greeting-title">嗨 🌸 今天也是溫柔的一天</h1>
           <p class="sub">妳與寶寶正一起走過這段旅程，我們都在身邊陪著妳。</p>
         </div>
         <div class="pregnancy-status-group">
@@ -3677,7 +3679,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ 我的孕期 ============ -->
     <section class="view" id="view-journey">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>我的孕期</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">依</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>我的孕期</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
       <div class="page-head"><h1>我的孕期</h1><p>這裡收著妳整趟旅程的樣子——不是表格，是妳與寶寶一起走過的路。</p></div>
 
       <div class="tabs" role="tablist" aria-label="我的孕期子分頁">
@@ -3693,7 +3695,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div class="jhm-top">
             <span class="eyebrow">YOUR JOURNEY</span>
             <div class="jhm-title-row">
-              <h2 class="jhm-title">寶寶陪妳走到第 <span id="actualWeekNum">24</span> 週了 ♡ <span id="actualDaysText" style="font-size:13px; font-weight:500; color:var(--color-text-muted);">(第 168 天)</span></h2>
+              <h2 class="jhm-title" id="journeyHeroTitle"><span id="journeyHeroBabyName">寶寶</span>陪妳走到第 <span id="actualWeekNum">24</span> 週了 ♡ <span id="actualDaysText" style="font-size:13px; font-weight:500; color:var(--color-text-muted);">(第 168 天)</span></h2>
               <div class="jhm-percent"><span id="actualPercent">60%</span></div>
             </div>
             <div class="jhm-sub">
@@ -4075,7 +4077,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ 寶寶成長 ============ -->
     <section class="view" id="view-baby">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>寶寶成長</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">依</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>寶寶成長</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
       <div class="growth-page-head"><h1>寶寶成長</h1><p>寶寶這一週又長大了一點 ♡</p></div>
 
       <div id="babyGrowthContainer">
@@ -4085,7 +4087,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ AI 孕期助理 ============ -->
     <section class="view" id="view-ai">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>AI 孕期助理</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">依</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>AI 孕期助理</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
       <div class="page-head"><h1>AI 孕期助理</h1><p>妳的私人孕期小幫手，隨時想問就問。</p></div>
 
       <div class="card chat-card" id="aiBasicPanel">
@@ -4094,7 +4096,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div><b>孕期 AI 小助手</b><span>回覆內容以孕期日常、飲食、運動、寶寶發展為主</span></div>
         </div>
         <div class="chat-body" id="chatBody">
-          <div class="msg ai" id="chatWelcomeMsg">嗨，依婷媽咪 🤍 今天有什麼想問我的？</div>
+          <div class="msg ai" id="chatWelcomeMsg">嗨 🤍 今天有什麼想問我的？</div>
         </div>
         <div class="chat-quick">
           <button data-msg="這週寶寶有什麼變化？">這週寶寶有什麼變化？</button>
@@ -4112,7 +4114,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ 媽咪交流社群 ============ -->
     <section class="view" id="view-community">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>媽咪交流社群</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar header-user-avatar">依</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>媽咪交流社群</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar header-user-avatar">🌸</div></div></div>
       <div class="community-container">
         <div class="page-head">
           <h1>媽咪交流社群</h1>
@@ -4169,7 +4171,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 <div class="ai-panel" id="aiPanel">
   <div class="ai-panel-head"><svg class="ic" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="14" fill="#F6DEE0"/><circle cx="15" cy="15" r="5" fill="#C95F75"/></svg><b>孕期 AI 小助手</b></div>
   <div class="ai-panel-body">
-    <div class="ai-msg" id="floatingAiWelcomeMsg">嗨，依婷媽咪 🤍 今天有什麼想問我的？</div>
+    <div class="ai-msg" id="floatingAiWelcomeMsg">嗨 🤍 今天有什麼想問我的？</div>
     <div class="ai-quick">
       <button data-goto-ai="1" data-msg="這週寶寶有什麼變化？">這週寶寶有什麼變化？</button>
       <button data-goto-ai="1" data-msg="下次產檢內容？">下次產檢內容？</button>
@@ -4194,8 +4196,8 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 <!-- ================= Account Dropdown ================= -->
 <div class="account-menu" id="accountMenu">
   <div class="who">
-    <div class="mini-avatar">依</div>
-    <div><b>依婷媽咪</b><span>0912-***-345</span></div>
+    <div class="mini-avatar">🌸</div>
+    <div><b id="accountMenuUserName">親愛的媽咪</b><span id="accountMenuUserSub">孕育之美</span></div>
   </div>
   <div class="item" id="menuSharePartnerBtn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.6-9.5-9.2C.7 8.2 2.6 5 6 5c2 0 3.6 1.2 4.5 2.6C11.4 6.2 13 5 15 5c3.4 0 5.3 3.2 3.5 6.8C15 16.4 12 21 12 21Z"/></svg>
@@ -4285,7 +4287,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
       <div class="field">
         <label>怎麼稱呼妳？</label>
-        <input type="text" id="onbNickname" placeholder="例如：依婷媽咪">
+        <input type="text" id="onbNickname" placeholder="例如：Jennifer、小萱">
       </div>
       <div class="field">
         <label>目前孕週（或預產期）</label>
@@ -4328,7 +4330,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div class="welcome-grid-2">
             <div class="field">
               <label for="welcomeMomName">我的稱呼 <span style="color:var(--color-primary); font-weight:700;">*</span></label>
-              <input type="text" id="welcomeMomName" placeholder="例如：Jennifer、依婷媽咪" maxlength="20" required>
+              <input type="text" id="welcomeMomName" placeholder="例如：Jennifer、小萱" maxlength="20" required>
             </div>
             <div class="field">
               <label for="welcomeEmail">Email <span style="color:var(--color-primary); font-weight:700;">*</span></label>
@@ -4471,7 +4473,7 @@ function getAIMomDisplayName(){
   }
 
   if(!raw){
-    return '媽咪';
+    return '';
   }
 
   if(raw.endsWith('媽咪')){
@@ -4481,7 +4483,10 @@ function getAIMomDisplayName(){
 }
 
 function updateAIGreetingUI(){
-  var greetingText = '嗨，' + getAIMomDisplayName() + ' 🤍 今天有什麼想問我的？';
+  var displayName = getAIMomDisplayName();
+  var greetingText = displayName
+    ? ('嗨，' + displayName + ' 🤍 今天有什麼想問我的？')
+    : '嗨 🤍 今天有什麼想問我的？';
 
   var mainWelcome = document.getElementById('chatWelcomeMsg') || (document.getElementById('chatBody') ? document.getElementById('chatBody').querySelector('.msg.ai:first-child') : null);
   if(mainWelcome && mainWelcome.id !== 'chatLoadingMsg' && !mainWelcome.classList.contains('chat-response')){
@@ -4957,11 +4962,44 @@ var AUTH_STATE = {
 
 var APP = {
   edd: new Date('2026-11-20'),
-  nickname: '依婷媽咪',
-  babyNickname: '小茉莉',
+  nickname: '',
+  babyNickname: '',
   currentWeek: 24,
   currentDay: 3
 };
+
+function getMomNickname(){
+  if(typeof USER_PROFILE !== 'undefined' && USER_PROFILE && USER_PROFILE.momNickname){
+    var n = String(USER_PROFILE.momNickname).trim();
+    if(n) return n;
+  }
+  if(typeof APP !== 'undefined' && APP && APP.nickname){
+    var an = String(APP.nickname).trim();
+    if(an) return an;
+  }
+  return '';
+}
+
+function getBabyNickname(){
+  if(typeof USER_PROFILE !== 'undefined' && USER_PROFILE && USER_PROFILE.babyNickname){
+    var n = String(USER_PROFILE.babyNickname).trim();
+    if(n) return n;
+  }
+  if(typeof APP !== 'undefined' && APP && APP.babyNickname){
+    var an = String(APP.babyNickname).trim();
+    if(an) return an;
+  }
+  return '';
+}
+
+function formatHomeGreeting(nickname){
+  var name = (nickname != null ? String(nickname) : getMomNickname()).trim();
+  if(!name){
+    return '嗨 🌸 今天也是溫柔的一天';
+  }
+  var displayName = name.endsWith('媽咪') ? name : (name + '媽咪');
+  return '嗨，' + displayName + ' 🌸 今天也是溫柔的一天';
+}
 
 var PARTNER_GUEST = {
   active: false,
@@ -5100,7 +5138,7 @@ function openSettingsModal(type){
     content = 
       '<div class="field">' +
       '  <label for="settingsBabyNameInput">寶寶暱稱</label>' +
-      '  <input type="text" id="settingsBabyNameInput" value="' + (USER_PROFILE.babyNickname || APP.babyNickname || '小茉莉') + '" placeholder="例如：小茉莉">' +
+      '  <input type="text" id="settingsBabyNameInput" value="' + (getBabyNickname()) + '" placeholder="例如：小茉莉">' +
       '</div>' +
       '<div class="field">' +
       '  <label for="settingsBabyGenderInput">寶寶性別</label>' +
@@ -5125,11 +5163,11 @@ function openSettingsModal(type){
     content = 
       '<div class="field">' +
       '  <label for="settingsNicknameInput">我的稱呼</label>' +
-      '  <input type="text" id="settingsNicknameInput" value="' + (USER_PROFILE.momNickname || APP.nickname || 'Jennifer') + '">' +
+      '  <input type="text" id="settingsNicknameInput" value="' + (getMomNickname()) + '" placeholder="例如：Jennifer">' +
       '</div>' +
       '<div class="field">' +
       '  <label for="settingsEmailInput">Email</label>' +
-      '  <input type="email" id="settingsEmailInput" value="' + (USER_PROFILE.email || 'name@example.com') + '">' +
+      '  <input type="email" id="settingsEmailInput" value="' + (USER_PROFILE.email || '') + '" placeholder="例如：name@example.com">' +
       '</div>';
   }
 
@@ -5170,10 +5208,8 @@ function openSettingsModal(type){
       var babyNameInput = document.getElementById('settingsBabyNameInput');
       if(babyNameInput){
         var bVal = babyNameInput.value.trim();
-        if(bVal){
-          USER_PROFILE.babyNickname = bVal;
-          APP.babyNickname = bVal;
-        }
+        USER_PROFILE.babyNickname = bVal;
+        APP.babyNickname = bVal;
       }
       var babyGenInput = document.getElementById('settingsBabyGenderInput');
       if(babyGenInput && babyGenInput.value){
@@ -5215,7 +5251,7 @@ function openPartnerShareModal(){
 
   var babyNameEl = document.getElementById('shareModalBabyName');
   var weekTextEl = document.getElementById('shareModalWeekText');
-  var babyName = USER_PROFILE.babyNickname || APP.babyNickname || '小茉莉';
+  var babyName = getBabyNickname() || '寶寶';
   if(babyNameEl) babyNameEl.textContent = babyName;
 
   var weekInfo = (typeof calcWeekInfo === 'function' && APP.edd) ? calcWeekInfo(APP.edd) : { weeks: APP.currentWeek || 24, days: APP.currentDay || 0 };
@@ -5237,8 +5273,8 @@ function closePartnerShareModal(){
 function generatePartnerShareUrl(){
   var payload = {
     v: 1,
-    momNickname: USER_PROFILE.momNickname || APP.nickname || '媽咪',
-    babyNickname: USER_PROFILE.babyNickname || APP.babyNickname || '小茉莉',
+    momNickname: getMomNickname() || '媽咪',
+    babyNickname: getBabyNickname() || '寶寶',
     babyGender: USER_PROFILE.babyGender || '女寶寶 👧',
     dueDate: USER_PROFILE.dueDate || (APP.edd ? APP.edd.toISOString().split('T')[0] : '2026-11-20')
   };
@@ -5247,11 +5283,12 @@ function generatePartnerShareUrl(){
 }
 
 function updateAuthStateUI(){
-  var avatars = document.querySelectorAll('.avatar');
+  var userNickname = getMomNickname();
+  var avatars = document.querySelectorAll('.avatar, .mini-avatar');
   avatars.forEach(function(av){
     if(AUTH_STATE.isLoggedIn){
       av.classList.remove('login-btn');
-      av.textContent = (APP.nickname || '媽咪').charAt(0);
+      av.textContent = userNickname ? userNickname.charAt(0) : '🌸';
       av.title = '帳號設定';
     } else {
       av.classList.add('login-btn');
@@ -5260,9 +5297,9 @@ function updateAuthStateUI(){
     }
   });
 
-  var whoName = document.querySelector('#accountMenu .who b');
+  var whoName = document.querySelector('#accountMenu .who b, #accountMenuUserName');
   if(whoName){
-    whoName.textContent = APP.nickname || '媽咪';
+    whoName.textContent = userNickname || '親愛的媽咪';
   }
 
   if(typeof updateAIGreetingUI === 'function'){
@@ -5298,8 +5335,8 @@ function initAccountAndLoginUI(){
     var savedUser = loadUserProfile();
     if(savedUser){
       USER_PROFILE = savedUser;
-      APP.nickname = savedUser.momNickname || 'Jennifer';
-      APP.babyNickname = savedUser.babyNickname || '小茉莉';
+      APP.nickname = (savedUser.momNickname || '').trim();
+      APP.babyNickname = (savedUser.babyNickname || '').trim();
       APP.edd = new Date(savedUser.dueDate || '2026-11-20');
       AUTH_STATE.isLoggedIn = true;
       updateAuthStateUI();
@@ -5505,11 +5542,11 @@ function updateWeekUI(){
   var info = calcWeekInfo(APP.edd);
   APP.currentWeek = info.weeks;
   APP.currentDay = info.days;
-  var nickname = APP.nickname || '媽咪';
 
   var greetingTitleEl = document.getElementById('greetingTitle');
   if(greetingTitleEl){
-    greetingTitleEl.textContent = '早安，' + nickname + ' 🌸 今天也是溫柔的一天';
+    greetingTitleEl.textContent = formatHomeGreeting();
+    greetingTitleEl.classList.add('is-ready');
   }
 
   var weekEl = document.getElementById('weekText');
@@ -5534,6 +5571,9 @@ function updateWeekUI(){
 
   if(typeof renderHomeDashboard === 'function'){
     renderHomeDashboard();
+  }
+  if(typeof initActualHeaderUI === 'function'){
+    initActualHeaderUI();
   }
   if(typeof renderPartnerViewHome === 'function'){
     renderPartnerViewHome();
@@ -5643,7 +5683,7 @@ function getHomeDashboardData(){
   var weekInfo = (typeof calcWeekInfo === 'function' && APP && APP.edd) ? calcWeekInfo(APP.edd) : { weeks: 24, days: 3, daysToEdd: 93 };
   var currentWeek = weekInfo.weeks;
   var currentDay = weekInfo.days;
-  var nickname = (APP && APP.nickname) ? APP.nickname : '媽咪';
+  var nickname = getMomNickname();
 
   // 1. Baby Growth Data
   var babyData = (typeof getBabyGrowthData === 'function') ? getBabyGrowthData(currentWeek) : null;
@@ -5728,12 +5768,20 @@ function renderHomeDashboard(){
   var weekTextEl = document.getElementById('weekText');
   var trimesterTextEl = document.getElementById('trimesterText');
 
-  if(greetingTitleEl) greetingTitleEl.textContent = '早安，' + data.greeting.nickname + ' 🌸 今天也是溫柔的一天';
+  if(greetingTitleEl){
+    greetingTitleEl.textContent = formatHomeGreeting(data.greeting.nickname);
+    greetingTitleEl.classList.add('is-ready');
+  }
   if(eddDaysEl) eddDaysEl.textContent = data.greeting.daysToEdd;
   if(weekTextEl) weekTextEl.textContent = '第 ' + data.greeting.week + ' 週 ' + data.greeting.day + ' 天';
   if(trimesterTextEl) trimesterTextEl.textContent = data.greeting.trimester;
 
   // 2. Baby of the Week
+  var babyTitleEl = document.getElementById('homeBabyTitle');
+  if(babyTitleEl){
+    var bName = getBabyNickname() || '寶寶';
+    babyTitleEl.textContent = bName + '這週的模樣';
+  }
   var babyImgEl = document.getElementById('homeBabyImg');
   var babySizeEl = document.getElementById('homeBabySizeChip');
   var babyLengthEl = document.getElementById('homeBabyLengthBadge');
@@ -10432,6 +10480,8 @@ function initActualHeaderUI(){
   if(daysTextEl) daysTextEl.textContent = '(第 ' + daysElapsed + ' 天)';
   if(countdownDaysEl) countdownDaysEl.textContent = '(倒數 ' + countdownDays + ' 天)';
   if(actualNoticeEl) actualNoticeEl.textContent = actualW;
+  var heroBabyNameEl = document.getElementById('journeyHeroBabyName');
+  if(heroBabyNameEl) heroBabyNameEl.textContent = getBabyNickname() || '寶寶';
 
   var actualPct = Math.max(0, Math.min(100, ((actualW - 1) / 39) * 100));
   var lineFillEl = document.getElementById('actualLineFill');
@@ -11258,7 +11308,7 @@ function renderBabyGrowthView(){
     // Week 4-40
     var analogyText = data.size_analogy_zh ? ('約像一顆' + (['胡蘿蔔','地瓜','玉米','櫛瓜','黃瓜','韭蔥','大黃莖'].indexOf(data.size_analogy_zh) !== -1 ? '／一根 ' : ' ') + data.size_analogy_zh) : '';
     html += '<div class="growth-hero-title-wrap">' +
-      '  <div class="growth-hero-subtitle">這週的寶寶</div>' +
+      '  <div class="growth-hero-subtitle">這週的' + (getBabyNickname() || '寶寶') + '</div>' +
       '  <h2 class="growth-analogy-title">' + analogyText + '</h2>' +
       '</div>';
 
