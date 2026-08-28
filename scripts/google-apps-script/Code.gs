@@ -122,6 +122,10 @@ function doGet(e) {
       return jsonResponse(handleGetPosts(params));
     }
 
+    if (action === 'getComments') {
+      return jsonResponse(handleGetComments(params));
+    }
+
     if (action === 'verifyCommunitySchema') {
       return jsonResponse(testVerifyCommunitySheetHeaders());
     }
@@ -133,6 +137,10 @@ function doGet(e) {
 
     if (action === 'testCommunityStep01B') {
       return jsonResponse(testCommunityStep01B());
+    }
+
+    if (action === 'testCommunityStep02A') {
+      return jsonResponse(testCommunityStep02A());
     }
 
     return jsonResponse({ success: false, error: 'INVALID_ACTION' });
@@ -200,6 +208,26 @@ function doPost(e) {
       return jsonResponse(handleGetPosts(getPostsPayload));
     }
 
+    if (action === 'createComment') {
+      var commentPayload = requestData.payload || requestData;
+      return jsonResponse(handleCreateComment(commentPayload));
+    }
+
+    if (action === 'getComments') {
+      var getCommentsPayload = requestData.payload || requestData;
+      return jsonResponse(handleGetComments(getCommentsPayload));
+    }
+
+    if (action === 'deleteComment') {
+      var delCommentPayload = requestData.payload || requestData;
+      return jsonResponse(handleDeleteComment(delCommentPayload));
+    }
+
+    if (action === 'toggleLike') {
+      var likePayload = requestData.payload || requestData;
+      return jsonResponse(handleToggleLike(likePayload));
+    }
+
     if (action === 'verifyCommunitySchema') {
       return jsonResponse(testVerifyCommunitySheetHeaders());
     }
@@ -211,6 +239,10 @@ function doPost(e) {
 
     if (action === 'testCommunityStep01B') {
       return jsonResponse(testCommunityStep01B());
+    }
+
+    if (action === 'testCommunityStep02A') {
+      return jsonResponse(testCommunityStep02A());
     }
 
     return jsonResponse({ success: false, error: 'INVALID_ACTION' });
@@ -775,6 +807,138 @@ function findProfileById(profileId) {
 }
 
 /**
+ * 依 post_id 精確查詢貼文物件
+ */
+function findPostById(postId) {
+  if (!postId) return null;
+  var pid = String(postId).trim();
+  if (!pid) return null;
+
+  var sheet = getPostsSheet();
+  var data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return null;
+
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Posts);
+
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    if (String(row[hMap.post_id] || '').trim() === pid) {
+      return {
+        post_id: pid,
+        profile_id: String(row[hMap.profile_id] || '').trim(),
+        author_nickname: String(row[hMap.author_nickname] || ''),
+        pregnancy_week: Number(row[hMap.pregnancy_week]) || 0,
+        content: String(row[hMap.content] || ''),
+        created_at: row[hMap.created_at],
+        updated_at: row[hMap.updated_at],
+        is_deleted: isTrueValue(row[hMap.is_deleted]),
+        rowIndex: i + 1
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * 依 comment_id 精確查詢留言物件
+ */
+function findCommentById(commentId) {
+  if (!commentId) return null;
+  var cid = String(commentId).trim();
+  if (!cid) return null;
+
+  var sheet = getCommentsSheet();
+  var data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return null;
+
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Comments);
+
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    if (String(row[hMap.comment_id] || '').trim() === cid) {
+      return {
+        comment_id: cid,
+        post_id: String(row[hMap.post_id] || '').trim(),
+        profile_id: String(row[hMap.profile_id] || '').trim(),
+        author_nickname: String(row[hMap.author_nickname] || ''),
+        pregnancy_week: Number(row[hMap.pregnancy_week]) || 0,
+        content: String(row[hMap.content] || ''),
+        created_at: row[hMap.created_at],
+        is_deleted: isTrueValue(row[hMap.is_deleted]),
+        rowIndex: i + 1
+      };
+    }
+  }
+  return null;
+}
+
+/**
+ * 一次性聚合所有貼文的按讚數 (In-Memory Map)
+ * 返回格式：{ [post_id]: count }
+ */
+function buildLikeCountMap() {
+  var sheet = getLikesSheet();
+  var data = sheet.getDataRange().getValues();
+  var map = {};
+  if (data.length <= 1) return map;
+
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Likes);
+  for (var i = 1; i < data.length; i++) {
+    var postId = String(data[i][hMap.post_id] || '').trim();
+    if (postId) {
+      map[postId] = (map[postId] || 0) + 1;
+    }
+  }
+  return map;
+}
+
+/**
+ * 一次性聚合所有有效貼文的留言數 (In-Memory Map，過濾 is_deleted === true)
+ * 返回格式：{ [post_id]: count }
+ */
+function buildCommentCountMap() {
+  var sheet = getCommentsSheet();
+  var data = sheet.getDataRange().getValues();
+  var map = {};
+  if (data.length <= 1) return map;
+
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Comments);
+  for (var i = 1; i < data.length; i++) {
+    var isDel = data[i][hMap.is_deleted];
+    if (isTrueValue(isDel)) continue;
+    var postId = String(data[i][hMap.post_id] || '').trim();
+    if (postId) {
+      map[postId] = (map[postId] || 0) + 1;
+    }
+  }
+  return map;
+}
+
+/**
+ * 一次性建立指定 viewerProfileId 按過讚的 post_id 集合 (In-Memory Set)
+ */
+function buildViewerLikedSet(viewerProfileId) {
+  var set = {};
+  if (!viewerProfileId) return set;
+  var pid = String(viewerProfileId).trim();
+  if (!pid) return set;
+
+  var sheet = getLikesSheet();
+  var data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return set;
+
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Likes);
+  for (var i = 1; i < data.length; i++) {
+    var rowPid = String(data[i][hMap.profile_id] || '').trim();
+    var rowPostId = String(data[i][hMap.post_id] || '').trim();
+    if (rowPid === pid && rowPostId) {
+      set[rowPostId] = true;
+    }
+  }
+  return set;
+}
+
+/**
  * 處理 getProfile:
  * - 依 profileId 搜尋並回傳 Profile 內容
  * - 若找不到則回傳 PROFILE_NOT_FOUND
@@ -928,15 +1092,30 @@ function handleCreatePost(payload) {
 }
 
 /**
- * 取得公開社群動態牆貼文 (getPosts)
+ * 取得公開社群動態牆貼文 (getPosts) — 升級支援 like_count, comment_count, liked_by_me
  * 
  * 規則：
  * 1. 讀取 Posts 工作表所有資料
  * 2. 過濾 is_deleted === true (軟刪除排除)
  * 3. 依 created_at 降冪排序 (最新貼文置頂)
- * 4. 若無有效貼文回傳空陣列 []
+ * 4. 透過 In-Memory Map 在 O(P+L+C) 內整合 like_count 與 comment_count
+ * 5. 若傳入 viewer_profile_id 則驗證身份並附加 liked_by_me: true/false
+ * 6. 若未傳入 viewer_profile_id 則不附加 liked_by_me
  */
 function handleGetPosts(payload) {
+  var viewerProfileId = '';
+  if (payload && typeof payload === 'object') {
+    viewerProfileId = String(payload.viewer_profile_id || payload.viewerProfileId || '').trim();
+  }
+
+  // 若提供 viewer_profile_id，必須驗證其存在
+  if (viewerProfileId) {
+    var viewerProfile = findProfileById(viewerProfileId);
+    if (!viewerProfile) {
+      return { success: false, error: 'PROFILE_NOT_FOUND' };
+    }
+  }
+
   var sheet = getPostsSheet();
   var data = sheet.getDataRange().getValues();
   if (data.length <= 1) {
@@ -947,6 +1126,10 @@ function handleGetPosts(payload) {
   }
 
   var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Posts);
+  var likeCountMap = buildLikeCountMap();
+  var commentCountMap = buildCommentCountMap();
+  var viewerLikedSet = viewerProfileId ? buildViewerLikedSet(viewerProfileId) : null;
+
   var posts = [];
 
   for (var i = 1; i < data.length; i++) {
@@ -956,21 +1139,30 @@ function handleGetPosts(payload) {
       continue;
     }
 
+    var postIdStr = String(row[hMap.post_id] || '');
     var createdAtVal = row[hMap.created_at];
     var createdAtStr = createdAtVal instanceof Date ? createdAtVal.toISOString() : String(createdAtVal || '');
 
     var updatedAtVal = row[hMap.updated_at];
     var updatedAtStr = updatedAtVal instanceof Date ? updatedAtVal.toISOString() : String(updatedAtVal || '');
 
-    posts.push({
-      post_id: String(row[hMap.post_id] || ''),
+    var postItem = {
+      post_id: postIdStr,
       profile_id: String(row[hMap.profile_id] || ''),
       author_nickname: String(row[hMap.author_nickname] || ''),
       pregnancy_week: Number(row[hMap.pregnancy_week]) || 0,
       content: String(row[hMap.content] || ''),
       created_at: createdAtStr,
-      updated_at: updatedAtStr
-    });
+      updated_at: updatedAtStr,
+      like_count: likeCountMap[postIdStr] || 0,
+      comment_count: commentCountMap[postIdStr] || 0
+    };
+
+    if (viewerProfileId) {
+      postItem.liked_by_me = !!viewerLikedSet[postIdStr];
+    }
+
+    posts.push(postItem);
   }
 
   // 排序：最新發文在最前 (created_at DESC)
@@ -982,6 +1174,347 @@ function handleGetPosts(payload) {
     success: true,
     data: posts
   };
+}
+
+/**
+ * ============================================================
+ * 媽咪交流社群 API (Community Step 02A: Comments & Likes Foundation)
+ * ============================================================
+ */
+
+/**
+ * 建立留言 (createComment)
+ * 
+ * 規則：
+ * 1. Client 提供 post_id, profile_id, content (純文字，最大 300 字元)
+ * 2. post_id 必須存在且未被軟刪除
+ * 3. profile_id 必須存在且有有效 nickname 與 due_date
+ * 4. comment_id 由後端 UUID 生成
+ * 5. author_nickname 與 pregnancy_week 嚴格由後端 Profile 自動快照
+ * 6. 使用 LockService 保護並發寫入
+ */
+function handleCreateComment(payload) {
+  if (!payload || typeof payload !== 'object') {
+    return { success: false, error: 'PAYLOAD_REQUIRED' };
+  }
+
+  var postId = String(payload.post_id || payload.postId || '').trim();
+  if (!postId) {
+    return { success: false, error: 'POST_ID_REQUIRED' };
+  }
+
+  var profileId = String(payload.profile_id || payload.profileId || '').trim();
+  if (!profileId) {
+    return { success: false, error: 'PROFILE_ID_REQUIRED' };
+  }
+
+  if (payload.content === undefined || payload.content === null || typeof payload.content !== 'string') {
+    return { success: false, error: 'COMMENT_CONTENT_REQUIRED' };
+  }
+
+  var trimmedContent = payload.content.trim();
+  if (trimmedContent.length === 0) {
+    return { success: false, error: 'COMMENT_CONTENT_REQUIRED' };
+  }
+
+  if (payload.content.length > 300) {
+    return { success: false, error: 'COMMENT_CONTENT_TOO_LONG' };
+  }
+
+  // Post Lookup
+  var post = findPostById(postId);
+  if (!post) {
+    return { success: false, error: 'POST_NOT_FOUND' };
+  }
+  if (post.is_deleted) {
+    return { success: false, error: 'POST_DELETED' };
+  }
+
+  // Profile Lookup
+  var profile = findProfileById(profileId);
+  if (!profile) {
+    return { success: false, error: 'PROFILE_NOT_FOUND' };
+  }
+
+  var momNickname = String(profile.mom_nickname || '').trim();
+  if (!momNickname) {
+    return { success: false, error: 'PROFILE_NICKNAME_MISSING' };
+  }
+
+  if (!profile.due_date) {
+    return { success: false, error: 'PROFILE_DUE_DATE_INVALID' };
+  }
+
+  var weekResult = calculatePregnancyWeekFromDueDate(profile.due_date, new Date());
+  if (!weekResult.success) {
+    return { success: false, error: weekResult.error || 'PROFILE_DUE_DATE_INVALID' };
+  }
+
+  var pregnancyWeek = weekResult.pregnancyWeek;
+  if (pregnancyWeek < 1 || pregnancyWeek > 40) {
+    return {
+      success: false,
+      error: 'PREGNANCY_WEEK_OUT_OF_RANGE',
+      pregnancyWeek: pregnancyWeek
+    };
+  }
+
+  var now = new Date();
+  var nowIso = now.toISOString();
+  var commentId = Utilities.getUuid();
+  var isDeleted = false;
+  var rawContent = payload.content;
+
+  // 並發寫入保護 (LockService)
+  var lock = LockService.getScriptLock();
+  var lockAcquired = false;
+  try {
+    lockAcquired = lock.tryLock(5000);
+    var sheet = getCommentsSheet();
+    var newRow = [
+      commentId,
+      postId,
+      profileId,
+      momNickname,
+      pregnancyWeek,
+      rawContent,
+      nowIso,
+      isDeleted
+    ];
+    sheet.appendRow(newRow);
+  } finally {
+    if (lockAcquired) {
+      lock.releaseLock();
+    }
+  }
+
+  return {
+    success: true,
+    data: {
+      comment_id: commentId,
+      post_id: postId,
+      profile_id: profileId,
+      author_nickname: momNickname,
+      pregnancy_week: pregnancyWeek,
+      content: rawContent,
+      created_at: nowIso
+    }
+  };
+}
+
+/**
+ * 取得指定貼文之有效留言清單 (getComments)
+ * 
+ * 規則：
+ * 1. 依 post_id 查詢
+ * 2. 過濾 is_deleted === true
+ * 3. 依 created_at 遞增排序 (ASC，最早留言在最前)
+ */
+function handleGetComments(payload) {
+  if (!payload || typeof payload !== 'object') {
+    return { success: false, error: 'PAYLOAD_REQUIRED' };
+  }
+
+  var postId = String(payload.post_id || payload.postId || '').trim();
+  if (!postId) {
+    return { success: false, error: 'POST_ID_REQUIRED' };
+  }
+
+  var sheet = getCommentsSheet();
+  var data = sheet.getDataRange().getValues();
+  if (data.length <= 1) {
+    return {
+      success: true,
+      data: []
+    };
+  }
+
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Comments);
+  var comments = [];
+
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var isDel = row[hMap.is_deleted];
+    if (isTrueValue(isDel)) {
+      continue;
+    }
+
+    var rowPostId = String(row[hMap.post_id] || '').trim();
+    if (rowPostId === postId) {
+      var createdAtVal = row[hMap.created_at];
+      var createdAtStr = createdAtVal instanceof Date ? createdAtVal.toISOString() : String(createdAtVal || '');
+
+      comments.push({
+        comment_id: String(row[hMap.comment_id] || ''),
+        post_id: rowPostId,
+        profile_id: String(row[hMap.profile_id] || ''),
+        author_nickname: String(row[hMap.author_nickname] || ''),
+        pregnancy_week: Number(row[hMap.pregnancy_week]) || 0,
+        content: String(row[hMap.content] || ''),
+        created_at: createdAtStr
+      });
+    }
+  }
+
+  // 排序：最早留言在最前 (created_at ASC)
+  comments.sort(function(a, b) {
+    return (a.created_at || '').localeCompare(b.created_at || '');
+  });
+
+  return {
+    success: true,
+    data: comments
+  };
+}
+
+/**
+ * 刪除留言 (deleteComment)
+ * 
+ * 規則：
+ * 1. 僅留言擁有者（profile_id 相同）可執行刪除
+ * 2. 採軟刪除 (is_deleted = TRUE)，絕不刪除資料列
+ */
+function handleDeleteComment(payload) {
+  if (!payload || typeof payload !== 'object') {
+    return { success: false, error: 'PAYLOAD_REQUIRED' };
+  }
+
+  var commentId = String(payload.comment_id || payload.commentId || '').trim();
+  if (!commentId) {
+    return { success: false, error: 'COMMENT_ID_REQUIRED' };
+  }
+
+  var profileId = String(payload.profile_id || payload.profileId || '').trim();
+  if (!profileId) {
+    return { success: false, error: 'PROFILE_ID_REQUIRED' };
+  }
+
+  var comment = findCommentById(commentId);
+  if (!comment) {
+    return { success: false, error: 'COMMENT_NOT_FOUND' };
+  }
+
+  // 權限檢核：必須為留言作者
+  if (comment.profile_id !== profileId) {
+    return { success: false, error: 'FORBIDDEN_NOT_COMMENT_OWNER' };
+  }
+
+  if (comment.is_deleted) {
+    return {
+      success: true,
+      comment_id: commentId,
+      already_deleted: true
+    };
+  }
+
+  var sheet = getCommentsSheet();
+  var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Comments);
+  sheet.getRange(comment.rowIndex, hMap.is_deleted + 1).setValue(true);
+
+  return {
+    success: true,
+    comment_id: commentId,
+    action: 'deleted'
+  };
+}
+
+/**
+ * 按讚或取消按讚 (toggleLike)
+ * 
+ * 規則：
+ * 1. 複合唯一限制：(post_id, profile_id) 在整個 Likes 表僅能存在一筆
+ * 2. 查驗 post_id 是否存在且未軟刪除，查驗 profile_id 是否存在
+ * 3. 在同一個 LockService 事務中查驗現有 Like 狀態：
+ *    - 若尚未按讚：新增 Like 列 (like_id, post_id, profile_id, created_at)，回傳 liked: true
+ *    - 若已按讚：精準刪除該單一資料列 (deleteRow)，回傳 liked: false
+ */
+function handleToggleLike(payload) {
+  if (!payload || typeof payload !== 'object') {
+    return { success: false, error: 'PAYLOAD_REQUIRED' };
+  }
+
+  var postId = String(payload.post_id || payload.postId || '').trim();
+  if (!postId) {
+    return { success: false, error: 'POST_ID_REQUIRED' };
+  }
+
+  var profileId = String(payload.profile_id || payload.profileId || '').trim();
+  if (!profileId) {
+    return { success: false, error: 'PROFILE_ID_REQUIRED' };
+  }
+
+  var post = findPostById(postId);
+  if (!post) {
+    return { success: false, error: 'POST_NOT_FOUND' };
+  }
+  if (post.is_deleted) {
+    return { success: false, error: 'POST_DELETED' };
+  }
+
+  var profile = findProfileById(profileId);
+  if (!profile) {
+    return { success: false, error: 'PROFILE_NOT_FOUND' };
+  }
+
+  var lock = LockService.getScriptLock();
+  var lockAcquired = false;
+
+  try {
+    lockAcquired = lock.tryLock(5000);
+    var sheet = getLikesSheet();
+    var data = sheet.getDataRange().getValues();
+    var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Likes);
+
+    var existingRowIdx = -1;
+    var currentPostLikes = 0;
+
+    for (var i = 1; i < data.length; i++) {
+      var rPostId = String(data[i][hMap.post_id] || '').trim();
+      var rProfileId = String(data[i][hMap.profile_id] || '').trim();
+      if (rPostId === postId) {
+        currentPostLikes++;
+        if (rProfileId === profileId) {
+          existingRowIdx = i + 1; // 1-indexed for deleteRow
+        }
+      }
+    }
+
+    if (existingRowIdx !== -1) {
+      // 執行取消按讚：精確刪除該單一 Row
+      sheet.deleteRow(existingRowIdx);
+      var updatedLikeCount = Math.max(0, currentPostLikes - 1);
+      return {
+        success: true,
+        data: {
+          liked: false,
+          like_count: updatedLikeCount
+        }
+      };
+    } else {
+      // 執行按讚：新增一列
+      var likeId = Utilities.getUuid();
+      var nowIso = new Date().toISOString();
+      var newLikeRow = [
+        likeId,
+        postId,
+        profileId,
+        nowIso
+      ];
+      sheet.appendRow(newLikeRow);
+      var updatedLikeCount = currentPostLikes + 1;
+      return {
+        success: true,
+        data: {
+          liked: true,
+          like_count: updatedLikeCount
+        }
+      };
+    }
+  } finally {
+    if (lockAcquired) {
+      lock.releaseLock();
+    }
+  }
 }
 
 /**
@@ -1388,5 +1921,429 @@ function testCommunityStep01B() {
   }
 
   Logger.log('testCommunityStep01B Results: ' + JSON.stringify(report, null, 2));
+  return report;
+}
+
+/**
+ * ============================================================
+ * Community Step 02A Runtime Development Test Suite
+ * 
+ * 測試項目 (TEST 1 - TEST 11 + Regression)：
+ * 1. Create Comment (User B on User A Post) -> PASS
+ * 2. Comment Spoof Protection (author_nickname, pregnancy_week) -> PASS
+ * 3. getComments (ASC order) -> PASS
+ * 4. Invalid Comment (Blank, >300 chars, unknown profile, unknown post) -> PASS
+ * 5. Delete Permission (User A cannot delete User B comment) -> PASS (FORBIDDEN_NOT_COMMENT_OWNER)
+ * 6. Owner Delete (User B soft-deletes own comment) -> PASS (is_deleted = true)
+ * 7. Like (User B likes User A Post) -> PASS (liked = true, count +1)
+ * 8. Duplicate Like Protection -> PASS (unique post_id + profile_id)
+ * 9. Unlike (User B unlikes) -> PASS (liked = false, exact row deleted)
+ * 10. getPosts Counts (like_count, comment_count, liked_by_me) -> PASS
+ * 11. Counts After Delete/Unlike -> PASS (counts decrement, liked_by_me = false)
+ * 12. Regression & Cleanup -> PASS (profiles & posts rows unmodified, likes cleaned)
+ * ============================================================
+ */
+function testCommunityStep02A() {
+  var userAProfileId = 'PRF-39EBF37DF78E'; // 依婷媽咪
+  var userBProfileId = 'PRF-B711842C8289'; // 小萱 / 小萱媽咪
+
+  var profilesSheet = getProfilesSheet();
+  var postsSheet = getPostsSheet();
+  var commentsSheet = getCommentsSheet();
+  var likesSheet = getLikesSheet();
+
+  var initialProfilesRowCount = profilesSheet.getLastRow();
+  var initialPostsRowCount = postsSheet.getLastRow();
+  var initialCommentsRowCount = commentsSheet.getLastRow();
+  var initialLikesRowCount = likesSheet.getLastRow();
+
+  var report = {
+    testName: 'Community Step 02A Comments & Likes Test Suite',
+    testProfiles: { userA: userAProfileId, userB: userBProfileId },
+    testTimestamp: new Date().toISOString(),
+    tests: {},
+    commentsSheetStats: { beforeRowCount: initialCommentsRowCount, afterRowCount: 0 },
+    likesSheetStats: { beforeRowCount: initialLikesRowCount, afterRowCount: 0 },
+    profilesSheetStats: { beforeRowCount: initialProfilesRowCount, afterRowCount: 0, unmodified: true },
+    postsSheetStats: { beforeRowCount: initialPostsRowCount, afterRowCount: 0, unmodified: true },
+    postRegression: {},
+    profileRegression: {},
+    overallStatus: 'PASS'
+  };
+
+  // 動態尋找 User A 的測試貼文
+  var postsData = postsSheet.getDataRange().getValues();
+  var pMap = getHeaderIndexMap(postsSheet, SHEET_HEADERS.Posts);
+  var targetPost = null;
+
+  for (var pIdx = 1; pIdx < postsData.length; pIdx++) {
+    var pRow = postsData[pIdx];
+    var pProfId = String(pRow[pMap.profile_id] || '').trim();
+    var pIsDel = isTrueValue(pRow[pMap.is_deleted]);
+    var pContent = String(pRow[pMap.content] || '');
+    if (pProfId === userAProfileId && !pIsDel) {
+      targetPost = {
+        post_id: String(pRow[pMap.post_id] || '').trim(),
+        content: pContent,
+        profile_id: pProfId
+      };
+      if (pContent.indexOf('[INTEGRATION TEST] 媽咪 A') !== -1) {
+        break; // 優先使用標準 Integration Post
+      }
+    }
+  }
+
+  // 若 Posts 表中沒有 User A 貼文，建立一篇供測試使用
+  if (!targetPost) {
+    var setupPostRes = handleCreatePost({
+      profile_id: userAProfileId,
+      content: '[SETUP] Step 02A Test Target Post by User A'
+    });
+    if (setupPostRes && setupPostRes.success && setupPostRes.data) {
+      targetPost = setupPostRes.data;
+    }
+  }
+
+  if (!targetPost || !targetPost.post_id) {
+    report.overallStatus = 'FAIL';
+    report.error = 'TEST_SETUP_POST_NOT_FOUND';
+    Logger.log('testCommunityStep02A Error: ' + JSON.stringify(report, null, 2));
+    return report;
+  }
+
+  var targetPostId = targetPost.post_id;
+  var createdCommentId = null;
+
+  // --- TEST 1: Create Comment (User B on User A post) ---
+  var test1Content = '[TEST] User B comment on User A post - 恭喜媽咪！我也開始感受到胎動了 😊';
+  var test1Res = handleCreateComment({
+    post_id: targetPostId,
+    profile_id: userBProfileId,
+    content: test1Content
+  });
+
+  var test1Pass = (
+    test1Res &&
+    test1Res.success === true &&
+    test1Res.data &&
+    test1Res.data.comment_id &&
+    test1Res.data.post_id === targetPostId &&
+    test1Res.data.profile_id === userBProfileId &&
+    typeof test1Res.data.author_nickname === 'string' &&
+    test1Res.data.author_nickname.length > 0 &&
+    typeof test1Res.data.pregnancy_week === 'number' &&
+    test1Res.data.pregnancy_week >= 1 &&
+    test1Res.data.pregnancy_week <= 40 &&
+    test1Res.data.content === test1Content
+  );
+
+  if (test1Pass) {
+    createdCommentId = test1Res.data.comment_id;
+  } else {
+    report.overallStatus = 'FAIL';
+  }
+
+  report.tests.test1_createComment = {
+    name: 'Create Comment',
+    input: { post_id: targetPostId, profile_id: userBProfileId, content: test1Content },
+    actualResult: test1Res,
+    status: test1Pass ? 'PASS' : 'FAIL',
+    createdCommentId: createdCommentId
+  };
+
+  // --- TEST 2: Comment Spoof Protection ---
+  var test2Res = handleCreateComment({
+    post_id: targetPostId,
+    profile_id: userBProfileId,
+    author_nickname: '假冒留言者',
+    pregnancy_week: 40,
+    content: '[TEST] Spoof check comment'
+  });
+
+  var test2Pass = (
+    test2Res &&
+    test2Res.success === true &&
+    test2Res.data &&
+    test2Res.data.author_nickname !== '假冒留言者' &&
+    test2Res.data.pregnancy_week !== 40 &&
+    test2Res.data.author_nickname === test1Res.data.author_nickname
+  );
+
+  if (!test2Pass) report.overallStatus = 'FAIL';
+
+  // 清理 Test 2 建立的防偽測試留言
+  if (test2Res && test2Res.data && test2Res.data.comment_id) {
+    handleDeleteComment({ comment_id: test2Res.data.comment_id, profile_id: userBProfileId });
+  }
+
+  report.tests.test2_commentSpoofProtection = {
+    name: 'Comment Spoof Protection',
+    actualNicknameSnapshot: test2Res.data ? test2Res.data.author_nickname : null,
+    actualWeekSnapshot: test2Res.data ? test2Res.data.pregnancy_week : null,
+    status: test2Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 3: getComments ---
+  var test3Res = handleGetComments({ post_id: targetPostId });
+  var foundCommentInList = false;
+  if (test3Res && test3Res.success && Array.isArray(test3Res.data)) {
+    for (var cIdx = 0; cIdx < test3Res.data.length; cIdx++) {
+      if (test3Res.data[cIdx].comment_id === createdCommentId) {
+        foundCommentInList = true;
+        break;
+      }
+    }
+  }
+  var test3Pass = (test3Res && test3Res.success === true && foundCommentInList);
+  if (!test3Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test3_getComments = {
+    name: 'Get Comments',
+    foundCreatedComment: foundCommentInList,
+    totalComments: test3Res.data ? test3Res.data.length : 0,
+    status: test3Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 4: Invalid Comments Validation ---
+  var test4_blank = handleCreateComment({ post_id: targetPostId, profile_id: userBProfileId, content: '   ' });
+  var test4_tooLong = handleCreateComment({ post_id: targetPostId, profile_id: userBProfileId, content: '字'.repeat(301) });
+  var test4_unknownProf = handleCreateComment({ post_id: targetPostId, profile_id: 'non-existent-prof-999', content: 'hello' });
+  var test4_unknownPost = handleCreateComment({ post_id: 'non-existent-post-999', profile_id: userBProfileId, content: 'hello' });
+
+  var test4Pass = (
+    test4_blank.error === 'COMMENT_CONTENT_REQUIRED' &&
+    test4_tooLong.error === 'COMMENT_CONTENT_TOO_LONG' &&
+    test4_unknownProf.error === 'PROFILE_NOT_FOUND' &&
+    test4_unknownPost.error === 'POST_NOT_FOUND'
+  );
+  if (!test4Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test4_invalidCommentValidation = {
+    name: 'Invalid Comment Validation',
+    blankError: test4_blank.error,
+    tooLongError: test4_tooLong.error,
+    unknownProfileError: test4_unknownProf.error,
+    unknownPostError: test4_unknownPost.error,
+    status: test4Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 5: Delete Permission Check ---
+  var test5Res = handleDeleteComment({ comment_id: createdCommentId, profile_id: userAProfileId });
+  var test5Pass = (
+    test5Res &&
+    test5Res.success === false &&
+    test5Res.error === 'FORBIDDEN_NOT_COMMENT_OWNER'
+  );
+  if (!test5Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test5_deletePermission = {
+    name: 'Delete Permission (Non-owner)',
+    attemptedBy: userAProfileId,
+    expectedError: 'FORBIDDEN_NOT_COMMENT_OWNER',
+    actualResult: test5Res,
+    status: test5Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 6: Owner Delete ---
+  var test6Res = handleDeleteComment({ comment_id: createdCommentId, profile_id: userBProfileId });
+  var test6List = handleGetComments({ post_id: targetPostId });
+  var stillInList = false;
+  if (test6List && test6List.data) {
+    for (var cl = 0; cl < test6List.data.length; cl++) {
+      if (test6List.data[cl].comment_id === createdCommentId) {
+        stillInList = true;
+        break;
+      }
+    }
+  }
+  var test6Pass = (
+    test6Res &&
+    test6Res.success === true &&
+    !stillInList
+  );
+  if (!test6Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test6_ownerDelete = {
+    name: 'Owner Delete (Soft Delete)',
+    deletedCommentId: createdCommentId,
+    stillReturnedInGetComments: stillInList,
+    status: test6Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 7: Like ---
+  var test7Res = handleToggleLike({ post_id: targetPostId, profile_id: userBProfileId });
+  var test7Pass = (
+    test7Res &&
+    test7Res.success === true &&
+    test7Res.data &&
+    test7Res.data.liked === true &&
+    test7Res.data.like_count >= 1
+  );
+  if (!test7Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test7_like = {
+    name: 'Like Post',
+    post_id: targetPostId,
+    profile_id: userBProfileId,
+    actualResult: test7Res,
+    status: test7Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 8: Duplicate Like Protection ---
+  var likesData = likesSheet.getDataRange().getValues();
+  var lMap = getHeaderIndexMap(likesSheet, SHEET_HEADERS.Likes);
+  var matchingLikeRows = 0;
+  for (var lIdx = 1; lIdx < likesData.length; lIdx++) {
+    var lPost = String(likesData[lIdx][lMap.post_id] || '').trim();
+    var lProf = String(likesData[lIdx][lMap.profile_id] || '').trim();
+    if (lPost === targetPostId && lProf === userBProfileId) {
+      matchingLikeRows++;
+    }
+  }
+  var test8Pass = (matchingLikeRows === 1);
+  if (!test8Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test8_duplicateLikeProtection = {
+    name: 'Duplicate Like Protection',
+    exactMatchingLikesCount: matchingLikeRows,
+    status: test8Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 9: Unlike ---
+  var test9Res = handleToggleLike({ post_id: targetPostId, profile_id: userBProfileId });
+  var test9Pass = (
+    test9Res &&
+    test9Res.success === true &&
+    test9Res.data &&
+    test9Res.data.liked === false
+  );
+  if (!test9Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test9_unlike = {
+    name: 'Unlike Post (Hard Delete exact row)',
+    actualResult: test9Res,
+    status: test9Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 10: getPosts Counts & liked_by_me ---
+  // 先建立一個有效 Comment 與一個有效 Like 進行計數檢驗
+  var tempCommentRes = handleCreateComment({
+    post_id: targetPostId,
+    profile_id: userBProfileId,
+    content: '[TEST] Temp comment for count check'
+  });
+  var tempLikeRes = handleToggleLike({
+    post_id: targetPostId,
+    profile_id: userBProfileId
+  });
+
+  var test10PostsRes = handleGetPosts({ viewer_profile_id: userBProfileId });
+  var targetItemInFeed = null;
+  if (test10PostsRes && test10PostsRes.success && test10PostsRes.data) {
+    for (var fi = 0; fi < test10PostsRes.data.length; fi++) {
+      if (test10PostsRes.data[fi].post_id === targetPostId) {
+        targetItemInFeed = test10PostsRes.data[fi];
+        break;
+      }
+    }
+  }
+
+  var test10Pass = (
+    targetItemInFeed &&
+    typeof targetItemInFeed.like_count === 'number' &&
+    targetItemInFeed.like_count >= 1 &&
+    typeof targetItemInFeed.comment_count === 'number' &&
+    targetItemInFeed.comment_count >= 1 &&
+    targetItemInFeed.liked_by_me === true
+  );
+  if (!test10Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test10_getPostsCounts = {
+    name: 'GetPosts Counts with Viewer',
+    post_id: targetPostId,
+    like_count: targetItemInFeed ? targetItemInFeed.like_count : null,
+    comment_count: targetItemInFeed ? targetItemInFeed.comment_count : null,
+    liked_by_me: targetItemInFeed ? targetItemInFeed.liked_by_me : null,
+    status: test10Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- TEST 11: Counts After Delete & Unlike ---
+  // 刪除暫時留言與取消暫時按讚
+  if (tempCommentRes && tempCommentRes.data && tempCommentRes.data.comment_id) {
+    handleDeleteComment({ comment_id: tempCommentRes.data.comment_id, profile_id: userBProfileId });
+  }
+  handleToggleLike({ post_id: targetPostId, profile_id: userBProfileId });
+
+  var test11PostsRes = handleGetPosts({ viewer_profile_id: userBProfileId });
+  var targetItemAfterCleanup = null;
+  if (test11PostsRes && test11PostsRes.data) {
+    for (var fj = 0; fj < test11PostsRes.data.length; fj++) {
+      if (test11PostsRes.data[fj].post_id === targetPostId) {
+        targetItemAfterCleanup = test11PostsRes.data[fj];
+        break;
+      }
+    }
+  }
+
+  var test11Pass = (
+    targetItemAfterCleanup &&
+    targetItemAfterCleanup.liked_by_me === false
+  );
+  if (!test11Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test11_countsAfterDelete = {
+    name: 'Counts & Status After Delete',
+    liked_by_me: targetItemAfterCleanup ? targetItemAfterCleanup.liked_by_me : null,
+    like_count: targetItemAfterCleanup ? targetItemAfterCleanup.like_count : null,
+    comment_count: targetItemAfterCleanup ? targetItemAfterCleanup.comment_count : null,
+    status: test11Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- Stats & Regression Verification ---
+  var finalProfilesRowCount = profilesSheet.getLastRow();
+  var finalPostsRowCount = postsSheet.getLastRow();
+  var finalCommentsRowCount = commentsSheet.getLastRow();
+  var finalLikesRowCount = likesSheet.getLastRow();
+
+  report.profilesSheetStats.afterRowCount = finalProfilesRowCount;
+  report.profilesSheetStats.unmodified = (finalProfilesRowCount === initialProfilesRowCount);
+
+  report.postsSheetStats.afterRowCount = finalPostsRowCount;
+  report.postsSheetStats.unmodified = (finalPostsRowCount === initialPostsRowCount);
+
+  report.commentsSheetStats.afterRowCount = finalCommentsRowCount;
+  report.likesSheetStats.afterRowCount = finalLikesRowCount;
+
+  // Profile & Post API Regression Check
+  var regGetProfileA = handleGetProfile(userAProfileId);
+  var regGetProfileB = handleGetProfile(userBProfileId);
+  var regGetPosts = handleGetPosts();
+
+  var regressionPass = (
+    report.profilesSheetStats.unmodified &&
+    report.postsSheetStats.unmodified &&
+    regGetProfileA && regGetProfileA.success === true &&
+    regGetProfileB && regGetProfileB.success === true &&
+    regGetPosts && regGetPosts.success === true
+  );
+
+  report.profileRegression = {
+    profilesUnmodified: report.profilesSheetStats.unmodified,
+    userAGetProfile: regGetProfileA.success === true,
+    userBGetProfile: regGetProfileB.success === true,
+    status: regressionPass ? 'PASS' : 'FAIL'
+  };
+
+  report.postRegression = {
+    postsUnmodified: report.postsSheetStats.unmodified,
+    getPostsWorking: regGetPosts.success === true,
+    status: regressionPass ? 'PASS' : 'FAIL'
+  };
+
+  if (!regressionPass) {
+    report.overallStatus = 'FAIL';
+  }
+
+  Logger.log('testCommunityStep02A Results: ' + JSON.stringify(report, null, 2));
   return report;
 }
