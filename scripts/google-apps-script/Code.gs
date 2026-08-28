@@ -143,6 +143,10 @@ function doGet(e) {
       return jsonResponse(testCommunityStep02A());
     }
 
+    if (action === 'testCommunityStep03C2A') {
+      return jsonResponse(testCommunityStep03C2A());
+    }
+
     return jsonResponse({ success: false, error: 'INVALID_ACTION' });
   } catch (err) {
     return jsonResponse({ success: false, error: err.toString() });
@@ -223,6 +227,11 @@ function doPost(e) {
       return jsonResponse(handleDeleteComment(delCommentPayload));
     }
 
+    if (action === 'deletePost') {
+      var delPostPayload = requestData.payload || requestData;
+      return jsonResponse(handleDeletePost(delPostPayload));
+    }
+
     if (action === 'toggleLike') {
       var likePayload = requestData.payload || requestData;
       return jsonResponse(handleToggleLike(likePayload));
@@ -243,6 +252,10 @@ function doPost(e) {
 
     if (action === 'testCommunityStep02A') {
       return jsonResponse(testCommunityStep02A());
+    }
+
+    if (action === 'testCommunityStep03C2A') {
+      return jsonResponse(testCommunityStep03C2A());
     }
 
     return jsonResponse({ success: false, error: 'INVALID_ACTION' });
@@ -1320,6 +1333,14 @@ function handleGetComments(payload) {
     return { success: false, error: 'POST_ID_REQUIRED' };
   }
 
+  var post = findPostById(postId);
+  if (!post) {
+    return { success: false, error: 'POST_NOT_FOUND' };
+  }
+  if (post.is_deleted) {
+    return { success: false, error: 'POST_DELETED' };
+  }
+
   var sheet = getCommentsSheet();
   var data = sheet.getDataRange().getValues();
   if (data.length <= 1) {
@@ -1416,6 +1437,74 @@ function handleDeleteComment(payload) {
     comment_id: commentId,
     action: 'deleted'
   };
+}
+
+/**
+ * 刪除貼文 (deletePost)
+ * 
+ * 規則：
+ * 1. 僅貼文擁有者（profile_id 相同）可執行刪除
+ * 2. 採軟刪除 (is_deleted = TRUE)，絕不刪除資料列
+ * 3. 使用 LockService 保護並發寫入
+ * 4. 更新 updated_at 為當前時間
+ */
+function handleDeletePost(payload) {
+  if (!payload || typeof payload !== 'object') {
+    return { success: false, error: 'PAYLOAD_REQUIRED' };
+  }
+
+  var postId = String(payload.post_id || payload.postId || '').trim();
+  if (!postId) {
+    return { success: false, error: 'POST_ID_REQUIRED' };
+  }
+
+  var profileId = String(payload.profile_id || payload.profileId || '').trim();
+  if (!profileId) {
+    return { success: false, error: 'PROFILE_ID_REQUIRED' };
+  }
+
+  var profile = findProfileById(profileId);
+  if (!profile) {
+    return { success: false, error: 'PROFILE_NOT_FOUND' };
+  }
+
+  var lock = LockService.getScriptLock();
+  var lockAcquired = false;
+  try {
+    lockAcquired = lock.tryLock(5000);
+
+    var post = findPostById(postId);
+    if (!post) {
+      return { success: false, error: 'POST_NOT_FOUND' };
+    }
+
+    if (String(post.profile_id).trim() !== profileId) {
+      return { success: false, error: 'FORBIDDEN_NOT_POST_OWNER' };
+    }
+
+    if (post.is_deleted) {
+      return { success: false, error: 'POST_ALREADY_DELETED' };
+    }
+
+    var sheet = getPostsSheet();
+    var hMap = getHeaderIndexMap(sheet, SHEET_HEADERS.Posts);
+    var nowIso = new Date().toISOString();
+
+    sheet.getRange(post.rowIndex, hMap.is_deleted + 1).setValue(true);
+    if (hMap.updated_at !== undefined) {
+      sheet.getRange(post.rowIndex, hMap.updated_at + 1).setValue(nowIso);
+    }
+
+    return {
+      success: true,
+      post_id: postId,
+      action: 'deleted'
+    };
+  } finally {
+    if (lockAcquired) {
+      lock.releaseLock();
+    }
+  }
 }
 
 /**
@@ -2345,5 +2434,244 @@ function testCommunityStep02A() {
   }
 
   Logger.log('testCommunityStep02A Results: ' + JSON.stringify(report, null, 2));
+  return report;
+}
+
+/**
+ * Community Step 03C-2A: Delete Own Post Backend API 驗證測試套件
+ */
+function testCommunityStep03C2A() {
+  var userAProfileId = 'PRF-39EBF37DF78E'; // 珍妮佛佛佛
+  var userBProfileId = 'PRF-B711842C8289'; // 小萱
+
+  var profilesSheet = getProfilesSheet();
+  var postsSheet = getPostsSheet();
+  var commentsSheet = getCommentsSheet();
+  var likesSheet = getLikesSheet();
+
+  var initialProfilesRowCount = profilesSheet.getLastRow();
+  var initialPostsRowCount = postsSheet.getLastRow();
+  var initialCommentsRowCount = commentsSheet.getLastRow();
+  var initialLikesRowCount = likesSheet.getLastRow();
+
+  var report = {
+    step: 'Community Step 03C-2A: Delete Own Post Backend API',
+    executedAt: new Date().toISOString(),
+    overallStatus: 'PASS',
+    tests: {},
+    testPostDetails: {},
+    sheetStats: {
+      initialProfilesRows: initialProfilesRowCount,
+      initialPostsRows: initialPostsRowCount,
+      initialCommentsRows: initialCommentsRowCount,
+      initialLikesRows: initialLikesRowCount
+    },
+    regression: {}
+  };
+
+  // --- 0. 建立專用測試 Post ---
+  var createResult = handleCreatePost({
+    profile_id: userAProfileId,
+    content: '[DELETE TEST] Community Step 03C-2A'
+  });
+
+  if (!createResult.success || !createResult.data || !createResult.data.post_id) {
+    report.overallStatus = 'FAIL';
+    report.tests.setup_createPost = {
+      name: 'Create Dedicated Delete Test Post',
+      status: 'FAIL',
+      error: createResult.error || 'CREATE_POST_FAILED'
+    };
+    return report;
+  }
+
+  var testPostId = createResult.data.post_id;
+  report.testPostDetails = {
+    post_id: testPostId,
+    profile_id: userAProfileId,
+    content: '[DELETE TEST] Community Step 03C-2A'
+  };
+
+  report.tests.setup_createPost = {
+    name: 'Create Dedicated Delete Test Post',
+    post_id: testPostId,
+    status: 'PASS'
+  };
+
+  // --- 1. TEST 1: Wrong Owner Delete ---
+  var delWrongOwner = handleDeletePost({
+    post_id: testPostId,
+    profile_id: userBProfileId
+  });
+
+  var postAfterWrongDel = findPostById(testPostId);
+  var getPostsAfterWrongDel = handleGetPosts();
+  var postInFeedAfterWrongDel = getPostsAfterWrongDel.data && getPostsAfterWrongDel.data.some(function(p) {
+    return p.post_id === testPostId;
+  });
+
+  var test1Pass = (
+    delWrongOwner.success === false &&
+    delWrongOwner.error === 'FORBIDDEN_NOT_POST_OWNER' &&
+    postAfterWrongDel &&
+    postAfterWrongDel.is_deleted === false &&
+    postInFeedAfterWrongDel === true
+  );
+  if (!test1Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test1_wrongOwner = {
+    name: 'Wrong Owner Delete (User B cannot delete User A Post)',
+    response: delWrongOwner,
+    is_deleted: postAfterWrongDel ? postAfterWrongDel.is_deleted : null,
+    inFeed: postInFeedAfterWrongDel,
+    status: test1Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 2. TEST 2: Owner Delete ---
+  var delOwner = handleDeletePost({
+    post_id: testPostId,
+    profile_id: userAProfileId
+  });
+
+  var postAfterOwnerDel = findPostById(testPostId);
+  var test2Pass = (
+    delOwner.success === true &&
+    delOwner.post_id === testPostId &&
+    delOwner.action === 'deleted' &&
+    postAfterOwnerDel &&
+    postAfterOwnerDel.is_deleted === true
+  );
+  if (!test2Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test2_ownerDelete = {
+    name: 'Owner Delete (User A deletes own Post)',
+    response: delOwner,
+    is_deleted: postAfterOwnerDel ? postAfterOwnerDel.is_deleted : null,
+    status: test2Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 3. TEST 3: getPosts Filter ---
+  var getPostsAfterDel = handleGetPosts();
+  var postInFeedAfterDel = getPostsAfterDel.data && getPostsAfterDel.data.some(function(p) {
+    return p.post_id === testPostId;
+  });
+
+  var test3Pass = (
+    getPostsAfterDel.success === true &&
+    postInFeedAfterDel === false
+  );
+  if (!test3Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test3_getPostsFilter = {
+    name: 'getPosts Automatically Excludes Soft-Deleted Post',
+    inFeed: postInFeedAfterDel,
+    status: test3Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 4. TEST 4: Delete Again ---
+  var delAgain = handleDeletePost({
+    post_id: testPostId,
+    profile_id: userAProfileId
+  });
+
+  var test4Pass = (
+    delAgain.success === false &&
+    delAgain.error === 'POST_ALREADY_DELETED'
+  );
+  if (!test4Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test4_deleteAgain = {
+    name: 'Delete Already-Deleted Post',
+    response: delAgain,
+    status: test4Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 5. TEST 5: Unknown Post ---
+  var delUnknown = handleDeletePost({
+    post_id: 'non-existent-post-id',
+    profile_id: userAProfileId
+  });
+
+  var test5Pass = (
+    delUnknown.success === false &&
+    delUnknown.error === 'POST_NOT_FOUND'
+  );
+  if (!test5Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test5_unknownPost = {
+    name: 'Delete Unknown Post',
+    response: delUnknown,
+    status: test5Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 6. TEST 6: Deleted Post createComment Protection ---
+  var commentOnDeleted = handleCreateComment({
+    post_id: testPostId,
+    profile_id: userAProfileId,
+    content: '留言到已刪除的貼文'
+  });
+
+  var test6Pass = (
+    commentOnDeleted.success === false &&
+    commentOnDeleted.error === 'POST_DELETED'
+  );
+  if (!test6Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test6_createCommentOnDeleted = {
+    name: 'createComment On Deleted Post Blocked',
+    response: commentOnDeleted,
+    status: test6Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 7. TEST 7: Deleted Post toggleLike Protection ---
+  var likeOnDeleted = handleToggleLike({
+    post_id: testPostId,
+    profile_id: userAProfileId
+  });
+
+  var test7Pass = (
+    likeOnDeleted.success === false &&
+    likeOnDeleted.error === 'POST_DELETED'
+  );
+  if (!test7Pass) report.overallStatus = 'FAIL';
+
+  report.tests.test7_toggleLikeOnDeleted = {
+    name: 'toggleLike On Deleted Post Blocked',
+    response: likeOnDeleted,
+    status: test7Pass ? 'PASS' : 'FAIL'
+  };
+
+  // --- 8. Existing APIs Regression ---
+  var regGetProfileA = handleGetProfile(userAProfileId);
+  var regGetProfileB = handleGetProfile(userBProfileId);
+  var regGetPosts = handleGetPosts();
+
+  var finalProfilesRowCount = profilesSheet.getLastRow();
+  var finalCommentsRowCount = commentsSheet.getLastRow();
+  var finalLikesRowCount = likesSheet.getLastRow();
+
+  var regPass = (
+    regGetProfileA && regGetProfileA.success === true &&
+    regGetProfileB && regGetProfileB.success === true &&
+    regGetPosts && regGetPosts.success === true &&
+    finalProfilesRowCount === initialProfilesRowCount &&
+    finalCommentsRowCount === initialCommentsRowCount &&
+    finalLikesRowCount === initialLikesRowCount
+  );
+  if (!regPass) report.overallStatus = 'FAIL';
+
+  report.regression = {
+    profilesUnmodified: finalProfilesRowCount === initialProfilesRowCount,
+    commentsUnmodified: finalCommentsRowCount === initialCommentsRowCount,
+    likesUnmodified: finalLikesRowCount === initialLikesRowCount,
+    getProfileA: regGetProfileA ? regGetProfileA.success : false,
+    getProfileB: regGetProfileB ? regGetProfileB.success : false,
+    getPosts: regGetPosts ? regGetPosts.success : false,
+    status: regPass ? 'PASS' : 'FAIL'
+  };
+
+  report.testPostDetails.is_deleted = true;
+
+  Logger.log('testCommunityStep03C2A Results: ' + JSON.stringify(report, null, 2));
   return report;
 }

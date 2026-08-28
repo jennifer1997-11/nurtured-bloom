@@ -723,11 +723,31 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .community-safety-notice { display:flex; align-items:center; gap:10px; padding:12px 16px; margin-bottom:20px; background:rgba(246,222,224,0.22); border-radius:var(--radius-sm); border-left:3px solid var(--color-primary); font-size:12px; line-height:1.5; color:var(--color-text-muted); }
 .community-safety-notice .safety-icon { width:18px; height:18px; flex-shrink:0; color:var(--color-primary-dark); }
 
-.post { padding:22px 24px; margin-bottom:16px; background:var(--color-surface); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); border:1px solid rgba(232,138,155,0.08); transition:transform .15s ease, box-shadow .15s ease; }
+.post { position:relative; padding:22px 24px; margin-bottom:16px; background:var(--color-surface); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); border:1px solid rgba(232,138,155,0.08); transition:transform .15s ease, box-shadow .15s ease, opacity .2s ease; }
 .post-head { display:flex; align-items:center; gap:12px; }
 .post-avatar-wrap { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg, #FBEFF1, #F6DEE0); color:var(--color-primary-dark); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; flex-shrink:0; box-shadow:0 4px 10px -2px rgba(201,95,117,0.2); }
 .post-author-name { font-size:14px; font-weight:600; color:var(--color-text); margin-bottom:2px; }
 .post-head .meta { font-size:11.5px; color:var(--color-text-faint); display:flex; gap:8px; align-items:center; }
+.post-head-actions { margin-left:auto; position:relative; }
+.post-more-btn { background:none; border:none; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--color-text-muted); cursor:pointer; font-size:14px; transition:background-color .15s, color .15s; }
+.post-more-btn:hover { background-color:rgba(232,138,155,0.15); color:var(--color-primary-dark); }
+.post-action-menu { position:absolute; right:0; top:100%; margin-top:4px; background:var(--color-surface); border:1px solid rgba(232,138,155,0.18); border-radius:var(--radius-md); box-shadow:0 6px 16px rgba(0,0,0,0.08); min-width:110px; z-index:20; overflow:hidden; }
+.post-action-menu[hidden] { display:none; }
+.post-action-item { width:100%; text-align:left; padding:8px 12px; background:none; border:none; font-size:12.5px; color:#D9534F; cursor:pointer; font-family:inherit; transition:background-color .15s; }
+.post-action-item:hover { background-color:rgba(217,83,79,0.08); }
+
+/* Community Delete Modal */
+.community-modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:9999; display:flex; align-items:center; justify-content:center; padding:16px; backdrop-filter:blur(2px); }
+.community-modal-overlay[hidden] { display:none; }
+.community-modal { background:var(--color-surface); border-radius:var(--radius-lg); padding:24px; max-width:380px; width:100%; box-shadow:0 12px 32px rgba(0,0,0,0.15); border:1px solid rgba(232,138,155,0.15); text-align:center; }
+.community-modal-title { font-size:16px; font-weight:700; color:var(--color-text); margin-bottom:8px; }
+.community-modal-desc { font-size:13px; color:var(--color-text-muted); line-height:1.6; margin-bottom:20px; }
+.community-modal-actions { display:flex; gap:10px; justify-content:center; }
+.community-modal-btn-cancel { flex:1; padding:9px 16px; border-radius:var(--radius-pill); border:1px solid rgba(0,0,0,0.12); background:none; font-size:13.5px; color:var(--color-text-muted); cursor:pointer; font-family:inherit; }
+.community-modal-btn-delete { flex:1; padding:9px 16px; border-radius:var(--radius-pill); border:none; background:#D9534F; font-size:13.5px; font-weight:600; color:#fff; cursor:pointer; font-family:inherit; transition:opacity .15s; }
+.community-modal-btn-delete:disabled { opacity:0.5; cursor:not-allowed; }
+.community-modal-error { font-size:12px; color:#D9534F; margin-top:10px; }
+
 .post-tag { font-size:10.5px; font-weight:600; background:rgba(232,138,155,0.16); color:var(--color-primary-dark); padding:2px 10px; border-radius:var(--radius-pill); }
 .post-body { font-size:14px; line-height:1.8; margin:14px 0 16px; color:var(--color-text); white-space:pre-wrap; word-break:break-word; }
 .post-foot { display:flex; align-items:center; gap:18px; padding-top:12px; border-top:1px solid rgba(0,0,0,0.04); }
@@ -742,8 +762,16 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .community-comment-item:last-child { margin-bottom:0; }
 .community-comment-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; font-size:12px; }
 .community-comment-author { font-weight:600; color:var(--color-text); }
-.community-comment-meta { font-size:11px; color:var(--color-text-faint); }
-.community-comment-body { font-size:13px; line-height:1.6; color:var(--color-text); white-space:pre-wrap; word-break:break-word; }
+.community-comment-head-right { display:flex; align-items:center; gap:8px; }
+.community-comment-del-btn { background:none; border:none; padding:0 2px; font-size:11px; color:var(--color-text-faint); cursor:pointer; font-family:inherit; transition:color .15s; }
+.community-comment-del-btn:hover { color:#D9534F; }
+.community-comment-confirm-box { display:flex; align-items:center; justify-content:flex-end; gap:8px; margin:6px 0 4px; padding:6px 10px; background:rgba(217,83,79,0.06); border-radius:var(--radius-sm); font-size:11.5px; }
+.community-comment-confirm-box[hidden] { display:none; }
+.community-comment-confirm-box .confirm-text { color:var(--color-text-muted); margin-right:auto; }
+.community-comment-confirm-box .btn-confirm-cancel { padding:2px 8px; font-size:11px; border:1px solid rgba(0,0,0,0.12); background:var(--color-surface); border-radius:var(--radius-pill); cursor:pointer; font-family:inherit; color:var(--color-text-muted); }
+.community-comment-confirm-box .btn-confirm-delete { padding:2px 8px; font-size:11px; border:none; background:#D9534F; color:#fff; border-radius:var(--radius-pill); cursor:pointer; font-family:inherit; }
+.community-comment-confirm-box .btn-confirm-delete:disabled { opacity:0.5; cursor:not-allowed; }
+.community-comment-del-msg { font-size:11px; color:#D9534F; text-align:right; margin-top:2px; }
 .comment-loading, .comment-empty, .comment-error { font-size:12.5px; color:var(--color-text-muted); text-align:center; padding:12px 8px; }
 .comment-error { color:#D9534F; }
 .comment-retry-btn { margin-left:8px; padding:2px 8px; font-size:11.5px; border-radius:var(--radius-pill); background:none; border:1px solid rgba(232,138,155,0.3); color:var(--color-primary-dark); cursor:pointer; font-family:inherit; }
@@ -12199,6 +12227,89 @@ function getCommentTimestamp(comment){
   return Number.isFinite(time) ? time : 0;
 }
 
+var COMMUNITY_COMMENT_DELETING = {};
+
+async function deleteCommunityComment(commentId, postId, panel, confirmDeleteBtn, errorMsgEl){
+  if(!commentId || !postId || !panel) return;
+  if(COMMUNITY_COMMENT_DELETING[commentId]) return;
+
+  var currentProfileId = getCommunityCurrentProfileId();
+  if(!currentProfileId){
+    if(errorMsgEl) errorMsgEl.textContent = '使用者資料尚未完成同步，請重新整理後再試。';
+    return;
+  }
+
+  COMMUNITY_COMMENT_DELETING[commentId] = true;
+  if(confirmDeleteBtn){
+    confirmDeleteBtn.disabled = true;
+    confirmDeleteBtn.textContent = '刪除中…';
+  }
+  if(errorMsgEl) errorMsgEl.textContent = '';
+
+  try {
+    var apiUrl = GOOGLE_SHEET_API_URL || 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
+    var payload = {
+      action: 'deleteComment',
+      payload: {
+        comment_id: commentId,
+        profile_id: currentProfileId
+      }
+    };
+
+    var res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    var data = await res.json();
+
+    if(data && data.success === true){
+      // 1. Decrement comment_count in post footer
+      var postCard = panel.closest('.post');
+      if(postCard){
+        var commentCountEl = postCard.querySelector('.comment-count');
+        if(commentCountEl){
+          var currentCount = parseInt(commentCountEl.textContent, 10) || 0;
+          commentCountEl.textContent = String(Math.max(0, currentCount - 1));
+        }
+      }
+
+      // 2. Invalidate cache and reload comments from backend
+      COMMUNITY_COMMENT_STATE[postId] = {
+        loaded: false,
+        loading: false,
+        comments: []
+      };
+
+      loadCommunityComments(postId, panel);
+    } else {
+      var errCode = (data && data.error) ? data.error : '';
+      var userMsg = '目前暫時無法刪除留言，請稍後再試。';
+      if(errCode === 'COMMENT_NOT_FOUND'){
+        userMsg = '這則留言已不存在。';
+      } else if(errCode === 'FORBIDDEN_NOT_COMMENT_OWNER'){
+        userMsg = '你只能刪除自己的留言。';
+      } else if(errCode === 'COMMENT_ALREADY_DELETED'){
+        userMsg = '這則留言已刪除。';
+      }
+      if(errorMsgEl) errorMsgEl.textContent = userMsg;
+      console.error('[Community] deleteComment failed:', errCode || 'UNKNOWN_ERROR');
+    }
+  } catch(err){
+    console.error('[Community] deleteComment network error:', err);
+    if(errorMsgEl) errorMsgEl.textContent = '目前暫時無法刪除留言，請稍後再試。';
+  } finally {
+    COMMUNITY_COMMENT_DELETING[commentId] = false;
+    if(confirmDeleteBtn){
+      confirmDeleteBtn.disabled = false;
+      confirmDeleteBtn.textContent = '刪除';
+    }
+  }
+}
+
 function renderCommunityCommentList(panel, comments, postId){
   if(!panel) return;
   panel.innerHTML = '';
@@ -12209,6 +12320,7 @@ function renderCommunityCommentList(panel, comments, postId){
     emptyEl.textContent = '還沒有留言，成為第一個回應的媽咪吧 ♡';
     panel.appendChild(emptyEl);
   } else {
+    var currentProfileId = getCommunityCurrentProfileId();
     var sortedComments = comments.slice().sort(function(a, b){
       return getCommentTimestamp(b) - getCommentTimestamp(a);
     });
@@ -12225,21 +12337,83 @@ function renderCommunityCommentList(panel, comments, postId){
       author.className = 'community-comment-author';
       author.textContent = (c.author_nickname || '媽咪').trim();
 
+      var rightWrap = document.createElement('div');
+      rightWrap.className = 'community-comment-head-right';
+
       var meta = document.createElement('span');
       meta.className = 'community-comment-meta';
       var weekPrefix = (typeof c.pregnancy_week === 'number' && c.pregnancy_week > 0)
         ? '孕 ' + c.pregnancy_week + ' 週 · '
         : '';
       meta.textContent = weekPrefix + formatCommunityRelativeTime(c.created_at);
+      rightWrap.appendChild(meta);
+
+      var isOwner = !!(c.profile_id && currentProfileId && c.profile_id === currentProfileId);
+      var confirmBox = null;
+      var delMsgEl = null;
+
+      if(isOwner && c.comment_id){
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'community-comment-del-btn';
+        delBtn.textContent = '刪除';
+        delBtn.setAttribute('aria-label', '刪除留言');
+
+        confirmBox = document.createElement('div');
+        confirmBox.className = 'community-comment-confirm-box';
+        confirmBox.hidden = true;
+
+        var confirmText = document.createElement('span');
+        confirmText.className = 'confirm-text';
+        confirmText.textContent = '確定要刪除這則留言嗎？';
+
+        var cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.className = 'btn-confirm-cancel';
+        cancelBtn.textContent = '取消';
+
+        var confirmDelBtn = document.createElement('button');
+        confirmDelBtn.type = 'button';
+        confirmDelBtn.className = 'btn-confirm-delete';
+        confirmDelBtn.textContent = '刪除';
+
+        confirmBox.appendChild(confirmText);
+        confirmBox.appendChild(cancelBtn);
+        confirmBox.appendChild(confirmDelBtn);
+
+        delMsgEl = document.createElement('div');
+        delMsgEl.className = 'community-comment-del-msg';
+
+        delBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          confirmBox.hidden = !confirmBox.hidden;
+          if(!confirmBox.hidden && delMsgEl) delMsgEl.textContent = '';
+        });
+
+        cancelBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          confirmBox.hidden = true;
+          if(delMsgEl) delMsgEl.textContent = '';
+        });
+
+        confirmDelBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          deleteCommunityComment(c.comment_id, postId, panel, confirmDelBtn, delMsgEl);
+        });
+
+        rightWrap.appendChild(delBtn);
+      }
 
       head.appendChild(author);
-      head.appendChild(meta);
+      head.appendChild(rightWrap);
 
       var body = document.createElement('div');
       body.className = 'community-comment-body';
       body.textContent = c.content || '';
 
       item.appendChild(head);
+      if(confirmBox) item.appendChild(confirmBox);
+      if(delMsgEl) item.appendChild(delMsgEl);
       item.appendChild(body);
       panel.appendChild(item);
     });
@@ -12335,6 +12509,165 @@ function toggleCommunityComments(postId, button, panel){
   }
 }
 
+var COMMUNITY_POST_DELETING = false;
+
+function openCommunityDeletePostModal(postId, postCard){
+  var modalOverlay = document.getElementById('communityDeletePostModal');
+  if(!modalOverlay){
+    modalOverlay = document.createElement('div');
+    modalOverlay.id = 'communityDeletePostModal';
+    modalOverlay.className = 'community-modal-overlay';
+    modalOverlay.innerHTML = 
+      '<div class="community-modal" role="dialog" aria-modal="true" aria-labelledby="communityDelModalTitle">' +
+        '<div class="community-modal-title" id="communityDelModalTitle">確定要刪除這篇貼文嗎？</div>' +
+        '<div class="community-modal-desc">刪除後，這篇貼文將不再顯示於媽咪交流社群。</div>' +
+        '<div class="community-modal-actions">' +
+          '<button type="button" class="community-modal-btn-cancel" id="communityDelCancelBtn">取消</button>' +
+          '<button type="button" class="community-modal-btn-delete" id="communityDelConfirmBtn">確認刪除</button>' +
+        '</div>' +
+        '<div class="community-modal-error" id="communityDelModalError"></div>' +
+      '</div>';
+    document.body.appendChild(modalOverlay);
+
+    modalOverlay.addEventListener('click', function(e){
+      if(e.target === modalOverlay && !COMMUNITY_POST_DELETING){
+        modalOverlay.hidden = true;
+      }
+    });
+
+    var cancelBtn = document.getElementById('communityDelCancelBtn');
+    cancelBtn.addEventListener('click', function(){
+      if(!COMMUNITY_POST_DELETING){
+        modalOverlay.hidden = true;
+      }
+    });
+  }
+
+  var errorEl = document.getElementById('communityDelModalError');
+  if(errorEl) errorEl.textContent = '';
+  
+  var confirmBtn = document.getElementById('communityDelConfirmBtn');
+  confirmBtn.disabled = false;
+  confirmBtn.textContent = '確認刪除';
+
+  var newConfirmBtn = confirmBtn.cloneNode(true);
+  confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+
+  newConfirmBtn.addEventListener('click', function(){
+    deleteCommunityPost(postId, postCard, modalOverlay, newConfirmBtn, errorEl);
+  });
+
+  modalOverlay.hidden = false;
+}
+
+async function deleteCommunityPost(postId, postCard, modalOverlay, confirmBtn, errorEl){
+  if(!postId || COMMUNITY_POST_DELETING) return;
+  
+  var currentProfileId = getCommunityCurrentProfileId();
+  if(!currentProfileId){
+    if(errorEl) errorEl.textContent = '找不到目前的使用者資料，請重新登入後再試。';
+    return;
+  }
+
+  COMMUNITY_POST_DELETING = true;
+  if(confirmBtn){
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = '刪除中…';
+  }
+  if(errorEl) errorEl.textContent = '';
+
+  try {
+    var apiUrl = GOOGLE_SHEET_API_URL || 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
+    var payload = {
+      action: 'deletePost',
+      payload: {
+        post_id: postId,
+        profile_id: currentProfileId
+      }
+    };
+
+    var res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    var data = await res.json();
+
+    if(data && data.success === true){
+      // 1. Close Modal
+      if(modalOverlay) modalOverlay.hidden = true;
+
+      // 2. Remove post from DOM with smooth removal
+      if(postCard && postCard.parentNode){
+        postCard.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        postCard.style.opacity = '0';
+        postCard.style.transform = 'scale(0.98)';
+        setTimeout(function(){
+          if(postCard.parentNode){
+            postCard.parentNode.removeChild(postCard);
+            var feed = document.getElementById('communityFeed');
+            if(feed && feed.children.length === 0){
+              renderCommunityEmpty();
+            }
+          }
+        }, 200);
+      }
+
+      // 3. Update memory cache
+      if(COMMUNITY_POSTS_CACHE && Array.isArray(COMMUNITY_POSTS_CACHE)){
+        COMMUNITY_POSTS_CACHE = COMMUNITY_POSTS_CACHE.filter(function(p){
+          return p.post_id !== postId;
+        });
+      }
+    } else {
+      var errCode = (data && data.error) ? data.error : '';
+      if(errCode === 'POST_ALREADY_DELETED'){
+        if(modalOverlay) modalOverlay.hidden = true;
+        if(postCard && postCard.parentNode){
+          postCard.parentNode.removeChild(postCard);
+        }
+        if(COMMUNITY_POSTS_CACHE && Array.isArray(COMMUNITY_POSTS_CACHE)){
+          COMMUNITY_POSTS_CACHE = COMMUNITY_POSTS_CACHE.filter(function(p){
+            return p.post_id !== postId;
+          });
+        }
+        return;
+      }
+
+      var userMsg = '刪除失敗，請稍後再試。';
+      if(errCode === 'FORBIDDEN_NOT_POST_OWNER'){
+        userMsg = '無法刪除其他使用者的貼文。';
+      } else if(errCode === 'POST_NOT_FOUND'){
+        userMsg = '找不到這篇貼文，可能已被刪除。';
+      } else if(errCode === 'PROFILE_NOT_FOUND' || errCode === 'PROFILE_ID_REQUIRED'){
+        userMsg = '找不到目前的使用者資料，請重新登入後再試。';
+      }
+      if(errorEl) errorEl.textContent = userMsg;
+      console.error('[Community] deletePost failed:', errCode || 'UNKNOWN_ERROR');
+    }
+  } catch(err){
+    console.error('[Community] deletePost network error:', err);
+    if(errorEl) errorEl.textContent = '刪除失敗，請稍後再試。';
+  } finally {
+    COMMUNITY_POST_DELETING = false;
+    if(confirmBtn){
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = '確認刪除';
+    }
+  }
+}
+
+document.addEventListener('click', function(e){
+  if(!e.target.closest || !e.target.closest('.post-head-actions')){
+    document.querySelectorAll('.post-action-menu').forEach(function(m){
+      m.hidden = true;
+    });
+  }
+});
+
 function renderCommunityPosts(posts){
   var feed = document.getElementById('communityFeed');
   if(!feed) return;
@@ -12345,6 +12678,8 @@ function renderCommunityPosts(posts){
     return;
   }
   
+  var currentProfileId = getCommunityCurrentProfileId();
+
   posts.forEach(function(post){
     var card = document.createElement('div');
     card.className = 'post';
@@ -12382,6 +12717,49 @@ function renderCommunityPosts(posts){
     infoWrap.appendChild(metaEl);
     head.appendChild(avatarWrap);
     head.appendChild(infoWrap);
+
+    // Owner ⋯ Action Menu
+    var isPostOwner = !!(post.profile_id && currentProfileId && String(post.profile_id).trim() === String(currentProfileId).trim());
+    if(isPostOwner && post.post_id){
+      var actionsWrap = document.createElement('div');
+      actionsWrap.className = 'post-head-actions';
+
+      var moreBtn = document.createElement('button');
+      moreBtn.type = 'button';
+      moreBtn.className = 'post-more-btn';
+      moreBtn.setAttribute('aria-label', '貼文選項');
+      moreBtn.textContent = '⋯';
+
+      var actionMenu = document.createElement('div');
+      actionMenu.className = 'post-action-menu';
+      actionMenu.hidden = true;
+
+      var delItemBtn = document.createElement('button');
+      delItemBtn.type = 'button';
+      delItemBtn.className = 'post-action-item';
+      delItemBtn.textContent = '刪除貼文';
+
+      actionMenu.appendChild(delItemBtn);
+      actionsWrap.appendChild(moreBtn);
+      actionsWrap.appendChild(actionMenu);
+
+      moreBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasHidden = actionMenu.hidden;
+        document.querySelectorAll('.post-action-menu').forEach(function(m){
+          m.hidden = true;
+        });
+        actionMenu.hidden = !wasHidden;
+      });
+
+      delItemBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        actionMenu.hidden = true;
+        openCommunityDeletePostModal(post.post_id, card);
+      });
+
+      head.appendChild(actionsWrap);
+    }
     
     // Body
     var body = document.createElement('div');
