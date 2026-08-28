@@ -132,10 +132,49 @@
       expansions: ['孕期每週身體活動目標', '孕期有氧運動', '運動禁忌與立即停止警訊']
     },
     {
-      terms: ['產檢', '公費產檢', '超音波', '回診'],
-      expansions: ['產檢', '產前檢查', '超音波檢查']
+      terms: ['產檢', '公費產檢', '超音波', '回診', '下次產檢', '下一次產檢', '下次產檢內容', '產檢內容', '產檢要問什麼', '下次產檢要問什麼', '下次產檢要檢查什麼', '下一次要做什麼產檢', '下一次產檢內容', '接下來的產檢', '產檢項目'],
+      expansions: ['產檢', '產前檢查', '超音波檢查', '產檢時程與檢查項目', '公費產檢']
+    },
+    {
+      terms: [
+        '飲食', '飲食建議', '孕期飲食', '懷孕飲食', '孕婦飲食', '孕期營養', '懷孕營養', '孕婦營養',
+        '吃什麼', '懷孕吃什麼', '孕婦吃什麼', '該吃什麼', '要吃什麼', '怎麼吃', '營養攝取', '營養補充',
+        '飲食指南', '飲食原則', 'diet', 'nutrition', '補品', '食物'
+      ],
+      expansions: [
+        '孕期飲食', '孕期營養', '懷孕飲食', '孕婦飲食', '蛋白質', '葉酸', '鐵', '鈣', '碘', '膳食纖維與水分', '飲食', '營養素', '飲食重點'
+      ]
     }
   ];
+
+  /**
+   * Helper: Get next upcoming prenatal visit node based on week
+   */
+  function getNextPrenatalVisitNode(week) {
+    const w = Number(week) || 20;
+    const visits = [
+      { id: 'MED-PRENATAL-VISIT-01', week: 8, visit: 1 },
+      { id: 'MED-PRENATAL-VISIT-02', week: 12, visit: 2 },
+      { id: 'MED-PRENATAL-VISIT-03', week: 16, visit: 3 },
+      { id: 'MED-PRENATAL-VISIT-04', week: 20, visit: 4 },
+      { id: 'MED-PRENATAL-VISIT-05', week: 24, visit: 5 },
+      { id: 'MED-PRENATAL-VISIT-06', week: 28, visit: 6 },
+      { id: 'MED-PRENATAL-VISIT-07', week: 30, visit: 7 },
+      { id: 'MED-PRENATAL-VISIT-08', week: 32, visit: 8 },
+      { id: 'MED-PRENATAL-VISIT-09', week: 34, visit: 9 },
+      { id: 'MED-PRENATAL-VISIT-10', week: 36, visit: 10 },
+      { id: 'MED-PRENATAL-VISIT-11', week: 37, visit: 11 },
+      { id: 'MED-PRENATAL-VISIT-12', week: 38, visit: 12 },
+      { id: 'MED-PRENATAL-VISIT-13', week: 39, visit: 13 },
+      { id: 'MED-PRENATAL-VISIT-14', week: 40, visit: 14 }
+    ];
+    for (let i = 0; i < visits.length; i++) {
+      if (visits[i].week >= w) {
+        return visits[i];
+      }
+    }
+    return visits[visits.length - 1];
+  }
 
   /**
    * Helper: Parse gestational week from query string or context
@@ -181,7 +220,8 @@
       '噁心', '嘔吐', '頻尿', '排尿痛', '便祕', '恥骨痛', '腰痠', '背痛', '流感疫苗',
       '百日咳', 'tdap', 'nipt', '葉酸', '鐵質', '鈣質', 'dha', '運動', '散步',
       '神隊友', '產檢', '超音波', '早產', '產兆', '陣痛',
-      '寶寶', '胎兒', '發育', '變化', '成長', '多大', '長大', '生長', '長怎樣', '身長', '體重'
+      '寶寶', '胎兒', '發育', '變化', '成長', '多大', '長大', '生長', '長怎樣', '身長', '體重',
+      '飲食', '營養', '吃什麼', '飲食建議', '孕期飲食', '孕期營養', '下次產檢', '產檢內容', '蛋白質', '維生素'
     ];
 
     directKeywords.forEach(kw => {
@@ -315,6 +355,46 @@
       if (targetWeekStr && (record.id === `MED-GROWTH-WEEK-${targetWeekStr}` || (record.content && record.content.gestational_week === week))) {
         matchedFields.add('content.gestational_week');
         score += 100;
+      }
+    }
+
+    // 6. Special Next Prenatal Visit Intent Match
+    const isNextPrenatalVisitIntent = /(?:下次|下一次|接下來|近期)?\s*(?:要問什麼|要問甚麼|內容|要檢查什麼|要做什麼|要做甚麼)?\s*(?:產檢|檢查)/.test(queryInfo.raw) ||
+      queryInfo.tokens.some(t => ['下次產檢', '下一次產檢', '產檢內容', '產檢項目', '下次產檢要問什麼'].includes(t));
+
+    if (isNextPrenatalVisitIntent && record.category === 'prenatal_checkup') {
+      matchedFields.add('category');
+      score += 40;
+
+      if (week && typeof record.recommended_gestational_week === 'number') {
+        const nextVisit = getNextPrenatalVisitNode(week);
+        if (nextVisit && record.id === nextVisit.id) {
+          matchedFields.add('recommended_gestational_week');
+          score += 150;
+        }
+      }
+    }
+
+    // 7. Special Pregnancy Nutrition Intent Match
+    const isNutritionIntent = queryInfo.tokens.some(t => ['飲食', '營養', '吃什麼', '飲食建議', '孕期飲食', '孕期營養'].includes(t)) ||
+      queryInfo.expanded.some(e => ['孕期飲食', '孕期營養', '懷孕飲食', '孕婦飲食'].includes(e));
+
+    const nutritionCategories = [
+      'pregnancy_nutrient', 'pregnancy_nutrition_stage', 'pregnancy_food_safety',
+      'pregnancy_food_limit', 'pregnancy_food_avoidance', 'pregnancy_diet_management', 'pregnancy_dietary_pattern'
+    ];
+
+    if (isNutritionIntent && nutritionCategories.includes(record.category)) {
+      matchedFields.add('category');
+      score += 40;
+      if (record.category === 'pregnancy_nutrition_stage') {
+        score += 30;
+        if (week) {
+          const trimester = week <= 12 ? 'trimester_1' : (week <= 28 ? 'trimester_2' : 'trimester_3');
+          if (record.pregnancy_stage === trimester) {
+            score += 250;
+          }
+        }
       }
     }
 

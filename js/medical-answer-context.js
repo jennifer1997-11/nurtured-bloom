@@ -138,6 +138,35 @@
   }
 
   /**
+   * Helper: Get next upcoming prenatal visit node based on week
+   */
+  function getNextPrenatalVisitNode(week) {
+    const w = Number(week) || 20;
+    const visits = [
+      { id: 'MED-PRENATAL-VISIT-01', week: 8, visit: 1 },
+      { id: 'MED-PRENATAL-VISIT-02', week: 12, visit: 2 },
+      { id: 'MED-PRENATAL-VISIT-03', week: 16, visit: 3 },
+      { id: 'MED-PRENATAL-VISIT-04', week: 20, visit: 4 },
+      { id: 'MED-PRENATAL-VISIT-05', week: 24, visit: 5 },
+      { id: 'MED-PRENATAL-VISIT-06', week: 28, visit: 6 },
+      { id: 'MED-PRENATAL-VISIT-07', week: 30, visit: 7 },
+      { id: 'MED-PRENATAL-VISIT-08', week: 32, visit: 8 },
+      { id: 'MED-PRENATAL-VISIT-09', week: 34, visit: 9 },
+      { id: 'MED-PRENATAL-VISIT-10', week: 36, visit: 10 },
+      { id: 'MED-PRENATAL-VISIT-11', week: 37, visit: 11 },
+      { id: 'MED-PRENATAL-VISIT-12', week: 38, visit: 12 },
+      { id: 'MED-PRENATAL-VISIT-13', week: 39, visit: 13 },
+      { id: 'MED-PRENATAL-VISIT-14', week: 40, visit: 14 }
+    ];
+    for (let i = 0; i < visits.length; i++) {
+      if (visits[i].week >= w) {
+        return visits[i];
+      }
+    }
+    return visits[visits.length - 1];
+  }
+
+  /**
    * Main Function: Build Grounded Answer Context
    * @param {string} query - Raw user query
    * @param {object} retrievalResult - Result from searchMedicalKB()
@@ -208,7 +237,7 @@
     } else {
       let candidateResults = retrievalResult.results;
 
-      // Week-specific Baby Growth Narrowing:
+      // 1. Week-specific Baby Growth Narrowing:
       // When detectedWeek is known, exclude baby growth records from other weeks to prevent multi-week contamination.
       if (detectedWeek !== null && Array.isArray(candidateResults) && candidateResults.length > 0) {
         const isBabyGrowthQuery = /(?:寶寶|胎兒|發育|變化|成長|多大|長大|生長|長怎樣|身長|體重)/.test(rawQuery) ||
@@ -233,6 +262,29 @@
 
           if (filtered.length > 0) {
             candidateResults = filtered;
+          }
+        }
+
+        // 2. Next Prenatal Visit Narrowing:
+        // When asking about next prenatal visit, narrow evidence to the target upcoming visit record
+        const isNextVisitQuery = /(?:下次|下一次|接下來|近期)?\s*(?:要問什麼|要問甚麼|內容|要檢查什麼|要做什麼|要做甚麼)?\s*(?:產檢|檢查)/.test(rawQuery) &&
+          /(?:下次|下一次|接下來|近期|內容|項目)/.test(rawQuery);
+
+        if (isNextVisitQuery) {
+          const nextVisit = getNextPrenatalVisitNode(detectedWeek);
+          if (nextVisit) {
+            const targetVisitId = nextVisit.id;
+            const filteredVisits = candidateResults.filter(r => {
+              const isVisitRec = typeof r.id === 'string' && r.id.startsWith('MED-PRENATAL-VISIT-');
+              const isStageCheckup = typeof r.id === 'string' && r.id.startsWith('MED-STAGE-T') && r.id.includes('CHECKUP');
+              if (isVisitRec) return r.id === targetVisitId;
+              if (isStageCheckup) return false;
+              return true;
+            });
+
+            if (filteredVisits.length > 0) {
+              candidateResults = filteredVisits;
+            }
           }
         }
       }
