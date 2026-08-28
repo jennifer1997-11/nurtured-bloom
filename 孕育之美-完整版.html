@@ -242,8 +242,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
 /* ============ 寶寶成長 (Scoped CSS for #view-baby) ============ */
 #view-baby {
-  max-width: 860px;
-  margin: 0 auto;
+  width: 100%;
 }
 #view-baby .growth-page-head {
   margin-bottom: 24px;
@@ -251,9 +250,9 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 #view-baby .growth-page-head h1 {
   font-size: 24px;
   font-family: var(--font-serif-cjk, inherit);
-  color: var(--color-primary-dark, #8E354A);
+  color: var(--color-text, #2C2627);
   margin: 0 0 6px;
-  font-weight: 700;
+  font-weight: 600;
 }
 #view-baby .growth-page-head p {
   font-size: 13.5px;
@@ -731,7 +730,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 @keyframes ring{ 0%{transform:scale(0.9); opacity:.5;} 100%{transform:scale(1.28); opacity:0;} }
 .floating-ai .fab svg{ width:24px; height:24px; color:#fff; }
 .ai-panel{ position:fixed; right:36px; bottom:104px; width:340px; max-height:0; opacity:0; background:var(--color-surface); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); overflow:hidden; transition:max-height .35s ease, opacity .3s ease; z-index:49; }
-.ai-panel.open{ max-height:440px; opacity:1; }
+.ai-panel.open{ max-height:520px; opacity:1; }
 .ai-panel-head{ padding:16px 18px; display:flex; align-items:center; gap:10px; background:linear-gradient(135deg, #FBEFF1, #FBF8F4); border-bottom:1px solid rgba(232,138,155,0.14); }
 .ai-panel-head .ic{ width:30px; height:30px; }
 .ai-panel-head b{ font-size:13.5px; font-family:var(--font-serif-cjk); }
@@ -4013,10 +4012,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
     <!-- ============ AI 孕期助理 ============ -->
     <section class="view" id="view-ai">
       <div class="topbar"><div class="breadcrumb">孕育之美 / <b>AI 孕期助理</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">依</div></div></div>
-      <div class="ai-page-head">
-        <div class="page-head" style="margin-bottom:0;"><h1>AI 孕期助理</h1><p>妳的私人孕期小幫手，隨時想問就問。</p></div>
-        <div class="ai-mode-switch"><button class="on" data-mode="basic">即時問答</button><button data-mode="advanced">產檢摘要整理</button></div>
-      </div>
+      <div class="page-head"><h1>AI 孕期助理</h1><p>妳的私人孕期小幫手，隨時想問就問。</p></div>
 
       <div class="card chat-card" id="aiBasicPanel">
         <div class="chat-head">
@@ -4024,7 +4020,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div><b>孕期 AI 小助手</b><span>回覆內容以孕期日常、飲食、運動、寶寶發展為主</span></div>
         </div>
         <div class="chat-body" id="chatBody">
-          <div class="msg ai">嗨，依婷媽咪 🤍 今天有什麼想問我的？</div>
+          <div class="msg ai" id="chatWelcomeMsg">嗨，依婷媽咪 🤍 今天有什麼想問我的？</div>
         </div>
         <div class="chat-quick">
           <button data-msg="這週寶寶有什麼變化？">這週寶寶有什麼變化？</button>
@@ -4037,22 +4033,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 14-7-7 14-2-5-5-2Z"/></svg></button>
         </div>
         <div class="chat-disclaimer">AI 回覆僅供參考，不能取代醫師診療。</div>
-      </div>
-
-      <div class="card advanced-panel" id="aiAdvancedPanel" style="display:none;">
-        <span class="eyebrow">Advanced</span>
-        <h2 style="font-size:17px; margin:6px 0 4px;">整理醫師產檢內容</h2>
-        <p style="font-size:12.5px; color:var(--color-text-muted); margin:0 0 14px;">把今天醫生說的話貼上來，我幫妳整理成好懂的摘要。</p>
-        <textarea id="doctorNoteInput" placeholder="例如：今天醫生說，寶寶目前 650g，胎盤位置正常，羊水量適中，下次記得做妊娠糖尿病篩檢…"></textarea>
-        <div class="advanced-actions"><button class="btn btn-primary" id="summarizeBtn">整理摘要</button></div>
-
-        <div class="summary-output" id="summaryOutput">
-          <div class="summary-block full"><h4>📋 本次產檢摘要</h4><p>第 24 週例行產檢，各項數值皆在正常範圍內，醫師表示妳跟寶寶的狀況都很穩定。</p></div>
-          <div class="summary-block"><h4>👶 寶寶</h4><p>體重約 650g，成長曲線正常，心跳規律。</p></div>
-          <div class="summary-block"><h4>🩺 醫師提醒</h4><p>留意雙腳水腫，睡前可抬腿休息；持續補充鐵質。</p></div>
-          <div class="summary-block"><h4>📅 下次產檢</h4><p>建議 4 週後回診，並安排妊娠糖尿病篩檢。</p></div>
-          <div class="summary-block"><h4>❓ 建議下次詢問</h4><p>可詢問糖尿病篩檢需注意的飲食調整，以及近期水腫的緩解方式。</p></div>
-        </div>
       </div>
     </section>
 
@@ -4124,8 +4104,13 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 <div class="ai-panel" id="aiPanel">
   <div class="ai-panel-head"><svg class="ic" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="14" fill="#F6DEE0"/><circle cx="15" cy="15" r="5" fill="#C95F75"/></svg><b>孕期 AI 小助手</b></div>
   <div class="ai-panel-body">
-    <div class="ai-msg">嗨，依婷媽咪 🤍 今天有什麼想問我的？</div>
-    <div class="ai-quick"><button data-goto-ai="1">最近肚子有點不舒服</button><button data-goto-ai="1">這週寶寶有什麼變化？</button><button data-goto-ai="1">下次產檢要問什麼？</button></div>
+    <div class="ai-msg" id="floatingAiWelcomeMsg">嗨，依婷媽咪 🤍 今天有什麼想問我的？</div>
+    <div class="ai-quick">
+      <button data-goto-ai="1" data-msg="這週寶寶有什麼變化？">這週寶寶有什麼變化？</button>
+      <button data-goto-ai="1" data-msg="下次產檢內容？">下次產檢內容？</button>
+      <button data-goto-ai="1" data-msg="孕期運動建議">孕期運動建議</button>
+      <button data-goto-ai="1" data-msg="孕期飲食建議">孕期飲食建議</button>
+    </div>
   </div>
   <div class="ai-disclaimer">AI 回覆僅供參考，不能取代醫師診療。</div>
 </div>
@@ -4404,6 +4389,46 @@ function getAIWeekContext(){
   return null;
 }
 
+function getAIMomDisplayName(){
+  var raw = '';
+  if(typeof USER_PROFILE !== 'undefined' && USER_PROFILE && USER_PROFILE.momNickname){
+    raw = String(USER_PROFILE.momNickname).trim();
+  } else if(typeof loadUserProfile === 'function'){
+    try {
+      var saved = loadUserProfile();
+      if(saved && saved.momNickname){
+        raw = String(saved.momNickname).trim();
+      }
+    } catch(e){}
+  }
+  if(!raw && typeof APP !== 'undefined' && APP && APP.nickname){
+    raw = String(APP.nickname).trim();
+  }
+
+  if(!raw){
+    return '媽咪';
+  }
+
+  if(raw.endsWith('媽咪')){
+    return raw;
+  }
+  return raw + '媽咪';
+}
+
+function updateAIGreetingUI(){
+  var greetingText = '嗨，' + getAIMomDisplayName() + ' 🤍 今天有什麼想問我的？';
+
+  var mainWelcome = document.getElementById('chatWelcomeMsg') || (document.getElementById('chatBody') ? document.getElementById('chatBody').querySelector('.msg.ai:first-child') : null);
+  if(mainWelcome && mainWelcome.id !== 'chatLoadingMsg' && !mainWelcome.classList.contains('chat-response')){
+    mainWelcome.textContent = greetingText;
+  }
+
+  var floatWelcome = document.getElementById('floatingAiWelcomeMsg') || document.querySelector('#aiPanel .ai-msg');
+  if(floatWelcome){
+    floatWelcome.textContent = greetingText;
+  }
+}
+
 async function handleUserChatMessage(userQuery){
   if(!userQuery || typeof userQuery !== 'string') return;
   var q = userQuery.trim();
@@ -4620,6 +4645,71 @@ function initAIChatPipeline(){
       });
     });
   }
+
+  if(typeof updateAIGreetingUI === 'function'){
+    updateAIGreetingUI();
+  }
+
+  initFloatingAIInteraction();
+}
+
+function initFloatingAIInteraction(){
+  var aiFab = document.getElementById('aiFab');
+  var aiPanel = document.getElementById('aiPanel');
+  if(!aiFab || !aiPanel) return;
+
+  function toggleFloatingPanel(forceOpen){
+    var isOpen = (typeof forceOpen === 'boolean') ? forceOpen : !aiPanel.classList.contains('open');
+    if(isOpen){
+      aiPanel.classList.add('open');
+      aiFab.setAttribute('aria-expanded', 'true');
+      if(typeof updateAIGreetingUI === 'function'){
+        updateAIGreetingUI();
+      }
+    } else {
+      aiPanel.classList.remove('open');
+      aiFab.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // 1. FAB Click Toggle
+  aiFab.addEventListener('click', function(e){
+    e.stopPropagation();
+    toggleFloatingPanel();
+  });
+
+  // 2. Keyboard Accessibility (Enter / Space)
+  aiFab.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' ' || e.code === 'Space'){
+      e.preventDefault();
+      toggleFloatingPanel();
+    }
+  });
+
+  // 3. Floating Quick Questions -> Route to Official AI Page Chat
+  var quickBtns = aiPanel.querySelectorAll('.ai-quick button');
+  quickBtns.forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var msg = btn.dataset.msg || btn.textContent.trim();
+      toggleFloatingPanel(false);
+      if(typeof goToView === 'function'){
+        goToView('ai');
+      }
+      if(msg && typeof handleUserChatMessage === 'function'){
+        handleUserChatMessage(msg);
+      }
+    });
+  });
+
+  // 4. Outside Click to Close Panel
+  document.addEventListener('click', function(e){
+    if(aiPanel.classList.contains('open')){
+      if(!aiPanel.contains(e.target) && !aiFab.contains(e.target)){
+        toggleFloatingPanel(false);
+      }
+    }
+  });
 }
 /* ============ View Router & Deep Linking（首頁 / 我的孕期 / 寶寶成長 / AI / 社群）============ */
 function switchJourneyTab(targetTab){
@@ -4664,6 +4754,9 @@ function goToView(name, subTab){
   }
   if(name === 'baby' && typeof renderBabyGrowthView === 'function'){
     renderBabyGrowthView();
+  }
+  if(name === 'ai' && typeof updateAIGreetingUI === 'function'){
+    updateAIGreetingUI();
   }
   if(name === 'journey'){
     if(subTab){
@@ -5103,6 +5196,10 @@ function updateAuthStateUI(){
   if(whoName){
     whoName.textContent = APP.nickname || '媽咪';
   }
+
+  if(typeof updateAIGreetingUI === 'function'){
+    updateAIGreetingUI();
+  }
 }
 
 function initAccountAndLoginUI(){
@@ -5372,6 +5469,9 @@ function updateWeekUI(){
   }
   if(typeof renderPartnerViewHome === 'function'){
     renderPartnerViewHome();
+  }
+  if(typeof updateAIGreetingUI === 'function'){
+    updateAIGreetingUI();
   }
 }
 
