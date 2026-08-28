@@ -735,6 +735,30 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .post-stat-item .stat-icon { font-size:13px; opacity:0.85; }
 .post-stat-item.liked { color:var(--color-primary-dark); font-weight:600; }
 
+/* ============ 媽咪交流社群 留言列表 (Community Step 03B-2) ============ */
+.community-comments-panel { margin-top:14px; padding-top:14px; border-top:1px dashed rgba(232,138,155,0.18); }
+.community-comments-panel[hidden] { display:none; }
+.community-comment-item { padding:10px 12px; margin-bottom:8px; background:rgba(251,248,244,0.6); border-radius:var(--radius-sm); }
+.community-comment-item:last-child { margin-bottom:0; }
+.community-comment-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; font-size:12px; }
+.community-comment-author { font-weight:600; color:var(--color-text); }
+.community-comment-meta { font-size:11px; color:var(--color-text-faint); }
+.community-comment-body { font-size:13px; line-height:1.6; color:var(--color-text); white-space:pre-wrap; word-break:break-word; }
+.comment-loading, .comment-empty, .comment-error { font-size:12.5px; color:var(--color-text-muted); text-align:center; padding:12px 8px; }
+.comment-error { color:#D9534F; }
+.comment-retry-btn { margin-left:8px; padding:2px 8px; font-size:11.5px; border-radius:var(--radius-pill); background:none; border:1px solid rgba(232,138,155,0.3); color:var(--color-primary-dark); cursor:pointer; font-family:inherit; }
+
+/* Comment Composer (Community Step 03B-3A) */
+.community-comment-composer { margin-top:12px; padding:10px 12px; background:var(--color-surface); border:1px solid rgba(232,138,155,0.18); border-radius:var(--radius-md); }
+.community-comment-input { width:100%; box-sizing:border-box; border:1px solid rgba(232,138,155,0.18); background:var(--color-background); border-radius:var(--radius-sm); padding:8px 10px; font-size:13px; line-height:1.5; font-family:var(--font-cjk); color:var(--color-text); resize:vertical; outline:none; min-height:48px; transition:border-color .2s, box-shadow .2s; }
+.community-comment-input:focus { border-color:var(--color-primary); box-shadow:0 0 0 2px rgba(232,138,155,0.14); }
+.community-comment-input::placeholder { color:var(--color-text-faint); }
+.community-comment-composer-footer { display:flex; justify-content:space-between; align-items:center; margin-top:8px; gap:8px; }
+.community-comment-char-count { font-size:11px; color:var(--color-text-muted); }
+.community-comment-submit-btn { padding:4px 14px; font-size:12px; font-weight:600; border-radius:var(--radius-pill); border:none; background:var(--color-primary); color:#fff; cursor:pointer; font-family:inherit; transition:opacity .15s, background-color .15s; }
+.community-comment-submit-btn:disabled { opacity:0.45; cursor:not-allowed; }
+.community-comment-msg { font-size:11.5px; color:#D9534F; margin-top:4px; min-height:16px; }
+
 .community-empty-state, .community-error-state { text-align:center; padding:48px 24px; background:var(--color-surface); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); margin-bottom:20px; }
 .community-empty-state .icon, .community-error-state .icon { font-size:36px; margin-bottom:12px; }
 .community-empty-state p, .community-error-state p { font-size:14px; color:var(--color-text-muted); line-height:1.7; margin:0 0 16px; }
@@ -11859,6 +11883,22 @@ function getCommunityCurrentProfileId(){
   return '';
 }
 
+function applyCommunityLikeState(button, liked, count){
+  if(!button) return;
+  var isLiked = !!liked;
+  button.classList.toggle('liked', isLiked);
+  button.setAttribute('aria-label', isLiked ? '取消按讚' : '按讚');
+
+  var iconEl = button.querySelector('.stat-icon');
+  if(iconEl){
+    iconEl.textContent = isLiked ? '♥' : '♡';
+  }
+  var countEl = button.querySelector('.like-count');
+  if(countEl){
+    countEl.textContent = String(count !== undefined ? count : 0);
+  }
+}
+
 async function toggleCommunityLike(postId, button){
   if(!postId || !button) return;
   var profileId = getCommunityCurrentProfileId();
@@ -11867,6 +11907,17 @@ async function toggleCommunityLike(postId, button){
     return;
   }
 
+  // 1. Capture previous state before optimistic update
+  var previousLiked = button.classList.contains('liked');
+  var countEl = button.querySelector('.like-count');
+  var previousCount = countEl ? (parseInt(countEl.textContent, 10) || 0) : 0;
+
+  // 2. Optimistic UI update (immediate visual feedback before fetch)
+  var optimisticLiked = !previousLiked;
+  var optimisticCount = optimisticLiked ? previousCount + 1 : Math.max(0, previousCount - 1);
+  applyCommunityLikeState(button, optimisticLiked, optimisticCount);
+
+  // 3. Double click prevention during in-flight request
   button.disabled = true;
 
   var apiUrl = GOOGLE_SHEET_API_URL || 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
@@ -11889,27 +11940,398 @@ async function toggleCommunityLike(postId, button){
 
     var data = await res.json();
     if(data && data.success === true && data.data){
-      var isLiked = !!data.data.liked;
-      var count = data.data.like_count !== undefined ? data.data.like_count : 0;
-
-      button.classList.toggle('liked', isLiked);
-      button.setAttribute('aria-label', isLiked ? '取消按讚' : '按讚');
-
-      var iconEl = button.querySelector('.stat-icon');
-      if(iconEl){
-        iconEl.textContent = isLiked ? '♥' : '♡';
-      }
-      var countEl = button.querySelector('.like-count');
-      if(countEl){
-        countEl.textContent = String(count);
-      }
+      // 4. Backend Source of Truth Reconciliation
+      applyCommunityLikeState(button, data.data.liked, data.data.like_count);
     } else {
+      // 5. Backend Failure Rollback
       console.error('[Community] toggleLike failed:', data ? data.error : 'UNKNOWN_ERROR');
+      applyCommunityLikeState(button, previousLiked, previousCount);
     }
   } catch(err){
-    console.error('[Community] toggleLike failed:', err);
+    // Network / Parse Error Rollback
+    console.error('[Community] toggleLike network error:', err);
+    applyCommunityLikeState(button, previousLiked, previousCount);
   } finally {
     button.disabled = false;
+  }
+}
+
+var COMMUNITY_COMMENT_STATE = {};
+var COMMUNITY_COMMENT_SUBMITTING = {};
+var COMMUNITY_COMMENT_MSG_TIMERS = {};
+
+function updateCommunityCommentComposerState(composerEl){
+  if(!composerEl) return;
+  var input = composerEl.querySelector('.community-comment-input');
+  var countEl = composerEl.querySelector('.community-comment-char-count');
+  var submitBtn = composerEl.querySelector('.community-comment-submit-btn');
+  var msgEl = composerEl.querySelector('.community-comment-msg');
+  if(!input) return;
+
+  var val = input.value || '';
+  var rawLength = val.length;
+  var trimmedLength = val.trim().length;
+
+  if(countEl){
+    countEl.textContent = rawLength + ' / 300';
+  }
+
+  var postId = composerEl.dataset.postId || '';
+  var isSubmitting = !!COMMUNITY_COMMENT_SUBMITTING[postId];
+  var isValid = trimmedLength > 0 && rawLength <= 300 && !isSubmitting;
+  if(submitBtn && !isSubmitting){
+    submitBtn.disabled = !isValid;
+  }
+
+  if(msgEl && msgEl.textContent){
+    if(trimmedLength === 0 || isValid){
+      msgEl.textContent = '';
+    }
+  }
+}
+
+async function submitCommunityComment(postId, composerEl){
+  if(!postId || !composerEl) return;
+  if(COMMUNITY_COMMENT_SUBMITTING[postId]) return;
+
+  var input = composerEl.querySelector('.community-comment-input');
+  var countEl = composerEl.querySelector('.community-comment-char-count');
+  var submitBtn = composerEl.querySelector('.community-comment-submit-btn');
+  var msgEl = composerEl.querySelector('.community-comment-msg');
+  if(!input || !submitBtn) return;
+
+  var val = input.value || '';
+  var rawLength = val.length;
+  var trimmedLength = val.trim().length;
+
+  if(trimmedLength === 0){
+    if(msgEl){
+      msgEl.textContent = '請輸入留言內容。';
+      msgEl.style.color = '#D9534F';
+    }
+    return;
+  }
+
+  if(rawLength > 300){
+    if(msgEl){
+      msgEl.textContent = '留言最多 300 字。';
+      msgEl.style.color = '#D9534F';
+    }
+    return;
+  }
+
+  var profileId = getCommunityCurrentProfileId();
+  if(!profileId){
+    if(msgEl){
+      msgEl.textContent = '使用者資料尚未完成同步，請重新整理後再試。';
+      msgEl.style.color = '#D9534F';
+    }
+    return;
+  }
+
+  COMMUNITY_COMMENT_SUBMITTING[postId] = true;
+  var originalBtnText = submitBtn.textContent || '留言';
+  submitBtn.disabled = true;
+  submitBtn.textContent = '留言中…';
+  input.disabled = true;
+
+  if(msgEl){
+    msgEl.textContent = '';
+  }
+
+  try {
+    var apiUrl = GOOGLE_SHEET_API_URL || 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
+    var payload = {
+      action: 'createComment',
+      payload: {
+        post_id: postId,
+        profile_id: profileId,
+        content: val
+      }
+    };
+
+    var res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    var data = await res.json();
+
+    if(data && data.success === true){
+      // 1. Success message
+      if(msgEl){
+        msgEl.textContent = '留言已送出 ♡';
+        msgEl.style.color = '#4CAE4C';
+        if(COMMUNITY_COMMENT_MSG_TIMERS[postId]){
+          clearTimeout(COMMUNITY_COMMENT_MSG_TIMERS[postId]);
+        }
+        COMMUNITY_COMMENT_MSG_TIMERS[postId] = setTimeout(function(){
+          if(msgEl && msgEl.textContent === '留言已送出 ♡'){
+            msgEl.textContent = '';
+          }
+        }, 2500);
+      }
+
+      // 2. Clear composer
+      input.value = '';
+      if(countEl) countEl.textContent = '0 / 300';
+      submitBtn.disabled = true;
+
+      // 3. Increment comment_count in post footer
+      var postCard = composerEl.closest('.post');
+      if(postCard){
+        var commentCountEl = postCard.querySelector('.comment-count');
+        if(commentCountEl){
+          var currentCount = parseInt(commentCountEl.textContent, 10) || 0;
+          commentCountEl.textContent = String(Math.max(0, currentCount + 1));
+        }
+      }
+
+      // 4. Invalidate cache and reload comments for this post
+      COMMUNITY_COMMENT_STATE[postId] = {
+        loaded: false,
+        loading: false,
+        comments: []
+      };
+
+      var panel = composerEl.closest('.community-comments-panel');
+      if(panel){
+        loadCommunityComments(postId, panel);
+      }
+    } else {
+      var errCode = (data && data.error) ? data.error : '';
+      var userMsg = '目前暫時無法送出留言，請稍後再試。';
+      if(errCode === 'COMMENT_CONTENT_REQUIRED'){
+        userMsg = '請輸入留言內容。';
+      } else if(errCode === 'COMMENT_CONTENT_TOO_LONG'){
+        userMsg = '留言最多 300 字。';
+      } else if(errCode === 'PROFILE_NOT_FOUND' || errCode === 'PROFILE_ID_REQUIRED'){
+        userMsg = '使用者資料同步異常，請重新整理後再試。';
+      } else if(errCode === 'POST_NOT_FOUND'){
+        userMsg = '這篇貼文目前無法留言。';
+      } else if(errCode === 'POST_DELETED'){
+        userMsg = '這篇貼文已不存在或無法留言。';
+      } else if(errCode === 'PREGNANCY_WEEK_OUT_OF_RANGE'){
+        userMsg = '孕期資料需要重新確認。';
+      }
+      if(msgEl){
+        msgEl.textContent = userMsg;
+        msgEl.style.color = '#D9534F';
+      }
+      console.error('[Community] createComment failed:', errCode || 'UNKNOWN_ERROR');
+    }
+  } catch(err){
+    console.error('[Community] createComment network error:', err);
+    if(msgEl){
+      msgEl.textContent = '目前暫時無法送出留言，請稍後再試。';
+      msgEl.style.color = '#D9534F';
+    }
+  } finally {
+    COMMUNITY_COMMENT_SUBMITTING[postId] = false;
+    input.disabled = false;
+    submitBtn.textContent = originalBtnText;
+    updateCommunityCommentComposerState(composerEl);
+  }
+}
+
+function handleCommunityCommentValidate(composerEl){
+  var pid = composerEl ? composerEl.dataset.postId : '';
+  if(pid){
+    submitCommunityComment(pid, composerEl);
+  }
+}
+
+function renderCommunityCommentComposer(panel, postId){
+  if(!panel) return;
+
+  var composer = document.createElement('div');
+  composer.className = 'community-comment-composer';
+  if(postId) composer.dataset.postId = postId;
+
+  var textarea = document.createElement('textarea');
+  textarea.className = 'community-comment-input';
+  textarea.maxLength = 300;
+  textarea.placeholder = '留下你的回應…';
+  textarea.setAttribute('aria-label', '留言內容');
+
+  var footer = document.createElement('div');
+  footer.className = 'community-comment-composer-footer';
+
+  var charCount = document.createElement('span');
+  charCount.className = 'community-comment-char-count';
+  charCount.textContent = '0 / 300';
+
+  var submitBtn = document.createElement('button');
+  submitBtn.type = 'button';
+  submitBtn.className = 'community-comment-submit-btn';
+  submitBtn.disabled = true;
+  submitBtn.textContent = '留言';
+
+  footer.appendChild(charCount);
+  footer.appendChild(submitBtn);
+
+  var msg = document.createElement('div');
+  msg.className = 'community-comment-msg';
+  msg.setAttribute('aria-live', 'polite');
+
+  composer.appendChild(textarea);
+  composer.appendChild(footer);
+  composer.appendChild(msg);
+
+  textarea.addEventListener('input', function(){
+    updateCommunityCommentComposerState(composer);
+  });
+
+  submitBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    submitCommunityComment(postId, composer);
+  });
+
+  panel.appendChild(composer);
+}
+
+function getCommentTimestamp(comment){
+  if(!comment || !comment.created_at) return 0;
+  var time = Date.parse(comment.created_at);
+  return Number.isFinite(time) ? time : 0;
+}
+
+function renderCommunityCommentList(panel, comments, postId){
+  if(!panel) return;
+  panel.innerHTML = '';
+
+  if(!comments || !Array.isArray(comments) || comments.length === 0){
+    var emptyEl = document.createElement('div');
+    emptyEl.className = 'comment-empty';
+    emptyEl.textContent = '還沒有留言，成為第一個回應的媽咪吧 ♡';
+    panel.appendChild(emptyEl);
+  } else {
+    var sortedComments = comments.slice().sort(function(a, b){
+      return getCommentTimestamp(b) - getCommentTimestamp(a);
+    });
+
+    sortedComments.forEach(function(c){
+      var item = document.createElement('div');
+      item.className = 'community-comment-item';
+      if(c.comment_id) item.dataset.commentId = c.comment_id;
+
+      var head = document.createElement('div');
+      head.className = 'community-comment-head';
+
+      var author = document.createElement('span');
+      author.className = 'community-comment-author';
+      author.textContent = (c.author_nickname || '媽咪').trim();
+
+      var meta = document.createElement('span');
+      meta.className = 'community-comment-meta';
+      var weekPrefix = (typeof c.pregnancy_week === 'number' && c.pregnancy_week > 0)
+        ? '孕 ' + c.pregnancy_week + ' 週 · '
+        : '';
+      meta.textContent = weekPrefix + formatCommunityRelativeTime(c.created_at);
+
+      head.appendChild(author);
+      head.appendChild(meta);
+
+      var body = document.createElement('div');
+      body.className = 'community-comment-body';
+      body.textContent = c.content || '';
+
+      item.appendChild(head);
+      item.appendChild(body);
+      panel.appendChild(item);
+    });
+  }
+
+  // Render Composer at bottom of panel when getComments succeeds
+  renderCommunityCommentComposer(panel, postId);
+}
+
+function renderCommunityCommentError(panel, postId){
+  if(!panel) return;
+  panel.innerHTML = '';
+
+  var errorWrap = document.createElement('div');
+  errorWrap.className = 'comment-error';
+  errorWrap.textContent = '目前暫時無法載入留言。';
+
+  var retryBtn = document.createElement('button');
+  retryBtn.className = 'comment-retry-btn';
+  retryBtn.type = 'button';
+  retryBtn.textContent = '重新載入';
+  retryBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    loadCommunityComments(postId, panel);
+  });
+
+  errorWrap.appendChild(retryBtn);
+  panel.appendChild(errorWrap);
+}
+
+async function loadCommunityComments(postId, panel){
+  if(!postId || !panel) return;
+  panel.innerHTML = '<div class="comment-loading">正在載入留言…</div>';
+
+  COMMUNITY_COMMENT_STATE[postId] = {
+    loaded: false,
+    loading: true,
+    comments: []
+  };
+
+  var apiUrl = GOOGLE_SHEET_API_URL || 'https://script.google.com/macros/s/AKfycbxVaMXs7phS7t-rOdxom45gjYbUrCzvLY060oq09xDLbtugrY31d1pnTeSaTe9t0ROG5w/exec';
+  var requestUrl = apiUrl + '?action=getComments&post_id=' + encodeURIComponent(postId);
+
+  try {
+    var res = await fetch(requestUrl);
+    if(!res.ok){
+      throw new Error('HTTP ' + res.status);
+    }
+    var data = await res.json();
+    if(data && data.success === true && Array.isArray(data.data)){
+      COMMUNITY_COMMENT_STATE[postId] = {
+        loaded: true,
+        loading: false,
+        comments: data.data
+      };
+      renderCommunityCommentList(panel, data.data, postId);
+    } else {
+      COMMUNITY_COMMENT_STATE[postId] = {
+        loaded: false,
+        loading: false,
+        comments: []
+      };
+      renderCommunityCommentError(panel, postId);
+    }
+  } catch(err){
+    console.error('[Community] getComments failed:', err);
+    COMMUNITY_COMMENT_STATE[postId] = {
+      loaded: false,
+      loading: false,
+      comments: []
+    };
+    renderCommunityCommentError(panel, postId);
+  }
+}
+
+function toggleCommunityComments(postId, button, panel){
+  if(!postId || !button || !panel) return;
+
+  var isCurrentlyHidden = panel.hidden;
+  if(isCurrentlyHidden){
+    panel.hidden = false;
+    button.setAttribute('aria-expanded', 'true');
+
+    var cached = COMMUNITY_COMMENT_STATE[postId];
+    if(cached && cached.loaded){
+      renderCommunityCommentList(panel, cached.comments, postId);
+    } else {
+      loadCommunityComments(postId, panel);
+    }
+  } else {
+    panel.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
   }
 }
 
@@ -11972,22 +12394,20 @@ function renderCommunityPosts(posts){
     
     var isLiked = !!post.liked_by_me;
     var likeBtn = document.createElement('button');
-    likeBtn.className = 'post-stat-item community-like-btn' + (isLiked ? ' liked' : '');
+    likeBtn.className = 'post-stat-item community-like-btn';
     likeBtn.type = 'button';
     likeBtn.dataset.postId = post.post_id || '';
-    likeBtn.setAttribute('aria-label', isLiked ? '取消按讚' : '按讚');
     likeBtn.style.cssText = 'background:none; border:none; padding:0; cursor:pointer; font-family:inherit;';
     
     var likeIcon = document.createElement('span');
     likeIcon.className = 'stat-icon';
-    likeIcon.textContent = isLiked ? '♥' : '♡';
     
     var likeCount = document.createElement('span');
     likeCount.className = 'like-count';
-    likeCount.textContent = String(post.like_count !== undefined ? post.like_count : 0);
     
     likeBtn.appendChild(likeIcon);
     likeBtn.appendChild(likeCount);
+    applyCommunityLikeState(likeBtn, isLiked, post.like_count);
     
     likeBtn.addEventListener('click', function(e){
       e.stopPropagation();
@@ -11995,25 +12415,43 @@ function renderCommunityPosts(posts){
       toggleCommunityLike(pid, this);
     });
     
-    var commentStat = document.createElement('span');
-    commentStat.className = 'post-stat-item';
+    var commentBtn = document.createElement('button');
+    commentBtn.className = 'post-stat-item community-comment-btn';
+    commentBtn.type = 'button';
+    commentBtn.dataset.postId = post.post_id || '';
+    commentBtn.setAttribute('aria-expanded', 'false');
+    commentBtn.setAttribute('aria-label', '查看留言');
+    commentBtn.style.cssText = 'background:none; border:none; padding:0; cursor:pointer; font-family:inherit;';
     
     var commentIcon = document.createElement('span');
     commentIcon.className = 'stat-icon';
     commentIcon.textContent = '💬';
     
     var commentCount = document.createElement('span');
+    commentCount.className = 'comment-count';
     commentCount.textContent = String(post.comment_count !== undefined ? post.comment_count : 0);
     
-    commentStat.appendChild(commentIcon);
-    commentStat.appendChild(commentCount);
+    commentBtn.appendChild(commentIcon);
+    commentBtn.appendChild(commentCount);
+    
+    var commentsPanel = document.createElement('div');
+    commentsPanel.className = 'community-comments-panel';
+    commentsPanel.hidden = true;
+    commentsPanel.setAttribute('aria-live', 'polite');
+    
+    commentBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var pid = this.dataset.postId;
+      toggleCommunityComments(pid, this, commentsPanel);
+    });
     
     foot.appendChild(likeBtn);
-    foot.appendChild(commentStat);
+    foot.appendChild(commentBtn);
     
     card.appendChild(head);
     card.appendChild(body);
     card.appendChild(foot);
+    card.appendChild(commentsPanel);
     
     feed.appendChild(card);
   });
