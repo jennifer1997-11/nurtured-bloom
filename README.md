@@ -16,7 +16,7 @@
 
 ## 🌐 Live Demo
 
-正式線上體驗：[孕育之美 GitHub Pages Live Demo](https://jennifer1997-11.github.io/pregnancy-beauty/)
+正式線上體驗：[孕育之美 GitHub Pages Live Demo](https://jennifer1997-11.github.io/nurtured-bloom/)
 
 ---
 
@@ -98,7 +98,7 @@
 ## 📁 專案結構
 
 ```
-pregnancy-beauty/
+nurtured-bloom/
 ├── index.html                  # 正式發布入口 (GitHub Pages 部署檔案)
 ├── 孕育之美-完整版.html         # 開發與完整單一檔案應用程式原始碼
 ├── assets/
@@ -122,7 +122,7 @@ pregnancy-beauty/
 
 1. **複製專案庫**：
    ```bash
-   git clone https://github.com/jennifer1997-11/pregnancy-beauty.git
+   git clone https://github.com/jennifer1997-11/nurtured-bloom.git
    ```
 2. **開啟專案**：
    - 使用 VS Code 開啟專案資料夾。
