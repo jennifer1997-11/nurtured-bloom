@@ -50,9 +50,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .nav-item.active{ background:var(--color-surface); color:var(--color-primary-dark); box-shadow:var(--shadow-soft); font-weight:600; }
 .nav-item.active svg{ opacity:1; }
 .nav-item.active::before{ content:""; position:absolute; left:-18px; top:50%; transform:translateY(-50%); width:4px; height:16px; border-radius:4px; background:var(--color-primary); }
-.sidebar-foot{ margin-top:auto; padding:16px; border-radius:var(--radius-md); background:linear-gradient(160deg, #F6DEE0, #F6EFE6); }
-.sidebar-foot .eyebrow{ font-size:9.5px; }
-.sidebar-foot p{ margin:6px 0 0; font-size:12px; color:var(--color-text-muted); line-height:1.65; }
 
 .main{ padding:24px 36px 64px; position:relative; min-width:0; max-width:100%; box-sizing:border-box; }
 .topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; gap:16px; flex-wrap:wrap; }
@@ -2374,7 +2371,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   .app{ grid-template-columns:76px 1fr; }
   .sidebar{ padding:24px 12px; align-items:center; }
   .sidebar .brand .word{ display:none; }
-  .sidebar-foot{ display:none; }
   .nav-item{ justify-content:center; padding:12px; width:52px; }
   .nav-item span.label{ display:none; }
   .nav-item.active::before{ left:-12px; }
@@ -3397,13 +3393,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   display: block;
   margin-top: 10px;
 }
-.prc-photo-notice {
-  font-size: 11.5px;
-  color: var(--color-text-muted);
-  margin-top: 6px;
-  display: block;
-  line-height: 1.4;
-}
 .prc-save-btn {
   margin-top: 16px;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
@@ -3470,10 +3459,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
         <span class="label">媽咪交流社群</span>
       </div>
     </nav>
-    <div class="sidebar-foot">
-      <span class="eyebrow">Today's whisper</span>
-      <p>「每一週的變化，都是妳和寶寶一起完成的小小奇蹟。」</p>
-    </div>
   </aside>
 
   <!-- ================= Main ================= -->
@@ -3684,7 +3669,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
       <div class="tabs" role="tablist" aria-label="我的孕期子分頁">
         <button class="tab-btn on" data-tab="overview">孕期總覽</button>
-        <button class="tab-btn" data-tab="map">產檢地圖 ⭐</button>
+        <button class="tab-btn" data-tab="map">產檢地圖</button>
         <button class="tab-btn" data-tab="notes">問診備忘錄</button>
         <button class="tab-btn" data-tab="diary">孕期日記</button>
       </div>
@@ -3767,7 +3752,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <!-- Section 1: 媽咪本週身體變化 -->
           <div class="mvp-section-card">
             <div class="mvp-sec-header">
-              <h3 class="mvp-sec-title">媽咪本週身體變化</h3>
+              <h3 class="mvp-sec-title">🤰 媽咪本週身體變化</h3>
               <span class="mvp-sec-badge" id="momChangesCount">2 則叮嚀</span>
             </div>
             <div class="mvp-items-list" id="overviewMomChanges"></div>
@@ -3776,7 +3761,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <!-- Section 2: 媽咪本週提醒 -->
           <div class="mvp-section-card">
             <div class="mvp-sec-header">
-              <h3 class="mvp-sec-title">媽咪本週提醒</h3>
+              <h3 class="mvp-sec-title">🌸 媽咪本週提醒</h3>
               <span class="mvp-sec-badge" id="momRemindersCount">3 則重點</span>
             </div>
             <div class="mvp-items-list" id="overviewMomReminders"></div>
@@ -3785,7 +3770,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <!-- Section 3: 神隊友本週任務 -->
           <div class="mvp-section-card">
             <div class="mvp-sec-header">
-              <h3 class="mvp-sec-title">神隊友本週任務</h3>
+              <h3 class="mvp-sec-title">✅ 神隊友本週任務</h3>
               <span class="mvp-sec-badge" id="partnerTasksCount">3 項行動</span>
             </div>
             <div class="mvp-items-list" id="overviewPartnerTasks"></div>
@@ -3853,7 +3838,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
             <div class="cm-banner-left">
               <span class="eyebrow">Consultation Memo</span>
               <h2>問診備忘錄</h2>
-              <p class="cm-desc">把每一次想問醫師的事情記下來 ♡<br>產檢前不怕忘記，也可以隨時回顧。</p>
+              <p class="cm-desc">把每一次想問醫師的事情記下來<br>產檢前不怕忘記，也可以隨時回顧。</p>
             </div>
             <div class="cm-banner-action">
               <button class="btn btn-primary cm-create-btn" id="cmCreateMemoBtn" type="button">＋ 新增問診備忘錄</button>
@@ -3874,7 +3859,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
               </svg>
             </div>
             <h3>還沒有問診備忘錄</h3>
-            <p>下次想到想問醫師的事情，就先記下來吧 ♡</p>
+            <p>下次想到想問醫師的事情，就先記下來吧。</p>
             <button class="btn btn-primary cm-empty-create-btn" id="cmCreateFirstMemoBtn" type="button">＋ 建立第一份備忘錄</button>
           </div>
 
@@ -4078,7 +4063,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
     <!-- ============ 寶寶成長 ============ -->
     <section class="view" id="view-baby">
       <div class="topbar"><div class="breadcrumb">孕育之美 / <b>寶寶成長</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
-      <div class="growth-page-head"><h1>寶寶成長</h1><p>寶寶這一週又長大了一點 ♡</p></div>
+      <div class="growth-page-head"><h1>寶寶成長</h1><p>寶寶這一週又長大了一點。</p></div>
 
       <div id="babyGrowthContainer">
         <!-- JS 動態注入純資料驅動內容 -->
@@ -6848,7 +6833,6 @@ function showMapDetail(idx){
     '      </button>' +
     (photoPreview ? '      <button type="button" class="prc-remove-btn" onclick="removeSessionPhoto(' + visitNum + '); showMapDetail(' + idx + ');">✕ 移除照片</button>' : '') +
     '    </div>' +
-    '    <span class="prc-photo-notice">目前照片僅供本次預覽，重新整理頁面後將不會保留。</span>' +
     '    <div id="prPhotoPreviewBox_' + visitNum + '">' +
            (photoPreview ? '<img src="' + photoPreview + '" class="prc-preview-img" alt="產檢超音波照片預覽">' : '') +
     '    </div>' +
