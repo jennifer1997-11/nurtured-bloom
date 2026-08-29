@@ -60,8 +60,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .view-switch button{ border:none; background:transparent; cursor:pointer; font-size:12.5px; padding:8px 16px; border-radius:var(--radius-pill); color:var(--color-text-muted); transition:.2s; }
 .view-switch button.on{ background:var(--color-primary); color:#fff; font-weight:600; }
 .top-right{ display:flex; align-items:center; gap:14px; }
-.icon-btn{ width:38px; height:38px; border-radius:50%; background:var(--color-surface); display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-soft); cursor:pointer; }
-.icon-btn svg{ width:17px; height:17px; color:var(--color-primary-dark); }
 .avatar{ width:40px; height:40px; border-radius:50%; background:radial-gradient(circle at 32% 28%, #fff, #F6DEE0 55%, var(--color-primary) 100%); display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-soft); font-family:var(--font-serif-cjk); font-weight:600; color:var(--color-primary-dark); font-size:14px; cursor:pointer; }
 
 .page-head{ margin-bottom:20px; }
@@ -2580,9 +2578,10 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   color: var(--color-primary-dark);
   margin-bottom: 2px;
 }
-.jhm-title-row { display: flex; justify-content: space-between; align-items: center; margin: 2px 0 4px; }
+.jhm-title-row { display: flex; justify-content: space-between; align-items: center; margin: 2px 0 4px; gap: 8px; }
 .jhm-title { font-family: var(--font-serif-cjk); font-size: 20px; color: var(--color-text); margin: 0; line-height: 1.3; }
 .jhm-title span { color: var(--color-primary-dark); font-weight: 700; }
+.jhm-title .jhm-days-text { color: var(--color-text); font-weight: 600; font-size: inherit; }
 .jhm-percent { font-family: var(--font-serif-cjk); font-size: 24px; font-weight: 700; color: var(--color-primary-dark); }
 .jhm-sub { font-size: 12.5px; color: var(--color-text-muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .jhm-sub span { color: var(--color-text-muted); font-weight: 500; }
@@ -3502,7 +3501,6 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <button>💕 神隊友視角</button>
         </div>
         <div class="top-right">
-          <div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div>
           <div class="avatar">🌸</div>
         </div>
       </div>
@@ -3510,7 +3508,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
       <!-- 1. TOP GREETING -->
       <div class="greeting">
         <div class="greeting-left">
-          <h1 id="greetingTitle" class="greeting-title">嗨 🌸 今天也是溫柔的一天</h1>
+          <h1 id="greetingTitle" class="greeting-title">媽咪 🌸 今天也是溫柔的一天</h1>
           <p class="sub">妳與寶寶正一起走過這段旅程，我們都在身邊陪著妳。</p>
         </div>
         <div class="pregnancy-status-group">
@@ -3694,7 +3692,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ 我的孕期 ============ -->
     <section class="view" id="view-journey">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>我的孕期</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>我的孕期</b></div><div class="top-right"><div class="avatar">🌸</div></div></div>
       <div class="page-head"><h1>我的孕期</h1><p>這裡收著妳整趟旅程的樣子——不是表格，是妳與寶寶一起走過的路。</p></div>
 
       <div class="tabs" role="tablist" aria-label="我的孕期子分頁">
@@ -3710,7 +3708,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div class="jhm-top">
             <span class="eyebrow">YOUR JOURNEY</span>
             <div class="jhm-title-row">
-              <h2 class="jhm-title" id="journeyHeroTitle"><span id="journeyHeroBabyName">寶寶</span>陪妳走到第 <span id="actualWeekNum">24</span> 週了 <span id="actualDaysText" style="font-size:13px; font-weight:500; color:var(--color-text-muted);">(第 168 天)</span></h2>
+              <h2 class="jhm-title" id="journeyHeroTitle">孕期第 <span id="actualWeekNum">24</span> 週 <span id="actualDaysText" class="jhm-days-text">0 天</span></h2>
               <div class="jhm-percent"><span id="actualPercent">60%</span></div>
             </div>
             <div class="jhm-sub">
@@ -3729,7 +3727,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
             <!-- Fixed Actual Current Location Pin (固定的「現在位置」標記，不隨導航移動) -->
             <div class="jhm-actual-pin" id="actualCurrentPin" style="left: 58.9%;">
-              <div class="jhm-actual-badge">● <span id="actualPinText">24週 現在位置</span></div>
+              <div class="jhm-actual-badge"><span id="actualPinText">現在位置</span></div>
               <div class="jhm-actual-dot"></div>
             </div>
 
@@ -4092,7 +4090,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ 寶寶成長 ============ -->
     <section class="view" id="view-baby">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>寶寶成長</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>寶寶成長</b></div><div class="top-right"><div class="avatar">🌸</div></div></div>
       <div class="growth-page-head"><h1>寶寶成長</h1><p>寶寶這一週又長大了一點。</p></div>
 
       <div id="babyGrowthContainer">
@@ -4102,7 +4100,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ AI 孕期助理 ============ -->
     <section class="view" id="view-ai">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>AI 孕期助理</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar">🌸</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>AI 孕期助理</b></div><div class="top-right"><div class="avatar">🌸</div></div></div>
       <div class="page-head"><h1>AI 孕期助理</h1><p>妳的私人孕期小幫手，隨時想問就問。</p></div>
 
       <div class="card chat-card" id="aiBasicPanel">
@@ -4129,7 +4127,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 
     <!-- ============ 媽咪交流社群 ============ -->
     <section class="view" id="view-community">
-      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>媽咪交流社群</b></div><div class="top-right"><div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></div><div class="avatar header-user-avatar">🌸</div></div></div>
+      <div class="topbar"><div class="breadcrumb">孕育之美 / <b>媽咪交流社群</b></div><div class="top-right"><div class="avatar header-user-avatar">🌸</div></div></div>
       <div class="community-container">
         <div class="page-head">
           <h1>媽咪交流社群</h1>
@@ -4335,7 +4333,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 <div class="modal-overlay" id="welcomeModalOverlay">
   <div class="modal-box welcome-modal-box">
     <div class="modal-inner">
-      <span class="eyebrow">WELCOME TO PREGNANCY BEAUTY</span>
+      <span class="eyebrow">WELCOME TO NURTURED BLOOM</span>
       <h2 style="font-size:21px; margin-bottom:6px;">歡迎來到孕育之美 🌷</h2>
       <p class="desc" style="margin-bottom:20px;">先建立你的孕期資料，我們會依照目前孕週提供適合你的內容。</p>
 
@@ -5010,10 +5008,10 @@ function getBabyNickname(){
 function formatHomeGreeting(nickname){
   var name = (nickname != null ? String(nickname) : getMomNickname()).trim();
   if(!name){
-    return '嗨 🌸 今天也是溫柔的一天';
+    return '媽咪 🌸 今天也是溫柔的一天';
   }
   var displayName = name.endsWith('媽咪') ? name : (name + '媽咪');
-  return '嗨，' + displayName + ' 🌸 今天也是溫柔的一天';
+  return displayName + ' 🌸 今天也是溫柔的一天';
 }
 
 var PARTNER_GUEST = {
@@ -10472,6 +10470,7 @@ function getAccountActualWeek(){
 function initActualHeaderUI(){
   var info = (typeof calcWeekInfo === 'function' && typeof APP !== 'undefined' && APP && APP.edd) ? calcWeekInfo(APP.edd) : null;
   var actualW = info ? Math.max(1, Math.min(40, info.weeks || 24)) : getAccountActualWeek();
+  var actualD = info ? (info.days || 0) : ((typeof APP !== 'undefined' && APP && typeof APP.currentDay === 'number') ? APP.currentDay : 0);
   OVERVIEW_STATE_V4.actualWeek = actualW;
 
   var countdownDays = info ? info.daysToEdd : Math.max(0, 280 - (actualW * 7));
@@ -10492,7 +10491,7 @@ function initActualHeaderUI(){
   if(percentEl) percentEl.textContent = percentVal + '%';
   if(stageNameEl) stageNameEl.textContent = stageText;
   if(weeksLeftEl) weeksLeftEl.textContent = weeksLeftVal;
-  if(daysTextEl) daysTextEl.textContent = '(第 ' + daysElapsed + ' 天)';
+  if(daysTextEl) daysTextEl.textContent = actualD + ' 天';
   if(countdownDaysEl) countdownDaysEl.textContent = '(倒數 ' + countdownDays + ' 天)';
   if(actualNoticeEl) actualNoticeEl.textContent = actualW;
   var heroBabyNameEl = document.getElementById('journeyHeroBabyName');
@@ -10505,7 +10504,7 @@ function initActualHeaderUI(){
 
   if(lineFillEl) lineFillEl.style.width = actualPct + '%';
   if(pinEl) pinEl.style.left = actualPct + '%';
-  if(pinTextEl) pinTextEl.textContent = actualW + '週 現在位置';
+  if(pinTextEl) pinTextEl.textContent = '現在位置';
 
   var majorNodes = [
     { id: 'mnode-1', week: 1 },
