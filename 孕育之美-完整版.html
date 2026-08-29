@@ -22,6 +22,19 @@
   --radius-sm:12px; --radius-md:18px; --radius-lg:24px; --radius-pill:999px;
   --shadow-soft: 0 10px 30px -12px rgba(198,127,136,0.18), 0 2px 8px -2px rgba(198,127,136,0.10);
   --shadow-card: 0 14px 36px -16px rgba(154,110,100,0.16), 0 2px 6px -2px rgba(154,110,100,0.08);
+
+  /* Mobile Layout Spacing Tokens */
+  --mobile-bottom-nav-height: 64px;
+  --mobile-floating-ai-size: 58px;
+  --mobile-floating-ai-gap: 14px;
+  --mobile-safe-gap: 24px;
+  --mobile-content-padding-bottom: calc(
+    var(--mobile-bottom-nav-height) +
+    var(--mobile-floating-ai-gap) +
+    var(--mobile-floating-ai-size) +
+    var(--mobile-safe-gap) +
+    env(safe-area-inset-bottom, 0px)
+  );
 }
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
@@ -874,7 +887,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
 .account-menu .item:hover{ background:var(--color-background); }
 .account-menu .item.danger{ color:var(--color-primary-dark); }
 .account-menu .item.danger svg{ color:var(--color-primary-dark); }
-@media (max-width: 767px){ .account-menu{ top:64px; right:16px; } }
+@media (max-width: 768px){ .account-menu{ top:64px; right:16px; } }
 
 /* ============ Modal (Login / Settings) ============ */
 .modal-overlay{ position:fixed; inset:0; background:rgba(52,50,56,0.35); backdrop-filter:blur(2px); z-index:200; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .25s; padding:20px; }
@@ -2414,13 +2427,21 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   .hero{ grid-template-columns:1fr; }
   .bottom-row{ grid-template-columns:1fr; }
 }
-@media (max-width: 767px){
+@media (max-width: 768px){
   .app{ grid-template-columns:1fr; }
   .sidebar{ display:none; }
-  .main{ padding:18px 18px 96px; }
+  .main{ padding:18px 18px var(--mobile-content-padding-bottom); }
   .bottom-nav{ display:block; }
-  .floating-ai{ right:18px; bottom:82px; }
-  .ai-panel{ right:14px; left:14px; width:auto; bottom:150px; }
+  .floating-ai{
+    right: 16px;
+    bottom: calc(var(--mobile-bottom-nav-height) + var(--mobile-floating-ai-gap) + env(safe-area-inset-bottom, 0px));
+  }
+  .ai-panel{
+    right: 14px;
+    left: 14px;
+    width: auto;
+    bottom: calc(var(--mobile-bottom-nav-height) + var(--mobile-floating-ai-gap) + var(--mobile-floating-ai-size) + 16px + env(safe-area-inset-bottom, 0px));
+  }
   .growth-hero{ flex-direction:column; text-align:center; }
   .growth-hero .stats .row{ justify-content:center; }
   .journey-hero-mvp { padding: 14px 16px 14px; margin-bottom: 14px; }
@@ -2430,6 +2451,126 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
   .jhm-m-circle { width: 22px; height: 22px; font-size: 9.5px; }
   .jhm-major-node .w-label { font-size: 11px; }
   .jhm-major-node .w-sub { font-size: 9.5px; }
+}
+
+/* ============ Site Footer (全站共用) ============ */
+.site-footer {
+  margin-top: 56px;
+  padding-top: 28px;
+  padding-bottom: 8px;
+  border-top: 1px solid rgba(232,138,155,0.18);
+  position: relative;
+  box-sizing: border-box;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 460px;
+  justify-self: start;
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+.footer-brand-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.footer-title-zh {
+  font-family: var(--font-serif-cjk);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.03em;
+}
+.footer-title-en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 10px;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.08em;
+}
+.footer-slogan {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  user-select: none;
+  justify-self: center;
+}
+.footer-link-divider {
+  color: rgba(232,138,155,0.45);
+  font-size: 11px;
+}
+.footer-copyright {
+  font-family: var(--font-latin);
+  font-size: 12px;
+  color: var(--color-text-faint);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  justify-self: end;
+}
+
+@media (max-width: 1024px) {
+  .footer-inner {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    margin-top: 40px;
+    padding-top: 22px;
+    padding-bottom: 0;
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .footer-brand {
+    max-width: 100%;
+    justify-self: stretch;
+  }
+  .footer-slogan {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .footer-links {
+    font-size: 12px;
+    justify-self: flex-start;
+  }
+  .footer-copyright {
+    font-size: 11.5px;
+    justify-self: flex-start;
+  }
 }
 
 /* ============ 孕育花園 Botanical Garden Icon CSS ============ */
@@ -4170,6 +4311,32 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
         </div>
       </div>
     </section>
+
+    <!-- ================= Site Footer (全站共用) ================= -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo-row">
+            <img class="footer-logo" src="assets/images/nurtured-bloom-logo.png" alt="孕育之美 Logo" draggable="false" />
+            <div class="footer-brand-text">
+              <span class="footer-title-zh">孕育之美</span>
+              <span class="footer-title-en">NURTURED BLOOM</span>
+            </div>
+          </div>
+          <p class="footer-slogan">陪伴每位媽咪在孕育的旅程中，安心成長、溫柔綻放。</p>
+        </div>
+
+        <div class="footer-links">
+          <span class="footer-link-text">服務條款</span>
+          <span class="footer-link-divider">｜</span>
+          <span class="footer-link-text">隱私政策</span>
+        </div>
+
+        <div class="footer-copyright">
+          <span>© 2026 Nurtured Bloom</span>
+        </div>
+      </div>
+    </footer>
 
   </main>
 </div>
