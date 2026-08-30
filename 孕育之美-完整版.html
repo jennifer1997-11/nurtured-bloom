@@ -4679,6 +4679,191 @@ function updateAIGreetingUI(){
   }
 }
 
+/* ============ AI 孕期助理 訊息氣泡渲染器（供即時對話與歷史恢復共用） ============ */
+
+function appendUserMessageBubble(chatBody, text){
+  var userMsgEl = document.createElement('div');
+  userMsgEl.className = 'msg user';
+  userMsgEl.textContent = text;
+  chatBody.appendChild(userMsgEl);
+  return userMsgEl;
+}
+
+function appendAIMessageBubble(chatBody, text, disclaimerText){
+  var aiMsgEl = document.createElement('div');
+  aiMsgEl.className = 'msg ai';
+  
+  var textDiv = document.createElement('div');
+  textDiv.style.whiteSpace = 'pre-wrap';
+  textDiv.textContent = text;
+  aiMsgEl.appendChild(textDiv);
+
+  if(disclaimerText){
+    var discEl = document.createElement('div');
+    discEl.style.fontSize = '11px';
+    discEl.style.opacity = '0.75';
+    discEl.style.marginTop = '8px';
+    discEl.style.paddingTop = '6px';
+    discEl.style.borderTop = '1px solid rgba(0,0,0,0.08)';
+    discEl.style.lineHeight = '1.4';
+    discEl.textContent = disclaimerText;
+    aiMsgEl.appendChild(discEl);
+  }
+
+  chatBody.appendChild(aiMsgEl);
+  return aiMsgEl;
+}
+
+/* ============ AI 孕期助理 今日對話 localStorage 暫存與隔日清除管理 ============ */
+
+/**
+ * Helper: Format Local Date to YYYY-MM-DD
+ * (Guarantees local device timezone date, avoids UTC offset drift)
+ */
+function getLocalDateKey(dateObj){
+  var d = (dateObj instanceof Date && !isNaN(dateObj.getTime())) ? dateObj : new Date();
+  var year = d.getFullYear();
+  var month = String(d.getMonth() + 1).padStart(2, '0');
+  var day = String(d.getDate()).padStart(2, '0');
+  return year + '-' + month + '-' + day;
+}
+
+/**
+ * Helper: Get current active Profile ID for AI Chat isolation
+ */
+function getAIChatCurrentProfileId(){
+  if(typeof USER_PROFILE !== 'undefined' && USER_PROFILE && USER_PROFILE.profileId){
+    return String(USER_PROFILE.profileId).trim();
+  }
+  try {
+    var raw = localStorage.getItem('pregnancyAppUser');
+    if(raw){
+      var parsed = JSON.parse(raw);
+      if(parsed && parsed.profileId){
+        return String(parsed.profileId).trim();
+      }
+    }
+  } catch(e){}
+  return 'default_profile';
+}
+
+/**
+ * AI Chat History: Load from localStorage with Next-Day Auto-Clear & Profile Isolation
+ */
+function loadAIChatHistory(){
+  var STORAGE_KEY = 'pregnancyAppAIChatHistory';
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return [];
+    var parsed = JSON.parse(raw);
+    if(!parsed || typeof parsed !== 'object'){
+      localStorage.removeItem(STORAGE_KEY);
+      return [];
+    }
+
+    var today = getLocalDateKey();
+    // 1. Next-Day Auto-Clear: storedDate !== today -> remove item, return empty
+    if(parsed.date !== today){
+      localStorage.removeItem(STORAGE_KEY);
+      return [];
+    }
+
+    // 2. Profile Isolation: stored profileId !== current profileId -> remove item, return empty
+    var currentProfileId = getAIChatCurrentProfileId();
+    if(parsed.profileId !== currentProfileId){
+      localStorage.removeItem(STORAGE_KEY);
+      return [];
+    }
+
+    if(Array.isArray(parsed.messages)){
+      return parsed.messages;
+    }
+  } catch(err){
+    console.warn('[AIChat] Corrupted chat history in localStorage. Clearing:', err);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch(e){}
+  }
+  return [];
+}
+
+/**
+ * AI Chat History: Save messages to localStorage (only today, only clean schema)
+ */
+function saveAIChatHistory(messages){
+  if(!Array.isArray(messages)) return;
+  var STORAGE_KEY = 'pregnancyAppAIChatHistory';
+  var today = getLocalDateKey();
+  var currentProfileId = getAIChatCurrentProfileId();
+
+  var cleanMessages = messages.map(function(m){
+    return {
+      role: m.role === 'assistant' ? 'assistant' : 'user',
+      content: typeof m.content === 'string' ? m.content : '',
+      timestamp: (typeof m.timestamp === 'string' && m.timestamp) ? m.timestamp : new Date().toISOString()
+    };
+  });
+
+  var payload = {
+    version: 1,
+    date: today,
+    profileId: currentProfileId,
+    messages: cleanMessages
+  };
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  } catch(err){
+    console.warn('[AIChat] Failed to save chat history to localStorage:', err);
+  }
+}
+
+/**
+ * AI Chat History: Append single message
+ */
+function appendAIChatHistory(role, content){
+  if(!content || typeof content !== 'string') return;
+  var history = loadAIChatHistory();
+  history.push({
+    role: role === 'assistant' ? 'assistant' : 'user',
+    content: content,
+    timestamp: new Date().toISOString()
+  });
+  saveAIChatHistory(history);
+}
+
+/**
+ * AI Chat History: Restore UI from localStorage on initialization
+ * (Renders messages using the exact same bubble rendering logic, without re-calling AI API)
+ */
+function restoreAIChatHistoryUI(){
+  var chatBody = document.getElementById('chatBody');
+  if(!chatBody) return;
+
+  var messages = loadAIChatHistory();
+  if(!messages || messages.length === 0){
+    // Keep initial welcome state
+    chatBody.innerHTML = '<div class="msg ai" id="chatWelcomeMsg">嗨 🤍 今天有什麼想問我的？</div>';
+    if(typeof updateAIGreetingUI === 'function'){
+      updateAIGreetingUI();
+    }
+    return;
+  }
+
+  // Clear chat body and render saved messages using identical bubble renderer
+  chatBody.innerHTML = '';
+
+  messages.forEach(function(m){
+    if(m.role === 'user'){
+      appendUserMessageBubble(chatBody, m.content);
+    } else if(m.role === 'assistant'){
+      appendAIMessageBubble(chatBody, m.content);
+    }
+  });
+
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
 async function handleUserChatMessage(userQuery){
   if(!userQuery || typeof userQuery !== 'string') return;
   var q = userQuery.trim();
@@ -4689,10 +4874,10 @@ async function handleUserChatMessage(userQuery){
   if(!chatBody) return;
 
   // 1. Render user message bubble (always displays original user input)
-  var userMsgEl = document.createElement('div');
-  userMsgEl.className = 'msg user';
-  userMsgEl.textContent = q;
-  chatBody.appendChild(userMsgEl);
+  appendUserMessageBubble(chatBody, q);
+
+  // Persist user message to today's chat history
+  appendAIChatHistory('user', q);
 
   // Clear input
   if(chatInput){
@@ -4838,29 +5023,12 @@ async function handleUserChatMessage(userQuery){
     currentLoading.parentNode.removeChild(currentLoading);
   }
 
-  // 5. Render AI Response Bubble
-  var aiMsgEl = document.createElement('div');
-  aiMsgEl.className = 'msg ai';
-  
-  var textDiv = document.createElement('div');
-  textDiv.style.whiteSpace = 'pre-wrap';
-  textDiv.textContent = responseText;
-  aiMsgEl.appendChild(textDiv);
-
-  if(disclaimerText){
-    var discEl = document.createElement('div');
-    discEl.style.fontSize = '11px';
-    discEl.style.opacity = '0.75';
-    discEl.style.marginTop = '8px';
-    discEl.style.paddingTop = '6px';
-    discEl.style.borderTop = '1px solid rgba(0,0,0,0.08)';
-    discEl.style.lineHeight = '1.4';
-    discEl.textContent = disclaimerText;
-    aiMsgEl.appendChild(discEl);
-  }
-
-  chatBody.appendChild(aiMsgEl);
+  // 5. Render AI Response Bubble (reusing appendAIMessageBubble)
+  appendAIMessageBubble(chatBody, responseText, disclaimerText);
   chatBody.scrollTop = chatBody.scrollHeight;
+
+  // Persist assistant message to today's chat history
+  appendAIChatHistory('assistant', responseText);
 }
 
 function initAIChatPipeline(){
@@ -4896,7 +5064,10 @@ function initAIChatPipeline(){
     });
   }
 
-  if(typeof updateAIGreetingUI === 'function'){
+  // Restore today's chat messages or initialize welcome state
+  if(typeof restoreAIChatHistoryUI === 'function'){
+    restoreAIChatHistoryUI();
+  } else if(typeof updateAIGreetingUI === 'function'){
     updateAIGreetingUI();
   }
 
@@ -5005,8 +5176,12 @@ function goToView(name, subTab){
   if(name === 'baby' && typeof renderBabyGrowthView === 'function'){
     renderBabyGrowthView();
   }
-  if(name === 'ai' && typeof updateAIGreetingUI === 'function'){
-    updateAIGreetingUI();
+  if(name === 'ai'){
+    if(typeof restoreAIChatHistoryUI === 'function'){
+      restoreAIChatHistoryUI();
+    } else if(typeof updateAIGreetingUI === 'function'){
+      updateAIGreetingUI();
+    }
   }
   if(name === 'community' && typeof initCommunityView === 'function'){
     initCommunityView();
