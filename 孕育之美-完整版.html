@@ -4524,7 +4524,7 @@ h1,h2,h3{ font-family:var(--font-serif-cjk); margin:0; font-weight:600; color:va
           <div class="welcome-grid-2">
             <div class="field">
               <label for="welcomeDueDate">預產期 (EDD) <span style="color:var(--color-primary); font-weight:700;">*</span></label>
-              <input type="date" id="welcomeDueDate" min="2024-01-01" max="2028-12-31" required>
+              <input type="date" id="welcomeDueDate" min="2024-01-01" required>
             </div>
             <div class="field">
               <label for="welcomePregnancyNumber">懷孕胎數</label>
@@ -5251,6 +5251,15 @@ function openWelcomeModal(){
   var babyInput = document.getElementById('welcomeBabyName');
   var genderInput = document.getElementById('welcomeBabyGender');
 
+  if(dateInput){
+    var maxEddDate = new Date();
+    maxEddDate.setDate(maxEddDate.getDate() + 273);
+    var maxEddYear = maxEddDate.getFullYear();
+    var maxEddMonth = String(maxEddDate.getMonth() + 1).padStart(2, '0');
+    var maxEddDay = String(maxEddDate.getDate()).padStart(2, '0');
+    dateInput.max = maxEddYear + '-' + maxEddMonth + '-' + maxEddDay;
+  }
+
   if(momInput) momInput.value = USER_PROFILE.momNickname || '';
   if(emailInput) emailInput.value = USER_PROFILE.email || '';
   if(dateInput) dateInput.value = USER_PROFILE.dueDate || '';
@@ -5494,6 +5503,16 @@ function updateAuthStateUI(){
 }
 
 function initAccountAndLoginUI(){
+  var welcomeDateInput = document.getElementById('welcomeDueDate');
+  if(welcomeDateInput){
+    var maxEddDate = new Date();
+    maxEddDate.setDate(maxEddDate.getDate() + 273);
+    var maxEddYear = maxEddDate.getFullYear();
+    var maxEddMonth = String(maxEddDate.getMonth() + 1).padStart(2, '0');
+    var maxEddDay = String(maxEddDate.getDate()).padStart(2, '0');
+    welcomeDateInput.max = maxEddYear + '-' + maxEddMonth + '-' + maxEddDay;
+  }
+
   var isPartner = checkAndInitPartnerGuestMode();
   if(isPartner){
     APP.nickname = PARTNER_GUEST.momNickname || '媽咪';
