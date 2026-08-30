@@ -5298,10 +5298,16 @@ function openSettingsModal(type){
     title = '孕期設定';
     desc = '更新預產期或孕期進度。';
     var curPreg = USER_PROFILE.pregnancyNumber || '第一胎';
+    var maxEddDate = new Date();
+    maxEddDate.setDate(maxEddDate.getDate() + 273);
+    var maxEddYear = maxEddDate.getFullYear();
+    var maxEddMonth = String(maxEddDate.getMonth() + 1).padStart(2, '0');
+    var maxEddDay = String(maxEddDate.getDate()).padStart(2, '0');
+    var maxEddStr = maxEddYear + '-' + maxEddMonth + '-' + maxEddDay;
     content = 
       '<div class="field">' +
       '  <label for="settingsEddInput">預產期 (EDD)</label>' +
-      '  <input type="date" id="settingsEddInput" value="' + (USER_PROFILE.dueDate || '2026-11-20') + '">' +
+      '  <input type="date" id="settingsEddInput" value="' + (USER_PROFILE.dueDate || '2026-11-20') + '" max="' + maxEddStr + '">' +
       '</div>' +
       '<div class="field">' +
       '  <label for="settingsPregnancyNumberInput">懷孕胎數</label>' +
