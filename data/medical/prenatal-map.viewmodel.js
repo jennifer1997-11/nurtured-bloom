@@ -4,7 +4,7 @@ window.PRENATAL_MAP_VIEWMODEL = {
     "title": "孕育之美 Prenatal Checkup Map View Model v3",
     "version": "3.0.0",
     "source_dataset": "data/medical/medical-kb.production.json",
-    "generated_at": "2026-08-21T13:38:17.271486+08:00",
+    "generated_at": "2026-08-30T12:00:35.615411+08:00",
     "node_count": 14,
     "seasonal_health_notices": [
       {

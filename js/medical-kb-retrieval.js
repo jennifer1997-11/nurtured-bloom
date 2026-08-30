@@ -152,8 +152,187 @@
         '含咖啡因飲料', '咖啡因飲品', '攝取咖啡因', '咖啡因上限', '咖啡因攝取', '喝多少咖啡', 'caffeine', 'coffee'
       ],
       expansions: ['孕期咖啡因', '咖啡因', '咖啡', '咖啡因攝取上限']
+    },
+    {
+      terms: ['高層次', '高層次超音波', '高層次檢查', '高層次超音波檢查', '照高層次', '做高層次', '高層次門診', 'level 2 ultrasound', 'detailed ultrasound', 'anomaly scan'],
+      expansions: ['高層次超音波', '高層次', '胎兒器官構造', '高階影像篩檢', '解剖構造', 'MED-PRENATAL-OPTIONAL-08']
+    },
+    {
+      terms: ['羊膜穿刺', '羊穿', '羊水穿刺', '羊水檢查', 'amniocentesis'],
+      expansions: ['羊膜穿刺', '羊穿', '產前診斷', 'MED-PRENATAL-OPTIONAL-07']
+    },
+    {
+      terms: ['sma', 'SMA', '脊髓性肌肉萎縮症', '脊髓性肌肉萎縮', '肌肉萎縮症篩檢'],
+      expansions: ['脊髓性肌肉萎縮症基因檢測', 'SMA', '帶因者篩檢', 'MED-PRENATAL-OPTIONAL-04']
+    },
+    {
+      terms: ['x染色體脆折症', '脆折症', 'fragile x', 'Fragile X', '脆折'],
+      expansions: ['X染色體脆折症篩檢', '脆折症', '帶因者篩檢', 'MED-PRENATAL-OPTIONAL-05']
+    },
+    {
+      terms: ['初唐', '第一孕期唐氏症', '第一孕期唐氏症篩檢', '頸部透明帶'],
+      expansions: ['第一孕期唐氏症篩檢', '初唐', '頸部透明帶', 'MED-PRENATAL-OPTIONAL-01']
+    },
+    {
+      terms: ['中唐', '第二孕期唐氏症', '第二孕期唐氏症篩檢', '四指唐氏症', '二指唐氏症'],
+      expansions: ['第二孕期唐氏症篩檢', '中唐', 'MED-PRENATAL-OPTIONAL-06']
+    },
+    {
+      terms: ['第一孕期子癲前症', '子癲前症篩檢', '子癲前症檢查', '子癇前症篩檢', '子癲篩檢'],
+      expansions: ['第一孕期子癲前症篩檢', '子癲前症篩檢', 'MED-PRENATAL-OPTIONAL-03']
+    },
+    {
+      terms: [
+        '妊娠糖尿病', '妊娠糖尿病篩檢', '孕期糖尿病', '孕婦糖尿病', '孕婦糖尿病篩檢',
+        '糖水', '喝糖水', '糖水檢查', '糖水測試', '驗糖水', '75克糖水', '75g糖水', '75克葡萄糖', '75g葡萄糖',
+        '耐糖', '耐糖試驗', '葡萄糖耐量試驗', '口服葡萄糖耐量試驗', 'ogtt', 'OGTT', '75g ogtt', '75g'
+      ],
+      expansions: [
+        '妊娠糖尿病篩檢', '75g 口服葡萄糖耐量試驗 OGTT', '24~28週', '禁食8小時', '妊娠糖尿病飲食控制與營養指導', 'MED-PRENATAL-VISIT-05', 'MED-STAGE-T2-CHECKUP-001'
+      ]
     }
   ];
+
+  /**
+   * Controlled Medical Topic Normalization Rules
+   * Maps user colloquial / short forms to canonical KB topics & records
+   */
+  const TOPIC_NORMALIZATION_RULES = [
+    {
+      normalizedTopic: '高層次超音波',
+      recordId: 'MED-PRENATAL-OPTIONAL-08',
+      patterns: ['高層次超音波', '高層次檢查', '高層次', '照高層次', '做高層次', '高層次超音波檢查'],
+      tokens: ['高層次超音波', '高層次', '高層次檢查', '超音波'],
+      expansions: ['高層次超音波', '胎兒器官構造', '高階影像篩檢']
+    },
+    {
+      normalizedTopic: '妊娠糖尿病篩檢',
+      recordId: 'MED-PRENATAL-VISIT-05',
+      secondaryRecordIds: ['MED-STAGE-T2-CHECKUP-001', 'MED-PRENATAL-VISIT-06'],
+      patterns: [
+        '妊娠糖尿病', '妊娠糖尿病篩檢', '孕期糖尿病', '孕婦糖尿病', '孕婦糖尿病篩檢',
+        '糖水', '喝糖水', '糖水檢查', '糖水測試', '驗糖水', '照糖水', '測糖水', '75克糖水', '75g糖水', '75克葡萄糖', '75g葡萄糖',
+        '耐糖', '耐糖試驗', '葡萄糖耐量試驗', '口服葡萄糖耐量試驗',
+        'ogtt', 'OGTT', '75g ogtt', '75g OGTT', '75克口服葡萄糖耐量試驗'
+      ],
+      tokens: ['妊娠糖尿病篩檢', '妊娠糖尿病', '75g', 'OGTT', '葡萄糖耐量試驗', '糖水', '喝糖水', '貧血檢驗', '第5次產檢'],
+      expansions: ['妊娠糖尿病篩檢', '75g 口服葡萄糖耐量試驗 OGTT', '24~28週', '禁食8小時', '公費產檢', 'MED-PRENATAL-VISIT-05', 'MED-STAGE-T2-CHECKUP-001']
+    },
+    {
+      normalizedTopic: '非侵入性胎兒染色體檢測',
+      recordId: 'MED-PRENATAL-OPTIONAL-02',
+      patterns: ['nipt', '非侵入性胎兒染色體', '非侵入性產前染色體', '非侵入性染色體', '非侵入性產前篩檢'],
+      tokens: ['nipt', '非侵入性胎兒染色體檢測', '非侵入性', '染色體'],
+      expansions: ['NIPT', '唐氏症', '產前篩檢']
+    },
+    {
+      normalizedTopic: '羊膜穿刺',
+      recordId: 'MED-PRENATAL-OPTIONAL-07',
+      patterns: ['羊膜穿刺', '羊穿', '羊水穿刺', '羊水檢查'],
+      tokens: ['羊膜穿刺', '羊穿', '羊水穿刺'],
+      expansions: ['羊膜穿刺', '染色體診斷']
+    },
+    {
+      normalizedTopic: '第一孕期唐氏症篩檢',
+      recordId: 'MED-PRENATAL-OPTIONAL-01',
+      patterns: ['初唐', '第一孕期唐氏症', '第一孕期唐氏症篩檢', '頸部透明帶'],
+      tokens: ['初唐', '第一孕期唐氏症篩檢', '唐氏症', '頸部透明帶'],
+      expansions: ['初唐', '頸部透明帶超音波']
+    },
+    {
+      normalizedTopic: '第二孕期唐氏症篩檢',
+      recordId: 'MED-PRENATAL-OPTIONAL-06',
+      patterns: ['中唐', '第二孕期唐氏症', '第二孕期唐氏症篩檢', '四指唐氏症', '二指唐氏症'],
+      tokens: ['中唐', '第二孕期唐氏症篩檢', '唐氏症'],
+      expansions: ['中唐', '母血四指標']
+    },
+    {
+      normalizedTopic: '脊髓性肌肉萎縮症基因檢測',
+      recordId: 'MED-PRENATAL-OPTIONAL-04',
+      patterns: ['sma', '脊髓性肌肉萎縮症', '脊髓性肌肉萎縮', '肌肉萎縮症篩檢'],
+      tokens: ['sma', '脊髓性肌肉萎縮症', '帶因者篩檢'],
+      expansions: ['SMA', '脊髓性肌肉萎縮症']
+    },
+    {
+      normalizedTopic: 'X染色體脆折症篩檢',
+      recordId: 'MED-PRENATAL-OPTIONAL-05',
+      patterns: ['x染色體脆折症', '脆折症', 'fragile x', '脆折'],
+      tokens: ['x染色體脆折症', '脆折症', '帶因者篩檢'],
+      expansions: ['脆折症', 'Fragile X']
+    },
+    {
+      normalizedTopic: '第一孕期子癲前症篩檢',
+      recordId: 'MED-PRENATAL-OPTIONAL-03',
+      patterns: ['第一孕期子癲前症', '子癲前症篩檢', '子癲前症檢查', '子癇前症篩檢'],
+      tokens: ['第一孕期子癲前症', '子癲前症篩檢', '子癲前症'],
+      expansions: ['子癲前症篩檢', '子癲前症']
+    },
+    {
+      normalizedTopic: '百日咳疫苗',
+      recordId: 'MED-PREG-VACCINE-01',
+      patterns: ['百日咳', '百日咳疫苗', 'tdap', 'Tdap'],
+      tokens: ['百日咳疫苗', 'Tdap', '疫苗'],
+      expansions: ['百日咳疫苗', 'Tdap疫苗']
+    },
+    {
+      normalizedTopic: '季節性流感疫苗',
+      recordId: 'MED-PREG-VACCINE-03',
+      patterns: ['流感疫苗', '流感針', '打流感', '流感預防針', '流感'],
+      tokens: ['季節性流感疫苗', '流感疫苗', '疫苗'],
+      expansions: ['季節性流感疫苗', '流感疫苗']
+    }
+  ];
+
+  /**
+   * Helper: Detect Query Intent
+   * Recognized intents: overview, definition, timing, procedure, disease_management, funding, necessity, comparison, safety
+   */
+  function detectQueryIntent(query) {
+    if (!query || typeof query !== 'string') return 'overview';
+    const q = query.trim().toLowerCase();
+
+    // 1. Diagnosed / Disease Management Intent
+    if (/(?:確診|已經診斷|診斷出|得了|罹患|有妊娠糖尿病|有糖尿病|會怎樣|嚴重嗎|控制血糖|血糖偏高|血糖太高|胰島素|併發症|危害|影響寶寶|高危險)/.test(q)) {
+      return 'disease_management';
+    }
+
+    // 2. Comparison Intent
+    if (/(?:差在哪|差別|差異|差別在哪|不同|跟.*差在哪|和.*差在哪|與.*差在哪|一般超音波|常規超音波|產檢超音波|比一比|比較)/.test(q)) {
+      return 'comparison';
+    }
+
+    // 3. Necessity Intent (Checked before general timing)
+    if (/(?:一定要|必須|要不要|需要做嗎|需要照嗎|需要驗嗎|有需要嗎|有必要嗎|建議做嗎|建議照嗎|值得做嗎|誰需要|適合誰|對象|適應症|一定要做嗎|一定得做|一定要驗嗎)/.test(q)) {
+      return 'necessity';
+    }
+
+    // 4. Procedure / How-to Intent
+    if (/(?:怎麼驗|怎麼做|怎麼喝|如何做|如何驗|如何喝|如何進行|檢查方式|篩檢流程|注意事項|禁食|空腹|抽血流程|喝法|步驟|前置作業|流程|怎麼檢查|怎麼測)/.test(q)) {
+      return 'procedure';
+    }
+
+    // 5. Timing Intent
+    if (/(?:什麼時候|甚麼時候|幾週|幾周|何時|時間|時機|週數|周數|多大做|多久做|什麼階段|幾個月|可以做嗎|可以照嗎|能做嗎|能照嗎|適合做嗎|適合照嗎|照高層次|做高層次|現在.*週|第.*週|\d{1,2}\s*(?:週|周)|何時檢查|幾週做|幾週照|幾週可以|何時進行|什麼時候做|幾週喝|要喝.*嗎|要驗.*嗎|要做.*嗎|要照.*嗎|要檢查.*嗎|還沒喝|還沒做|還沒驗|什麼時候驗|幾週驗|幾週檢查|要驗嗎)/.test(q)) {
+      return 'timing';
+    }
+
+    // 6. Funding Intent
+    if (/(?:自費|公費|費用|多少錢|要錢嗎|要自費嗎|健保|補助|有補助嗎|需自費嗎|要付費嗎|自費項目|價錢|花費)/.test(q)) {
+      return 'funding';
+    }
+
+    // 7. Safety Intent
+    if (/(?:安全嗎|副作用|風險|危險|後遺症|傷寶寶|會痛嗎|侵入性|放射線|輻射|傷害)/.test(q)) {
+      return 'safety';
+    }
+
+    // 8. Definition Intent
+    if (/(?:是什麼|甚麼是|定義|介紹|說明|內容|在看什麼|看什麼|在照什麼|查什麼|檢查什麼|檢查甚麼|項目)/.test(q)) {
+      return 'definition';
+    }
+
+    return 'overview';
+  }
 
   /**
    * Helper: Get next upcoming prenatal visit node based on week
@@ -189,7 +368,7 @@
    */
   function extractWeek(query, weekContext) {
     if (typeof query === 'string') {
-      const match = query.match(/(?:孕|懷孕)?\s*(\d{1,2})\s*(?:週|周|w|W)/);
+      const match = query.match(/(?:孕|懷孕|我現在|現在|目前|第)?\s*(\d{1,2})\s*(?:週|周|w|W)/i);
       if (match) {
         const parsed = parseInt(match[1], 10);
         if (parsed >= 1 && parsed <= 42) {
@@ -204,25 +383,52 @@
   }
 
   /**
-   * Helper: Expand query into token list & concept synonyms
+   * Helper: Expand query into token list, concept synonyms, normalized topic & intent
    */
   function normalizeAndExpandQuery(query) {
-    if (!query || typeof query !== 'string') return { raw: '', tokens: [], expanded: [] };
+    if (!query || typeof query !== 'string') {
+      return { raw: '', tokens: [], expanded: [], normalizedTopic: null, matchedRecordId: null, intent: 'overview' };
+    }
 
     const raw = query.trim();
     const lower = raw.toLowerCase();
 
     // Base tokens
     const tokens = new Set();
+    const expanded = new Set();
 
-    // Extract alphanumeric keywords and CJK word segments
+    // 1. Detect Intent
+    const intent = detectQueryIntent(raw);
+
+    // 2. Topic Normalization & Extraction
+    let normalizedTopic = null;
+    let matchedRecordId = null;
+    let secondaryRecordIds = [];
+
+    for (const rule of TOPIC_NORMALIZATION_RULES) {
+      const matched = rule.patterns.some(p => lower.includes(p.toLowerCase()));
+      if (matched) {
+        normalizedTopic = rule.normalizedTopic;
+        matchedRecordId = rule.recordId;
+        if (Array.isArray(rule.secondaryRecordIds)) {
+          secondaryRecordIds = rule.secondaryRecordIds;
+        }
+        rule.tokens.forEach(t => tokens.add(t));
+        rule.expansions.forEach(e => expanded.add(e));
+        break;
+      }
+    }
+
+    // 3. Extract alphanumeric keywords and CJK word segments
     const cleanStr = lower.replace(/[？?！!，,。.\-_/\\()（）[\]【】]/g, ' ');
     const parts = cleanStr.split(/\s+/).filter(Boolean);
 
     parts.forEach(p => tokens.add(p));
 
-    // Common short CJK keywords
+    // 4. Common short CJK keywords
     const directKeywords = [
+      '妊娠糖尿病篩檢', '妊娠糖尿病', '喝糖水', '糖水檢查', '糖水', 'ogtt', 'OGTT', '耐糖試驗', '葡萄糖耐量試驗', '75g', '75克',
+      '高層次超音波', '高層次檢查', '高層次',
       '下腹痛', '腹痛', '肚子痛', '宮縮', '子宮收縮', '變硬', '發硬', '肚子硬', '出血', '見紅', '落紅', '破水',
       '胎動', '頭痛', '頭暈', '視力模糊', '水腫', '浮腫', '發燒', '畏寒', '孕吐',
       '噁心', '嘔吐', '頻尿', '排尿痛', '便祕', '恥骨痛', '腰痠', '背痛', '流感疫苗',
@@ -230,7 +436,7 @@
       '神隊友', '產檢', '超音波', '早產', '產兆', '陣痛',
       '寶寶', '胎兒', '發育', '變化', '成長', '多大', '長大', '生長', '長怎樣', '身長', '體重',
       '飲食', '營養', '吃什麼', '飲食建議', '孕期飲食', '孕期營養', '下次產檢', '產檢內容', '蛋白質', '維生素',
-      '咖啡因', '咖啡', '喝咖啡'
+      '咖啡因', '咖啡', '喝咖啡', '羊膜穿刺', '初唐', '中唐', '子癲前症', '唐氏症'
     ];
 
     directKeywords.forEach(kw => {
@@ -239,8 +445,7 @@
       }
     });
 
-    // Expand through SYNONYM_MAP
-    const expanded = new Set();
+    // 5. Expand through SYNONYM_MAP
     SYNONYM_MAP.forEach(item => {
       const matched = item.terms.some(t => lower.includes(t.toLowerCase()));
       if (matched) {
@@ -252,7 +457,11 @@
     return {
       raw,
       tokens: Array.from(tokens),
-      expanded: Array.from(expanded)
+      expanded: Array.from(expanded),
+      normalizedTopic,
+      matchedRecordId,
+      secondaryRecordIds,
+      intent
     };
   }
 
@@ -280,7 +489,20 @@
       return { match: true, isTrimesterMatch: true };
     }
 
-    // 4. Trimester match
+    // 4. Parse recommended_window string (e.g. "approximately 20-24 weeks", "20-24 weeks", "10-14週", "8–12週", "24~28週")
+    const recWindow = record.recommended_window || (record.content && record.content.recommended_window) || '';
+    if (typeof recWindow === 'string' && recWindow.trim()) {
+      const winMatch = recWindow.match(/(\d{1,2})\s*[-–~至到]\s*(\d{1,2})/);
+      if (winMatch) {
+        const startW = parseInt(winMatch[1], 10);
+        const endW = parseInt(winMatch[2], 10);
+        if (week >= startW && week <= endW) {
+          return { match: true, isTrimesterMatch: true };
+        }
+      }
+    }
+
+    // 5. Trimester match
     const trimester = week <= 12 ? 'trimester_1' : (week <= 28 ? 'trimester_2' : 'trimester_3');
     const stage = record.pregnancy_stage;
 
@@ -330,6 +552,20 @@
       }
     }
 
+    // 0. Direct Normalized Topic / Record ID Boost (Top priority grounding)
+    if (queryInfo.matchedRecordId && record.id === queryInfo.matchedRecordId) {
+      matchedFields.add('id');
+      score += 150;
+    }
+    if (queryInfo.secondaryRecordIds && queryInfo.secondaryRecordIds.includes(record.id)) {
+      matchedFields.add('id');
+      score += 80;
+    }
+    if (queryInfo.normalizedTopic && (record.topic === queryInfo.normalizedTopic || (content.title && content.title === queryInfo.normalizedTopic))) {
+      matchedFields.add('topic');
+      score += 100;
+    }
+
     // 1. High-weight fields (Title, Topic, Red Flags, Growth size analogy)
     scanField(record.topic, 'topic', 50, 30);
     scanField(content.title, 'content.title', 50, 30);
@@ -337,22 +573,48 @@
     scanField(content.common_presentations, 'content.common_presentations', 35, 20);
     scanField(content.size_analogy_zh, 'content.size_analogy_zh', 35, 20);
 
-    // 2. Urgent care & warnings
+    // 2. Purpose, Recommended Window, Suitability, Limitations, Funding, Procedure & Checkup specifics
+    const intent = queryInfo.intent || 'overview';
+    const timingBoost = (intent === 'timing') ? 30 : 0;
+    const fundingBoost = (intent === 'funding') ? 30 : 0;
+    const necessityBoost = (intent === 'necessity') ? 30 : 0;
+    const comparisonBoost = (intent === 'comparison') ? 30 : 0;
+    const procedureBoost = (intent === 'procedure') ? 35 : 0;
+    const diseaseBoost = (intent === 'disease_management') ? 35 : 0;
+
+    scanField(content.purpose, 'content.purpose', 35 + comparisonBoost + procedureBoost, 20);
+    scanField(record.recommended_window, 'recommended_window', 35 + timingBoost, 20);
+    scanField(content.recommended_window, 'content.recommended_window', 35 + timingBoost, 20);
+    scanField(content.suitable_population, 'content.suitable_population', 30 + necessityBoost, 15);
+    scanField(content.important_limitations, 'content.important_limitations', 30 + comparisonBoost, 15);
+    scanField(content.funding_type, 'content.funding_type', 30 + fundingBoost, 15);
+    scanField(content.cost_range, 'content.cost_range', 30 + fundingBoost, 15);
+    scanField(content.screening_or_diagnostic, 'content.screening_or_diagnostic', 25, 15);
+
+    // Checkup specific detailed items
+    scanField(content.cta, 'content.cta', 35 + procedureBoost, 20);
+    scanField(content.specific_tests, 'content.specific_tests', 35 + procedureBoost, 20);
+    scanField(content.publicly_funded_items, 'content.publicly_funded_items', 30 + fundingBoost, 20);
+    scanField(content.health_education, 'content.health_education', 30 + diseaseBoost, 20);
+    scanField(content.routine_checkups, 'content.routine_checkups', 25, 15);
+    scanField(content.notes, 'content.notes', 25 + timingBoost, 15);
+
+    // 3. Urgent care & warnings
     scanField(content.when_to_seek_care, 'content.when_to_seek_care', 30, 20);
     scanField(content.stop_and_seek_help_if, 'content.stop_and_help', 30, 20);
 
-    // 3. Summary & recommendations
+    // 4. Summary & recommendations
     scanField(content.summary, 'content.summary', 25, 15);
     scanField(content.recommendations, 'content.recommendations', 20, 10);
     scanField(content.bullets, 'content.bullets', 20, 10);
-    scanField(content.self_care_or_actions, 'content.self_care_or_actions', 20, 10);
+    scanField(content.self_care_or_actions, 'content.self_care_or_actions', 20 + diseaseBoost, 10);
 
-    // 4. Cautions & Category
+    // 5. Cautions & Category
     scanField(content.avoid_or_cautions, 'content.avoid_or_cautions', 15, 10);
     scanField(content.avoid_or_limit, 'content.avoid_or_limit', 15, 10);
     scanField(record.category, 'category', 15, 10);
 
-    // 5. Special Baby Growth Intent Match
+    // 6. Special Baby Growth Intent Match
     const isBabyGrowthIntent = queryInfo.tokens.some(t => ['寶寶', '胎兒', '發育', '變化', '成長', '多大', '長大', '生長', '長怎樣'].includes(t)) ||
                               queryInfo.expanded.some(e => ['胎兒身長體重與大小比喻', '寶寶成長', '胎兒發育'].includes(e));
 
@@ -367,7 +629,7 @@
       }
     }
 
-    // 6. Special Next Prenatal Visit Intent Match
+    // 7. Special Next Prenatal Visit Intent Match
     const isNextPrenatalVisitIntent = /(?:下次|下一次|接下來|近期)?\s*(?:要問什麼|要問甚麼|內容|要檢查什麼|要做什麼|要做甚麼)?\s*(?:產檢|檢查)/.test(queryInfo.raw) ||
       queryInfo.tokens.some(t => ['下次產檢', '下一次產檢', '產檢內容', '產檢項目', '下次產檢要問什麼'].includes(t));
 
@@ -384,7 +646,7 @@
       }
     }
 
-    // 7. Special Pregnancy Nutrition Intent Match
+    // 8. Special Pregnancy Nutrition Intent Match
     const isNutritionIntent = queryInfo.tokens.some(t => ['飲食', '營養', '吃什麼', '飲食建議', '孕期飲食', '孕期營養'].includes(t)) ||
       queryInfo.expanded.some(e => ['孕期飲食', '孕期營養', '懷孕飲食', '孕婦飲食'].includes(e));
 
@@ -653,6 +915,146 @@
         }
       },
       {
+        id: 'TEST_01',
+        name: '高層次',
+        query: '高層次',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_02',
+        name: '高層次超音波是什麼？',
+        query: '高層次超音波是什麼？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_03',
+        name: '什麼時候要做高層次？',
+        query: '什麼時候要做高層次？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_04',
+        name: '高層次幾週做？',
+        query: '高層次幾週做？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_05',
+        name: '幾週可以照高層次？',
+        query: '幾週可以照高層次？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_06',
+        name: '20週可以做高層次嗎？',
+        query: '20週可以做高層次嗎？',
+        week: 20,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_07',
+        name: '高層次要自費嗎？',
+        query: '高層次要自費嗎？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_08',
+        name: '高層次一定要做嗎？',
+        query: '高層次一定要做嗎？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_09',
+        name: '高層次跟一般超音波差在哪？',
+        query: '高層次跟一般超音波差在哪？',
+        week: null,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_10',
+        name: '我現在21週可以做高層次嗎？',
+        query: '我現在21週可以做高層次嗎？',
+        week: 21,
+        validate: (res) => res.results.length > 0 && res.results[0].id === 'MED-PRENATAL-OPTIONAL-08'
+      },
+      {
+        id: 'TEST_GDM_01',
+        name: '妊娠糖尿病',
+        query: '妊娠糖尿病',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_02',
+        name: '什麼時候驗妊娠糖尿病？',
+        query: '什麼時候驗妊娠糖尿病？',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_03',
+        name: '糖水幾週喝？',
+        query: '糖水幾週喝？',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_04',
+        name: '幾週做糖水檢查？',
+        query: '幾週做糖水檢查？',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_05',
+        name: 'OGTT幾週做？',
+        query: 'OGTT幾週做？',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_06',
+        name: '75克糖水是什麼？',
+        query: '75克糖水是什麼？',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_07',
+        name: '妊娠糖尿病怎麼驗？',
+        query: '妊娠糖尿病怎麼驗？',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_08',
+        name: '我26週還沒喝糖水',
+        query: '我26週還沒喝糖水',
+        week: 26,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_09',
+        name: '我20週要喝糖水嗎？',
+        query: '我20週要喝糖水嗎？',
+        week: 20,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
+        id: 'TEST_GDM_10',
+        name: '我已經確診妊娠糖尿病',
+        query: '我已經確診妊娠糖尿病',
+        week: null,
+        validate: (res) => res.results.length > 0 && (res.results[0].id === 'MED-PRENATAL-VISIT-05' || res.results[0].id === 'MED-STAGE-T2-CHECKUP-001')
+      },
+      {
         id: 'TEST_ZERO',
         name: '台北哪家火鍋店最好吃？ (Unsupported Query)',
         query: '台北哪家火鍋店最好吃？',
@@ -691,6 +1093,7 @@
     loadMedicalKBAsync,
     searchMedicalKB,
     extractWeek,
+    detectQueryIntent,
     normalizeAndExpandQuery,
     testMedicalKBRetrieval
   };

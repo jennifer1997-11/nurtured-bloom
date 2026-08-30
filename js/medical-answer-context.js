@@ -38,6 +38,12 @@
       triggerTokens: ['藥', '成藥', '感冒藥', '止痛藥', '退燒藥', '瀉藥', 'medication'],
       coverage: 'PARTIAL',
       gapReason: 'Approved KB lacks comprehensive pharmaceutical chemical database; contains general self-medication warnings only.'
+    },
+    {
+      // Diagnosed GDM queries: KB provides routine checkup screening, 8-hour fasting, and dietary guidance, but lacks individualized glycemic targets or pharmacotherapy
+      triggerTokens: ['確診妊娠糖尿病', '已經確診妊娠糖尿病', '確診糖尿病', '得妊娠糖尿病', '診斷妊娠糖尿病'],
+      coverage: 'PARTIAL',
+      gapReason: 'Approved KB provides routine prenatal checkup screening, 8-hour fasting preparation, and dietary control guidelines. Specific individual glycemic targets or pharmacotherapy require clinical supervision.'
     }
   ];
 
@@ -87,9 +93,26 @@
     const cleanContent = {};
     const contentFields = [
       'title',
+      'purpose',
+      'recommended_window',
+      'timing',
+      'screening_or_diagnostic',
+      'invasive',
+      'funding_type',
+      'cost_range',
+      'cost_info',
+      'suitable_population',
+      'important_limitations',
+      'policy_sensitive',
+      'cta',
+      'specific_tests',
+      'routine_checkups',
+      'publicly_funded_items',
+      'health_education',
+      'notes',
       'summary',
-      'recommendations',
       'bullets',
+      'recommendations',
       'red_flags',
       'when_to_seek_care',
       'self_care_or_actions',
@@ -101,9 +124,11 @@
       'food_sources',
       'daily_reference_value',
       'unit',
+      'gestational_week',
       'length_cm',
       'estimated_weight_g',
-      'size_analogy_zh'
+      'size_analogy_zh',
+      'disclaimer'
     ];
 
     contentFields.forEach(f => {
@@ -112,7 +137,7 @@
           cleanContent[f] = content[f];
         } else if (typeof content[f] === 'string' && content[f].trim() !== '') {
           cleanContent[f] = content[f].trim();
-        } else if (typeof content[f] === 'number') {
+        } else if (typeof content[f] === 'number' || typeof content[f] === 'boolean') {
           cleanContent[f] = content[f];
         }
       }
@@ -131,6 +156,9 @@
 
     if (raw.audience) sanitized.audience = raw.audience;
     if (raw.priority) sanitized.priority = raw.priority;
+    if (raw.recommended_window) sanitized.recommended_window = raw.recommended_window;
+    if (raw.trigger_week !== undefined) sanitized.trigger_week = raw.trigger_week;
+    if (raw.recommended_gestational_week !== undefined) sanitized.recommended_gestational_week = raw.recommended_gestational_week;
     if (raw.week_start !== undefined) sanitized.week_start = raw.week_start;
     if (raw.week_end !== undefined) sanitized.week_end = raw.week_end;
 

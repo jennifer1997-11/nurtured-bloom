@@ -2220,7 +2220,7 @@
                 </div>
                 <h3 style="font-family:var(--font-serif-cjk); font-size:18px; margin:0; color:var(--color-text);">${escapeHtml(c.title || r.topic)}</h3>
               </div>
-              <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'} (${r.recommended_window || '1-40w'})</span>
+              <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'} (${r.recommended_window || (c && c.recommended_window) || '依醫囑／全孕期'})</span>
             </div>
 
             <div class="detail-card-body" style="padding: 16px 18px; gap: 12px;">
@@ -2589,7 +2589,7 @@
               </div>
               <div style="text-align:right;">
                 <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'}</span>
-                <div style="font-size:11.5px; color:var(--color-text-muted); margin-top:4px;">視窗: ${escapeHtml(r.recommended_window || '1-40 weeks')}</div>
+                <div style="font-size:11.5px; color:var(--color-text-muted); margin-top:4px;">視窗: ${escapeHtml(r.recommended_window || (c && c.recommended_window) || '依醫囑／全孕期')}</div>
               </div>
             </div>
 
@@ -2791,7 +2791,7 @@
               </div>
               <div style="text-align:right;">
                 <span class="badge badge-stage">${r.pregnancy_stage || 'ALL'}</span>
-                <div style="font-size:11.5px; color:var(--color-text-muted); margin-top:4px;">視窗: ${escapeHtml(r.recommended_window || '1-40 weeks')} ${r.trigger_week ? `(W${r.trigger_week})` : ''}</div>
+                <div style="font-size:11.5px; color:var(--color-text-muted); margin-top:4px;">視窗: ${escapeHtml(r.recommended_window || (c && c.recommended_window) || '依醫囑／全孕期')} ${r.trigger_week ? `(W${r.trigger_week})` : ''}</div>
               </div>
             </div>
 
