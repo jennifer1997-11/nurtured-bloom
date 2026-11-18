@@ -23,6 +23,25 @@
     }
   </script>
 </head>
+  <button type="button" id="show-checkup-map">查看產檢地圖</button>
+
+<section id="checkup-map-preview" hidden>
+  <h2>產檢地圖示範</h2>
+  <p>這是用來練習 GA4 事件的示範內容。</p>
+</section>
+
+<script>
+  const checkupMapButton = document.getElementById('show-checkup-map');
+  const checkupMapPreview = document.getElementById('checkup-map-preview');
+
+  checkupMapButton.addEventListener('click', function () {
+    checkupMapPreview.hidden = false;
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'view_checkup_map');
+    }
+  });
+</script>
 <body>
   <h1>孕育之美｜GA4 練習</h1>
   <p>開啟這一頁，測試 GA4 是否收到頁面瀏覽事件。</p>
