@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>孕育之美｜GA4 練習</title>
+
+  <script>
+    if (window.location.hostname === 'nurtured-bloom.netlify.app') {
+      const measurementId = 'G-TWSJ1EXZ2P';
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', measurementId);
+
+      const googleTag = document.createElement('script');
+      googleTag.async = true;
+      googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+      document.head.appendChild(googleTag);
+    }
+  </script>
+</head>
+<body>
+  <h1>孕育之美｜GA4 練習</h1>
+  <p>開啟這一頁，測試 GA4 是否收到頁面瀏覽事件。</p>
+</body>
+</html>
